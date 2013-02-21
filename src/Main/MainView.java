@@ -2,7 +2,7 @@
  * GUIProjektGrupp13View.java
  */
 
-package guiprojektgrupp13;
+package Main;
 
 import org.jdesktop.application.Action;
 import org.jdesktop.application.SingleFrameApplication;
@@ -13,9 +13,9 @@ import javax.swing.JFrame;
 /**
  * The application's main frame.
  */
-public class GUIProjektGrupp13View extends FrameView {
+public class MainView extends FrameView {
 
-    public GUIProjektGrupp13View(SingleFrameApplication app) {
+    public MainView(SingleFrameApplication app) {
         super(app);
 
         initComponents();
@@ -24,11 +24,11 @@ public class GUIProjektGrupp13View extends FrameView {
     @Action
     public void showAboutBox() {
         if (aboutBox == null) {
-            JFrame mainFrame = GUIProjektGrupp13App.getApplication().getMainFrame();
-            aboutBox = new GUIProjektGrupp13AboutBox(mainFrame);
+            JFrame mainFrame = MainApp.getApplication().getMainFrame();
+            aboutBox = new MainAboutBox(mainFrame);
             aboutBox.setLocationRelativeTo(mainFrame);
         }
-        GUIProjektGrupp13App.getApplication().show(aboutBox);
+        MainApp.getApplication().show(aboutBox);
     }
 
     /** This method is called from within the constructor to
@@ -62,11 +62,11 @@ public class GUIProjektGrupp13View extends FrameView {
 
         menuBar.setName("menuBar"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(guiprojektgrupp13.GUIProjektGrupp13App.class).getContext().getResourceMap(GUIProjektGrupp13View.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(MainView.class);
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(guiprojektgrupp13.GUIProjektGrupp13App.class).getContext().getActionMap(GUIProjektGrupp13View.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getActionMap(MainView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);

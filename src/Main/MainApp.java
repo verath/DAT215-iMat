@@ -2,7 +2,7 @@
  * GUIProjektGrupp13App.java
  */
 
-package guiprojektgrupp13;
+package Main;
 
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
@@ -10,13 +10,13 @@ import org.jdesktop.application.SingleFrameApplication;
 /**
  * The main class of the application.
  */
-public class GUIProjektGrupp13App extends SingleFrameApplication {
+public class MainApp extends SingleFrameApplication {
 
     /**
      * At startup create and show the main frame of the application.
      */
     @Override protected void startup() {
-        show(new GUIProjektGrupp13View(this));
+        show(new MainView(this));
     }
 
     /**
@@ -31,14 +31,14 @@ public class GUIProjektGrupp13App extends SingleFrameApplication {
      * A convenient static getter for the application instance.
      * @return the instance of GUIProjektGrupp13App
      */
-    public static GUIProjektGrupp13App getApplication() {
-        return Application.getInstance(GUIProjektGrupp13App.class);
+    public static MainApp getApplication() {
+        return Application.getInstance(MainApp.class);
     }
 
     /**
      * Main method launching the application.
      */
     public static void main(String[] args) {
-        launch(GUIProjektGrupp13App.class, args);
+        launch(MainApp.class, args);
     }
 }

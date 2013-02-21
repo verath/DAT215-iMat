@@ -2,13 +2,13 @@
  * GUIProjektGrupp13AboutBox.java
  */
 
-package guiprojektgrupp13;
+package Main;
 
 import org.jdesktop.application.Action;
 
-public class GUIProjektGrupp13AboutBox extends javax.swing.JDialog {
+public class MainAboutBox extends javax.swing.JDialog {
 
-    public GUIProjektGrupp13AboutBox(java.awt.Frame parent) {
+    public MainAboutBox(java.awt.Frame parent) {
         super(parent);
         initComponents();
         getRootPane().setDefaultButton(closeButton);
@@ -38,13 +38,13 @@ public class GUIProjektGrupp13AboutBox extends javax.swing.JDialog {
         javax.swing.JLabel imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(guiprojektgrupp13.GUIProjektGrupp13App.class).getContext().getResourceMap(GUIProjektGrupp13AboutBox.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(MainAboutBox.class);
         setTitle(resourceMap.getString("title")); // NOI18N
         setModal(true);
         setName("aboutBox"); // NOI18N
         setResizable(false);
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(guiprojektgrupp13.GUIProjektGrupp13App.class).getContext().getActionMap(GUIProjektGrupp13AboutBox.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getActionMap(MainAboutBox.class, this);
         closeButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
         closeButton.setName("closeButton"); // NOI18N
 
