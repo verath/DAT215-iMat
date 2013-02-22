@@ -1,36 +1,37 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /*
- * Shoppingcart1.java
+ * ShoppingCart.java
  *
  * Created on Feb 20, 2013, 12:49:32 PM
  */
 package ShoppingCart;
 
 import javax.swing.DefaultListModel;
+import se.chalmers.ait.dat215.project.Product;
 
 /**
  *
  * @author Philip
  */
-public class ShoppingCart extends javax.swing.JPanel {
-
-    /** Creates new form Shoppingcart1 */
-    public ShoppingCart() {
+public class ShoppingCartView extends javax.swing.JPanel {
+    private ShoppingCartController scController;
+    
+    /** Creates new form ShoppingCart */
+    public ShoppingCartView() {
         initComponents();
+        
+        scController = new ShoppingCartController(this);
     }
     
-    public void addItem(){
-        System.out.println("öö");
-        s1 = new ShoppingCartItem("Banan", 12, 90);
-        jPanel2.add(s1);
-        jPanel2.validate();
-        jPanel2.repaint();
-        validate();
-        repaint();
+    public void addProductToCart( ShoppingCartItemView sci ){
+        System.out.println("Adding item to shopping cart");
+        shoppingItemsContainer.add(sci);
+        
+        
+        shoppingItemsContainer.validate();
+        shoppingItemsContainer.repaint();
+        scroll.validate();
+        scroll.repaint();
     }
 
     /** This method is called from within the constructor to
@@ -46,16 +47,16 @@ public class ShoppingCart extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jLabel1 = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
+        scroll = new javax.swing.JScrollPane();
+        shoppingItemsContainer = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        saveCartButton = new javax.swing.JButton();
+        checkoutButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        scroll = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
+        numItemsLabel = new javax.swing.JLabel();
+        totalPriceLabel = new javax.swing.JLabel();
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -90,22 +91,30 @@ public class ShoppingCart extends javax.swing.JPanel {
 
         setName("Form"); // NOI18N
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(ShoppingCart.class);
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel1.setName("jLabel1"); // NOI18N
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(ShoppingCartView.class);
+        titleLabel.setText(resourceMap.getString("titleLabel.text")); // NOI18N
+        titleLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        titleLabel.setName("titleLabel"); // NOI18N
+
+        scroll.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setName("scroll"); // NOI18N
+
+        shoppingItemsContainer.setName("shoppingItemsContainer"); // NOI18N
+        shoppingItemsContainer.setLayout(new javax.swing.BoxLayout(shoppingItemsContainer, javax.swing.BoxLayout.PAGE_AXIS));
+        scroll.setViewportView(shoppingItemsContainer);
 
         jSeparator1.setName("jSeparator1"); // NOI18N
 
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
+        saveCartButton.setText(resourceMap.getString("saveCartButton.text")); // NOI18N
+        saveCartButton.setName("saveCartButton"); // NOI18N
 
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        checkoutButton.setText(resourceMap.getString("checkoutButton.text")); // NOI18N
+        checkoutButton.setName("checkoutButton"); // NOI18N
+        checkoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                checkoutButtonActionPerformed(evt);
             }
         });
 
@@ -115,19 +124,11 @@ public class ShoppingCart extends javax.swing.JPanel {
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
 
-        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
-        jLabel4.setName("jLabel4"); // NOI18N
+        numItemsLabel.setText(resourceMap.getString("numItemsLabel.text")); // NOI18N
+        numItemsLabel.setName("numItemsLabel"); // NOI18N
 
-        jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
-        jLabel5.setName("jLabel5"); // NOI18N
-
-        scroll.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.setName("scroll"); // NOI18N
-
-        jPanel2.setName("jPanel2"); // NOI18N
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
-        scroll.setViewportView(jPanel2);
+        totalPriceLabel.setText(resourceMap.getString("totalPriceLabel.text")); // NOI18N
+        totalPriceLabel.setName("totalPriceLabel"); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -139,68 +140,65 @@ public class ShoppingCart extends javax.swing.JPanel {
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, scroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                     .add(jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
-                        .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 126, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(saveCartButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 126, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 38, Short.MAX_VALUE)
-                        .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 98, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                        .add(checkoutButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 98, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(titleLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel4)
-                            .add(jLabel5))
-                        .add(122, 122, 122)))
+                            .add(numItemsLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(totalPriceLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(102, 102, 102)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(titleLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(scroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
-                    .add(jLabel4))
+                    .add(numItemsLabel))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
-                    .add(jLabel5))
+                    .add(totalPriceLabel))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jButton1)
-                    .add(jButton2))
+                    .add(saveCartButton)
+                    .add(checkoutButton))
                 .add(17, 17, 17))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    addItem();
-}//GEN-LAST:event_jButton2ActionPerformed
+private void checkoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutButtonActionPerformed
+    scController.onCheckoutButtonActionPerformed(evt);
+}//GEN-LAST:event_checkoutButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton checkoutButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel numItemsLabel;
+    private javax.swing.JButton saveCartButton;
     private javax.swing.JScrollPane scroll;
+    private javax.swing.JPanel shoppingItemsContainer;
+    private javax.swing.JLabel titleLabel;
+    private javax.swing.JLabel totalPriceLabel;
     // End of variables declaration//GEN-END:variables
-
-    private ShoppingCartItem s1;
-    private DefaultListModel dlm = new DefaultListModel();;
 
 }

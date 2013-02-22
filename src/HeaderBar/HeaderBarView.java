@@ -14,12 +14,12 @@ package HeaderBar;
  *
  * @author Peter
  */
-public class HeaderBar extends javax.swing.JPanel {
+public class HeaderBarView extends javax.swing.JPanel {
 
     private HeaderBarController hbController;
 
     /** Creates new form HeaderBar */
-    public HeaderBar() {
+    public HeaderBarView() {
         initComponents();
 
         hbController = new HeaderBarController(this);
@@ -44,7 +44,7 @@ public class HeaderBar extends javax.swing.JPanel {
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(HeaderBar.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(HeaderBarView.class);
         SearchInputField.setFont(resourceMap.getFont("SearchInputField.font")); // NOI18N
         SearchInputField.setText(resourceMap.getString("SearchInputField.text")); // NOI18N
         SearchInputField.setName("SearchInputField"); // NOI18N
@@ -89,7 +89,7 @@ private void SearchInputFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIR
 }//GEN-LAST:event_SearchInputFieldKeyReleased
 
 private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
-    hbController.SearchButtonActionPerformed(evt);
+    hbController.onSearchButtonActionPerformed(evt);
 }//GEN-LAST:event_SearchButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SearchButton;

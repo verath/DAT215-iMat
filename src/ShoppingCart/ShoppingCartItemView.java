@@ -10,22 +10,32 @@
  */
 package ShoppingCart;
 
+import se.chalmers.ait.dat215.project.Product;
+import se.chalmers.ait.dat215.project.ShoppingItem;
+
 /**
  *
  * @author Philip
  */
-public class ShoppingCartItem extends javax.swing.JPanel {
+public class ShoppingCartItemView extends javax.swing.JPanel {
 
     /** Creates new form ShoppingItem1 */
-    public ShoppingCartItem() {
+    private ShoppingCartItemView() {
         initComponents();
     }
-    
-    public ShoppingCartItem(String name, int count, int price){
+
+    public ShoppingCartItemView(ShoppingItem item) {
         this();
-        nameLabel.setText(name);
-        priceLabel.setText(""+price);
-        countSpinner.setValue(count);
+        
+        Product prod = item.getProduct();
+        int amount = (int)item.getAmount();
+        String totalPrice = Integer.toString((int)(prod.getPrice() * amount));
+        
+        nameLabel.setText(prod.getName());
+        priceLabel.setText("" + prod.getPrice());
+        unitMeasureLabel.setText(prod.getUnit());
+        priceLabel.setText(totalPrice);
+        countSpinner.setValue(amount);
     }
 
     /** This method is called from within the constructor to
@@ -41,11 +51,11 @@ public class ShoppingCartItem extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         nameLabel = new javax.swing.JLabel();
         countSpinner = new javax.swing.JSpinner();
-        jLabel2 = new javax.swing.JLabel();
+        unitMeasureLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(ShoppingCartItem.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(ShoppingCartItemView.class);
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
 
@@ -57,10 +67,11 @@ public class ShoppingCartItem extends javax.swing.JPanel {
         nameLabel.setText(resourceMap.getString("nameLabel.text")); // NOI18N
         nameLabel.setName("nameLabel"); // NOI18N
 
+        countSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
         countSpinner.setName("countSpinner"); // NOI18N
 
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setName("jLabel2"); // NOI18N
+        unitMeasureLabel.setText(resourceMap.getString("unitMeasureLabel.text")); // NOI18N
+        unitMeasureLabel.setName("unitMeasureLabel"); // NOI18N
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
@@ -79,19 +90,19 @@ public class ShoppingCartItem extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(countSpinner, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 52, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel2)
+                .add(unitMeasureLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(priceLabel)
+                .add(priceLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 39, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 38, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(nameLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
             .add(countSpinner, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
             .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .add(unitMeasureLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .add(priceLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .add(jLabel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
         );
@@ -110,10 +121,10 @@ public class ShoppingCartItem extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner countSpinner;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel priceLabel;
+    private javax.swing.JLabel unitMeasureLabel;
     // End of variables declaration//GEN-END:variables
 }

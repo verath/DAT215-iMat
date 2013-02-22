@@ -19,9 +19,9 @@ import se.chalmers.ait.dat215.project.ProductCategory;
 public class HeaderBarController {
 
     public static final String SEARCH_PLACEHOLDER_TEXT = "Sök efter en vara...";
-    private HeaderBar view;
+    private HeaderBarView view;
 
-    public HeaderBarController(HeaderBar view) {
+    public HeaderBarController(HeaderBarView view) {
         this.view = view;
     }
 
@@ -76,7 +76,7 @@ public class HeaderBarController {
         }
     }
 
-    void SearchButtonActionPerformed(ActionEvent evt) {
+    void onSearchButtonActionPerformed(ActionEvent evt) {
         doSearch();
     }
 }
