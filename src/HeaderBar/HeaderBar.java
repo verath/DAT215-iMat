@@ -8,7 +8,7 @@
  *
  * Created on Feb 21, 2013, 9:20:15 PM
  */
-package Main;
+package HeaderBar;
 
 /**
  *

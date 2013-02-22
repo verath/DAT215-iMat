@@ -28,7 +28,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="Main.HeaderBar" name="headerBar1">
+        <Component class="HeaderBar.HeaderBar" name="headerBar1">
           <Properties>
             <Property name="name" type="java.lang.String" value="headerBar1" noResource="true"/>
           </Properties>

@@ -41,7 +41,7 @@ public class MainView extends FrameView {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        headerBar1 = new Main.HeaderBar();
+        headerBar1 = new HeaderBar.HeaderBar();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -121,7 +121,7 @@ public class MainView extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Main.HeaderBar headerBar1;
+    private HeaderBar.HeaderBar headerBar1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
