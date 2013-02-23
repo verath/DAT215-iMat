@@ -9,6 +9,8 @@ import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
+import se.chalmers.ait.dat215.project.ShoppingItem;
 
 /**
  * The application's main frame.
@@ -19,6 +21,18 @@ public class MainView extends FrameView {
         super(app);
 
         initComponents();
+        
+        /*IMatDataHandler dh = IMatDataHandler.getInstance();
+        ShoppingCartWrapper.INSTANCE.addProduct(dh.getProduct(1), 20);
+        ShoppingCartWrapper.INSTANCE.updateProduct(dh.getProduct(1), -1);
+        
+        ShoppingCartWrapper.INSTANCE.addProduct(dh.getProduct(1), 5);
+        
+        ShoppingCartWrapper.INSTANCE.addProduct(dh.getProduct(5), 30);*/
+        
+        for(ShoppingItem si : ShoppingCartWrapper.INSTANCE.getItems()){
+            System.out.println(si.getProduct().toString() + " " + si.getAmount());
+        }
     }
 
     @Action
