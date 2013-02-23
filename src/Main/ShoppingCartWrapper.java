@@ -52,7 +52,11 @@ public enum ShoppingCartWrapper {
         if (si == null) {
             // Item didn't exist, add it instead
             addProduct(p, amount);
+        } else if(amount <= 0){
+            // If 0 or less amount, remove product
+            removeProduct(p);
         } else {
+            // Update to new amount
             si.setAmount(amount);
             fireShoppingCartChanged(si, false);
         }
