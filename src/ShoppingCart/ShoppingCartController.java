@@ -6,13 +6,9 @@ package ShoppingCart;
 
 import Main.ShoppingCartWrapper;
 import java.awt.event.ActionEvent;
-import java.util.List;
 import se.chalmers.ait.dat215.project.CartEvent;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
-import se.chalmers.ait.dat215.project.Product;
-import se.chalmers.ait.dat215.project.ShoppingCart;
 import se.chalmers.ait.dat215.project.ShoppingCartListener;
-import se.chalmers.ait.dat215.project.ShoppingItem;
 
 /**
  * Controller for the ShoppingCartView
@@ -29,7 +25,7 @@ public class ShoppingCartController implements ShoppingCartListener {
     }
     
     public void onViewLoaded(){
-        
+        view.setItemsInCart(ShoppingCartWrapper.INSTANCE.getItems());
     }
     
     
@@ -42,11 +38,6 @@ public class ShoppingCartController implements ShoppingCartListener {
     }
 
     public void shoppingCartChanged(CartEvent ce) {
-        List<ShoppingItem> items = ShoppingCartWrapper.INSTANCE.getItems();
-        
-        System.out.println("Cart Changed, current items:");
-        for( ShoppingItem i : items ){
-            System.out.println("\t" + i.getProduct().getName() + " " + i.getAmount());
-        }
+        view.setItemsInCart(ShoppingCartWrapper.INSTANCE.getItems());
     }
 }

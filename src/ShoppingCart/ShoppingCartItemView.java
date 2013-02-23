@@ -10,6 +10,7 @@
  */
 package ShoppingCart;
 
+import Main.ShoppingCartWrapper;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ShoppingItem;
 
@@ -19,22 +20,24 @@ import se.chalmers.ait.dat215.project.ShoppingItem;
  */
 public class ShoppingCartItemView extends javax.swing.JPanel {
 
+    private ShoppingItem shoppingItem;
+
     /** Creates new form ShoppingItem1 */
-    private ShoppingCartItemView() {
+    public ShoppingCartItemView() {
         initComponents();
     }
 
-    public ShoppingCartItemView(ShoppingItem item) {
-        this();
-        
-        Product prod = item.getProduct();
-        int amount = (int)item.getAmount();
-        String totalPrice = Integer.toString((int)(prod.getPrice() * amount));
-        
+    public void setShoppingItem(ShoppingItem si) {
+        this.shoppingItem = si;
+
+        Product prod = si.getProduct();
+        int amount = (int) si.getAmount();
+        String totalPrice = "" + (prod.getPrice() * amount);
+
         nameLabel.setText(prod.getName());
         priceLabel.setText("" + prod.getPrice());
-        unitMeasureLabel.setText(prod.getUnit());
-        priceLabel.setText(totalPrice);
+        unitMeasureLabel.setText(prod.getUnitSuffix());
+        priceLabel.setText(totalPrice + " kr");
         countSpinner.setValue(amount);
     }
 
@@ -52,7 +55,7 @@ public class ShoppingCartItemView extends javax.swing.JPanel {
         nameLabel = new javax.swing.JLabel();
         countSpinner = new javax.swing.JSpinner();
         unitMeasureLabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        RemoveButton = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(ShoppingCartItemView.class);
@@ -64,19 +67,33 @@ public class ShoppingCartItemView extends javax.swing.JPanel {
 
         jPanel1.setName("jPanel1"); // NOI18N
 
+        nameLabel.setFont(resourceMap.getFont("unitMeasureLabel.font")); // NOI18N
         nameLabel.setText(resourceMap.getString("nameLabel.text")); // NOI18N
         nameLabel.setName("nameLabel"); // NOI18N
 
         countSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
         countSpinner.setName("countSpinner"); // NOI18N
+        countSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                countSpinnerStateChanged(evt);
+            }
+        });
 
+        unitMeasureLabel.setFont(resourceMap.getFont("unitMeasureLabel.font")); // NOI18N
         unitMeasureLabel.setText(resourceMap.getString("unitMeasureLabel.text")); // NOI18N
         unitMeasureLabel.setName("unitMeasureLabel"); // NOI18N
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
-        jLabel3.setName("jLabel3"); // NOI18N
+        RemoveButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        RemoveButton.setText(resourceMap.getString("RemoveButton.text")); // NOI18N
+        RemoveButton.setName("RemoveButton"); // NOI18N
+        RemoveButton.setOpaque(true);
+        RemoveButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RemoveButtonMouseClicked(evt);
+            }
+        });
 
+        priceLabel.setFont(resourceMap.getFont("unitMeasureLabel.font")); // NOI18N
         priceLabel.setText(resourceMap.getString("priceLabel.text")); // NOI18N
         priceLabel.setName("priceLabel"); // NOI18N
 
@@ -86,25 +103,25 @@ public class ShoppingCartItemView extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(nameLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 93, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(nameLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 81, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(countSpinner, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 52, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(2, 2, 2)
+                .add(unitMeasureLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 31, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(unitMeasureLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(priceLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(priceLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 39, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 38, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .add(RemoveButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 18, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(nameLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-            .add(countSpinner, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
             .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(nameLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .add(RemoveButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .add(countSpinner, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .add(unitMeasureLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                .add(priceLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                .add(jLabel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                .add(priceLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
@@ -118,10 +135,22 @@ public class ShoppingCartItemView extends javax.swing.JPanel {
             .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void RemoveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemoveButtonMouseClicked
+    ShoppingCartWrapper.INSTANCE.removeProduct(shoppingItem.getProduct());
+}//GEN-LAST:event_RemoveButtonMouseClicked
+
+private void countSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_countSpinnerStateChanged
+    double val = (Integer)countSpinner.getValue();
+    if( val != shoppingItem.getAmount() ){
+        ShoppingCartWrapper.INSTANCE.updateProduct(shoppingItem.getProduct(), val);
+    }
+}//GEN-LAST:event_countSpinnerStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel RemoveButton;
     private javax.swing.JSpinner countSpinner;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel priceLabel;

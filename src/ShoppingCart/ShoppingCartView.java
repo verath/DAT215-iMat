@@ -6,8 +6,9 @@
  */
 package ShoppingCart;
 
-import javax.swing.DefaultListModel;
-import se.chalmers.ait.dat215.project.Product;
+import Main.ShoppingCartWrapper;
+import java.util.List;
+import se.chalmers.ait.dat215.project.ShoppingItem;
 
 /**
  *
@@ -21,17 +22,42 @@ public class ShoppingCartView extends javax.swing.JPanel {
         initComponents();
         
         scController = new ShoppingCartController(this);
+        scController.onViewLoaded();
     }
     
-    public void addProductToCart( ShoppingCartItemView sci ){
-        System.out.println("Adding item to shopping cart");
-        shoppingItemsContainer.add(sci);
+    
+    
+    private void clearShoppingCart(){
+        shoppingItemsContainer.removeAll();
+    }
+    
+    private void addItemToCart( ShoppingItem si ){
+        ShoppingCartItemView sciv = new ShoppingCartItemView();
+        sciv.setShoppingItem(si);
+        shoppingItemsContainer.add(sciv);
+    }
+    
+    /**
+     * Takes a list of ShoppingItems and displays them as the
+     * cart.
+     * @param items 
+     */
+    public void setItemsInCart( List<ShoppingItem> items ){
+        if( items == null ) return;
         
+        clearShoppingCart();
         
+        for(ShoppingItem si : items){
+            addItemToCart(si);
+        }
+
         shoppingItemsContainer.validate();
         shoppingItemsContainer.repaint();
         scroll.validate();
         scroll.repaint();
+        
+        totalPriceLabel.setText("" + ShoppingCartWrapper.INSTANCE.getTotal() + " kr");
+        numItemsLabel.setText("" + ShoppingCartWrapper.INSTANCE.getNumItems());
     }
 
     /** This method is called from within the constructor to
