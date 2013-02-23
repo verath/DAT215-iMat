@@ -4,6 +4,7 @@
  */
 package HeaderBar;
 
+import Main.MainController;
 import ProductSearch.ProductSearch;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
@@ -54,6 +55,8 @@ public class HeaderBarController {
             System.out.print(" ");
             System.out.println(resultProds.get(i).getCategory());
         }
+        
+        MainController.INSTANCE.getResultsView().setSearchResult(ps);
 
     }
 
