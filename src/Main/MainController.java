@@ -4,7 +4,8 @@
  */
 package Main;
 
-import SearchResults.SearchResultsView;
+import ProductSearch.ProductSearch;
+import SearchResults.SearchResultsController;
 
 /**
  *
@@ -13,13 +14,14 @@ import SearchResults.SearchResultsView;
 public enum MainController {
     INSTANCE;
     
-    private SearchResultsView srv;
+    private SearchResultsController src = SearchResultsController.INSTANCE;
     
-    public void setResultsView(SearchResultsView srv){
-        this.srv = srv;
-    }
-    
-    public SearchResultsView getResultsView(){
-        return this.srv;
+    /**
+     * Performs a search by displaying the search results panels.
+     * 
+     * @param ps 
+     */
+    public void search(ProductSearch ps){
+        src.setProductSearch(ps);
     }
 }

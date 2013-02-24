@@ -82,6 +82,11 @@ public class ProductSearch {
         if (sortBy == null) {
             return products;
         }
+        
+        if(sortBy == this.sortBy) {
+            // No point in sorting if already sorted.
+            return products;
+        }
 
         // No point in sorting less than two elements
         if (products == null || products.size() < 2) {
@@ -129,13 +134,33 @@ public class ProductSearch {
         this.resultingProducts = searchResult;
 
     }
+    
+    /**
+     * Sets the sorting option for the resulting products.
+     * @param sortBy 
+     */
+    public void setSortBy(Comparator<Product> sortBy) {
+        this.resultingProducts = sortProducts(resultingProducts, sortBy);
+        this.sortBy = sortBy;
+    }
 
     /**
      * Returns a List of Products that matched the search criteria.
+     * 
      * @return The Products matching the search query.
      */
     public List<Product> getResultProducts() {
         return this.resultingProducts;
+    }
+    
+    /**
+     * Returns a List of Products that matched the search criteria and 
+     * is contained in the provided filter.
+     * 
+     * @return The Products matching the search query.
+     */
+    public List<Product> getResultProducts(Set<ProductCategory> filter) {
+        return filterProductsByCategory(resultingProducts, filter);
     }
 
     /**

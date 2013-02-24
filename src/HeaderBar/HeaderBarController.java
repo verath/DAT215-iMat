@@ -34,29 +34,10 @@ public class HeaderBarController {
             System.out.println("Not Searching: Search string is empty or placeholder default.");
             return;
         }
-
-        System.out.println("Searching");
-        System.out.println("Search string: " + view.getSearchText());
         
         ProductSearch ps = new ProductSearch(searchString, null, null);
         
-        System.out.println();
-        System.out.print("Categories: ");
-        for( ProductCategory pc : ps.getResultCategories()){
-            System.out.print(pc.toString() + " ");
-        }
-        
-        System.out.println();
-        List<Product> resultProds = ps.getResultProducts();
-        System.out.print(resultProds.size() + " results; \n");
-        for( int i = 0; i <  resultProds.size(); i ++){
-            System.out.print("#" + (i+1) + "\t");
-            System.out.print(resultProds.get(i).getName());
-            System.out.print(" ");
-            System.out.println(resultProds.get(i).getCategory());
-        }
-        
-        MainController.INSTANCE.getResultsView().setSearchResult(ps);
+        MainController.INSTANCE.search(ps);
 
     }
 

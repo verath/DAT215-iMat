@@ -10,10 +10,17 @@
  */
 package SearchResults;
 
-import ProductSearch.ProductSearch;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ProductCategory;
 
@@ -22,34 +29,52 @@ import se.chalmers.ait.dat215.project.ProductCategory;
  * @author Peter
  */
 public class SearchResultsView extends javax.swing.JPanel {
-    private ProductSearch productSearch;
-    
-    
+
+    private SearchResultsController src = SearchResultsController.INSTANCE;
+    private boolean filterPanelShown = false;
+
     /** Creates new form SearchResultsView */
     public SearchResultsView() {
         initComponents();
 
+        src.setSearchResultsView(this);
+
+        filterByContainer.setVisible(filterPanelShown);
+        filterByContainer.setMinimumSize(new Dimension(200, 100));
+        filterByContainer.setPreferredSize(new Dimension(200, 100));
     }
 
-    public void setSearchResult(ProductSearch ps) {
-        productSearch = ps;
-        
-        jPanel1.removeAll();
-        jPanel2.removeAll();
-        
-        for (Product p : ps.getResultProducts()) {
-            SearchResultItemView rsiv = new SearchResultItemView();
-            rsiv.setProduct(p);
-            jPanel1.add(rsiv);
+    /**
+     * Sets the list of results items to the products provided and redraws
+     * the panel.
+     * 
+     * @param products 
+     */
+    public void setResultItems(List<Product> products) {
+        searchResultItemsContainer.removeAll();
+
+        if (products.isEmpty()) {
+            searchResultItemsContainer.add(new JLabel("Inga resultat."));
+        } else {
+            for (Product p : products) {
+                SearchResultItemView rsiv = new SearchResultItemView();
+                rsiv.setProduct(p);
+                searchResultItemsContainer.add(rsiv);
+            }
         }
-        
-        jPanel1.validate();
-        jPanel1.repaint();
-        jPanel2.validate();
-        jPanel2.repaint();
-        jScrollPane1.validate();
-        jScrollPane1.repaint();
-        
+
+        searchResultItemsContainer.validate();
+        searchResultItemsContainer.repaint();
+        searchResultsItemsScroll.validate();
+        searchResultsItemsScroll.repaint();
+
+    }
+    
+    /**
+     * Sets the sortBy ComboBox to the default value
+     */
+    public void resetSortBy(){
+        sortByComboBox.setSelectedIndex(0);        
     }
 
     /** This method is called from within the constructor to
@@ -61,11 +86,14 @@ public class SearchResultsView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        sortByContainer = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 32767));
+        sortByComboBox = new javax.swing.JComboBox();
+        searchResultsItemsScroll = new javax.swing.JScrollPane();
+        searchResultItemsContainer = new javax.swing.JPanel();
+        filterByContainer = new javax.swing.JPanel();
+        toggleCategoriFilterButton = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(750, 32767));
         setMinimumSize(new java.awt.Dimension(0, 0));
@@ -73,49 +101,144 @@ public class SearchResultsView extends javax.swing.JPanel {
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(750, 300));
 
-        jPanel2.setName("jPanel2"); // NOI18N
-        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        sortByContainer.setName("sortByContainer"); // NOI18N
+        sortByContainer.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
-        jLabel1.setLabelFor(jComboBox1);
+        jLabel1.setLabelFor(sortByComboBox);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(SearchResultsView.class);
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
-        jPanel2.add(jLabel1);
+        sortByContainer.add(jLabel1);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Namn A-Z", "Namn Z-A", "Pris 0-9", "Pris 9-0" }));
-        jComboBox1.setName("jComboBox1"); // NOI18N
-        jPanel2.add(jComboBox1);
+        filler1.setName("filler1"); // NOI18N
+        sortByContainer.add(filler1);
 
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
+        sortByComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Namn A-Z", "Namn Z-A", "Pris Lågt-Högt", "Pris Högt-Lågt" }));
+        sortByComboBox.setName("sortByComboBox"); // NOI18N
+        sortByComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortByComboBoxActionPerformed(evt);
+            }
+        });
+        sortByContainer.add(sortByComboBox);
 
-        jPanel1.setName("jPanel1"); // NOI18N
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
-        jScrollPane1.setViewportView(jPanel1);
+        searchResultsItemsScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        searchResultsItemsScroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        searchResultsItemsScroll.setName("searchResultsItemsScroll"); // NOI18N
+
+        searchResultItemsContainer.setName("searchResultItemsContainer"); // NOI18N
+        searchResultItemsContainer.setLayout(new javax.swing.BoxLayout(searchResultItemsContainer, javax.swing.BoxLayout.PAGE_AXIS));
+        searchResultsItemsScroll.setViewportView(searchResultItemsContainer);
+
+        filterByContainer.setMinimumSize(new java.awt.Dimension(0, 0));
+        filterByContainer.setName("filterByContainer"); // NOI18N
+        filterByContainer.setLayout(new java.awt.GridLayout(0, 5));
+
+        toggleCategoriFilterButton.setText(resourceMap.getString("toggleCategoriFilterButton.text")); // NOI18N
+        toggleCategoriFilterButton.setName("toggleCategoriFilterButton"); // NOI18N
+        toggleCategoriFilterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toggleCategoriFilterButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE))
-                .addGap(0, 0, 0))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(filterByContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(sortByContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+                        .addGap(10, 10, 10))
+                    .addComponent(toggleCategoriFilterButton)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sortByContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+                .addComponent(toggleCategoriFilterButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(filterByContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void sortByComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortByComboBoxActionPerformed
+    src.onSortByChanged();
+}//GEN-LAST:event_sortByComboBoxActionPerformed
+
+private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleCategoriFilterButtonActionPerformed
+
+    filterPanelShown = !filterPanelShown;
+    filterByContainer.setVisible(filterPanelShown);
+    
+    toggleCategoriFilterButton.setText(filterPanelShown ? "Dölj Kategorier" : "Visa Kategorier");
+    
+    filterByContainer.validate();
+    filterByContainer.repaint();
+}//GEN-LAST:event_toggleCategoriFilterButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.JPanel filterByContainer;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel searchResultItemsContainer;
+    private javax.swing.JScrollPane searchResultsItemsScroll;
+    private javax.swing.JComboBox sortByComboBox;
+    private javax.swing.JPanel sortByContainer;
+    private javax.swing.JButton toggleCategoriFilterButton;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * Get the selected sort by index.
+     * @return 
+     */
+    public int getSortBySelectedIndex() {
+        return sortByComboBox.getSelectedIndex();
+    }
+
+    /**
+     * Updates the list of available categories to filter by
+     * 
+     * @param resultCategories 
+     */
+    void setCategoryFilters(Set<ProductCategory> productCategories) {
+        filterByContainer.removeAll();
+        
+        toggleCategoriFilterButton.setVisible(!productCategories.isEmpty());
+        
+        int numRows = productCategories.size()/5 + 1;
+        filterByContainer.setPreferredSize(new Dimension(500, 24*numRows));
+        
+        // Add a checkbox for each category.
+        for (ProductCategory pc : productCategories) {
+            JCheckBox cb = new JCheckBox(pc.toString(), true);
+
+            // Add an event listener for when this checkbox is clicked
+            final ProductCategory category = pc;
+            cb.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    JCheckBox cb = (JCheckBox) e.getSource();
+                    SearchResultsController.INSTANCE.onFilterChanged(
+                            category, cb.isSelected());
+                }
+            });
+
+            filterByContainer.add(cb);
+        }
+
+        filterByContainer.validate();
+        filterByContainer.repaint();
+        validate();
+        repaint();
+    }
 }
