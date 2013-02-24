@@ -1,11 +1,9 @@
 /*
  * GUIProjektGrupp13View.java
  */
-
 package Main;
 
-import ProductSearch.ProductSearch;
-import SearchResults.SearchResultsView;
+import java.util.EventObject;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
@@ -21,6 +19,7 @@ public class MainView extends FrameView {
         super(app);
 
         initComponents();
+
     }
 
     @Action
@@ -136,7 +135,6 @@ public class MainView extends FrameView {
         setComponent(mainPanel);
         setMenuBar(menuBar);
     }// </editor-fold>//GEN-END:initComponents
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private HeaderBar.HeaderBarView headerBarView1;
     private javax.swing.JMenu jMenu1;
@@ -149,7 +147,5 @@ public class MainView extends FrameView {
     private SearchResults.SearchResultsView searchResultsView1;
     private ShoppingCart.ShoppingCartView shoppingCartView1;
     // End of variables declaration//GEN-END:variables
-
-
     private JDialog aboutBox;
 }

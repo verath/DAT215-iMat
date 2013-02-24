@@ -14,14 +14,10 @@ import Main.LocaleHandler;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ProductCategory;
 
@@ -77,6 +73,7 @@ public class SearchResultsView extends javax.swing.JPanel {
 
         searchResultItemsContainer.validate();
         searchResultItemsContainer.repaint();
+        searchResultsItemsScroll.getVerticalScrollBar().setValue(0);
         searchResultsItemsScroll.validate();
         searchResultsItemsScroll.repaint();
 
@@ -187,7 +184,7 @@ public class SearchResultsView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filterByContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

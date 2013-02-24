@@ -32,7 +32,7 @@ public enum LocaleHandler {
         temp.put(ProductCategory.HERB, "Örter");
         temp.put(ProductCategory.HOT_DRINKS, "Varma Drycker");
         temp.put(ProductCategory.MEAT, "Kött");
-        temp.put(ProductCategory.MELONS, "Melloner");
+        temp.put(ProductCategory.MELONS, "Meloner");
         temp.put(ProductCategory.NUTS_AND_SEEDS, "Nötter & Frön");
         temp.put(ProductCategory.PASTA, "Pasta");
         temp.put(ProductCategory.POD, "Baljväxter");

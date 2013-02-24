@@ -10,10 +10,15 @@
  */
 package SearchResults;
 
+import Main.LocaleHandler;
+import Main.MainController;
 import Main.ShoppingCartWrapper;
+import ProductSearch.ProductSearch;
+import java.util.HashSet;
+import java.util.Set;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
-import se.chalmers.ait.dat215.project.ShoppingCart;
+import se.chalmers.ait.dat215.project.ProductCategory;
 
 /**
  *
@@ -34,6 +39,8 @@ public class SearchResultItemView extends javax.swing.JPanel {
         nameLabel.setText(p.getName());
         priceLabel.setText(p.getPrice() + " " +p.getUnit());
         unitLabel.setText(p.getUnitSuffix());
+        categoryLabel.setText("<html>Kategori: <u style=\"color:blue\">" + 
+                LocaleHandler.INSTANCE.getProductCategoryName(p.getCategory()));
         
         this.product = p;
     }
@@ -49,16 +56,17 @@ public class SearchResultItemView extends javax.swing.JPanel {
 
         imageLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
-        descLabel = new javax.swing.JLabel();
         amountSpinner = new javax.swing.JSpinner();
         addButton = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         priceLabel = new javax.swing.JLabel();
         unitLabel = new javax.swing.JLabel();
+        categoryLabel = new javax.swing.JLabel();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(SearchResultItemView.class);
         setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        setMaximumSize(new java.awt.Dimension(32767, 128));
         setName("Form"); // NOI18N
         setPreferredSize(new java.awt.Dimension(100, 128));
 
@@ -74,11 +82,6 @@ public class SearchResultItemView extends javax.swing.JPanel {
         nameLabel.setFocusable(false);
         nameLabel.setName("nameLabel"); // NOI18N
 
-        descLabel.setFont(resourceMap.getFont("descLabel.font")); // NOI18N
-        descLabel.setText(resourceMap.getString("descLabel.text")); // NOI18N
-        descLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        descLabel.setName("descLabel"); // NOI18N
-
         amountSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
         amountSpinner.setName("amountSpinner"); // NOI18N
 
@@ -92,11 +95,20 @@ public class SearchResultItemView extends javax.swing.JPanel {
 
         filler1.setName("filler1"); // NOI18N
 
+        priceLabel.setFont(resourceMap.getFont("priceLabel.font")); // NOI18N
         priceLabel.setText(resourceMap.getString("priceLabel.text")); // NOI18N
         priceLabel.setName("priceLabel"); // NOI18N
 
         unitLabel.setText(resourceMap.getString("unitLabel.text")); // NOI18N
         unitLabel.setName("unitLabel"); // NOI18N
+
+        categoryLabel.setText(resourceMap.getString("categoryLabel.text")); // NOI18N
+        categoryLabel.setName("categoryLabel"); // NOI18N
+        categoryLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                categoryLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -104,22 +116,22 @@ public class SearchResultItemView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(139, 139, 139)
-                                .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
-                            .addComponent(descLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(priceLabel))
+                                .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                            .addComponent(priceLabel)
+                            .addComponent(categoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(unitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addButton)))
+                        .addComponent(addButton))
+                    .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -132,16 +144,17 @@ public class SearchResultItemView extends javax.swing.JPanel {
                             .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(unitLabel)
                             .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(nameLabel)
-                        .addGap(1, 1, 1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(priceLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(descLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(categoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))
+                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -150,10 +163,17 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     ShoppingCartWrapper.INSTANCE.addProduct(product, (Integer)amountSpinner.getValue());
 }//GEN-LAST:event_addButtonActionPerformed
 
+private void categoryLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryLabelMouseClicked
+    // TODO
+    Set<ProductCategory> categoryFilter = new HashSet<ProductCategory>();
+    categoryFilter.add(product.getCategory());
+    MainController.INSTANCE.search(new ProductSearch("", null, categoryFilter));
+}//GEN-LAST:event_categoryLabelMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JSpinner amountSpinner;
-    private javax.swing.JLabel descLabel;
+    private javax.swing.JLabel categoryLabel;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel nameLabel;

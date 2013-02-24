@@ -88,9 +88,9 @@ public enum SearchResultsController {
                     sb.append(", ").append(LocaleHandler.INSTANCE.getProductCategoryName(pc));
                 }
             }
-            view.setHeader(String.format("Varor från kategori: ", sb.toString()));
+            view.setHeader(String.format("Varor från: %s", sb.toString()));
         } else {
-            view.setHeader(String.format("Sökresultat för \"%s\"", ps.getSearchString()));
+            view.setHeader(String.format("Sökresultat för: \"%s\"", ps.getSearchString()));
         }
     }
 
