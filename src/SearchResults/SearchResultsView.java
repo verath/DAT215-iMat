@@ -10,6 +10,7 @@
  */
 package SearchResults;
 
+import Main.LocaleHandler;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +30,9 @@ import se.chalmers.ait.dat215.project.ProductCategory;
  * @author Peter
  */
 public class SearchResultsView extends javax.swing.JPanel {
-
+    
+    public static final int CATEGORY_FILTER_ROW_HEIGHT = 30;
+    
     private SearchResultsController src = SearchResultsController.INSTANCE;
     private boolean filterPanelShown = false;
 
@@ -42,6 +45,15 @@ public class SearchResultsView extends javax.swing.JPanel {
         filterByContainer.setVisible(filterPanelShown);
         filterByContainer.setMinimumSize(new Dimension(200, 100));
         filterByContainer.setPreferredSize(new Dimension(200, 100));
+    }
+    
+    /**
+     * Sets the header of the search result view.
+     * 
+     * @param text 
+     */
+    public void setHeader(String text){
+        headerLabel.setText(text);
     }
 
     /**
@@ -94,7 +106,9 @@ public class SearchResultsView extends javax.swing.JPanel {
         searchResultItemsContainer = new javax.swing.JPanel();
         filterByContainer = new javax.swing.JPanel();
         toggleCategoriFilterButton = new javax.swing.JButton();
+        headerLabel = new javax.swing.JLabel();
 
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setMaximumSize(new java.awt.Dimension(750, 32767));
         setMinimumSize(new java.awt.Dimension(0, 0));
         setName("Form"); // NOI18N
@@ -130,6 +144,7 @@ public class SearchResultsView extends javax.swing.JPanel {
         searchResultItemsContainer.setLayout(new javax.swing.BoxLayout(searchResultItemsContainer, javax.swing.BoxLayout.PAGE_AXIS));
         searchResultsItemsScroll.setViewportView(searchResultItemsContainer);
 
+        filterByContainer.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         filterByContainer.setMinimumSize(new java.awt.Dimension(0, 0));
         filterByContainer.setName("filterByContainer"); // NOI18N
         filterByContainer.setLayout(new java.awt.GridLayout(0, 5));
@@ -142,6 +157,10 @@ public class SearchResultsView extends javax.swing.JPanel {
             }
         });
 
+        headerLabel.setFont(resourceMap.getFont("headerLabel.font")); // NOI18N
+        headerLabel.setText(resourceMap.getString("headerLabel.text")); // NOI18N
+        headerLabel.setName("headerLabel"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,25 +168,26 @@ public class SearchResultsView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(filterByContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(sortByContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
-                        .addGap(10, 10, 10))
-                    .addComponent(toggleCategoriFilterButton)))
+                    .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                    .addComponent(filterByContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                    .addComponent(sortByContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                    .addComponent(toggleCategoriFilterButton)
+                    .addComponent(headerLabel))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(headerLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sortByContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(toggleCategoriFilterButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filterByContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -189,6 +209,7 @@ private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEven
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
     private javax.swing.JPanel filterByContainer;
+    private javax.swing.JLabel headerLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel searchResultItemsContainer;
     private javax.swing.JScrollPane searchResultsItemsScroll;
@@ -213,14 +234,21 @@ private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEven
     void setCategoryFilters(Set<ProductCategory> productCategories) {
         filterByContainer.removeAll();
         
-        toggleCategoriFilterButton.setVisible(!productCategories.isEmpty());
+        //toggleCategoriFilterButton.setVisible(!productCategories.isEmpty());
         
         int numRows = productCategories.size()/5 + 1;
-        filterByContainer.setPreferredSize(new Dimension(500, 24*numRows));
+        filterByContainer.setPreferredSize(new Dimension(500, 
+                SearchResultsView.CATEGORY_FILTER_ROW_HEIGHT*numRows));
+        
+        // If we have no categories, add a label saying so.
+        if(productCategories.isEmpty()){
+            filterByContainer.add(new JLabel("Inga kategorier."));
+        }
         
         // Add a checkbox for each category.
         for (ProductCategory pc : productCategories) {
-            JCheckBox cb = new JCheckBox(pc.toString(), true);
+            String categoryName = LocaleHandler.INSTANCE.getProductCategoryName(pc);
+            JCheckBox cb = new JCheckBox(categoryName, true);
 
             // Add an event listener for when this checkbox is clicked
             final ProductCategory category = pc;

@@ -1,5 +1,6 @@
 package SearchResults;
 
+import Main.LocaleHandler;
 import ProductSearch.OrderProductsByNameAscending;
 import ProductSearch.OrderProductsByNameDescending;
 import ProductSearch.OrderProductsByPriceAscending;
@@ -37,6 +38,10 @@ public enum SearchResultsController {
         this.view = view;
     }
 
+    /**
+     * Updates the view's filters.
+     * @param resultCategories 
+     */
     private void updateViewFilters(Set<ProductCategory> resultCategories) {
         if (view != null) {
             view.setCategoryFilters(resultCategories);
@@ -68,17 +73,34 @@ public enum SearchResultsController {
 
         // Update our view's result list
         updateViewFilters(selectedFilters);
-        
+
         view.resetSortBy();
 
+        if (ps.getSearchString().isEmpty() && !ps.getCategoryFilter().isEmpty()) {
+            // If we have an empty search and a category filter, we are browsing
+            // categories
+            StringBuilder sb = new StringBuilder();
+            boolean first = true;
+            for (ProductCategory pc : ps.getCategoryFilter()) {
+                if (first) {
+                    sb.append(LocaleHandler.INSTANCE.getProductCategoryName(pc));
+                } else {
+                    sb.append(", ").append(LocaleHandler.INSTANCE.getProductCategoryName(pc));
+                }
+            }
+            view.setHeader(String.format("Varor från kategori: ", sb.toString()));
+        } else {
+            view.setHeader(String.format("Sökresultat för \"%s\"", ps.getSearchString()));
+        }
     }
 
+    /**
+     * This methoiod is called when the sortBy field is changed
+     */
     public void onSortByChanged() {
-        
-        
         if (view != null && sortBy != null && productSearch != null) {
             int selected = view.getSortBySelectedIndex();
-            
+
             productSearch.setSortBy(sortBy.get(selected));
             updateViewResultList();
         }

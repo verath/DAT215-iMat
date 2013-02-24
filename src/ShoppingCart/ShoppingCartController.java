@@ -31,10 +31,10 @@ public class ShoppingCartController implements ShoppingCartListener {
     
     public void onCheckoutButtonActionPerformed(ActionEvent evt) {
         // TODO: Implement real behaviour
-        IMatDataHandler dh = IMatDataHandler.getInstance();
+        /*IMatDataHandler dh = IMatDataHandler.getInstance();
         ShoppingCartWrapper cart = ShoppingCartWrapper.INSTANCE;
 
-        cart.addProduct(dh.getProduct(1), 20);
+        cart.addProduct(dh.getProduct(1), 20);*/
     }
 
     public void shoppingCartChanged(CartEvent ce) {

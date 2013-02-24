@@ -24,7 +24,7 @@ public enum ShoppingCartWrapper {
      * Our internal instance of the ShoppingCart backend
      */
     private ShoppingCart shoppingCart = IMatDataHandler.getInstance().getShoppingCart();
-
+    
     /**
      * Returns the shoppingItem for a Product. There _SHOULD_ only be one
      * ShoppingItem per product if this adapter is used everywhere.
