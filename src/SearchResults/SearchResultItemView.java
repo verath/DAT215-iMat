@@ -16,6 +16,7 @@ import Main.ShoppingCartWrapper;
 import ProductSearch.ProductSearch;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.ImageIcon;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ProductCategory;
@@ -27,22 +28,37 @@ import se.chalmers.ait.dat215.project.ProductCategory;
 public class SearchResultItemView extends javax.swing.JPanel {
 
     private Product product;
-    
+    public static final String FAVOURITE_ICON = "/images/star.png";
+    public static final String HOVER_FAVOURITE_ICON = "/images/star-half.png";
+    public static final String NOT_FAVOURITE_ICON = "/images/star-empty.png";
+
     /** Creates new form SearchResultItemView */
     public SearchResultItemView() {
         initComponents();
+    }
+
+    private void updateFavIcon() {
+        if (IMatDataHandler.getInstance().isFavorite(product)) {
+            favouriteLabel.setIcon(new ImageIcon(this.getClass().getResource(FAVOURITE_ICON)));
+            favouriteLabel.setToolTipText("Ta bort som favorit");
+        } else {
+            favouriteLabel.setIcon(new ImageIcon(this.getClass().getResource(NOT_FAVOURITE_ICON)));
+            favouriteLabel.setToolTipText("Lägg till som favorit");
+        }
     }
 
     public void setProduct(Product p) {
         IMatDataHandler dh = IMatDataHandler.getInstance();
         imageLabel.setIcon(dh.getImageIcon(p, 128, 128));
         nameLabel.setText(p.getName());
-        priceLabel.setText(p.getPrice() + " " +p.getUnit());
+        priceLabel.setText(p.getPrice() + " " + p.getUnit());
         unitLabel.setText(p.getUnitSuffix());
-        categoryLabel.setText("<html>Kategori: <u style=\"color:blue\">" + 
-                LocaleHandler.INSTANCE.getProductCategoryName(p.getCategory()));
+        categoryLabel.setText("<html>Kategori: <u style=\"color:blue\">"
+                + LocaleHandler.INSTANCE.getProductCategoryName(p.getCategory()));
         
         this.product = p;
+        
+        updateFavIcon();
     }
 
     /** This method is called from within the constructor to
@@ -62,13 +78,14 @@ public class SearchResultItemView extends javax.swing.JPanel {
         priceLabel = new javax.swing.JLabel();
         unitLabel = new javax.swing.JLabel();
         categoryLabel = new javax.swing.JLabel();
+        favouriteLabel = new javax.swing.JLabel();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(SearchResultItemView.class);
         setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setMaximumSize(new java.awt.Dimension(32767, 128));
         setName("Form"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(100, 128));
+        setPreferredSize(new java.awt.Dimension(300, 128));
 
         imageLabel.setBackground(resourceMap.getColor("imageLabel.background")); // NOI18N
         imageLabel.setText(resourceMap.getString("imageLabel.text")); // NOI18N
@@ -110,6 +127,21 @@ public class SearchResultItemView extends javax.swing.JPanel {
             }
         });
 
+        favouriteLabel.setIcon(resourceMap.getIcon("favouriteLabel.icon")); // NOI18N
+        favouriteLabel.setText(resourceMap.getString("favouriteLabel.text")); // NOI18N
+        favouriteLabel.setName("favouriteLabel"); // NOI18N
+        favouriteLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                favouriteLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                favouriteLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                favouriteLabelMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,63 +149,84 @@ public class SearchResultItemView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(139, 139, 139)
-                                .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                                .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE))
                             .addComponent(priceLabel)
                             .addComponent(categoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(148, 148, 148))
+                    .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(favouriteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(unitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addButton))
-                    .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(addButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(unitLabel)
-                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(nameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(priceLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(categoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45))
-                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(favouriteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(priceLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(categoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(unitLabel)
+                                .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-    ShoppingCartWrapper.INSTANCE.addProduct(product, (Integer)amountSpinner.getValue());
+    ShoppingCartWrapper.INSTANCE.addProduct(product, (Integer) amountSpinner.getValue());
 }//GEN-LAST:event_addButtonActionPerformed
 
 private void categoryLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryLabelMouseClicked
-    // TODO
     Set<ProductCategory> categoryFilter = new HashSet<ProductCategory>();
     categoryFilter.add(product.getCategory());
     MainController.INSTANCE.search(new ProductSearch("", null, categoryFilter));
 }//GEN-LAST:event_categoryLabelMouseClicked
 
+private void favouriteLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_favouriteLabelMouseEntered
+    favouriteLabel.setIcon(new ImageIcon(this.getClass().getResource(HOVER_FAVOURITE_ICON)));
+}//GEN-LAST:event_favouriteLabelMouseEntered
+
+private void favouriteLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_favouriteLabelMouseExited
+    updateFavIcon();
+}//GEN-LAST:event_favouriteLabelMouseExited
+
+private void favouriteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_favouriteLabelMouseClicked
+    if (IMatDataHandler.getInstance().isFavorite(product)) {
+        IMatDataHandler.getInstance().removeFavorite(product);
+    } else {
+        IMatDataHandler.getInstance().addFavorite(product);
+    }
+}//GEN-LAST:event_favouriteLabelMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JSpinner amountSpinner;
     private javax.swing.JLabel categoryLabel;
+    private javax.swing.JLabel favouriteLabel;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel nameLabel;
