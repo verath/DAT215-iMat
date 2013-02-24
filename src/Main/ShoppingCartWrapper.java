@@ -96,6 +96,7 @@ public enum ShoppingCartWrapper {
      * Removes all Products in the shopping cart.
      */
     public void clear() {
+        shoppingCart.clear();
     }
 
     public List<ShoppingItem> getItems() {
