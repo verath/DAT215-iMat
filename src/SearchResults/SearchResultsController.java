@@ -76,24 +76,7 @@ public enum SearchResultsController {
 
         view.resetSortBy();
 
-        if (ps.getOnlyFavourites()) {
-            view.setHeader("Mina favoriter");
-        } else if (ps.getSearchString().isEmpty() && ps.getCategoryFilter() != null) {
-            // If we have an empty search and a category filter, we are browsing
-            // categories
-            StringBuilder sb = new StringBuilder();
-            boolean first = true;
-            for (ProductCategory pc : ps.getCategoryFilter()) {
-                if (first) {
-                    sb.append(LocaleHandler.INSTANCE.getProductCategoryName(pc));
-                } else {
-                    sb.append(", ").append(LocaleHandler.INSTANCE.getProductCategoryName(pc));
-                }
-            }
-            view.setHeader(String.format("Varor från: %s", sb.toString()));
-        } else {
-            view.setHeader(String.format("Sökresultat för: \"%s\"", ps.getSearchString()));
-        }
+        view.setHeader(ps.getName());
     }
 
     /**

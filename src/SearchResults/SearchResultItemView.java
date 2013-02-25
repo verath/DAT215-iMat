@@ -85,6 +85,7 @@ public class SearchResultItemView extends javax.swing.JPanel {
         setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setMaximumSize(new java.awt.Dimension(32767, 128));
+        setMinimumSize(new java.awt.Dimension(200, 0));
         setName("Form"); // NOI18N
         setPreferredSize(new java.awt.Dimension(300, 128));
 

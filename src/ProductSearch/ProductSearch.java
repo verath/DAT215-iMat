@@ -1,5 +1,6 @@
 package ProductSearch;
 
+import Main.LocaleHandler;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ProductCategory;
@@ -21,7 +22,10 @@ public class ProductSearch {
     private String searchString;
     private Comparator<Product> sortBy;
     private Set<ProductCategory> categoryFilter;
-    private boolean onlyFavourites;
+    private boolean onlyFavorites;
+    
+    // Optional name
+    private String name; 
 
     /**
      * Constructs a new search towards the IMatDataHandler backend.
@@ -36,21 +40,29 @@ public class ProductSearch {
      *            An optional set of ProductCategorys that, if present, will only
      *            display results in these categories. If null, the result will not
      *            be filtered by a category.
+     * @param onlyFavorites If this search should return only favorites.
+     * @param name Name of the search.
      */
     public ProductSearch(String searchString, Comparator<Product> sortBy,
-            Set<ProductCategory> categoryFilter, boolean onlyFavourites) {
+            Set<ProductCategory> categoryFilter, boolean onlyFavorites, String name) {
         // Null as search string is not accepted by the backend
         this.searchString = (searchString == null) ? "" : searchString;
         this.sortBy = sortBy;
         this.categoryFilter = categoryFilter;
-        this.onlyFavourites = onlyFavourites;
+        this.onlyFavorites = onlyFavorites;
+        this.name = name;
 
         doSearch();
     }
 
     public ProductSearch(String searchString, Comparator<Product> sortBy,
+            Set<ProductCategory> categoryFilter, boolean onlyFavorites){
+        this(searchString, sortBy, categoryFilter, onlyFavorites, null);
+    }
+    
+    public ProductSearch(String searchString, Comparator<Product> sortBy,
             Set<ProductCategory> categoryFilter) {
-        this(searchString, sortBy, categoryFilter, false);
+        this(searchString, sortBy, categoryFilter, false, null);
 
     }
 
@@ -143,7 +155,7 @@ public class ProductSearch {
         List<Product> searchResult = dh.findProducts(this.searchString);
 
         // If we only want favourites, filter them first
-        searchResult = filterProductsFavourites(searchResult, onlyFavourites);
+        searchResult = filterProductsFavourites(searchResult, onlyFavorites);
 
         // Filter by category
         searchResult = filterProductsByCategory(searchResult,
@@ -224,13 +236,43 @@ public class ProductSearch {
     public Comparator<Product> getSortBy() {
         return sortBy;
     }
-    
+
     /**
      * Getter for the onlyFavourites.
      * 
      * @return
      */
-    public boolean getOnlyFavourites(){
-        return this.onlyFavourites;
+    public boolean getOnlyFavorites() {
+        return this.onlyFavorites;
+    }
+
+    /**
+     * Getter for the optional name of the search
+     */
+    public String getName() {
+        if (name != null) {
+            return name;
+        } else if (onlyFavorites) {
+            return "Dina favoriter";
+        } else if (searchString.isEmpty() && categoryFilter != null) {
+            // If we have an empty search and a category filter, we are browsing
+            // categories
+            StringBuilder sb = new StringBuilder();
+            boolean first = true;
+            for (ProductCategory pc : categoryFilter) {
+                if (first) {
+                    sb.append(LocaleHandler.INSTANCE.getProductCategoryName(pc));
+                } else {
+                    sb.append(", ").append(LocaleHandler.INSTANCE.getProductCategoryName(pc));
+                }
+            }
+            return String.format("Varor från: %s", sb.toString());
+        } else {
+            return String.format("Sökresultat för: \"%s\"", searchString);
+        }
+    }
+    
+    public void setName(String name){
+        this.name = name;
     }
 }

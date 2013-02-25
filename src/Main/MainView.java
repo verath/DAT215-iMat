@@ -42,9 +42,11 @@ public class MainView extends FrameView {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        searchResultsView1 = new SearchResults.SearchResultsView();
         headerBarView1 = new HeaderBar.HeaderBarView();
         shoppingCartView1 = new ShoppingCart.ShoppingCartView();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        categoriesView1 = new Categories.CategoriesView();
+        searchResultsView1 = new SearchResults.SearchResultsView();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -58,11 +60,17 @@ public class MainView extends FrameView {
 
         mainPanel.setName("mainPanel"); // NOI18N
 
-        searchResultsView1.setName("searchResultsView1"); // NOI18N
-
         headerBarView1.setName("headerBarView1"); // NOI18N
 
         shoppingCartView1.setName("shoppingCartView1"); // NOI18N
+
+        jSplitPane1.setName("jSplitPane1"); // NOI18N
+
+        categoriesView1.setName("categoriesView1"); // NOI18N
+        jSplitPane1.setLeftComponent(categoriesView1);
+
+        searchResultsView1.setName("searchResultsView1"); // NOI18N
+        jSplitPane1.setRightComponent(searchResultsView1);
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -70,9 +78,9 @@ public class MainView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(headerBarView1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
-                    .addComponent(searchResultsView1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                    .addComponent(headerBarView1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(shoppingCartView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -81,12 +89,12 @@ public class MainView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(shoppingCartView1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
+                    .addComponent(shoppingCartView1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(headerBarView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchResultsView1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)))
+                        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -136,12 +144,14 @@ public class MainView extends FrameView {
         setMenuBar(menuBar);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Categories.CategoriesView categoriesView1;
     private HeaderBar.HeaderBarView headerBarView1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private SearchResults.SearchResultsView searchResultsView1;

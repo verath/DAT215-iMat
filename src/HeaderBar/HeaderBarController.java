@@ -30,9 +30,14 @@ public class HeaderBarController {
             System.out.println("Not Searching: Search string is empty or placeholder default.");
             return;
         }
-        
+
+        if (searchString.length() < 2) {
+            System.out.println("Not Searching: Search string too shoort");
+            return;
+        }
+
         ProductSearch ps = new ProductSearch(searchString, null, null);
-        
+
         MainController.INSTANCE.search(ps);
 
     }
@@ -54,6 +59,8 @@ public class HeaderBarController {
             // If enter is pressed do same as if search button was clicked
             doSearch();
         }
+        
+        //doSearch();
     }
 
     void onSearchButtonActionPerformed(ActionEvent evt) {

@@ -14,6 +14,7 @@ import Main.LocaleHandler;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import javax.swing.JCheckBox;
@@ -26,11 +27,12 @@ import se.chalmers.ait.dat215.project.ProductCategory;
  * @author Peter
  */
 public class SearchResultsView extends javax.swing.JPanel {
-    
+
     public static final int CATEGORY_FILTER_ROW_HEIGHT = 30;
-    
     private SearchResultsController src = SearchResultsController.INSTANCE;
     private boolean filterPanelShown = false;
+    private List<SearchResultItemView> resultItems = new LinkedList<SearchResultItemView>();
+    private JLabel noResulsLabel = new JLabel("Inga resultat");
 
     /** Creates new form SearchResultsView */
     public SearchResultsView() {
@@ -41,14 +43,17 @@ public class SearchResultsView extends javax.swing.JPanel {
         filterByContainer.setVisible(filterPanelShown);
         filterByContainer.setMinimumSize(new Dimension(200, 100));
         filterByContainer.setPreferredSize(new Dimension(200, 100));
+
+        searchResultItemsContainer.add(noResulsLabel);
+        noResulsLabel.setVisible(false);
     }
-    
+
     /**
      * Sets the header of the search result view.
      * 
      * @param text 
      */
-    public void setHeader(String text){
+    public void setHeader(String text) {
         headerLabel.setText(text);
     }
 
@@ -59,15 +64,35 @@ public class SearchResultsView extends javax.swing.JPanel {
      * @param products 
      */
     public void setResultItems(List<Product> products) {
-        searchResultItemsContainer.removeAll();
+        
+        // Hide all itemviews we don't need
+        if(products.size() < resultItems.size()) {
+            for(int i = products.size(); i < resultItems.size(); i++ ){
+                resultItems.get(i).setVisible(false);
+            }
+        }
+        
+        // Show or hide "no results" label
+        noResulsLabel.setVisible(products.isEmpty());
 
-        if (products.isEmpty()) {
-            searchResultItemsContainer.add(new JLabel("Inga resultat."));
-        } else {
+
+        if (!products.isEmpty()) {
+            int itemIndex = 0;
             for (Product p : products) {
-                SearchResultItemView rsiv = new SearchResultItemView();
+                SearchResultItemView rsiv;
+
+                try {
+                    rsiv = resultItems.get(itemIndex);
+                } catch (IndexOutOfBoundsException e) {
+                    rsiv = new SearchResultItemView();
+                    resultItems.add(rsiv);
+                    searchResultItemsContainer.add(rsiv);
+                }
+
+                itemIndex++;
+                rsiv.setVisible(true);
                 rsiv.setProduct(p);
-                searchResultItemsContainer.add(rsiv);
+                //searchResultItemsContainer.add(rsiv);
             }
         }
 
@@ -78,12 +103,12 @@ public class SearchResultsView extends javax.swing.JPanel {
         searchResultsItemsScroll.repaint();
 
     }
-    
+
     /**
      * Sets the sortBy ComboBox to the default value
      */
-    public void resetSortBy(){
-        sortByComboBox.setSelectedIndex(0);        
+    public void resetSortBy() {
+        sortByComboBox.setSelectedIndex(0);
     }
 
     /** This method is called from within the constructor to
@@ -105,9 +130,8 @@ public class SearchResultsView extends javax.swing.JPanel {
         toggleCategoriFilterButton = new javax.swing.JButton();
         headerLabel = new javax.swing.JLabel();
 
-        setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setMaximumSize(new java.awt.Dimension(750, 32767));
-        setMinimumSize(new java.awt.Dimension(0, 0));
+        setMinimumSize(new java.awt.Dimension(600, 200));
         setName("Form"); // NOI18N
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(750, 300));
@@ -184,7 +208,7 @@ public class SearchResultsView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filterByContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -197,9 +221,9 @@ private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEven
 
     filterPanelShown = !filterPanelShown;
     filterByContainer.setVisible(filterPanelShown);
-    
+
     toggleCategoriFilterButton.setText(filterPanelShown ? "Dölj Kategorier" : "Visa Kategorier");
-    
+
     filterByContainer.validate();
     filterByContainer.repaint();
 }//GEN-LAST:event_toggleCategoriFilterButtonActionPerformed
@@ -230,18 +254,18 @@ private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEven
      */
     void setCategoryFilters(Set<ProductCategory> productCategories) {
         filterByContainer.removeAll();
-        
+
         //toggleCategoriFilterButton.setVisible(!productCategories.isEmpty());
-        
-        int numRows = productCategories.size()/5 + 1;
-        filterByContainer.setPreferredSize(new Dimension(500, 
-                SearchResultsView.CATEGORY_FILTER_ROW_HEIGHT*numRows));
-        
+
+        int numRows = productCategories.size() / 5 + 1;
+        filterByContainer.setPreferredSize(new Dimension(500,
+                SearchResultsView.CATEGORY_FILTER_ROW_HEIGHT * numRows));
+
         // If we have no categories, add a label saying so.
-        if(productCategories.isEmpty()){
+        if (productCategories.isEmpty()) {
             filterByContainer.add(new JLabel("Inga kategorier."));
         }
-        
+
         // Add a checkbox for each category.
         for (ProductCategory pc : productCategories) {
             String categoryName = LocaleHandler.INSTANCE.getProductCategoryName(pc);
