@@ -9,9 +9,6 @@ import ProductSearch.ProductSearch;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
-import java.util.List;
-import se.chalmers.ait.dat215.project.Product;
-import se.chalmers.ait.dat215.project.ProductCategory;
 
 /**
  * Controller for the HeaderBar view
@@ -27,7 +24,6 @@ public class HeaderBarController {
     }
 
     private void doSearch() {
-        // TODO: Only dummy behaviour so far.
         String searchString = view.getSearchText();
 
         if (searchString.isEmpty() || searchString.equals(HeaderBarController.SEARCH_PLACEHOLDER_TEXT)) {

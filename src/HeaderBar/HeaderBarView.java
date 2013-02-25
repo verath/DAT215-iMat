@@ -64,6 +64,7 @@ public class HeaderBarView extends javax.swing.JPanel {
         });
         jPanel1.add(SearchInputField);
 
+        SearchButton.setIcon(resourceMap.getIcon("SearchButton.icon")); // NOI18N
         SearchButton.setText(resourceMap.getString("SearchButton.text")); // NOI18N
         SearchButton.setName("SearchButton"); // NOI18N
         SearchButton.addActionListener(new java.awt.event.ActionListener() {
