@@ -21,6 +21,7 @@ public class ProductSearch {
     private String searchString;
     private Comparator<Product> sortBy;
     private Set<ProductCategory> categoryFilter;
+    private boolean onlyFavourites;
 
     /**
      * Constructs a new search towards the IMatDataHandler backend.
@@ -37,13 +38,20 @@ public class ProductSearch {
      *            be filtered by a category.
      */
     public ProductSearch(String searchString, Comparator<Product> sortBy,
-            Set<ProductCategory> categoryFilter) {
+            Set<ProductCategory> categoryFilter, boolean onlyFavourites) {
         // Null as search string is not accepted by the backend
         this.searchString = (searchString == null) ? "" : searchString;
         this.sortBy = sortBy;
         this.categoryFilter = categoryFilter;
+        this.onlyFavourites = onlyFavourites;
 
         doSearch();
+    }
+
+    public ProductSearch(String searchString, Comparator<Product> sortBy,
+            Set<ProductCategory> categoryFilter) {
+        this(searchString, sortBy, categoryFilter, false);
+
     }
 
     /**
@@ -69,6 +77,20 @@ public class ProductSearch {
         }
     }
 
+    private List<Product> filterProductsFavourites(List<Product> products, boolean onlyFavourites) {
+        if (!onlyFavourites) {
+            return products;
+        }
+
+        List<Product> filteredProducts = new LinkedList<Product>();
+        for (Product p : products) {
+            if (IMatDataHandler.getInstance().isFavorite(p)) {
+                filteredProducts.add(p);
+            }
+        }
+        return filteredProducts;
+    }
+
     /**
      * Sorts a list of products by the provided Comperator.
      * 
@@ -82,8 +104,8 @@ public class ProductSearch {
         if (sortBy == null) {
             return products;
         }
-        
-        if(sortBy == this.sortBy) {
+
+        if (sortBy == this.sortBy) {
             // No point in sorting if already sorted.
             return products;
         }
@@ -120,9 +142,13 @@ public class ProductSearch {
         // Free text search
         List<Product> searchResult = dh.findProducts(this.searchString);
 
+        // If we only want favourites, filter them first
+        searchResult = filterProductsFavourites(searchResult, onlyFavourites);
+
         // Filter by category
         searchResult = filterProductsByCategory(searchResult,
                 this.categoryFilter);
+
 
         // Sort results
         searchResult = sortProducts(searchResult, this.sortBy);
@@ -134,7 +160,7 @@ public class ProductSearch {
         this.resultingProducts = searchResult;
 
     }
-    
+
     /**
      * Sets the sorting option for the resulting products.
      * @param sortBy 
@@ -152,7 +178,7 @@ public class ProductSearch {
     public List<Product> getResultProducts() {
         return this.resultingProducts;
     }
-    
+
     /**
      * Returns a List of Products that matched the search criteria and 
      * is contained in the provided filter.
@@ -199,4 +225,12 @@ public class ProductSearch {
         return sortBy;
     }
     
+    /**
+     * Getter for the onlyFavourites.
+     * 
+     * @return
+     */
+    public boolean getOnlyFavourites(){
+        return this.onlyFavourites;
+    }
 }

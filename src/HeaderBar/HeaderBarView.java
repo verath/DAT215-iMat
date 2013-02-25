@@ -78,6 +78,8 @@ public class HeaderBarView extends javax.swing.JPanel {
 
 private void SearchInputFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchInputFieldFocusGained
     hbController.onSearchFieldFocusGained(evt);
+    SearchInputField.setSelectionStart(0);
+    SearchInputField.setSelectionEnd(SearchInputField.getText().length());
 }//GEN-LAST:event_SearchInputFieldFocusGained
 
 private void SearchInputFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SearchInputFieldFocusLost

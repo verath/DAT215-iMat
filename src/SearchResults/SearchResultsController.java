@@ -76,7 +76,9 @@ public enum SearchResultsController {
 
         view.resetSortBy();
 
-        if (ps.getSearchString().isEmpty() && !ps.getCategoryFilter().isEmpty()) {
+        if (ps.getOnlyFavourites()) {
+            view.setHeader("Mina favoriter");
+        } else if (ps.getSearchString().isEmpty() && ps.getCategoryFilter() != null) {
             // If we have an empty search and a category filter, we are browsing
             // categories
             StringBuilder sb = new StringBuilder();
