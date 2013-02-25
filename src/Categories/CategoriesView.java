@@ -13,6 +13,7 @@ package Categories;
 import Main.MainController;
 import Main.SearchListener;
 import ProductSearch.ProductSearch;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -20,6 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.swing.JSeparator;
 import se.chalmers.ait.dat215.project.ProductCategory;
 
 /**
@@ -46,6 +48,7 @@ public class CategoriesView extends javax.swing.JPanel  implements SearchListene
         // Kött
         filter = new HashSet<ProductCategory>();
         filter.add(ProductCategory.MEAT);
+        filter.add(ProductCategory.FISH);
         temp.put("Kött", new ProductSearch(null, null, filter, false, "Kött"));
 
         productCategoryNames = Collections.unmodifiableMap(temp);
@@ -68,7 +71,14 @@ public class CategoriesView extends javax.swing.JPanel  implements SearchListene
             add(civ);
             categoryViews.add(civ);
         }
-
+        
+        JSeparator seperator = new JSeparator(JSeparator.HORIZONTAL);
+        seperator.setPreferredSize(new Dimension(100, 1));
+        seperator.setMinimumSize(new Dimension(10, 1));
+        seperator.setMaximumSize(new Dimension(10000, 1));
+        add(seperator);
+        
+        
         // Show a special label for favorites
         CategoryItemView civ = new CategoryItemView();
         civ.setCategoryName("Favoriter");

@@ -19,14 +19,21 @@ import se.chalmers.ait.dat215.project.ShoppingItem;
  * @author Philip
  */
 public class ShoppingCartItemView extends javax.swing.JPanel {
-
+    
+    /**
+     * The shoppingItem this view is representing
+     */
     private ShoppingItem shoppingItem;
 
     /** Creates new form ShoppingItem1 */
     public ShoppingCartItemView() {
         initComponents();
     }
-
+    
+    /**
+     * Sets the ShoppingItem this view is representing
+     * @param si 
+     */
     public void setShoppingItem(ShoppingItem si) {
         this.shoppingItem = si;
 

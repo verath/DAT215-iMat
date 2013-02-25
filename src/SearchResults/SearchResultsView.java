@@ -28,10 +28,30 @@ import se.chalmers.ait.dat215.project.ProductCategory;
  */
 public class SearchResultsView extends javax.swing.JPanel {
 
+    /**
+     * Default height for a category filter row
+     */
     public static final int CATEGORY_FILTER_ROW_HEIGHT = 30;
+    
+    /**
+     * The controller for this view
+     */
     private SearchResultsController srController;
+    
+    /**
+     * A boolean for keeping track of if the filterPanel is open or closed.
+     */
     private boolean filterPanelShown = false;
+    
+    /**
+     * A list of SearchResultItemViews that has already been initialized. Used 
+     * when possible instead of creating a new one.
+     */
     private List<SearchResultItemView> resultItems = new LinkedList<SearchResultItemView>();
+    
+    /**
+     * A label shown if there are no search results.
+     */
     private JLabel noResulsLabel = new JLabel("Inga resultat");
 
     /** Creates new form SearchResultsView */

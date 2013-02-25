@@ -22,21 +22,38 @@ import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ProductCategory;
 
 /**
- *
+ * A view for a single result of a search.
+ * 
  * @author Peter
  */
 public class SearchResultItemView extends javax.swing.JPanel {
 
-    private Product product;
+    /**
+     * Path to the icon used when the Product is favorite.
+     */
     public static final String FAVOURITE_ICON = "/images/star.png";
-    public static final String HOVER_FAVOURITE_ICON = "/images/star-half.png";
+    /**
+     * Path to the icon used when it isn't a favorite.
+     */
     public static final String NOT_FAVOURITE_ICON = "/images/star-empty.png";
+    /**
+     * Path to the icon used when it is hovered.
+     */
+    public static final String HOVER_FAVOURITE_ICON = "/images/star-half.png";
+    /**
+     * The Product this view is representing
+     */
+    private Product product;
 
     /** Creates new form SearchResultItemView */
     public SearchResultItemView() {
         initComponents();
     }
 
+    /**
+     * Updates the favorite icon depending on if the product is a 
+     * favorite or not.
+     */
     private void updateFavIcon() {
         if (IMatDataHandler.getInstance().isFavorite(product)) {
             favouriteLabel.setIcon(new ImageIcon(this.getClass().getResource(FAVOURITE_ICON)));
@@ -47,6 +64,10 @@ public class SearchResultItemView extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Sets the Product this view is representing and redraws the view.
+     * @param p 
+     */
     public void setProduct(Product p) {
         IMatDataHandler dh = IMatDataHandler.getInstance();
         imageLabel.setIcon(dh.getImageIcon(p, 128, 128));
@@ -55,9 +76,9 @@ public class SearchResultItemView extends javax.swing.JPanel {
         unitLabel.setText(p.getUnitSuffix());
         categoryLabel.setText("<html>Kategori: <u style=\"color:blue\">"
                 + LocaleHandler.INSTANCE.getProductCategoryName(p.getCategory()));
-        
+
         this.product = p;
-        
+
         updateFavIcon();
     }
 
@@ -209,16 +230,19 @@ public class SearchResultItemView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+    // Add a product when the add button is pressed
     ShoppingCartWrapper.INSTANCE.addProduct(product, (Integer) amountSpinner.getValue());
 }//GEN-LAST:event_addButtonActionPerformed
 
 private void categoryLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryLabelMouseClicked
+    // Show the entier category if the category link is pressed
     Set<ProductCategory> categoryFilter = new HashSet<ProductCategory>();
     categoryFilter.add(product.getCategory());
     MainController.INSTANCE.search(new ProductSearch("", null, categoryFilter));
 }//GEN-LAST:event_categoryLabelMouseClicked
 
 private void favouriteLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_favouriteLabelMouseEntered
+    // Handle hovering of the favorite icon.
     favouriteLabel.setIcon(new ImageIcon(this.getClass().getResource(HOVER_FAVOURITE_ICON)));
 }//GEN-LAST:event_favouriteLabelMouseEntered
 
@@ -227,6 +251,7 @@ private void favouriteLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIR
 }//GEN-LAST:event_favouriteLabelMouseExited
 
 private void favouriteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_favouriteLabelMouseClicked
+    // Handle click on the favorite icon
     if (IMatDataHandler.getInstance().isFavorite(product)) {
         IMatDataHandler.getInstance().removeFavorite(product);
     } else {

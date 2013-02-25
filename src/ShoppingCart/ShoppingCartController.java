@@ -7,24 +7,27 @@ package ShoppingCart;
 import Main.ShoppingCartWrapper;
 import java.awt.event.ActionEvent;
 import se.chalmers.ait.dat215.project.CartEvent;
-import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.ShoppingCartListener;
 
 /**
  * Controller for the ShoppingCartView
+ * 
  * @author Peter
  */
 public class ShoppingCartController implements ShoppingCartListener {
     private ShoppingCartView view;
-    //private ShoppingCartWrapper cartModel;
 
+    /**
+     * Creates a new ShoppingCartController for the provided view
+     *
+     * @param view 
+     */
     public ShoppingCartController(ShoppingCartView view) {
         this.view = view;
         
         ShoppingCartWrapper.INSTANCE.addShoppingCartListener(this);
-    }
-    
-    public void onViewLoaded(){
+        
+        // On first load, update items in cart
         view.setItemsInCart(ShoppingCartWrapper.INSTANCE.getItems());
     }
     
@@ -37,6 +40,10 @@ public class ShoppingCartController implements ShoppingCartListener {
         cart.addProduct(dh.getProduct(1), 20);*/
     }
 
+    /**
+     * Called when an item in the shoppingCart is somehow changed.
+     * @param ce 
+     */
     public void shoppingCartChanged(CartEvent ce) {
         view.setItemsInCart(ShoppingCartWrapper.INSTANCE.getItems());
     }

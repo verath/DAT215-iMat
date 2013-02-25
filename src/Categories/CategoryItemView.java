@@ -31,29 +31,29 @@ public class CategoryItemView extends javax.swing.JPanel {
     public void setCategoryName(String name) {
         nameLabel.setText(name);
     }
-    
-    public void setIsFavoriteLabel(boolean isFavLabel ){
+
+    public void setIsFavoriteLabel(boolean isFavLabel) {
         this.isFavLabel = isFavLabel;
     }
 
     public void setProductSearch(ProductSearch ps) {
         productSearch = ps;
     }
-    
-    public void onSearchChange(ProductSearch ps){
-        if(ps.equals(productSearch)) {
+
+    public void onSearchChange(ProductSearch ps) {
+        if (ps.equals(productSearch)) {
             setActiveState();
         } else {
-           unsetActiveState();
+            unsetActiveState();
         }
     }
-    
-    public void setActiveState(){
-        jPanel1.setBackground(Color.GREEN);
+
+    public void setActiveState() {
+        container.setBackground(Color.GREEN);
     }
-    
-    public void unsetActiveState(){
-        jPanel1.setBackground(Color.yellow);
+
+    public void unsetActiveState() {
+        container.setBackground(Color.yellow);
     }
 
     /** This method is called from within the constructor to
@@ -65,13 +65,18 @@ public class CategoryItemView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        container = new javax.swing.JPanel();
         nameLabel = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(32767, 48));
         setName("Form"); // NOI18N
 
-        jPanel1.setName("jPanel1"); // NOI18N
+        container.setName("container"); // NOI18N
+        container.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                containerMouseClicked(evt);
+            }
+        });
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(CategoryItemView.class);
         nameLabel.setFont(resourceMap.getFont("nameLabel.font")); // NOI18N
@@ -83,18 +88,18 @@ public class CategoryItemView extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
+        container.setLayout(containerLayout);
+        containerLayout.setHorizontalGroup(
+            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(containerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        containerLayout.setVerticalGroup(
+            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(containerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(nameLabel)
                 .addContainerGap())
@@ -104,24 +109,28 @@ public class CategoryItemView extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 private void nameLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameLabelMouseClicked
+    containerMouseClicked(evt);
+}//GEN-LAST:event_nameLabelMouseClicked
+
+private void containerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_containerMouseClicked
     if (productSearch != null) {
         MainController.INSTANCE.search(productSearch);
-    } else if(isFavLabel) {
+    } else if (isFavLabel) {
         ProductSearch ps = new ProductSearch(null, null, null, true);
         MainController.INSTANCE.search(ps);
     }
-}//GEN-LAST:event_nameLabelMouseClicked
+}//GEN-LAST:event_containerMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel container;
     private javax.swing.JLabel nameLabel;
     // End of variables declaration//GEN-END:variables
 }

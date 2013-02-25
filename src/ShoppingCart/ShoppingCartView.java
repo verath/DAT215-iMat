@@ -22,7 +22,6 @@ public class ShoppingCartView extends javax.swing.JPanel {
         initComponents();
         
         scController = new ShoppingCartController(this);
-        scController.onViewLoaded();
     }
     
     
