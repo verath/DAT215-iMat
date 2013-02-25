@@ -1,6 +1,8 @@
 package SearchResults;
 
 import Main.LocaleHandler;
+import Main.MainController;
+import Main.SearchListener;
 import ProductSearch.OrderProductsByNameAscending;
 import ProductSearch.OrderProductsByNameDescending;
 import ProductSearch.OrderProductsByPriceAscending;
@@ -18,24 +20,48 @@ import se.chalmers.ait.dat215.project.ProductCategory;
  *
  * @author Peter
  */
-public enum SearchResultsController {
-
-    INSTANCE;
+public class SearchResultsController implements SearchListener{
+    
+    /**
+     * Default sorting order for result list.
+     */
+    public static final Comparator<Product> DEFAULT_SORT = new OrderProductsByNameDescending();
+    
+    /**
+     * The current search represented by the view.
+     */
     private ProductSearch productSearch;
+    
+    /**
+     * The filters selected in the view.
+     */
     private Set<ProductCategory> selectedFilters = new HashSet<ProductCategory>();
-    private List<Comparator<Product>> sortBy = new LinkedList<Comparator<Product>>();
-    public final Comparator<Product> defaultSort = new OrderProductsByNameDescending();
+    
+    /**
+     * The sorting options available
+     */
+    private static List<Comparator<Product>> sortBy = new LinkedList<Comparator<Product>>();
+    static{
+        SearchResultsController.sortBy.add(new OrderProductsByNameAscending());
+        SearchResultsController.sortBy.add(new OrderProductsByNameDescending());
+        SearchResultsController.sortBy.add(new OrderProductsByPriceAscending());
+        SearchResultsController.sortBy.add(new OrderProductsByPriceDescending());
+    }
+    
+    /**
+     * The search result view.
+     */
     private SearchResultsView view;
 
-    private SearchResultsController() {
-        sortBy.add(new OrderProductsByNameAscending());
-        sortBy.add(new OrderProductsByNameDescending());
-        sortBy.add(new OrderProductsByPriceAscending());
-        sortBy.add(new OrderProductsByPriceDescending());
-    }
-
-    public void setSearchResultsView(SearchResultsView view) {
+    /**
+     * Constructs a new search result controller for the provided view.
+     * @param view 
+     */
+    public SearchResultsController(SearchResultsView view) {
         this.view = view;
+        
+        // Listen for searches.
+        MainController.INSTANCE.addSearchListener(this);
     }
 
     /**
@@ -65,22 +91,25 @@ public enum SearchResultsController {
      * 
      * @param ps 
      */
-    public void setProductSearch(ProductSearch ps) {
+    private void setProductSearch(ProductSearch ps) {
         productSearch = ps;
         selectedFilters = ps.getResultCategories();
-
+        
+        // Updates the result list of items
         updateViewResultList();
 
-        // Update our view's result list
+        // Set the category filter to all checked
         updateViewFilters(selectedFilters);
 
+        // Set default sort by
         view.resetSortBy();
 
+        // Set the search result header to the name of the search object.
         view.setHeader(ps.getName());
     }
 
     /**
-     * This methoiod is called when the sortBy field is changed
+     * This method is called when the sortBy field is changed
      */
     public void onSortByChanged() {
         if (view != null && sortBy != null && productSearch != null) {
@@ -109,5 +138,13 @@ public enum SearchResultsController {
         if (changed) {
             updateViewResultList();
         }
+    }
+    
+    /**
+     * Called when a search is performed.
+     * @param ps 
+     */
+    public void onSearch(ProductSearch ps) {
+        setProductSearch(ps);
     }
 }

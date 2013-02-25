@@ -10,10 +10,14 @@
  */
 package Categories;
 
+import Main.MainController;
+import Main.SearchListener;
 import ProductSearch.ProductSearch;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import se.chalmers.ait.dat215.project.ProductCategory;
@@ -22,13 +26,14 @@ import se.chalmers.ait.dat215.project.ProductCategory;
  *
  * @author Peter
  */
-public class CategoriesView extends javax.swing.JPanel {
-    
+public class CategoriesView extends javax.swing.JPanel  implements SearchListener {
+
     public static Map<String, ProductSearch> productCategoryNames = new HashMap<String, ProductSearch>();
-    static {  
+
+    static {
         Map<String, ProductSearch> temp = new HashMap<String, ProductSearch>();
         Set<ProductCategory> filter;
-        
+
         // Frukt & Grönt
         filter = new HashSet<ProductCategory>();
         filter.add(ProductCategory.CITRUS_FRUIT);
@@ -37,27 +42,39 @@ public class CategoriesView extends javax.swing.JPanel {
         filter.add(ProductCategory.MELONS);
         filter.add(ProductCategory.ROOT_VEGETABLE);
         temp.put("Frukt & Grönt", new ProductSearch(null, null, filter, false, "Frukt & Grönt"));
-        
+
         // Kött
         filter = new HashSet<ProductCategory>();
         filter.add(ProductCategory.MEAT);
         temp.put("Kött", new ProductSearch(null, null, filter, false, "Kött"));
-        
+
         productCategoryNames = Collections.unmodifiableMap(temp);
     }
     
+    private List<CategoryItemView> categoryViews = new ArrayList<CategoryItemView>(10);
+
     /** Creates new form CategoriesView */
-    public CategoriesView() {
+    public CategoriesView(){
         initComponents();
         
-        // 
-        for( String name : productCategoryNames.keySet() ){
+        MainController.INSTANCE.addSearchListener(this);
+
+        // Display categories
+        for (String name : productCategoryNames.keySet()) {
             ProductSearch ps = productCategoryNames.get(name);
             CategoryItemView civ = new CategoryItemView();
             civ.setCategoryName(name);
             civ.setProductSearch(ps);
             add(civ);
+            categoryViews.add(civ);
         }
+
+        // Show a special label for favorites
+        CategoryItemView civ = new CategoryItemView();
+        civ.setCategoryName("Favoriter");
+        civ.setIsFavoriteLabel(true);
+        add(civ);
+        categoryViews.add(civ);
         
         validate();
         repaint();
@@ -77,4 +94,10 @@ public class CategoriesView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+    public void onSearch(ProductSearch ps) {
+        for(CategoryItemView civ : categoryViews){
+            civ.onSearchChange(ps);
+        }
+    }
 }

@@ -5,7 +5,8 @@
 package Main;
 
 import ProductSearch.ProductSearch;
-import SearchResults.SearchResultsController;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,7 +15,7 @@ import SearchResults.SearchResultsController;
 public enum MainController {
     INSTANCE;
     
-    private SearchResultsController src = SearchResultsController.INSTANCE;
+    private List<SearchListener> searchListeners = new ArrayList<SearchListener>();
     
     /**
      * Performs a search by displaying the search results panels.
@@ -22,6 +23,20 @@ public enum MainController {
      * @param ps 
      */
     public void search(ProductSearch ps){
-        src.setProductSearch(ps);
+        notifySearchListeners(ps);
+    }
+    
+    public void notifySearchListeners(ProductSearch ps){
+        for(SearchListener sl : searchListeners){
+            sl.onSearch(ps);
+        }
+    }
+    
+    public void addSearchListener(SearchListener sl){
+        searchListeners.add(sl);
+    }
+    
+    public void removeSearchListener(SearchListener sl) {
+        searchListeners.remove(sl);
     }
 }

@@ -12,6 +12,7 @@ package Categories;
 
 import Main.MainController;
 import ProductSearch.ProductSearch;
+import java.awt.Color;
 
 /**
  *
@@ -20,6 +21,7 @@ import ProductSearch.ProductSearch;
 public class CategoryItemView extends javax.swing.JPanel {
 
     private ProductSearch productSearch;
+    private boolean isFavLabel = false;
 
     /** Creates new form CategoryItemView */
     public CategoryItemView() {
@@ -29,9 +31,29 @@ public class CategoryItemView extends javax.swing.JPanel {
     public void setCategoryName(String name) {
         nameLabel.setText(name);
     }
+    
+    public void setIsFavoriteLabel(boolean isFavLabel ){
+        this.isFavLabel = isFavLabel;
+    }
 
     public void setProductSearch(ProductSearch ps) {
         productSearch = ps;
+    }
+    
+    public void onSearchChange(ProductSearch ps){
+        if(ps.equals(productSearch)) {
+            setActiveState();
+        } else {
+           unsetActiveState();
+        }
+    }
+    
+    public void setActiveState(){
+        jPanel1.setBackground(Color.GREEN);
+    }
+    
+    public void unsetActiveState(){
+        jPanel1.setBackground(Color.yellow);
     }
 
     /** This method is called from within the constructor to
@@ -93,6 +115,9 @@ public class CategoryItemView extends javax.swing.JPanel {
 private void nameLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameLabelMouseClicked
     if (productSearch != null) {
         MainController.INSTANCE.search(productSearch);
+    } else if(isFavLabel) {
+        ProductSearch ps = new ProductSearch(null, null, null, true);
+        MainController.INSTANCE.search(ps);
     }
 }//GEN-LAST:event_nameLabelMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables

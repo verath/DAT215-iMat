@@ -29,7 +29,7 @@ import se.chalmers.ait.dat215.project.ProductCategory;
 public class SearchResultsView extends javax.swing.JPanel {
 
     public static final int CATEGORY_FILTER_ROW_HEIGHT = 30;
-    private SearchResultsController src = SearchResultsController.INSTANCE;
+    private SearchResultsController srController;
     private boolean filterPanelShown = false;
     private List<SearchResultItemView> resultItems = new LinkedList<SearchResultItemView>();
     private JLabel noResulsLabel = new JLabel("Inga resultat");
@@ -38,7 +38,7 @@ public class SearchResultsView extends javax.swing.JPanel {
     public SearchResultsView() {
         initComponents();
 
-        src.setSearchResultsView(this);
+        srController = new SearchResultsController(this);
 
         filterByContainer.setVisible(filterPanelShown);
         filterByContainer.setMinimumSize(new Dimension(200, 100));
@@ -64,43 +64,47 @@ public class SearchResultsView extends javax.swing.JPanel {
      * @param products 
      */
     public void setResultItems(List<Product> products) {
-        
         // Hide all itemviews we don't need
-        if(products.size() < resultItems.size()) {
-            for(int i = products.size(); i < resultItems.size(); i++ ){
+        if (products.size() < resultItems.size()) {
+            for (int i = products.size(); i < resultItems.size(); i++) {
                 resultItems.get(i).setVisible(false);
             }
         }
-        
+
         // Show or hide "no results" label
         noResulsLabel.setVisible(products.isEmpty());
 
-
+        // Generate the list of results
         if (!products.isEmpty()) {
-            int itemIndex = 0;
+            int i = 0;
             for (Product p : products) {
                 SearchResultItemView rsiv;
 
-                try {
-                    rsiv = resultItems.get(itemIndex);
-                } catch (IndexOutOfBoundsException e) {
+                if (i < resultItems.size()) {
+                    // If we have a created resultItem, use it instead as init
+                    // of new ones are very slow
+                    rsiv = resultItems.get(i);
+                } else {
+                    // If we don't have saved ones, create and save a new one.
                     rsiv = new SearchResultItemView();
                     resultItems.add(rsiv);
                     searchResultItemsContainer.add(rsiv);
                 }
 
-                itemIndex++;
                 rsiv.setVisible(true);
                 rsiv.setProduct(p);
-                //searchResultItemsContainer.add(rsiv);
+                i++;
             }
         }
 
+        // Force refresh
         searchResultItemsContainer.validate();
         searchResultItemsContainer.repaint();
-        searchResultsItemsScroll.getVerticalScrollBar().setValue(0);
         searchResultsItemsScroll.validate();
         searchResultsItemsScroll.repaint();
+
+        // Set scroll to top
+        searchResultsItemsScroll.getVerticalScrollBar().setValue(0);
 
     }
 
@@ -214,11 +218,12 @@ public class SearchResultsView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void sortByComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortByComboBoxActionPerformed
-    src.onSortByChanged();
+    // When the sort by drop down is changed
+    srController.onSortByChanged();
 }//GEN-LAST:event_sortByComboBoxActionPerformed
 
 private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleCategoriFilterButtonActionPerformed
-
+    // When one of the filter checkboxes are clicked
     filterPanelShown = !filterPanelShown;
     filterByContainer.setVisible(filterPanelShown);
 
@@ -273,12 +278,12 @@ private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEven
 
             // Add an event listener for when this checkbox is clicked
             final ProductCategory category = pc;
+            final SearchResultsController src = this.srController;
             cb.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
                     JCheckBox cb = (JCheckBox) e.getSource();
-                    SearchResultsController.INSTANCE.onFilterChanged(
-                            category, cb.isSelected());
+                    src.onFilterChanged(category, cb.isSelected());
                 }
             });
 
