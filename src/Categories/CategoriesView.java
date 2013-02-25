@@ -28,64 +28,59 @@ import se.chalmers.ait.dat215.project.ProductCategory;
  *
  * @author Peter
  */
-public class CategoriesView extends javax.swing.JPanel  implements SearchListener {
+public class CategoriesView extends javax.swing.JPanel implements SearchListener {
 
-    public static Map<String, ProductSearch> productCategoryNames = new HashMap<String, ProductSearch>();
+    public static final Map<String, Set<ProductCategory>> categoryItemProducts = new HashMap<String, Set<ProductCategory>>();
 
     static {
-        Map<String, ProductSearch> temp = new HashMap<String, ProductSearch>();
-        Set<ProductCategory> filter;
-
+        Set<ProductCategory> prodCategories;
         // Frukt & Grönt
-        filter = new HashSet<ProductCategory>();
-        filter.add(ProductCategory.CITRUS_FRUIT);
-        filter.add(ProductCategory.EXOTIC_FRUIT);
-        filter.add(ProductCategory.FRUIT);
-        filter.add(ProductCategory.MELONS);
-        filter.add(ProductCategory.ROOT_VEGETABLE);
-        temp.put("Frukt & Grönt", new ProductSearch(null, null, filter, false, "Frukt & Grönt"));
+        prodCategories = new HashSet<ProductCategory>();
+        prodCategories.add(ProductCategory.CITRUS_FRUIT);
+        prodCategories.add(ProductCategory.EXOTIC_FRUIT);
+        prodCategories.add(ProductCategory.FRUIT);
+        prodCategories.add(ProductCategory.MELONS);
+        prodCategories.add(ProductCategory.ROOT_VEGETABLE);
+        categoryItemProducts.put("Frukt & Grönt", prodCategories);
 
         // Kött
-        filter = new HashSet<ProductCategory>();
-        filter.add(ProductCategory.MEAT);
-        filter.add(ProductCategory.FISH);
-        temp.put("Kött", new ProductSearch(null, null, filter, false, "Kött"));
-
-        productCategoryNames = Collections.unmodifiableMap(temp);
+        prodCategories = new HashSet<ProductCategory>();
+        prodCategories.add(ProductCategory.MEAT);
+        prodCategories.add(ProductCategory.FISH);
+        categoryItemProducts.put("Kött", prodCategories);
     }
-    
     private List<CategoryItemView> categoryViews = new ArrayList<CategoryItemView>(10);
 
     /** Creates new form CategoriesView */
-    public CategoriesView(){
+    public CategoriesView() {
         initComponents();
-        
+
         MainController.INSTANCE.addSearchListener(this);
 
         // Display categories
-        for (String name : productCategoryNames.keySet()) {
-            ProductSearch ps = productCategoryNames.get(name);
+        for (String name : categoryItemProducts.keySet()) {
+            Set<ProductCategory> productCategories = categoryItemProducts.get(name);
             CategoryItemView civ = new CategoryItemView();
             civ.setCategoryName(name);
-            civ.setProductSearch(ps);
+            civ.setSearchCategories(productCategories);
             add(civ);
             categoryViews.add(civ);
         }
-        
+
         JSeparator seperator = new JSeparator(JSeparator.HORIZONTAL);
         seperator.setPreferredSize(new Dimension(100, 1));
         seperator.setMinimumSize(new Dimension(10, 1));
         seperator.setMaximumSize(new Dimension(10000, 1));
         add(seperator);
-        
-        
+
+
         // Show a special label for favorites
         CategoryItemView civ = new CategoryItemView();
         civ.setCategoryName("Favoriter");
         civ.setIsFavoriteLabel(true);
         add(civ);
         categoryViews.add(civ);
-        
+
         validate();
         repaint();
     }
@@ -106,7 +101,7 @@ public class CategoriesView extends javax.swing.JPanel  implements SearchListene
     // End of variables declaration//GEN-END:variables
 
     public void onSearch(ProductSearch ps) {
-        for(CategoryItemView civ : categoryViews){
+        for (CategoryItemView civ : categoryViews) {
             civ.onSearchChange(ps);
         }
     }

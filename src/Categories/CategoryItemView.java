@@ -13,6 +13,8 @@ package Categories;
 import Main.MainController;
 import ProductSearch.ProductSearch;
 import java.awt.Color;
+import java.util.Set;
+import se.chalmers.ait.dat215.project.ProductCategory;
 
 /**
  *
@@ -20,8 +22,13 @@ import java.awt.Color;
  */
 public class CategoryItemView extends javax.swing.JPanel {
 
-    private ProductSearch productSearch;
+    /**
+     * A set of categories this menu item represents
+     */
+    private Set<ProductCategory> productCategories = null;
     private boolean isFavLabel = false;
+    private ProductSearch productSearch;
+    private String name = "";
 
     /** Creates new form CategoryItemView */
     public CategoryItemView() {
@@ -29,6 +36,7 @@ public class CategoryItemView extends javax.swing.JPanel {
     }
 
     public void setCategoryName(String name) {
+        this.name = name;
         nameLabel.setText(name);
     }
 
@@ -36,8 +44,8 @@ public class CategoryItemView extends javax.swing.JPanel {
         this.isFavLabel = isFavLabel;
     }
 
-    public void setProductSearch(ProductSearch ps) {
-        productSearch = ps;
+    public void setSearchCategories(Set<ProductCategory> categories) {
+        productCategories = categories;
     }
 
     public void onSearchChange(ProductSearch ps) {
@@ -122,12 +130,8 @@ private void nameLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:e
 }//GEN-LAST:event_nameLabelMouseClicked
 
 private void containerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_containerMouseClicked
-    if (productSearch != null) {
-        MainController.INSTANCE.search(productSearch);
-    } else if (isFavLabel) {
-        ProductSearch ps = new ProductSearch(null, null, null, true);
-        MainController.INSTANCE.search(ps);
-    }
+    productSearch = new ProductSearch(null, null, productCategories, isFavLabel, name);
+    MainController.INSTANCE.search(productSearch);
 }//GEN-LAST:event_containerMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel container;
