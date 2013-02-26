@@ -28,7 +28,7 @@ public enum ShoppingListsHandler {
     /** 
      * The ShoppingListsHolder holding our data so that it can be serialized.
      */
-    private ShoppingListsHolder holder = null;
+    private ShoppingListsHolder holder = new ShoppingListsHolder();
     /**
      * The file path where we are saving our object data.
      */
@@ -54,11 +54,6 @@ public enum ShoppingListsHandler {
      * Saves the user's shoppingLists to file.
      */
     public void save() {
-        if (holder == null) {
-            // If we haven't got anything to save, no point in saving.
-            return;
-        }
-
         try {
             File f = new File(FILE_PATH);
             FileOutputStream fo = new FileOutputStream(f);
@@ -70,15 +65,31 @@ public enum ShoppingListsHandler {
     }
 
     /**
-     * Gets all the shopping lists.
+     * Removes a ShoppingList from the set of shopping lists.
+     * 
+     * @param sl The ShoppingList to remove
+     * @return True if the list changed (ie. the list existed in the collection)
+     */
+    public boolean removeShoppingList(ShoppingList sl) {
+        return holder.shoppingLists.remove(sl);
+    }
+
+    /**
+     * Adds a ShoppingList to the set of shopping lists.
+     * 
+     * @param sl The ShoppingList to add.
+     * @return True if the list changed (ie. the list existed in the collection)
+     */
+    public boolean addShoppingList(ShoppingList sl) {
+        return holder.shoppingLists.add(sl);
+    }
+
+    /**
+     * Getter for all the shopping lists.
      * @return 
      */
     public Set<ShoppingList> getShoppingLists() {
-        if (holder != null) {
-            return holder.shoppingLists;
-        } else {
-            return null;
-        }
+        return new HashSet<ShoppingList>(holder.shoppingLists);
     }
 
     /**
