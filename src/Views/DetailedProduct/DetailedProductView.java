@@ -8,7 +8,7 @@
  *
  * Created on Feb 24, 2013, 5:42:06 PM
  */
-package DetailedProduct;
+package Views.DetailedProduct;
 
 /**
  *

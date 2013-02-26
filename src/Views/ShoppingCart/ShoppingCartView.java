@@ -4,7 +4,7 @@
  *
  * Created on Feb 20, 2013, 12:49:32 PM
  */
-package ShoppingCart;
+package Views.ShoppingCart;
 
 import Main.ShoppingCartWrapper;
 import java.util.List;

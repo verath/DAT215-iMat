@@ -8,7 +8,7 @@
  *
  * Created on Feb 21, 2013, 4:37:10 PM
  */
-package AccountSettings;
+package Views.AccountSettings;
 
 /**
  *

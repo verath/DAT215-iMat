@@ -8,7 +8,7 @@
  *
  * Created on Feb 24, 2013, 2:08:13 AM
  */
-package StartPage;
+package Views.StartPage;
 
 /**
  *

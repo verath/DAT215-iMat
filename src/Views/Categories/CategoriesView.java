@@ -8,7 +8,7 @@
  *
  * Created on Feb 25, 2013, 9:44:55 AM
  */
-package Categories;
+package Views.Categories;
 
 import Main.MainController;
 import Main.SearchListener;

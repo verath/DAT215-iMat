@@ -1,4 +1,4 @@
-package SearchResults;
+package Views.SearchResults;
 
 import Main.LocaleHandler;
 import Main.MainController;

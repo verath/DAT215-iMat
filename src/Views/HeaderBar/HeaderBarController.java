@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package HeaderBar;
+package Views.HeaderBar;
 
 import Main.MainController;
 import Search.SearchQuery;

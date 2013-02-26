@@ -8,7 +8,7 @@
  *
  * Created on Feb 23, 2013, 3:59:05 PM
  */
-package SearchResults;
+package Views.SearchResults;
 
 import Main.LocaleHandler;
 import java.awt.Dimension;

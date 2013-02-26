@@ -8,7 +8,7 @@
  *
  * Created on Feb 20, 2013, 1:05:28 PM
  */
-package ShoppingCart;
+package Views.ShoppingCart;
 
 import Main.ShoppingCartWrapper;
 import se.chalmers.ait.dat215.project.Product;

@@ -42,11 +42,11 @@ public class MainView extends FrameView {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        headerBarView1 = new HeaderBar.HeaderBarView();
-        shoppingCartView1 = new ShoppingCart.ShoppingCartView();
+        headerBarView1 = new Views.HeaderBar.HeaderBarView();
+        shoppingCartView1 = new Views.ShoppingCart.ShoppingCartView();
         jSplitPane1 = new javax.swing.JSplitPane();
-        categoriesView1 = new Categories.CategoriesView();
-        searchResultsView1 = new SearchResults.SearchResultsView();
+        categoriesView1 = new Views.Categories.CategoriesView();
+        searchResultsView1 = new Views.SearchResults.SearchResultsView();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -144,8 +144,8 @@ public class MainView extends FrameView {
         setMenuBar(menuBar);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Categories.CategoriesView categoriesView1;
-    private HeaderBar.HeaderBarView headerBarView1;
+    private Views.Categories.CategoriesView categoriesView1;
+    private Views.HeaderBar.HeaderBarView headerBarView1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -154,8 +154,8 @@ public class MainView extends FrameView {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
-    private SearchResults.SearchResultsView searchResultsView1;
-    private ShoppingCart.ShoppingCartView shoppingCartView1;
+    private Views.SearchResults.SearchResultsView searchResultsView1;
+    private Views.ShoppingCart.ShoppingCartView shoppingCartView1;
     // End of variables declaration//GEN-END:variables
     private JDialog aboutBox;
 }

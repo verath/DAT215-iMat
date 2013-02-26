@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ShoppingCart;
+package Views.ShoppingCart;
 
 import Main.ShoppingCartWrapper;
 import java.awt.event.ActionEvent;
