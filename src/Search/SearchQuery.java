@@ -1,4 +1,4 @@
-package ProductSearch;
+package Search;
 
 import Main.LocaleHandler;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
@@ -13,7 +13,7 @@ import java.util.*;
  * @author Peter
  * 
  */
-public class ProductSearch {
+public class SearchQuery {
 
     // These contain results, or info about results
     private List<Product> resultingProducts;
@@ -43,7 +43,7 @@ public class ProductSearch {
      * @param onlyFavorites If this search should return only favorites.
      * @param name Name of the search.
      */
-    public ProductSearch(String searchString, Comparator<Product> sortBy,
+    public SearchQuery(String searchString, Comparator<Product> sortBy,
             Set<ProductCategory> categoryFilter, boolean onlyFavorites, String name) {
         // Null as search string is not accepted by the backend
         this.searchString = (searchString == null) ? "" : searchString;
@@ -55,12 +55,12 @@ public class ProductSearch {
         doSearch();
     }
 
-    public ProductSearch(String searchString, Comparator<Product> sortBy,
+    public SearchQuery(String searchString, Comparator<Product> sortBy,
             Set<ProductCategory> categoryFilter, boolean onlyFavorites){
         this(searchString, sortBy, categoryFilter, onlyFavorites, null);
     }
     
-    public ProductSearch(String searchString, Comparator<Product> sortBy,
+    public SearchQuery(String searchString, Comparator<Product> sortBy,
             Set<ProductCategory> categoryFilter) {
         this(searchString, sortBy, categoryFilter, false, null);
 

@@ -1,4 +1,4 @@
-package ProductSearch;
+package Search;
 
 import java.util.Comparator;
 import se.chalmers.ait.dat215.project.Product;

@@ -11,7 +11,7 @@
 package Categories;
 
 import Main.MainController;
-import ProductSearch.ProductSearch;
+import Search.SearchQuery;
 import java.awt.Color;
 import java.util.Set;
 import se.chalmers.ait.dat215.project.ProductCategory;
@@ -27,7 +27,7 @@ public class CategoryItemView extends javax.swing.JPanel {
      */
     private Set<ProductCategory> productCategories = null;
     private boolean isFavLabel = false;
-    private ProductSearch productSearch;
+    private SearchQuery productSearch;
     private String name = "";
 
     /** Creates new form CategoryItemView */
@@ -48,7 +48,7 @@ public class CategoryItemView extends javax.swing.JPanel {
         productCategories = categories;
     }
 
-    public void onSearchChange(ProductSearch ps) {
+    public void onSearchChange(SearchQuery ps) {
         if (ps.equals(productSearch)) {
             setActiveState();
         } else {
@@ -130,7 +130,7 @@ private void nameLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:e
 }//GEN-LAST:event_nameLabelMouseClicked
 
 private void containerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_containerMouseClicked
-    productSearch = new ProductSearch(null, null, productCategories, isFavLabel, name);
+    productSearch = new SearchQuery(null, null, productCategories, isFavLabel, name);
     MainController.INSTANCE.search(productSearch);
 }//GEN-LAST:event_containerMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables

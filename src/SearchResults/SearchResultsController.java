@@ -3,11 +3,11 @@ package SearchResults;
 import Main.LocaleHandler;
 import Main.MainController;
 import Main.SearchListener;
-import ProductSearch.OrderProductsByNameAscending;
-import ProductSearch.OrderProductsByNameDescending;
-import ProductSearch.OrderProductsByPriceAscending;
-import ProductSearch.OrderProductsByPriceDescending;
-import ProductSearch.ProductSearch;
+import Search.OrderProductsByNameAscending;
+import Search.OrderProductsByNameDescending;
+import Search.OrderProductsByPriceAscending;
+import Search.OrderProductsByPriceDescending;
+import Search.SearchQuery;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -30,7 +30,7 @@ public class SearchResultsController implements SearchListener{
     /**
      * The current search represented by the view.
      */
-    private ProductSearch productSearch;
+    private SearchQuery productSearch;
     
     /**
      * The filters selected in the view.
@@ -91,7 +91,7 @@ public class SearchResultsController implements SearchListener{
      * 
      * @param ps 
      */
-    private void setProductSearch(ProductSearch ps) {
+    private void setProductSearch(SearchQuery ps) {
         productSearch = ps;
         selectedFilters = ps.getResultCategories();
         
@@ -144,7 +144,7 @@ public class SearchResultsController implements SearchListener{
      * Called when a search is performed.
      * @param ps 
      */
-    public void onSearch(ProductSearch ps) {
+    public void onSearch(SearchQuery ps) {
         setProductSearch(ps);
     }
 }

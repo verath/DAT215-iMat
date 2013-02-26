@@ -13,7 +13,7 @@ package SearchResults;
 import Main.LocaleHandler;
 import Main.MainController;
 import Main.ShoppingCartWrapper;
-import ProductSearch.ProductSearch;
+import Search.SearchQuery;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.ImageIcon;
@@ -238,7 +238,7 @@ private void categoryLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIR
     // Show the entier category if the category link is pressed
     Set<ProductCategory> categoryFilter = new HashSet<ProductCategory>();
     categoryFilter.add(product.getCategory());
-    MainController.INSTANCE.search(new ProductSearch("", null, categoryFilter));
+    MainController.INSTANCE.search(new SearchQuery("", null, categoryFilter));
 }//GEN-LAST:event_categoryLabelMouseClicked
 
 private void favouriteLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_favouriteLabelMouseEntered

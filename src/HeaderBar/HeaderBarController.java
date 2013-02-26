@@ -5,7 +5,7 @@
 package HeaderBar;
 
 import Main.MainController;
-import ProductSearch.ProductSearch;
+import Search.SearchQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
@@ -36,7 +36,7 @@ public class HeaderBarController {
             return;
         }
 
-        ProductSearch ps = new ProductSearch(searchString, null, null);
+        SearchQuery ps = new SearchQuery(searchString, null, null);
 
         MainController.INSTANCE.search(ps);
 

@@ -12,7 +12,7 @@ package Categories;
 
 import Main.MainController;
 import Main.SearchListener;
-import ProductSearch.ProductSearch;
+import Search.SearchQuery;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -100,7 +100,7 @@ public class CategoriesView extends javax.swing.JPanel implements SearchListener
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 
-    public void onSearch(ProductSearch ps) {
+    public void onSearch(SearchQuery ps) {
         for (CategoryItemView civ : categoryViews) {
             civ.onSearchChange(ps);
         }

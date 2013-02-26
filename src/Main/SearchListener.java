@@ -4,12 +4,12 @@
  */
 package Main;
 
-import ProductSearch.ProductSearch;
+import Search.SearchQuery;
 
 /**
  *
  * @author Peter
  */
 public interface SearchListener {
-    public void onSearch(ProductSearch ps);
+    public void onSearch(SearchQuery ps);
 }

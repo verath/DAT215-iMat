@@ -4,7 +4,7 @@
  */
 package Main;
 
-import ProductSearch.ProductSearch;
+import Search.SearchQuery;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +27,7 @@ public enum MainController {
      * 
      * @param ps 
      */
-    public void search(ProductSearch ps){
+    public void search(SearchQuery ps){
         notifySearchListeners(ps);
     }
     
@@ -35,7 +35,7 @@ public enum MainController {
      * Notifies all search listeners about a new ProductSearch
      * @param ps 
      */
-    public void notifySearchListeners(ProductSearch ps){
+    public void notifySearchListeners(SearchQuery ps){
         for(SearchListener sl : searchListeners){
             sl.onSearch(ps);
         }
