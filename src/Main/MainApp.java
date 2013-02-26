@@ -3,6 +3,8 @@
  */
 package Main;
 
+import ShoppingList.ShoppingList;
+import ShoppingList.ShoppingListsHandler;
 import java.util.EventObject;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
@@ -31,6 +33,8 @@ public class MainApp extends SingleFrameApplication {
                 IMatDataHandler.getInstance().shutDown();
             }
         });
+        
+        ShoppingListsHandler.INSTANCE.save();
     }
 
     /**
