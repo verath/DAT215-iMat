@@ -275,4 +275,35 @@ public class SearchQuery {
     public void setName(String name){
         this.name = name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SearchQuery other = (SearchQuery) obj;
+        if ((this.searchString == null) ? (other.searchString != null) : !this.searchString.equals(other.searchString)) {
+            return false;
+        }
+        if (this.categoryFilter != other.categoryFilter && (this.categoryFilter == null || !this.categoryFilter.equals(other.categoryFilter))) {
+            return false;
+        }
+        if (this.onlyFavorites != other.onlyFavorites) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + (this.searchString != null ? this.searchString.hashCode() : 0);
+        hash = 79 * hash + (this.categoryFilter != null ? this.categoryFilter.hashCode() : 0);
+        hash = 79 * hash + (this.onlyFavorites ? 1 : 0);
+        return hash;
+    }
+    
 }
