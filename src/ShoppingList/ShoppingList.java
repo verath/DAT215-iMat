@@ -6,28 +6,38 @@ import java.util.Set;
 
 /**
  * A Shopping list object, holding one or more ShoppingListItems.
- * A ShoppingList can, however, not contain multiple Items with the 
+ * A ShoppingList can not contain multiple Items with the 
  * same product.
  * 
  * @author Peter
  */
 public class ShoppingList implements Serializable {
+
+    /**
+     * A static counter used for generating default names.
+     */
     private static int numLists = 0;
-    
+    /**
+     * The Items in this list.
+     */
     private Set<ShoppingListItem> items;
+    /**
+     *  The list's name.
+     */
     private String name;
 
     /**
-     * Creates a new ShoppingList with a name.
+     * Creates a new ShoppingList with a specified name.
+     * If the name is null or empty, a default name is generated.
      * @param name 
      */
     public ShoppingList(String name) {
         ShoppingList.numLists += 1;
-        
-        if( name == null || name.isEmpty()) {
+
+        if (name == null || name.isEmpty()) {
             name = "Lista " + ShoppingList.numLists;
         }
-        
+
         this.name = name;
         items = new HashSet<ShoppingListItem>();
     }
@@ -39,7 +49,7 @@ public class ShoppingList implements Serializable {
      * @param item 
      */
     public void addItem(ShoppingListItem item) {
-        if (items.contains(item)) {
+        if (!items.contains(item)) {
             items.add(item);
         } else {
             for (ShoppingListItem si : items) {

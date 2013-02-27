@@ -15,48 +15,63 @@ import se.chalmers.ait.dat215.project.ShoppingItem;
  * @author Philip
  */
 public class ShoppingCartView extends javax.swing.JPanel {
+
+    /**
+     * The controller for our view.
+     */
     private ShoppingCartController scController;
-    
+
     /** Creates new form ShoppingCart */
     public ShoppingCartView() {
         initComponents();
-        
+
         scController = new ShoppingCartController(this);
     }
-    
-    
-    
-    private void clearShoppingCart(){
+
+    /**
+     * Removes all ShoppingCartItemView from the shoppingCart.
+     */
+    private void clearShoppingCart() {
         shoppingItemsContainer.removeAll();
     }
-    
-    private void addItemToCart( ShoppingItem si ){
+
+    /**
+     * Adds a ShoppingCartItemView to the cart
+     * @param si 
+     */
+    private void addItemToCart(ShoppingItem si) {
         ShoppingCartItemView sciv = new ShoppingCartItemView();
         sciv.setShoppingItem(si);
         shoppingItemsContainer.add(sciv);
     }
-    
+
     /**
      * Takes a list of ShoppingItems and displays them as the
      * cart.
      * @param items 
      */
-    public void setItemsInCart( List<ShoppingItem> items ){
-        if( items == null ) return;
-        
+    public void setItemsInCart(List<ShoppingItem> items) {
+        if (items == null) {
+            return;
+        }
+
+        // We first remove all items in the cart
         clearShoppingCart();
-        
-        for(ShoppingItem si : items){
+
+        // Then we add all new ones
+        for (ShoppingItem si : items) {
             addItemToCart(si);
         }
 
+        // Set total price/number of items.
+        totalPriceLabel.setText("" + ShoppingCartWrapper.INSTANCE.getTotal() + " kr");
+        numItemsLabel.setText("" + ShoppingCartWrapper.INSTANCE.getNumItems());
+
+        // Refresh view
         shoppingItemsContainer.validate();
         shoppingItemsContainer.repaint();
         scroll.validate();
         scroll.repaint();
-        
-        totalPriceLabel.setText("" + ShoppingCartWrapper.INSTANCE.getTotal() + " kr");
-        numItemsLabel.setText("" + ShoppingCartWrapper.INSTANCE.getNumItems());
     }
 
     /** This method is called from within the constructor to
@@ -228,7 +243,6 @@ private void checkoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GE
 private void saveCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCartButtonActionPerformed
     scController.onSaveCartButtonActionPerformed(evt);
 }//GEN-LAST:event_saveCartButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checkoutButton;
     private javax.swing.Box.Filler filler1;
@@ -246,5 +260,4 @@ private void saveCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel totalPriceLabel;
     // End of variables declaration//GEN-END:variables
-
 }

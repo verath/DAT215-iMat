@@ -15,17 +15,34 @@ import java.util.*;
  */
 public class SearchQuery {
 
-    // These contain results, or info about results
+    /**
+     * The products returned when the query was run towards the backend
+     */
     private List<Product> resultingProducts;
+    /**
+     * The categories that the resulting products were contained in
+     */
     private Set<ProductCategory> resultCategories;
-    // The Search query parameters
+    /**
+     * The free-text search string
+     */
     private String searchString;
+    /**
+     * The comparator used to order the results
+     */
     private Comparator<Product> sortBy;
+    /**
+     * A "white list" filter of ProductCategories applied to the result.
+     */
     private Set<ProductCategory> categoryFilter;
+    /**
+     * Whether or not the result only should contain favorites.
+     */
     private boolean onlyFavorites;
-    
-    // Optional name
-    private String name; 
+    /**
+     * The (optional) name of this SearchQuery
+     */
+    private String name;
 
     /**
      * Constructs a new search towards the IMatDataHandler backend.
@@ -56,10 +73,10 @@ public class SearchQuery {
     }
 
     public SearchQuery(String searchString, Comparator<Product> sortBy,
-            Set<ProductCategory> categoryFilter, boolean onlyFavorites){
+            Set<ProductCategory> categoryFilter, boolean onlyFavorites) {
         this(searchString, sortBy, categoryFilter, onlyFavorites, null);
     }
-    
+
     public SearchQuery(String searchString, Comparator<Product> sortBy,
             Set<ProductCategory> categoryFilter) {
         this(searchString, sortBy, categoryFilter, false, null);
@@ -89,6 +106,13 @@ public class SearchQuery {
         }
     }
 
+    /**
+     * Filters a list of Products, excluding all but favorites if the 
+     * onlyFavorites parameter is true.
+     * @param products
+     * @param onlyFavourites
+     * @return 
+     */
     private List<Product> filterProductsFavourites(List<Product> products, boolean onlyFavourites) {
         if (!onlyFavourites) {
             return products;
@@ -271,11 +295,17 @@ public class SearchQuery {
             return String.format("Sökresultat för: \"%s\"", searchString);
         }
     }
-    
-    public void setName(String name){
+
+    public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Equals for the SearchQuery. Only look at the input parameters, as the 
+     * results are not part of this object and doesn't make sense to compare.
+     * @param obj
+     * @return 
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -305,5 +335,4 @@ public class SearchQuery {
         hash = 79 * hash + (this.onlyFavorites ? 1 : 0);
         return hash;
     }
-    
 }

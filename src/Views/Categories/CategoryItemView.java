@@ -28,7 +28,7 @@ public class CategoryItemView extends javax.swing.JPanel {
      */
     private Set<ProductCategory> productCategories = null;
     private boolean isFavLabel = false;
-    private SearchQuery productSearch;
+    private SearchQuery searchQuery;
     private String name = "";
 
     /** Creates new form CategoryItemView */
@@ -49,8 +49,8 @@ public class CategoryItemView extends javax.swing.JPanel {
         productCategories = categories;
     }
 
-    public void onSearchChange(SearchQuery ps) {
-        if (ps.equals(productSearch)) {
+    public void onSearchChange(SearchQuery sq) {
+        if (sq.equals(searchQuery)) {
             setActiveState();
         } else {
             unsetActiveState();
@@ -135,8 +135,8 @@ private void nameLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:e
 }//GEN-LAST:event_nameLabelMouseClicked
 
 private void containerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_containerMouseClicked
-    productSearch = new SearchQuery(null, null, productCategories, isFavLabel, name);
-    MainController.INSTANCE.search(productSearch);
+    searchQuery = new SearchQuery(null, null, productCategories, isFavLabel, name);
+    MainController.INSTANCE.search(searchQuery);
 }//GEN-LAST:event_containerMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel container;

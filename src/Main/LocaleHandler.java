@@ -1,6 +1,5 @@
 package Main;
 
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 import se.chalmers.ait.dat215.project.ProductCategory;

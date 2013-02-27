@@ -1,13 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Main;
 
 import Search.SearchQuery;
 
 /**
- *
+ * An interface implemented by classes listening for search events.
+ * 
  * @author Peter
  */
 public interface SearchListener {

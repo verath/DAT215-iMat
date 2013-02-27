@@ -30,8 +30,11 @@ import se.chalmers.ait.dat215.project.ProductCategory;
  */
 public class CategoriesView extends javax.swing.JPanel implements SearchListener {
 
+    /**
+     * A map, mapping a "human readable" string to one or more categories.
+     */
     public static final Map<String, Set<ProductCategory>> categoryItemProducts = new HashMap<String, Set<ProductCategory>>();
-
+    //<editor-fold defaultstate="collapsed" desc="Mapping of name -> Category">
     static {
         Set<ProductCategory> prodCategories;
         // Frukt & Grönt
@@ -41,7 +44,7 @@ public class CategoriesView extends javax.swing.JPanel implements SearchListener
         prodCategories.add(ProductCategory.CABBAGE);
         prodCategories.add(ProductCategory.VEGETABLE_FRUIT);
         categoryItemProducts.put("Grönsaker", prodCategories);
-
+        
         // Kött
         prodCategories = new HashSet<ProductCategory>();
         prodCategories.add(ProductCategory.MEAT);
@@ -91,6 +94,8 @@ public class CategoriesView extends javax.swing.JPanel implements SearchListener
         prodCategories.add(ProductCategory.FRUIT);
         categoryItemProducts.put("Frukt & Bär", prodCategories);
     }
+    //</editor-fold>
+    
     private List<CategoryItemView> categoryViews = new ArrayList<CategoryItemView>(10);
 
     /** Creates new form CategoriesView */
@@ -99,7 +104,7 @@ public class CategoriesView extends javax.swing.JPanel implements SearchListener
 
         MainController.INSTANCE.addSearchListener(this);
 
-        // Display categories
+        // Add the categories
         for (String name : categoryItemProducts.keySet()) {
             Set<ProductCategory> productCategories = categoryItemProducts.get(name);
             CategoryItemView civ = new CategoryItemView();
@@ -148,10 +153,15 @@ public class CategoriesView extends javax.swing.JPanel implements SearchListener
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
-    public void onSearch(SearchQuery ps) {
+    
+    /**
+     * Called by the controller when a search occurs.
+     * Forward event to all CategoryItemView.
+     * @param searchQuery 
+     */
+    public void onSearch(SearchQuery searchQuery) {
         for (CategoryItemView civ : categoryViews) {
-            civ.onSearchChange(ps);
+            civ.onSearchChange(searchQuery);
         }
     }
 }

@@ -19,7 +19,7 @@ public class ShoppingListItem implements Serializable {
     private double amount;
 
     /**
-     * Creates a ShopingListItem from the provided Product and amount 1.
+     * Creates a ShopingListItem from the provided Product.
      * @param product 
      */
     public ShoppingListItem(Product product) {

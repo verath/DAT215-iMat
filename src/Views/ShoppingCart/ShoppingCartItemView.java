@@ -1,10 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * ShoppingItem1.java
+ * ShoppingCartItemView.java
  *
  * Created on Feb 20, 2013, 1:05:28 PM
  */
@@ -25,25 +20,26 @@ public class ShoppingCartItemView extends javax.swing.JPanel {
      */
     private ShoppingItem shoppingItem;
 
-    /** Creates new form ShoppingItem1 */
+    /** Creates new ShoppingCartItemView */
     public ShoppingCartItemView() {
         initComponents();
     }
     
     /**
      * Sets the ShoppingItem this view is representing
-     * @param si 
+     * @param shoppingItem 
      */
-    public void setShoppingItem(ShoppingItem si) {
-        this.shoppingItem = si;
+    public void setShoppingItem(ShoppingItem shoppingItem) {
+        this.shoppingItem = shoppingItem;
 
-        Product prod = si.getProduct();
-        int amount = (int) si.getAmount();
-        String totalPrice = "" + si.getTotal();
-
-        nameLabel.setText(prod.getName());
-        priceLabel.setText("" + prod.getPrice());
-        unitMeasureLabel.setText(prod.getUnitSuffix());
+        Product product = shoppingItem.getProduct();
+        int amount = (int) shoppingItem.getAmount();
+        String totalPrice = "" + shoppingItem.getTotal();
+        
+        // Set the labels to the new value.
+        nameLabel.setText(product.getName());
+        priceLabel.setText("" + product.getPrice());
+        unitMeasureLabel.setText(product.getUnitSuffix());
         priceLabel.setText(totalPrice + " kr");
         countSpinner.setValue(amount);
     }
@@ -144,6 +140,9 @@ public class ShoppingCartItemView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void RemoveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemoveButtonMouseClicked
+    // When the Remove "button" is clicked, remove our product from the shopping
+    // cart. This will force a redraw of the entier shoppingCart and thereby 
+    // removing this view.
     ShoppingCartWrapper.INSTANCE.removeProduct(shoppingItem.getProduct());
 }//GEN-LAST:event_RemoveButtonMouseClicked
 

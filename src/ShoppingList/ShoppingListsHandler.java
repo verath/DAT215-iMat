@@ -65,9 +65,7 @@ public enum ShoppingListsHandler {
             File f = new File(FILE_PATH);
             FileOutputStream fo = new FileOutputStream(f);
             ObjectOutputStream out = new ObjectOutputStream(fo);
-            out.writeObject(holder);
-            
-            
+            out.writeObject(holder);            
         } catch (IOException ex) {
             Logger.getLogger(ShoppingListsHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -95,7 +93,7 @@ public enum ShoppingListsHandler {
 
     /**
      * Getter for all the shopping lists.
-     * @return 
+     * @return A shallow-copied list of the ShoppingLists
      */
     public Set<ShoppingList> getShoppingLists() {
         return new HashSet<ShoppingList>(holder.shoppingLists);

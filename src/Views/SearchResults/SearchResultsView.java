@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * SearchResultsView.java
  *
  * Created on Feb 23, 2013, 3:59:05 PM
@@ -12,6 +7,7 @@ package Views.SearchResults;
 
 import Main.LocaleHandler;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
@@ -27,43 +23,40 @@ import se.chalmers.ait.dat215.project.ProductCategory;
  * @author Peter
  */
 public class SearchResultsView extends javax.swing.JPanel {
-
     /**
-     * Default height for a category filter row
+     * Default height for a category filter row. In px(?)
      */
     public static final int CATEGORY_FILTER_ROW_HEIGHT = 30;
-    
     /**
      * The controller for this view
      */
     private SearchResultsController srController;
-    
     /**
      * A boolean for keeping track of if the filterPanel is open or closed.
      */
     private boolean filterPanelShown = false;
-    
     /**
      * A list of SearchResultItemViews that has already been initialized. Used 
      * when possible instead of creating a new one.
      */
     private List<SearchResultItemView> resultItems = new LinkedList<SearchResultItemView>();
-    
     /**
      * A label shown if there are no search results.
      */
     private JLabel noResulsLabel = new JLabel("Inga resultat");
 
-    /** Creates new form SearchResultsView */
+    /** Creates a new form SearchResultsView */
     public SearchResultsView() {
         initComponents();
 
         srController = new SearchResultsController(this);
 
+        // The filter container must be dynamically set to sizes.
         filterByContainer.setVisible(filterPanelShown);
         filterByContainer.setMinimumSize(new Dimension(200, 100));
         filterByContainer.setPreferredSize(new Dimension(200, 100));
 
+        // Add and hide the "No search results" label.
         searchResultItemsContainer.add(noResulsLabel);
         noResulsLabel.setVisible(false);
     }
@@ -101,8 +94,8 @@ public class SearchResultsView extends javax.swing.JPanel {
                 SearchResultItemView rsiv;
 
                 if (i < resultItems.size()) {
-                    // If we have a created resultItem, use it instead as init
-                    // of new ones are very slow
+                    // If we have a created resultItem, use it instead as 
+                    // creating new ones are very slow.
                     rsiv = resultItems.get(i);
                 } else {
                     // If we don't have saved ones, create and save a new one.
@@ -110,20 +103,21 @@ public class SearchResultsView extends javax.swing.JPanel {
                     resultItems.add(rsiv);
                     searchResultItemsContainer.add(rsiv);
                 }
-
-                rsiv.setVisible(true);
+                
+                // Set product and show the view
                 rsiv.setProduct(p);
+                rsiv.setVisible(true);
                 i++;
             }
         }
 
-        // Force refresh
+        // Force refresh of container and scroll pane
         searchResultItemsContainer.validate();
         searchResultItemsContainer.repaint();
         searchResultsItemsScroll.validate();
         searchResultsItemsScroll.repaint();
 
-        // Set scroll to top
+        // Scroll to top in the scroll pane
         searchResultsItemsScroll.getVerticalScrollBar().setValue(0);
 
     }
@@ -280,13 +274,16 @@ private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEven
     void setCategoryFilters(Set<ProductCategory> productCategories) {
         filterByContainer.removeAll();
 
-        //toggleCategoriFilterButton.setVisible(!productCategories.isEmpty());
-
-        int numRows = productCategories.size() / 4 + 1;
+        // Calculate size depending on number of categories and number of columns
+        // in the grid layout.
+        int numRows = productCategories.size();
+        numRows /= ((GridLayout)filterByContainer.getLayout()).getColumns();
+        numRows += 1;
+        
         filterByContainer.setPreferredSize(new Dimension(500,
                 SearchResultsView.CATEGORY_FILTER_ROW_HEIGHT * numRows));
 
-        // If we have no categories, add a label saying so.
+        // If we have no categories, show a label saying so.
         if (productCategories.isEmpty()) {
             filterByContainer.add(new JLabel("Inga kategorier."));
         }
@@ -309,7 +306,8 @@ private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEven
 
             filterByContainer.add(cb);
         }
-
+        
+        // Have to refresh both the container and the main panel
         filterByContainer.validate();
         filterByContainer.repaint();
         validate();

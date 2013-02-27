@@ -1,6 +1,5 @@
 package Views.SearchResults;
 
-import Main.LocaleHandler;
 import Main.MainController;
 import Main.SearchListener;
 import Search.OrderProductsByNameAscending;
@@ -29,7 +28,7 @@ public class SearchResultsController implements SearchListener {
     /**
      * The current search represented by the view.
      */
-    private SearchQuery productSearch;
+    private SearchQuery searchQuery;
     /**
      * The filters selected in the view.
      */
@@ -38,13 +37,13 @@ public class SearchResultsController implements SearchListener {
      * The sorting options available
      */
     private static List<Comparator<Product>> sortBy = new LinkedList<Comparator<Product>>();
-
     static {
         SearchResultsController.sortBy.add(new OrderProductsByNameAscending());
         SearchResultsController.sortBy.add(new OrderProductsByNameDescending());
         SearchResultsController.sortBy.add(new OrderProductsByPriceAscending());
         SearchResultsController.sortBy.add(new OrderProductsByPriceDescending());
     }
+    
     /**
      * The search result view.
      */
@@ -57,7 +56,7 @@ public class SearchResultsController implements SearchListener {
     public SearchResultsController(SearchResultsView view) {
         this.view = view;
 
-        // Listen for searches.
+        // Listen for searches
         MainController.INSTANCE.addSearchListener(this);
     }
 
@@ -81,46 +80,46 @@ public class SearchResultsController implements SearchListener {
         if (view != null) {
             Set<ProductCategory> filter;
             // If we haven't selected any categories to filter by, then default
-            // to all selected.
+            // to all selected
             if (selectedFilters.isEmpty()) {
-                filter = productSearch.getResultCategories();
+                filter = searchQuery.getResultCategories();
             } else {
                 filter = selectedFilters;
             }
-            view.setResultItems(productSearch.getResultProducts(filter));
+            view.setResultItems(searchQuery.getResultProducts(filter));
         }
     }
 
     /**
      * Sets a product search to be displayed as the search results.
      * 
-     * @param ps 
+     * @param sq 
      */
-    private void setProductSearch(SearchQuery ps) {
-        productSearch = ps;
+    private void setSearchQuery(SearchQuery sq) {
+        searchQuery = sq;
         //selectedFilters = ps.getResultCategories();
 
         // Updates the result list of items
         updateViewResultList();
 
         // Set the available category filters in the view
-        updateViewFilters(ps.getResultCategories());
+        updateViewFilters(sq.getResultCategories());
 
         // Set default sort by
         view.resetSortBy();
 
         // Set the search result header to the name of the search object.
-        view.setHeader(ps.getName());
+        view.setHeader(sq.getName());
     }
 
     /**
      * This method is called when the sortBy field is changed
      */
     public void onSortByChanged() {
-        if (view != null && sortBy != null && productSearch != null) {
+        if (view != null && sortBy != null && searchQuery != null) {
             int selected = view.getSortBySelectedIndex();
 
-            productSearch.setSortBy(sortBy.get(selected));
+            searchQuery.setSortBy(sortBy.get(selected));
             updateViewResultList();
         }
     }
@@ -140,6 +139,8 @@ public class SearchResultsController implements SearchListener {
             changed = selectedFilters.remove(productCategory);
         }
 
+        // No point in updating if the filters 
+        // did change as a result of this action.
         if (changed) {
             updateViewResultList();
         }
@@ -147,9 +148,9 @@ public class SearchResultsController implements SearchListener {
 
     /**
      * Called when a search is performed.
-     * @param ps 
+     * @param sq 
      */
-    public void onSearch(SearchQuery ps) {
-        setProductSearch(ps);
+    public void onSearch(SearchQuery sq) {
+        setSearchQuery(sq);
     }
 }

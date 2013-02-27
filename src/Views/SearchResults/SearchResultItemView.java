@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /*
  * SearchResultItemView.java
@@ -51,7 +47,7 @@ public class SearchResultItemView extends javax.swing.JPanel {
     }
 
     /**
-     * Updates the favorite icon depending on if the product is a 
+     * Changes the favorite icon depending on if the product is a 
      * favorite or not.
      */
     private void updateFavIcon() {
@@ -66,18 +62,19 @@ public class SearchResultItemView extends javax.swing.JPanel {
 
     /**
      * Sets the Product this view is representing and redraws the view.
-     * @param p 
+     * @param product 
      */
-    public void setProduct(Product p) {
+    public void setProduct(Product product) {
         IMatDataHandler dh = IMatDataHandler.getInstance();
-        imageLabel.setIcon(dh.getImageIcon(p, 128, 128));
-        nameLabel.setText(p.getName());
-        priceLabel.setText(p.getPrice() + " " + p.getUnit());
-        unitLabel.setText(p.getUnitSuffix());
+        
+        imageLabel.setIcon(dh.getImageIcon(product, 128, 128));
+        nameLabel.setText(product.getName());
+        priceLabel.setText(product.getPrice() + " " + product.getUnit());
+        unitLabel.setText(product.getUnitSuffix());
         categoryLabel.setText("<html>Kategori: <u style=\"color:blue\">"
-                + LocaleHandler.INSTANCE.getProductCategoryName(p.getCategory()));
+                + LocaleHandler.INSTANCE.getProductCategoryName(product.getCategory()));
 
-        this.product = p;
+        this.product = product;
 
         updateFavIcon();
     }
@@ -235,7 +232,7 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 }//GEN-LAST:event_addButtonActionPerformed
 
 private void categoryLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryLabelMouseClicked
-    // Show the entier category if the category link is pressed
+    // Show the entier category if a category "link" is pressed
     Set<ProductCategory> categoryFilter = new HashSet<ProductCategory>();
     categoryFilter.add(product.getCategory());
     MainController.INSTANCE.search(new SearchQuery("", null, categoryFilter));
