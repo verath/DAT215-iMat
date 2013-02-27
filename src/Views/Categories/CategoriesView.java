@@ -36,18 +36,60 @@ public class CategoriesView extends javax.swing.JPanel implements SearchListener
         Set<ProductCategory> prodCategories;
         // Frukt & Grönt
         prodCategories = new HashSet<ProductCategory>();
-        prodCategories.add(ProductCategory.CITRUS_FRUIT);
-        prodCategories.add(ProductCategory.EXOTIC_FRUIT);
-        prodCategories.add(ProductCategory.FRUIT);
-        prodCategories.add(ProductCategory.MELONS);
         prodCategories.add(ProductCategory.ROOT_VEGETABLE);
-        categoryItemProducts.put("Frukt & Grönt", prodCategories);
+        prodCategories.add(ProductCategory.POD);
+        prodCategories.add(ProductCategory.CABBAGE);
+        prodCategories.add(ProductCategory.VEGETABLE_FRUIT);
+        categoryItemProducts.put("Grönsaker", prodCategories);
 
         // Kött
         prodCategories = new HashSet<ProductCategory>();
         prodCategories.add(ProductCategory.MEAT);
         prodCategories.add(ProductCategory.FISH);
         categoryItemProducts.put("Kött", prodCategories);
+        
+        //Mejeriproduktrer
+        prodCategories = new HashSet<ProductCategory>();
+        prodCategories.add(ProductCategory.DAIRIES);
+        categoryItemProducts.put("Mejeriprodukter", prodCategories);
+        
+        //Skafferi
+        prodCategories = new HashSet<ProductCategory>();
+        prodCategories.add(ProductCategory.FLOUR_SUGAR_SALT);
+        prodCategories.add(ProductCategory.PASTA);
+        prodCategories.add(ProductCategory.POTATO_RICE);
+        categoryItemProducts.put("Skafferi", prodCategories);
+        
+        //Nötter & Örter
+        prodCategories = new HashSet<ProductCategory>();
+        prodCategories.add(ProductCategory.HERB);
+        prodCategories.add(ProductCategory.NUTS_AND_SEEDS);
+        categoryItemProducts.put("Nötter & Örter", prodCategories);
+        
+        //Sötsaker
+        prodCategories = new HashSet<ProductCategory>();
+        prodCategories.add(ProductCategory.SWEET);
+        categoryItemProducts.put("Sötsaker", prodCategories);
+        
+        //Bröd
+        prodCategories = new HashSet<ProductCategory>();
+        prodCategories.add(ProductCategory.BREAD);
+        categoryItemProducts.put("Bröd", prodCategories);
+        
+        //Dryck
+        prodCategories = new HashSet<ProductCategory>();
+        prodCategories.add(ProductCategory.COLD_DRINKS);
+        prodCategories.add(ProductCategory.HOT_DRINKS);
+        categoryItemProducts.put("Drycker", prodCategories);
+        
+        //Frukt & Bär
+        prodCategories = new HashSet<ProductCategory>();
+        prodCategories.add(ProductCategory.BERRY);
+        prodCategories.add(ProductCategory.EXOTIC_FRUIT);
+        prodCategories.add(ProductCategory.CITRUS_FRUIT);
+        prodCategories.add(ProductCategory.MELONS);
+        prodCategories.add(ProductCategory.FRUIT);
+        categoryItemProducts.put("Frukt & Bär", prodCategories);
     }
     private List<CategoryItemView> categoryViews = new ArrayList<CategoryItemView>(10);
 
@@ -80,6 +122,13 @@ public class CategoriesView extends javax.swing.JPanel implements SearchListener
         civ.setIsFavoriteLabel(true);
         add(civ);
         categoryViews.add(civ);
+        
+        // Show a special label for shoppinglists
+        CategoryItemView sliv = new CategoryItemView();
+        sliv.setCategoryName("Inköpslistor");
+        sliv.setIsFavoriteLabel(true);
+        add(sliv);
+        categoryViews.add(sliv);
 
         validate();
         repaint();
