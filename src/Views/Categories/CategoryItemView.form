@@ -6,6 +6,7 @@
       <Dimension value="[32767, 48]"/>
     </Property>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
+    <Property name="opaque" type="boolean" value="false"/>
   </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="2"/>
@@ -38,6 +39,7 @@
           <Color id="Hand Cursor"/>
         </Property>
         <Property name="name" type="java.lang.String" value="container" noResource="true"/>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="containerMouseClicked"/>

@@ -81,9 +81,11 @@ public class CategoryItemView extends javax.swing.JPanel {
 
         setMaximumSize(new java.awt.Dimension(32767, 48));
         setName("Form"); // NOI18N
+        setOpaque(false);
 
         container.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         container.setName("container"); // NOI18N
+        container.setOpaque(false);
         container.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 containerMouseClicked(evt);

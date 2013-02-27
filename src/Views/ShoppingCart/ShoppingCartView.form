@@ -55,6 +55,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
+    <Property name="opaque" type="boolean" value="false"/>
   </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="2"/>
@@ -152,18 +153,20 @@
     <Container class="javax.swing.JScrollPane" name="scroll">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-            <EtchetBorder/>
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
           </Border>
         </Property>
         <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
         <Property name="name" type="java.lang.String" value="scroll" noResource="true"/>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="shoppingItemsContainer">
           <Properties>
+            <Property name="background" type="java.awt.Color" resourceKey="shoppingItemsContainer.background"/>
             <Property name="name" type="java.lang.String" value="shoppingItemsContainer" noResource="true"/>
           </Properties>
 

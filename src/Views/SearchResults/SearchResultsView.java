@@ -148,17 +148,18 @@ public class SearchResultsView extends javax.swing.JPanel {
         toggleCategoriFilterButton = new javax.swing.JButton();
         headerLabel = new javax.swing.JLabel();
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(SearchResultsView.class);
+        setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setMaximumSize(new java.awt.Dimension(750, 32767));
         setMinimumSize(new java.awt.Dimension(600, 200));
         setName("Form"); // NOI18N
-        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(750, 300));
 
         sortByContainer.setName("sortByContainer"); // NOI18N
+        sortByContainer.setOpaque(false);
         sortByContainer.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         jLabel1.setLabelFor(sortByComboBox);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(SearchResultsView.class);
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
         sortByContainer.add(jLabel1);
@@ -175,10 +176,14 @@ public class SearchResultsView extends javax.swing.JPanel {
         });
         sortByContainer.add(sortByComboBox);
 
+        searchResultsItemsScroll.setBackground(resourceMap.getColor("searchResultsItemsScroll.background")); // NOI18N
+        searchResultsItemsScroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         searchResultsItemsScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         searchResultsItemsScroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         searchResultsItemsScroll.setName("searchResultsItemsScroll"); // NOI18N
+        searchResultsItemsScroll.setOpaque(false);
 
+        searchResultItemsContainer.setBackground(resourceMap.getColor("searchResultItemsContainer.background")); // NOI18N
         searchResultItemsContainer.setName("searchResultItemsContainer"); // NOI18N
         searchResultItemsContainer.setLayout(new javax.swing.BoxLayout(searchResultItemsContainer, javax.swing.BoxLayout.PAGE_AXIS));
         searchResultsItemsScroll.setViewportView(searchResultItemsContainer);
@@ -186,6 +191,7 @@ public class SearchResultsView extends javax.swing.JPanel {
         filterByContainer.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         filterByContainer.setMinimumSize(new java.awt.Dimension(0, 0));
         filterByContainer.setName("filterByContainer"); // NOI18N
+        filterByContainer.setOpaque(false);
         filterByContainer.setLayout(new java.awt.GridLayout(0, 4));
 
         toggleCategoriFilterButton.setText(resourceMap.getString("toggleCategoriFilterButton.text")); // NOI18N
@@ -207,9 +213,9 @@ public class SearchResultsView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
-                    .addComponent(filterByContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
-                    .addComponent(sortByContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
+                    .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                    .addComponent(filterByContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                    .addComponent(sortByContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
                     .addComponent(toggleCategoriFilterButton)
                     .addComponent(headerLabel))
                 .addContainerGap())
@@ -226,7 +232,7 @@ public class SearchResultsView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filterByContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -292,6 +298,7 @@ private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEven
         for (ProductCategory pc : productCategories) {
             String categoryName = LocaleHandler.INSTANCE.getProductCategoryName(pc);
             JCheckBox cb = new JCheckBox(categoryName, false);
+            cb.setOpaque(false);
 
             // Add an event listener for when this checkbox is clicked
             final ProductCategory category = pc;

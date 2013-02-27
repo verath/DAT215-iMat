@@ -134,6 +134,7 @@ public class ShoppingCartView extends javax.swing.JPanel {
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
         setName("Form"); // NOI18N
+        setOpaque(false);
 
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(ShoppingCartView.class);
@@ -141,10 +142,12 @@ public class ShoppingCartView extends javax.swing.JPanel {
         titleLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titleLabel.setName("titleLabel"); // NOI18N
 
-        scroll.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        scroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scroll.setName("scroll"); // NOI18N
+        scroll.setOpaque(false);
 
+        shoppingItemsContainer.setBackground(resourceMap.getColor("shoppingItemsContainer.background")); // NOI18N
         shoppingItemsContainer.setName("shoppingItemsContainer"); // NOI18N
         shoppingItemsContainer.setLayout(new javax.swing.BoxLayout(shoppingItemsContainer, javax.swing.BoxLayout.PAGE_AXIS));
         scroll.setViewportView(shoppingItemsContainer);
