@@ -36,6 +36,13 @@ public enum ShoppingListsHandler {
             + "/.dat215/imat/shoppinglists.data";
 
     /**
+     * Constructor, try to load data first time its used.
+     */
+    private ShoppingListsHandler() {
+        load();
+    }
+
+    /**
      * Loads the user's shoppingLists from file.
      */
     public void load() {

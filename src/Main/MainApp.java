@@ -31,10 +31,11 @@ public class MainApp extends SingleFrameApplication {
             
             public void willExit(EventObject event) {
                 IMatDataHandler.getInstance().shutDown();
+                ShoppingListsHandler.INSTANCE.save();
             }
         });
         
-        ShoppingListsHandler.INSTANCE.save();
+        
     }
 
     /**
