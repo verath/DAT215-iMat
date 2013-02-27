@@ -10,6 +10,10 @@
  */
 package Views.StartPage;
 
+import java.util.List;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
+import se.chalmers.ait.dat215.project.Product;
+
 /**
  *
  * @author Ernst
@@ -19,6 +23,46 @@ public class CarouselPanelView extends javax.swing.JPanel {
     /** Creates new form karusellPanel */
     public CarouselPanelView() {
         initComponents();
+        
+        if(IMatDataHandler.getInstance().favorites() != null){
+            List<Product> favorites = IMatDataHandler.getInstance().favorites();
+            
+            if(favorites.size() < 4){
+               List<Product> products = IMatDataHandler.getInstance().getProducts();
+               
+               for(int i = 0; i < favorites.size(); i++){
+                   FeatureItemView panel = new FeatureItemView();
+                   panel.setProduct(favorites.get(i));
+                   karusellPanel.add(panel);
+               }
+               for(int i = 0; i < 4 - favorites.size(); i++){
+                   int rand = (int) (products.size()*Math.random());
+                   FeatureItemView panel = new FeatureItemView();
+                   panel.setProduct(products.get(rand));
+                   products.remove(rand);
+                   karusellPanel.add(panel);
+               }
+            }else{
+                for(int i = 0; i < 4; i++){
+                   int rand = (int) (favorites.size()*Math.random());
+                   FeatureItemView panel = new FeatureItemView();
+                   panel.setProduct(favorites.get(rand));
+                   favorites.remove(rand);
+                   karusellPanel.add(panel);
+               }
+            }
+        }else{
+            List<Product> products = IMatDataHandler.getInstance().getProducts();
+            
+            for(int i = 0; i < 4 - products.size(); i++){
+                int rand = (int) (products.size()*Math.random());
+                FeatureItemView panel = new FeatureItemView();
+                panel.setProduct(products.get(rand));
+                products.remove(rand);
+                karusellPanel.add(panel);
+            }
+        }
+        
     }
 
     /** This method is called from within the constructor to
@@ -31,8 +75,6 @@ public class CarouselPanelView extends javax.swing.JPanel {
     private void initComponents() {
 
         infoPanel = new javax.swing.JPanel();
-        föregåendeButton = new javax.swing.JButton();
-        nästaButton = new javax.swing.JButton();
         titel = new javax.swing.JLabel();
         karusellPanel = new javax.swing.JPanel();
 
@@ -40,22 +82,6 @@ public class CarouselPanelView extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(750, 190));
 
         infoPanel.setPreferredSize(new java.awt.Dimension(750, 20));
-
-        föregåendeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Framsidan/vänsterpil.png"))); // NOI18N
-        föregåendeButton.setContentAreaFilled(false);
-        föregåendeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                föregåendeButtonActionPerformed(evt);
-            }
-        });
-
-        nästaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Framsidan/högerpil.png"))); // NOI18N
-        nästaButton.setContentAreaFilled(false);
-        nästaButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nästaButtonActionPerformed(evt);
-            }
-        });
 
         titel.setFont(new java.awt.Font("Myriad Pro", 1, 15));
         titel.setText("Rekommenderat för dig");
@@ -65,23 +91,15 @@ public class CarouselPanelView extends javax.swing.JPanel {
         infoPanelLayout.setHorizontalGroup(
             infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(föregåendeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(nästaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(210, 210, 210)
+                .addGap(277, 277, 277)
                 .addComponent(titel)
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addContainerGap(274, Short.MAX_VALUE))
         );
         infoPanelLayout.setVerticalGroup(
             infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoPanelLayout.createSequentialGroup()
-                .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(föregåendeButton, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-                        .addComponent(nästaButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
-                    .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(titel)))
+                .addGap(2, 2, 2)
+                .addComponent(titel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -104,19 +122,9 @@ public class CarouselPanelView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void föregåendeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_föregåendeButtonActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_föregåendeButtonActionPerformed
-
-private void nästaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nästaButtonActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_nästaButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton föregåendeButton;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JPanel karusellPanel;
-    private javax.swing.JButton nästaButton;
     private javax.swing.JLabel titel;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
       <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -26,32 +26,28 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="infoPanel" alignment="0" pref="160" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="titel" min="-2" pref="70" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Component id="nameLabel" min="-2" pref="70" max="-2" attributes="0"/>
+              <EmptySpace pref="90" max="32767" attributes="0"/>
           </Group>
+          <Component id="infoPanel" alignment="0" pref="160" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
-                  <Component id="bild" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
-              </Group>
+              <Component id="imageLabel" alignment="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <Component id="titel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="104" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="107" max="32767" attributes="0"/>
               <Component id="infoPanel" min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="0" pref="28" max="32767" attributes="0"/>
-                  <Component id="bild" min="-2" pref="100" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="28" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="imageLabel" min="-2" pref="111" max="-2" attributes="0"/>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -68,28 +64,26 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="prisText" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="antalField" min="-2" pref="23" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="antalText" min="-2" max="-2" attributes="0"/>
+                  <Component id="priceLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="amountSpinner" pref="34" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="köpButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="suffixLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="köpButton" min="-2" pref="49" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="antalField" alignment="0" max="32767" attributes="1"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="köpButton" alignment="3" min="0" pref="0" max="32767" attributes="1"/>
-                          <Component id="antalText" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="prisText" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="köpButton" alignment="3" min="0" pref="0" max="32767" attributes="1"/>
+                      <Component id="suffixLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="amountSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="priceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -100,35 +94,38 @@
         <Component class="javax.swing.JButton" name="k&#xf6;pButton">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="K&#xd6;P"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="k&#xf6;pButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="antalText">
+        <Component class="javax.swing.JLabel" name="suffixLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="st"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="antalField">
+        <Component class="javax.swing.JLabel" name="priceLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="1"/>
+            <Property name="text" type="java.lang.String" value="8 kr/st"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="antalFieldActionPerformed"/>
-          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="prisText">
+        <Component class="javax.swing.JSpinner" name="amountSpinner">
           <Properties>
-            <Property name="text" type="java.lang.String" value="90kr/st"/>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="1" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="titel">
+    <Component class="javax.swing.JLabel" name="nameLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Myriad Pro" size="24" style="0"/>
@@ -136,10 +133,10 @@
         <Property name="text" type="java.lang.String" value="Banan"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="bild">
+    <Component class="javax.swing.JLabel" name="imageLabel">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Framsidan/banan.png"/>
+        <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/images/banan.png"/>
         </Property>
       </Properties>
     </Component>

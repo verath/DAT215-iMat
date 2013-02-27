@@ -10,15 +10,58 @@
  */
 package Views.DetailedProduct;
 
+import Main.ShoppingCartWrapper;
+import javax.swing.ImageIcon;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
+import se.chalmers.ait.dat215.project.Product;
+
 /**
  *
  * @author Ernst
  */
 public class DetailedProductView extends javax.swing.JPanel {
 
+    /**
+     * Path to the icon used when the Product is favorite.
+     */
+    public static final String FAVOURITE_ICON = "/images/star.png";
+    /**
+     * Path to the icon used when it isn't a favorite.
+     */
+    public static final String NOT_FAVOURITE_ICON = "/images/star-empty.png";
+    /**
+     * Path to the icon used when it is hovered.
+     */
+    public static final String HOVER_FAVOURITE_ICON = "/images/star-half.png";
+    
+    
+    private Product product;
+    
     /** Creates new form NewJPanel */
     public DetailedProductView() {
         initComponents();
+    }
+    
+    private void updateFavIcon() {
+        if (IMatDataHandler.getInstance().isFavorite(product)) {
+            favouriteLabel.setIcon(new ImageIcon(this.getClass().getResource(FAVOURITE_ICON)));
+            favouriteLabel.setToolTipText("Ta bort som favorit");
+        } else {
+            favouriteLabel.setIcon(new ImageIcon(this.getClass().getResource(NOT_FAVOURITE_ICON)));
+            favouriteLabel.setToolTipText("Lägg till som favorit");
+        }
+    }
+    
+    public void setProduct(Product p) {
+        IMatDataHandler dh = IMatDataHandler.getInstance();
+        imageLabel.setIcon(dh.getImageIcon(p, 200, 160));
+        nameLabel.setText(p.getName());
+        priceLabel.setText(p.getPrice() + " " + p.getUnit());
+        suffixLabel.setText(p.getUnitSuffix());
+
+        this.product = p;
+        
+        updateFavIcon();
     }
 
     /** This method is called from within the constructor to
@@ -30,25 +73,27 @@ public class DetailedProductView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         bildPanel = new javax.swing.JPanel();
-        bild = new javax.swing.JLabel();
+        imageLabel = new javax.swing.JLabel();
         infoPanel = new javax.swing.JPanel();
         köpButton = new javax.swing.JButton();
-        antalText = new javax.swing.JLabel();
-        antalField = new javax.swing.JTextField();
-        prisText = new javax.swing.JLabel();
+        suffixLabel = new javax.swing.JLabel();
+        amountSpinner = new javax.swing.JSpinner();
+        priceLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        favouriteLabel = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(770, 628));
 
-        titel.setFont(new java.awt.Font("Myriad Pro", 0, 24));
-        titel.setText("Banan");
+        nameLabel.setFont(new java.awt.Font("Myriad Pro", 0, 24));
+        nameLabel.setText("Banan");
 
         bildPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         bildPanel.setEnabled(false);
+        bildPanel.setPreferredSize(new java.awt.Dimension(200, 160));
 
         javax.swing.GroupLayout bildPanelLayout = new javax.swing.GroupLayout(bildPanel);
         bildPanel.setLayout(bildPanelLayout);
@@ -56,15 +101,15 @@ public class DetailedProductView extends javax.swing.JPanel {
             bildPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bildPanelLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addComponent(bild)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addComponent(imageLabel)
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         bildPanelLayout.setVerticalGroup(
             bildPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bildPanelLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
-                .addComponent(bild)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addComponent(imageLabel)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         infoPanel.setPreferredSize(new java.awt.Dimension(750, 20));
@@ -78,24 +123,19 @@ public class DetailedProductView extends javax.swing.JPanel {
             }
         });
 
-        antalText.setFont(new java.awt.Font("Tahoma", 0, 14));
-        antalText.setText("st");
+        suffixLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
+        suffixLabel.setText("st");
 
-        antalField.setText("1");
-        antalField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                antalFieldActionPerformed(evt);
-            }
-        });
+        amountSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
         javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
         infoPanel.setLayout(infoPanelLayout);
         infoPanelLayout.setHorizontalGroup(
             infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoPanelLayout.createSequentialGroup()
-                .addComponent(antalField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(amountSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(antalText)
+                .addComponent(suffixLabel)
                 .addGap(39, 39, 39)
                 .addComponent(köpButton))
         );
@@ -104,20 +144,33 @@ public class DetailedProductView extends javax.swing.JPanel {
             .addGroup(infoPanelLayout.createSequentialGroup()
                 .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(köpButton, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(antalField, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(antalText))
+                    .addComponent(suffixLabel)
+                    .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        prisText.setFont(new java.awt.Font("Tahoma", 0, 18));
-        prisText.setText("90kr/st");
+        priceLabel.setFont(new java.awt.Font("Tahoma", 0, 18));
+        priceLabel.setText("90kr/st");
 
         jTextArea1.setBackground(new java.awt.Color(240, 240, 240));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Myriad Pro", 0, 14));
         jTextArea1.setRows(5);
-        jTextArea1.setText("bla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan\nbla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan\nbla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan\nbla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan\nbla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan\nbla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan\nbla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan\nbla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan\nbla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan\nbla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan.\nbanan?\nbanan.\nbla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan \nbla bla bla bla bla banan bla bla bla bla bla banan bla bla bla bla bla banan.");
+        jTextArea1.setText("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et \ndolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip\nex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\nfugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt\nmollit anim id est laborum.\n\n");
         jScrollPane1.setViewportView(jTextArea1);
+
+        favouriteLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/star-empty.png"))); // NOI18N
+        favouriteLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                favouriteLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                favouriteLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                favouriteLabelMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -129,7 +182,7 @@ public class DetailedProductView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
-                            .addComponent(titel))
+                            .addComponent(nameLabel))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -137,49 +190,70 @@ public class DetailedProductView extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(bildPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(prisText)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
-                                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(priceLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                                        .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(favouriteLabel))))
                         .addGap(110, 110, 110))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titel)
+                .addComponent(nameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(bildPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(prisText)
-                        .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(favouriteLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(priceLabel)
+                            .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 private void köpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_köpButtonActionPerformed
-// TODO add your handling code here:
+    ShoppingCartWrapper.INSTANCE.addProduct(product, (Integer) amountSpinner.getValue());
 }//GEN-LAST:event_köpButtonActionPerformed
 
-private void antalFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_antalFieldActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_antalFieldActionPerformed
+private void favouriteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_favouriteLabelMouseClicked
+    // Handle click on the favorite icon
+    if (IMatDataHandler.getInstance().isFavorite(product)) {
+        IMatDataHandler.getInstance().removeFavorite(product);
+    } else {
+        IMatDataHandler.getInstance().addFavorite(product);
+    }
+}//GEN-LAST:event_favouriteLabelMouseClicked
+
+private void favouriteLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_favouriteLabelMouseEntered
+    // Handle hovering of the favorite icon.
+    favouriteLabel.setIcon(new ImageIcon(this.getClass().getResource(HOVER_FAVOURITE_ICON)));
+}//GEN-LAST:event_favouriteLabelMouseEntered
+
+private void favouriteLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_favouriteLabelMouseExited
+    updateFavIcon();
+}//GEN-LAST:event_favouriteLabelMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField antalField;
-    private javax.swing.JLabel antalText;
-    private javax.swing.JLabel bild;
+    private javax.swing.JSpinner amountSpinner;
     private javax.swing.JPanel bildPanel;
+    private javax.swing.JLabel favouriteLabel;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton köpButton;
-    private javax.swing.JLabel prisText;
-    private javax.swing.JLabel titel;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel priceLabel;
+    private javax.swing.JLabel suffixLabel;
     // End of variables declaration//GEN-END:variables
 }

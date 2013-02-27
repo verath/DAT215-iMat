@@ -30,51 +30,20 @@ public class FeaturePanelView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bildPanel = new javax.swing.JPanel();
-        bild = new javax.swing.JLabel();
         infoPanel = new javax.swing.JPanel();
-        föregåendeButton = new javax.swing.JButton();
-        nästaButton = new javax.swing.JButton();
         titel = new javax.swing.JLabel();
         beskrivning = new javax.swing.JLabel();
-        prisText = new javax.swing.JLabel();
-        antalField = new javax.swing.JTextField();
-        antalText = new javax.swing.JLabel();
+        priceLabel = new javax.swing.JLabel();
+        suffixLabel = new javax.swing.JLabel();
+        amountSpinner = new javax.swing.JSpinner();
+        bildPanel = new javax.swing.JPanel();
+        bild = new javax.swing.JLabel();
         köpButton = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         setPreferredSize(new java.awt.Dimension(750, 190));
 
-        bild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Framsidan/korvStroganoff.PNG"))); // NOI18N
-
-        javax.swing.GroupLayout bildPanelLayout = new javax.swing.GroupLayout(bildPanel);
-        bildPanel.setLayout(bildPanelLayout);
-        bildPanelLayout.setHorizontalGroup(
-            bildPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bild, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        bildPanelLayout.setVerticalGroup(
-            bildPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bild)
-        );
-
         infoPanel.setPreferredSize(new java.awt.Dimension(750, 20));
-
-        föregåendeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Framsidan/vänsterpil.png"))); // NOI18N
-        föregåendeButton.setContentAreaFilled(false);
-        föregåendeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                föregåendeButtonActionPerformed(evt);
-            }
-        });
-
-        nästaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Framsidan/högerpil.png"))); // NOI18N
-        nästaButton.setContentAreaFilled(false);
-        nästaButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nästaButtonActionPerformed(evt);
-            }
-        });
 
         titel.setFont(new java.awt.Font("Myriad Pro", 1, 15));
         titel.setText("Korv stroganoff med ris");
@@ -82,16 +51,51 @@ public class FeaturePanelView extends javax.swing.JPanel {
         beskrivning.setFont(new java.awt.Font("Tahoma", 0, 10));
         beskrivning.setText("1 portion");
 
-        prisText.setText("90kr");
+        priceLabel.setText("90kr");
 
-        antalField.setText("1");
-        antalField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                antalFieldActionPerformed(evt);
-            }
-        });
+        suffixLabel.setText("st");
 
-        antalText.setText("st");
+        javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
+        infoPanel.setLayout(infoPanelLayout);
+        infoPanelLayout.setHorizontalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
+                .addGap(277, 277, 277)
+                .addComponent(titel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(beskrivning)
+                .addGap(46, 46, 46)
+                .addComponent(priceLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(amountSpinner)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(suffixLabel)
+                .addGap(72, 72, 72))
+        );
+        infoPanelLayout.setVerticalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
+                .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titel)
+                    .addComponent(beskrivning)
+                    .addComponent(priceLabel)
+                    .addComponent(suffixLabel)
+                    .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        bild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/korvStroganoff.PNG"))); // NOI18N
+
+        javax.swing.GroupLayout bildPanelLayout = new javax.swing.GroupLayout(bildPanel);
+        bildPanel.setLayout(bildPanelLayout);
+        bildPanelLayout.setHorizontalGroup(
+            bildPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bild)
+        );
+        bildPanelLayout.setVerticalGroup(
+            bildPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bild, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         köpButton.setBackground(new java.awt.Color(0, 0, 0));
         köpButton.setText("KÖP");
@@ -101,92 +105,41 @@ public class FeaturePanelView extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
-        infoPanel.setLayout(infoPanelLayout);
-        infoPanelLayout.setHorizontalGroup(
-            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(infoPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(föregåendeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(nästaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(210, 210, 210)
-                .addComponent(titel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(beskrivning)
-                .addGap(126, 126, 126)
-                .addComponent(prisText)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(antalField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(antalText)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(köpButton)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-        infoPanelLayout.setVerticalGroup(
-            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoPanelLayout.createSequentialGroup()
-                .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(antalField)
-                    .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(köpButton, 0, 0, Short.MAX_VALUE)
-                        .addComponent(prisText)
-                        .addComponent(antalText)))
-                .addGap(30, 30, 30))
-            .addGroup(infoPanelLayout.createSequentialGroup()
-                .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(föregåendeButton, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-                    .addComponent(nästaButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
-                .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(titel)
-                .addComponent(beskrivning))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(infoPanel, 0, 675, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(köpButton)
+                .addGap(25, 25, 25))
             .addComponent(bildPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(bildPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(köpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(bildPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-private void antalFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_antalFieldActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_antalFieldActionPerformed
 
 private void köpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_köpButtonActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_köpButtonActionPerformed
 
-private void föregåendeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_föregåendeButtonActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_föregåendeButtonActionPerformed
-
-private void nästaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nästaButtonActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_nästaButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField antalField;
-    private javax.swing.JLabel antalText;
+    private javax.swing.JSpinner amountSpinner;
     private javax.swing.JLabel beskrivning;
     private javax.swing.JLabel bild;
     private javax.swing.JPanel bildPanel;
-    private javax.swing.JButton föregåendeButton;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JButton köpButton;
-    private javax.swing.JButton nästaButton;
-    private javax.swing.JLabel prisText;
+    private javax.swing.JLabel priceLabel;
+    private javax.swing.JLabel suffixLabel;
     private javax.swing.JLabel titel;
     // End of variables declaration//GEN-END:variables
 }
