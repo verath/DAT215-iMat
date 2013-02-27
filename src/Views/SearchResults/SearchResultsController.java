@@ -20,34 +20,31 @@ import se.chalmers.ait.dat215.project.ProductCategory;
  *
  * @author Peter
  */
-public class SearchResultsController implements SearchListener{
-    
+public class SearchResultsController implements SearchListener {
+
     /**
      * Default sorting order for result list.
      */
     public static final Comparator<Product> DEFAULT_SORT = new OrderProductsByNameDescending();
-    
     /**
      * The current search represented by the view.
      */
     private SearchQuery productSearch;
-    
     /**
      * The filters selected in the view.
      */
     private Set<ProductCategory> selectedFilters = new HashSet<ProductCategory>();
-    
     /**
      * The sorting options available
      */
     private static List<Comparator<Product>> sortBy = new LinkedList<Comparator<Product>>();
-    static{
+
+    static {
         SearchResultsController.sortBy.add(new OrderProductsByNameAscending());
         SearchResultsController.sortBy.add(new OrderProductsByNameDescending());
         SearchResultsController.sortBy.add(new OrderProductsByPriceAscending());
         SearchResultsController.sortBy.add(new OrderProductsByPriceDescending());
     }
-    
     /**
      * The search result view.
      */
@@ -59,7 +56,7 @@ public class SearchResultsController implements SearchListener{
      */
     public SearchResultsController(SearchResultsView view) {
         this.view = view;
-        
+
         // Listen for searches.
         MainController.INSTANCE.addSearchListener(this);
     }
@@ -82,7 +79,15 @@ public class SearchResultsController implements SearchListener{
      */
     private void updateViewResultList() {
         if (view != null) {
-            view.setResultItems(productSearch.getResultProducts(selectedFilters));
+            Set<ProductCategory> filter;
+            // If we haven't selected any categories to filter by, then default
+            // to all selected.
+            if (selectedFilters.isEmpty()) {
+                filter = productSearch.getResultCategories();
+            } else {
+                filter = selectedFilters;
+            }
+            view.setResultItems(productSearch.getResultProducts(filter));
         }
     }
 
@@ -93,13 +98,13 @@ public class SearchResultsController implements SearchListener{
      */
     private void setProductSearch(SearchQuery ps) {
         productSearch = ps;
-        selectedFilters = ps.getResultCategories();
-        
+        //selectedFilters = ps.getResultCategories();
+
         // Updates the result list of items
         updateViewResultList();
 
-        // Set the category filter to all checked
-        updateViewFilters(selectedFilters);
+        // Set the available category filters in the view
+        updateViewFilters(ps.getResultCategories());
 
         // Set default sort by
         view.resetSortBy();
@@ -139,7 +144,7 @@ public class SearchResultsController implements SearchListener{
             updateViewResultList();
         }
     }
-    
+
     /**
      * Called when a search is performed.
      * @param ps 

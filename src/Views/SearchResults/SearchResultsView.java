@@ -294,7 +294,7 @@ private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEven
         // Add a checkbox for each category.
         for (ProductCategory pc : productCategories) {
             String categoryName = LocaleHandler.INSTANCE.getProductCategoryName(pc);
-            JCheckBox cb = new JCheckBox(categoryName, true);
+            JCheckBox cb = new JCheckBox(categoryName, false);
 
             // Add an event listener for when this checkbox is clicked
             final ProductCategory category = pc;

@@ -32,9 +32,9 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="searchResultsItemsScroll" alignment="0" pref="710" max="32767" attributes="2"/>
-                  <Component id="filterByContainer" alignment="0" pref="710" max="32767" attributes="0"/>
-                  <Component id="sortByContainer" alignment="0" pref="710" max="32767" attributes="2"/>
+                  <Component id="searchResultsItemsScroll" alignment="0" pref="726" max="32767" attributes="2"/>
+                  <Component id="filterByContainer" alignment="0" pref="726" max="32767" attributes="0"/>
+                  <Component id="sortByContainer" alignment="0" pref="726" max="32767" attributes="2"/>
                   <Component id="toggleCategoriFilterButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="headerLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -54,7 +54,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="filterByContainer" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="searchResultsItemsScroll" pref="142" max="32767" attributes="0"/>
+              <Component id="searchResultsItemsScroll" pref="164" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
