@@ -46,4 +46,12 @@ public class ShoppingList implements Serializable {
     public boolean removeItem(ShoppingListItem item) {
         return items.remove(item);
     }
+
+    /**
+     * Returns the Set of ShoppingItems in this ShoppingList.
+     * @return A shallow-copied Set of ShoppingItem.
+     */
+    public Set<ShoppingListItem> getItems() {
+        return new HashSet<ShoppingListItem>(items);
+    }
 }
