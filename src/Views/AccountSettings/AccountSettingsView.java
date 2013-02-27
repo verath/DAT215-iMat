@@ -10,15 +10,31 @@
  */
 package Views.AccountSettings;
 
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
+import se.chalmers.ait.dat215.project.CreditCard;
+import se.chalmers.ait.dat215.project.Customer;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
+
 /**
  *
  * @author Ernst
  */
 public class AccountSettingsView extends javax.swing.JPanel {
 
-    /** Creates new form kontouppgifter */
+    private Customer customer = IMatDataHandler.getInstance().getCustomer();
+    private CreditCard creditCard = IMatDataHandler.getInstance().getCreditCard();
+    
+    /** Creates new form AccountSettingsView */
     public AccountSettingsView() {
         initComponents();
+        
+        accNameField.setText(customer.getFirstName());
+        accLastNameField.setText(customer.getLastName());
+        accPhoneField.setText(customer.getPhoneNumber());
+        accPostalCodeField.setText(customer.getPostCode());
+        accCityField.setText(customer.getPostAddress());
+        accAddressField.setText(customer.getAddress());
     }
 
     /** This method is called from within the constructor to
@@ -30,69 +46,249 @@ public class AccountSettingsView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        cardTypeButtonGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
+        accountSettingContainer = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
+        accNameField = new javax.swing.JTextField();
+        accLastNameField = new javax.swing.JTextField();
+        accAddressField = new javax.swing.JTextField();
+        accPostalCodeField = new javax.swing.JTextField();
+        accCityField = new javax.swing.JTextField();
+        accPhoneField = new javax.swing.JTextField();
+        cardSettingContainer = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel10 = new javax.swing.JLabel();
+        cardNumberField = new javax.swing.JTextField();
+        cardNameField = new javax.swing.JTextField();
+        cardAddressField = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        CardCSVField = new javax.swing.JTextField();
+        dontSaveCardCheckBox = new javax.swing.JCheckBox();
+        saveSettingsButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Kontouppgifter"));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        jLabel1.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        accountSettingContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Kontouppgifter"));
+
+        jLabel1.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
         jLabel1.setText("Förnamn:");
 
-        jLabel2.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel2.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
         jLabel2.setText("Efternamn:");
 
-        jLabel3.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel3.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
         jLabel3.setText("Adress:");
 
-        jLabel4.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel4.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
         jLabel4.setText("Postnummer:");
 
-        jLabel5.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel5.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
         jLabel5.setText("Ort:");
 
-        jLabel6.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel6.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
         jLabel6.setText("Telefon:");
 
-        jTextField1.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        accNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+
+        accLastNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+
+        accAddressField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+
+        accPostalCodeField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+
+        accCityField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+
+        accPhoneField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout accountSettingContainerLayout = new javax.swing.GroupLayout(accountSettingContainer);
+        accountSettingContainer.setLayout(accountSettingContainerLayout);
+        accountSettingContainerLayout.setHorizontalGroup(
+            accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(accountSettingContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(accPhoneField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(accCityField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(accPostalCodeField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(accAddressField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(accLastNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(accNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        accountSettingContainerLayout.setVerticalGroup(
+            accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(accountSettingContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accLastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accPostalCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accCityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accPhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addContainerGap(87, Short.MAX_VALUE))
+        );
+
+        cardSettingContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Kortuppgifter"));
+        cardSettingContainer.setFont(new java.awt.Font("Myriad Pro", 0, 11));
+
+        cardTypeButtonGroup.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jRadioButton1.setText("VISA");
+
+        cardTypeButtonGroup.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jRadioButton2.setText("Mastercard");
+
+        cardTypeButtonGroup.add(jRadioButton3);
+        jRadioButton3.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jRadioButton3.setText("CASH-kort");
+
+        jLabel7.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel7.setLabelFor(cardNumberField);
+        jLabel7.setText("Kortnummer:");
+
+        jLabel8.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel8.setLabelFor(cardNameField);
+        jLabel8.setText("Namn:");
+
+        jLabel9.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel9.setLabelFor(cardAddressField);
+        jLabel9.setText("Adress:");
+
+        jLabel10.setLabelFor(jRadioButton1);
+        jLabel10.setText("Korttyp:");
+
+        cardNumberField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+
+        cardNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+
+        cardAddressField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+
+        jLabel11.setLabelFor(CardCSVField);
+        jLabel11.setText("CSV:");
+
+        CardCSVField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+
+        dontSaveCardCheckBox.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        dontSaveCardCheckBox.setText("Spara inte mitt kort");
+        dontSaveCardCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                dontSaveCardCheckBoxActionPerformed(evt);
             }
         });
 
-        jTextField2.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        javax.swing.GroupLayout cardSettingContainerLayout = new javax.swing.GroupLayout(cardSettingContainer);
+        cardSettingContainer.setLayout(cardSettingContainerLayout);
+        cardSettingContainerLayout.setHorizontalGroup(
+            cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardSettingContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cardSettingContainerLayout.createSequentialGroup()
+                        .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(cardSettingContainerLayout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(12, 12, 12))
+                            .addGroup(cardSettingContainerLayout.createSequentialGroup()
+                                .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(cardSettingContainerLayout.createSequentialGroup()
+                                .addComponent(jRadioButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton3))
+                            .addComponent(cardAddressField, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                            .addComponent(cardNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                            .addGroup(cardSettingContainerLayout.createSequentialGroup()
+                                .addComponent(cardNumberField, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CardCSVField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(dontSaveCardCheckBox))
+                .addContainerGap())
+        );
+        cardSettingContainerLayout.setVerticalGroup(
+            cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardSettingContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton3)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cardNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel11)
+                    .addComponent(CardCSVField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cardNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cardAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(18, 18, 18)
+                .addComponent(dontSaveCardCheckBox)
+                .addContainerGap(116, Short.MAX_VALUE))
+        );
 
-        jTextField3.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        saveSettingsButton.setText("Spara Uppgifter");
+        saveSettingsButton.setMaximumSize(new java.awt.Dimension(123, 50));
+        saveSettingsButton.setMinimumSize(new java.awt.Dimension(123, 50));
+        saveSettingsButton.setPreferredSize(new java.awt.Dimension(123, 50));
+        saveSettingsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveSettingsButtonActionPerformed(evt);
+            }
+        });
 
-        jTextField4.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-
-        jTextField5.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-
-        jTextField6.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        cancelButton.setText("Avbryt");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,185 +296,83 @@ public class AccountSettingsView extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                        .addComponent(jTextField5)
-                        .addComponent(jTextField4))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)))
-                .addGap(166, 166, 166))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cancelButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(saveSettingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(accountSettingContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cardSettingContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Kortuppgifter"));
-        jPanel2.setFont(new java.awt.Font("Myriad Pro", 0, 11));
-
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-        jRadioButton1.setText("VISA");
-
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-        jRadioButton2.setText("Mastercard");
-
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-        jRadioButton3.setText("CASH-kort");
-
-        jLabel7.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-        jLabel7.setText("Kortnummer:");
-
-        jLabel8.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-        jLabel8.setText("Namn:");
-
-        jLabel9.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-        jLabel9.setText("Adress:");
-
-        jTextField7.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-
-        jTextField8.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-
-        jTextField9.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-
-        jTextField10.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton3))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField9)
-                            .addComponent(jTextField8)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(165, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-
-        jCheckBox1.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-        jCheckBox1.setText("Spara ej kort");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addComponent(jCheckBox1)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jCheckBox1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(accountSettingContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cardSettingContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(saveSettingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton))
                 .addContainerGap())
         );
+
+        add(jPanel1);
     }// </editor-fold>//GEN-END:initComponents
 
-private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_jTextField1ActionPerformed
+private void dontSaveCardCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dontSaveCardCheckBoxActionPerformed
+    cardAddressField.setEnabled(!dontSaveCardCheckBox.isSelected());
+    cardNameField.setEnabled(!dontSaveCardCheckBox.isSelected());
+    cardNumberField.setEnabled(!dontSaveCardCheckBox.isSelected());
+    cardSettingContainer.setEnabled(!dontSaveCardCheckBox.isSelected());
+    CardCSVField.setEnabled(!dontSaveCardCheckBox.isSelected());
+    
+    Enumeration<AbstractButton> buttons = cardTypeButtonGroup.getElements();
+    while( buttons.hasMoreElements() ){
+        AbstractButton b = buttons.nextElement();
+        b.setEnabled(!dontSaveCardCheckBox.isSelected());
+    }
+}//GEN-LAST:event_dontSaveCardCheckBoxActionPerformed
 
-private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_jCheckBox1ActionPerformed
+private void saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveSettingsButtonActionPerformed
+    customer.setFirstName(accNameField.getText());
+    customer.setLastName(accLastNameField.getText());
+    customer.setPhoneNumber(accPhoneField.getText());
+    customer.setPostCode(accPostalCodeField.getText());
+    customer.setPostAddress(accCityField.getText());
+    customer.setAddress(accAddressField.getText());
+    
+    if(dontSaveCardCheckBox.isSelected()) {
+        // Clear all saved credit card info if user don't want it saved
+        
+    } else {
+        
+    }
+}//GEN-LAST:event_saveSettingsButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JTextField CardCSVField;
+    private javax.swing.JTextField accAddressField;
+    private javax.swing.JTextField accCityField;
+    private javax.swing.JTextField accLastNameField;
+    private javax.swing.JTextField accNameField;
+    private javax.swing.JTextField accPhoneField;
+    private javax.swing.JTextField accPostalCodeField;
+    private javax.swing.JPanel accountSettingContainer;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JTextField cardAddressField;
+    private javax.swing.JTextField cardNameField;
+    private javax.swing.JTextField cardNumberField;
+    private javax.swing.JPanel cardSettingContainer;
+    private javax.swing.ButtonGroup cardTypeButtonGroup;
+    private javax.swing.JCheckBox dontSaveCardCheckBox;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -288,19 +382,9 @@ private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JButton saveSettingsButton;
     // End of variables declaration//GEN-END:variables
 }
