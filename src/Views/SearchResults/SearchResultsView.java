@@ -192,7 +192,7 @@ public class SearchResultsView extends javax.swing.JPanel {
         filterByContainer.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         filterByContainer.setMinimumSize(new java.awt.Dimension(0, 0));
         filterByContainer.setName("filterByContainer"); // NOI18N
-        filterByContainer.setLayout(new java.awt.GridLayout(0, 5));
+        filterByContainer.setLayout(new java.awt.GridLayout(0, 4));
 
         toggleCategoriFilterButton.setText(resourceMap.getString("toggleCategoriFilterButton.text")); // NOI18N
         toggleCategoriFilterButton.setName("toggleCategoriFilterButton"); // NOI18N
@@ -213,9 +213,9 @@ public class SearchResultsView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
-                    .addComponent(filterByContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
-                    .addComponent(sortByContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                    .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
+                    .addComponent(filterByContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
+                    .addComponent(sortByContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
                     .addComponent(toggleCategoriFilterButton)
                     .addComponent(headerLabel))
                 .addContainerGap())
@@ -232,7 +232,7 @@ public class SearchResultsView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filterByContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -282,7 +282,7 @@ private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEven
 
         //toggleCategoriFilterButton.setVisible(!productCategories.isEmpty());
 
-        int numRows = productCategories.size() / 5 + 1;
+        int numRows = productCategories.size() / 4 + 1;
         filterByContainer.setPreferredSize(new Dimension(500,
                 SearchResultsView.CATEGORY_FILTER_ROW_HEIGHT * numRows));
 

@@ -24,7 +24,7 @@ public enum LocaleHandler {
         productCategoryNames.put(ProductCategory.DAIRIES, "Mejeri");
         productCategoryNames.put(ProductCategory.EXOTIC_FRUIT, "Exotiska Frukter");
         productCategoryNames.put(ProductCategory.FISH, "Fisk");
-        productCategoryNames.put(ProductCategory.FLOUR_SUGAR_SALT, "Mjöl");
+        productCategoryNames.put(ProductCategory.FLOUR_SUGAR_SALT, "Mjöl/Socker/Salt");
         productCategoryNames.put(ProductCategory.FRUIT, "Stenfrukter");
         productCategoryNames.put(ProductCategory.HERB, "Örter");
         productCategoryNames.put(ProductCategory.HOT_DRINKS, "Varma Drycker");
@@ -35,7 +35,7 @@ public enum LocaleHandler {
         productCategoryNames.put(ProductCategory.POD, "Baljväxter");
         productCategoryNames.put(ProductCategory.POTATO_RICE, "Potatis & Ris");
         productCategoryNames.put(ProductCategory.ROOT_VEGETABLE, "Rotfrukter");
-        productCategoryNames.put(ProductCategory.SWEET, "Sött");
+        productCategoryNames.put(ProductCategory.SWEET, "Sötsaker");
         productCategoryNames.put(ProductCategory.VEGETABLE_FRUIT, "Grönsaksfrukter");
     }
     //</editor-fold>

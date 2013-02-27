@@ -13,6 +13,7 @@ package Views.Categories;
 import Main.MainController;
 import Search.SearchQuery;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.Set;
 import se.chalmers.ait.dat215.project.ProductCategory;
 
@@ -57,11 +58,13 @@ public class CategoryItemView extends javax.swing.JPanel {
     }
 
     public void setActiveState() {
-        container.setBackground(Color.GREEN);
+        container.setBackground(null);
+        nameLabel.setFont(highlightedFont);
     }
 
     public void unsetActiveState() {
-        container.setBackground(Color.yellow);
+        container.setBackground(null);
+        nameLabel.setFont(disabledFont);
     }
 
     /** This method is called from within the constructor to
@@ -79,6 +82,7 @@ public class CategoryItemView extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(32767, 48));
         setName("Form"); // NOI18N
 
+        container.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         container.setName("container"); // NOI18N
         container.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -89,6 +93,7 @@ public class CategoryItemView extends javax.swing.JPanel {
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(CategoryItemView.class);
         nameLabel.setFont(resourceMap.getFont("nameLabel.font")); // NOI18N
         nameLabel.setText(resourceMap.getString("nameLabel.text")); // NOI18N
+        nameLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nameLabel.setName("nameLabel"); // NOI18N
         nameLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -137,4 +142,6 @@ private void containerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:e
     private javax.swing.JPanel container;
     private javax.swing.JLabel nameLabel;
     // End of variables declaration//GEN-END:variables
+    Font highlightedFont = new Font("Tahoma", Font.BOLD, 20);
+    Font disabledFont = new Font("Tahoma", Font.PLAIN, 18);
 }
