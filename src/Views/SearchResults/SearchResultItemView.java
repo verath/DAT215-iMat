@@ -8,6 +8,7 @@ package Views.SearchResults;
 
 import Main.LocaleHandler;
 import Main.MainController;
+import Main.NumberUtil;
 import Main.ShoppingCartWrapper;
 import Search.SearchQuery;
 import java.util.HashSet;
@@ -66,7 +67,7 @@ public class SearchResultItemView extends javax.swing.JPanel {
      */
     public void setProduct(Product product) {
         IMatDataHandler dh = IMatDataHandler.getInstance();
-        
+
         imageLabel.setIcon(dh.getImageIcon(product, 128, 128));
         nameLabel.setText(product.getName());
         priceLabel.setText(product.getPrice() + " " + product.getUnit());
@@ -113,7 +114,7 @@ public class SearchResultItemView extends javax.swing.JPanel {
         imageLabel.setOpaque(true);
         imageLabel.setPreferredSize(new java.awt.Dimension(128, 128));
 
-        amountSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        amountSpinner.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1.0d), Double.valueOf(0.01d), null, Double.valueOf(1.0d)));
         amountSpinner.setName("amountSpinner"); // NOI18N
 
         addButton.setText(resourceMap.getString("addButton.text")); // NOI18N
@@ -198,7 +199,7 @@ public class SearchResultItemView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -228,7 +229,8 @@ public class SearchResultItemView extends javax.swing.JPanel {
 
 private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
     // Add a product when the add button is pressed
-    ShoppingCartWrapper.INSTANCE.addProduct(product, (Integer) amountSpinner.getValue());
+    double amount = (Double) amountSpinner.getValue();
+    ShoppingCartWrapper.INSTANCE.addProduct(product, amount);
 }//GEN-LAST:event_addButtonActionPerformed
 
 private void categoryLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryLabelMouseClicked

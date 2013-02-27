@@ -5,6 +5,7 @@
  */
 package Views.ShoppingCart;
 
+import Main.NumberUtil;
 import Main.ShoppingCartWrapper;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ShoppingItem;
@@ -33,14 +34,13 @@ public class ShoppingCartItemView extends javax.swing.JPanel {
         this.shoppingItem = shoppingItem;
 
         Product product = shoppingItem.getProduct();
-        int amount = (int) shoppingItem.getAmount();
-        String totalPrice = "" + shoppingItem.getTotal();
+        double amount = shoppingItem.getAmount();
+        double totalPrice = shoppingItem.getTotal();
         
         // Set the labels to the new value.
         nameLabel.setText(product.getName());
-        priceLabel.setText("" + product.getPrice());
         unitMeasureLabel.setText(product.getUnitSuffix());
-        priceLabel.setText(totalPrice + " kr");
+        priceLabel.setText(NumberUtil.roundTwoDecimals(totalPrice) + " kr");
         countSpinner.setValue(amount);
     }
 
@@ -74,7 +74,7 @@ public class ShoppingCartItemView extends javax.swing.JPanel {
         nameLabel.setText(resourceMap.getString("nameLabel.text")); // NOI18N
         nameLabel.setName("nameLabel"); // NOI18N
 
-        countSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        countSpinner.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1.0d), Double.valueOf(0.009999999776482582d), null, Double.valueOf(1.0d)));
         countSpinner.setName("countSpinner"); // NOI18N
         countSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -115,7 +115,7 @@ public class ShoppingCartItemView extends javax.swing.JPanel {
                 .add(priceLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(RemoveButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 18, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -147,7 +147,7 @@ private void RemoveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_RemoveButtonMouseClicked
 
 private void countSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_countSpinnerStateChanged
-    double val = (Integer)countSpinner.getValue();
+    double val = (Double)countSpinner.getValue();
     if( val != shoppingItem.getAmount() ){
         ShoppingCartWrapper.INSTANCE.updateProduct(shoppingItem.getProduct(), val);
     }

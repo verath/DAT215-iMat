@@ -6,8 +6,10 @@
  */
 package Views.ShoppingCart;
 
+import Main.NumberUtil;
 import Main.ShoppingCartWrapper;
 import java.util.List;
+import javax.print.attribute.standard.NumberUp;
 import se.chalmers.ait.dat215.project.ShoppingItem;
 
 /**
@@ -64,7 +66,8 @@ public class ShoppingCartView extends javax.swing.JPanel {
         }
 
         // Set total price/number of items.
-        totalPriceLabel.setText("" + ShoppingCartWrapper.INSTANCE.getTotal() + " kr");
+        totalPriceLabel.setText(NumberUtil.roundTwoDecimals(ShoppingCartWrapper.INSTANCE.getTotal())
+                + " kr");
         numItemsLabel.setText("" + ShoppingCartWrapper.INSTANCE.getNumItems());
 
         // Refresh view
