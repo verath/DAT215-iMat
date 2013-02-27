@@ -46,6 +46,8 @@ public enum ShoppingListsHandler {
      * Loads the user's shoppingLists from file.
      */
     public void load() {
+        System.out.println("LoadShoppingLists, starting...");
+        
         try {
             FileInputStream f = new FileInputStream(FILE_PATH);
             ObjectInputStream in = new ObjectInputStream(f);
@@ -61,6 +63,8 @@ public enum ShoppingListsHandler {
      * Saves the user's shoppingLists to file.
      */
     public void save() {
+        System.out.println("saveShoppingLists");
+        
         try {
             File f = new File(FILE_PATH);
             FileOutputStream fo = new FileOutputStream(f);
