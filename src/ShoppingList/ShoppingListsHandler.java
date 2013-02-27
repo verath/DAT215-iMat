@@ -53,6 +53,10 @@ public enum ShoppingListsHandler {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ShoppingListsHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        // Update the static numList of ShoppingList, as static
+        // vars are not saved/loaded when serializing.
+        ShoppingList.numLists = holder.shoppingLists.size();
     }
 
     /**

@@ -1,6 +1,7 @@
 package ShoppingList;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,8 +16,10 @@ public class ShoppingList implements Serializable {
 
     /**
      * A static counter used for generating default names.
+     * protected so we can set it when loading lists, as static
+     * vars are not saved.
      */
-    private static int numLists = 0;
+    protected static int numLists = 0;
     /**
      * The Items in this list.
      */
@@ -25,6 +28,11 @@ public class ShoppingList implements Serializable {
      *  The list's name.
      */
     private String name;
+    
+    /**
+     * The date when the list was latest modifed
+     */
+    private Date dateModified = new Date();
 
     /**
      * Creates a new ShoppingList with a specified name.
@@ -59,6 +67,8 @@ public class ShoppingList implements Serializable {
                 }
             }
         }
+        
+        dateModified = new Date();
     }
 
     /**
@@ -67,6 +77,7 @@ public class ShoppingList implements Serializable {
      * @return True if the element existed in the list.
      */
     public boolean removeItem(ShoppingListItem item) {
+        dateModified = new Date();
         return items.remove(item);
     }
 
@@ -91,5 +102,15 @@ public class ShoppingList implements Serializable {
      */
     public void setName(String name) {
         this.name = name;
+        dateModified = new Date();
     }
+
+    /**
+     * Gets the last Date this list was modified.
+     * @return 
+     */
+    public Date getDateModified() {
+        return dateModified;
+    }
+    
 }
