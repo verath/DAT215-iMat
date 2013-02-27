@@ -2,6 +2,7 @@ package ShoppingList;
 
 import java.io.Serializable;
 import se.chalmers.ait.dat215.project.Product;
+import se.chalmers.ait.dat215.project.ShoppingItem;
 
 /**
  * A class representing a shopping list item.
@@ -34,6 +35,15 @@ public class ShoppingListItem implements Serializable {
     public ShoppingListItem(Product product, double amount) {
         this.product = product;
         this.amount = amount;
+    }
+    
+    /**
+     * Creates a ShopingListItem from an existing Shopping(Cart)Item
+     * @param shoppingItem 
+     */
+    public ShoppingListItem(ShoppingItem shoppingItem){
+        this.amount = shoppingItem.getAmount();
+        this.product = shoppingItem.getProduct();
     }
 
     /**

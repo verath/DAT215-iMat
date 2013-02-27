@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -36,13 +37,6 @@ public enum ShoppingListsHandler {
             + "/.dat215/imat/shoppinglists.data";
 
     /**
-     * Constructor, try to load data first time its used.
-     */
-    private ShoppingListsHandler() {
-        load();
-    }
-
-    /**
      * Loads the user's shoppingLists from file.
      */
     public void load() {
@@ -52,6 +46,8 @@ public enum ShoppingListsHandler {
             FileInputStream f = new FileInputStream(FILE_PATH);
             ObjectInputStream in = new ObjectInputStream(f);
             holder = (ShoppingListsHolder) in.readObject();
+        } catch (InvalidClassException ex) {
+            // We have a different version saved, just don't load it.
         } catch (IOException ex) {
             Logger.getLogger(ShoppingListsHandler.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -63,13 +59,15 @@ public enum ShoppingListsHandler {
      * Saves the user's shoppingLists to file.
      */
     public void save() {
-        System.out.println("saveShoppingLists");
+        System.out.println("saveShoppingLists()");
         
         try {
             File f = new File(FILE_PATH);
             FileOutputStream fo = new FileOutputStream(f);
             ObjectOutputStream out = new ObjectOutputStream(fo);
             out.writeObject(holder);
+            
+            
         } catch (IOException ex) {
             Logger.getLogger(ShoppingListsHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -101,6 +99,8 @@ public enum ShoppingListsHandler {
      */
     public Set<ShoppingList> getShoppingLists() {
         return new HashSet<ShoppingList>(holder.shoppingLists);
+        
+        
     }
 
     /**
@@ -108,11 +108,7 @@ public enum ShoppingListsHandler {
      * us to save the list of lists to a file.
      */
     private class ShoppingListsHolder implements Serializable {
-
-        private Set<ShoppingList> shoppingLists;
-
-        ShoppingListsHolder() {
-            shoppingLists = new HashSet<ShoppingList>();
-        }
+        
+        private Set<ShoppingList> shoppingLists = new HashSet<ShoppingList>();
     }
 }

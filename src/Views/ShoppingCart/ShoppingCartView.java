@@ -135,6 +135,11 @@ public class ShoppingCartView extends javax.swing.JPanel {
 
         saveCartButton.setText(resourceMap.getString("saveCartButton.text")); // NOI18N
         saveCartButton.setName("saveCartButton"); // NOI18N
+        saveCartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveCartButtonActionPerformed(evt);
+            }
+        });
 
         checkoutButton.setText(resourceMap.getString("checkoutButton.text")); // NOI18N
         checkoutButton.setName("checkoutButton"); // NOI18N
@@ -165,8 +170,8 @@ public class ShoppingCartView extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                    .add(titleLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                    .add(jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                    .add(titleLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -180,14 +185,14 @@ public class ShoppingCartView extends javax.swing.JPanel {
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
                                 .add(126, 126, 126)
-                                .add(filler1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(filler1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 2, Short.MAX_VALUE)
                                 .add(23, 23, 23))
                             .add(layout.createSequentialGroup()
                                 .add(saveCartButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 126, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
                         .add(checkoutButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 98, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, scroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, scroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -219,6 +224,10 @@ public class ShoppingCartView extends javax.swing.JPanel {
 private void checkoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutButtonActionPerformed
     scController.onCheckoutButtonActionPerformed(evt);
 }//GEN-LAST:event_checkoutButtonActionPerformed
+
+private void saveCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCartButtonActionPerformed
+    scController.onSaveCartButtonActionPerformed(evt);
+}//GEN-LAST:event_saveCartButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checkoutButton;

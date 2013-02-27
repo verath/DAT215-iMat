@@ -22,6 +22,9 @@ public class MainApp extends SingleFrameApplication {
     protected void startup() {
         show(new MainView(this));
         
+        // Load lists on load
+        ShoppingListsHandler.INSTANCE.load();
+        
         // Handle exit
         this.addExitListener(new ExitListener() {
             

@@ -12,10 +12,23 @@ import java.util.Set;
  * @author Peter
  */
 public class ShoppingList implements Serializable {
+    private static int numLists = 0;
+    
+    private Set<ShoppingListItem> items;
+    private String name;
 
-    Set<ShoppingListItem> items;
-
-    ShoppingList() {
+    /**
+     * Creates a new ShoppingList with a name.
+     * @param name 
+     */
+    public ShoppingList(String name) {
+        ShoppingList.numLists += 1;
+        
+        if( name == null || name.isEmpty()) {
+            name = "Lista " + ShoppingList.numLists;
+        }
+        
+        this.name = name;
         items = new HashSet<ShoppingListItem>();
     }
 
@@ -53,5 +66,20 @@ public class ShoppingList implements Serializable {
      */
     public Set<ShoppingListItem> getItems() {
         return new HashSet<ShoppingListItem>(items);
+    }
+
+    /**
+     * Getter for the name.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Setter for the name.
+     * @param name 
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 }
