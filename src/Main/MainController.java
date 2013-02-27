@@ -9,7 +9,7 @@ import navigation.NavigationEvent;
 import Search.SearchQuery;
 import java.util.ArrayList;
 import java.util.List;
-import navigation.NavigationEventSearch;
+import navigation.NavigationSearchEvent;
 
 /**
  * A singelton class for handling the major tasks in the UI on a high level,
@@ -23,6 +23,9 @@ public enum MainController {
      * The MainController instance.
      */
     INSTANCE;
+    /**
+     * The NavigationListeners that is listening to the controllers events.
+     */
     private List<NavigationListener> navigationListeners = new ArrayList<NavigationListener>();
 
     /**
@@ -31,11 +34,11 @@ public enum MainController {
      * @param sq 
      */
     public void search(SearchQuery sq) {
-        notifyNavigationListeners(new NavigationEventSearch(sq));
+        notifyNavigationListeners(new NavigationSearchEvent(sq));
     }
 
     /**
-     * Notifies all search listeners about a new ProductSearch
+     * Notifies all navigation listeners about a navigation in the UI
      * @param sq 
      */
     public void notifyNavigationListeners(NavigationEvent navigationEvent) {

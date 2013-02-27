@@ -8,10 +8,10 @@ import Search.SearchQuery;
  * 
  * @author Peter
  */
-public class NavigationEventSearch extends NavigationEvent{
+public class NavigationSearchEvent extends NavigationEvent{
     SearchQuery searchQuery;
     
-    public NavigationEventSearch(SearchQuery searchQuery) {
+    public NavigationSearchEvent(SearchQuery searchQuery) {
         super();
         this.searchQuery = searchQuery;
     }

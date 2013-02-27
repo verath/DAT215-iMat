@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import navigation.NavigationEvent;
-import navigation.NavigationEventSearch;
+import navigation.NavigationSearchEvent;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ProductCategory;
 
@@ -153,8 +153,8 @@ public class SearchResultsController implements NavigationListener {
      * @param sq 
      */
     public void onNavigate(NavigationEvent NavEvent) {
-        if( NavEvent instanceof NavigationEventSearch ) {
-            NavigationEventSearch ev = (NavigationEventSearch) NavEvent;
+        if( NavEvent instanceof NavigationSearchEvent ) {
+            NavigationSearchEvent ev = (NavigationSearchEvent) NavEvent;
             setSearchQuery(ev.getSearchQuery());
         }
     }

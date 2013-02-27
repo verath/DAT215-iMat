@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.JSeparator;
 import navigation.NavigationEvent;
-import navigation.NavigationEventSearch;
+import navigation.NavigationSearchEvent;
 import se.chalmers.ait.dat215.project.ProductCategory;
 
 /**
@@ -164,8 +164,8 @@ public class CategoriesView extends javax.swing.JPanel implements NavigationList
      * @param searchQuery 
      */
     public void onNavigate(NavigationEvent NavEvent) {
-        if( NavEvent instanceof NavigationEventSearch ) {
-            NavigationEventSearch ev = (NavigationEventSearch) NavEvent;
+        if( NavEvent instanceof NavigationSearchEvent ) {
+            NavigationSearchEvent ev = (NavigationSearchEvent) NavEvent;
             for (CategoryItemView civ : categoryViews) {
                 civ.onSearchChange(ev.getSearchQuery());
             }
