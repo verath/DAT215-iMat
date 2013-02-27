@@ -39,7 +39,7 @@ public class ShoppingCartItemView extends javax.swing.JPanel {
 
         Product prod = si.getProduct();
         int amount = (int) si.getAmount();
-        String totalPrice = "" + (prod.getPrice() * amount);
+        String totalPrice = "" + si.getTotal();
 
         nameLabel.setText(prod.getName());
         priceLabel.setText("" + prod.getPrice());
