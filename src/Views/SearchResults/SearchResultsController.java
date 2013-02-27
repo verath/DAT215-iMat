@@ -97,7 +97,7 @@ public class SearchResultsController implements SearchListener {
      */
     private void setSearchQuery(SearchQuery sq) {
         searchQuery = sq;
-        //selectedFilters = ps.getResultCategories();
+        selectedFilters = new HashSet<ProductCategory>();
 
         // Updates the result list of items
         updateViewResultList();
