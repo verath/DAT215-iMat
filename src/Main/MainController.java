@@ -4,9 +4,12 @@
  */
 package Main;
 
+import navigation.NavigationListener;
+import navigation.NavigationEvent;
 import Search.SearchQuery;
 import java.util.ArrayList;
 import java.util.List;
+import navigation.NavigationEventSearch;
 
 /**
  * A singelton class for handling the major tasks in the UI on a high level,
@@ -15,45 +18,48 @@ import java.util.List;
  * @author Peter
  */
 public enum MainController {
+
     /**
      * The MainController instance.
      */
     INSTANCE;
-    
-    private List<SearchListener> searchListeners = new ArrayList<SearchListener>();
-    
+    private List<NavigationListener> navigationListeners = new ArrayList<NavigationListener>();
+
     /**
      * Performs a search by displaying the search results panels.
      * 
-     * @param ps 
+     * @param sq 
      */
-    public void search(SearchQuery ps){
-        notifySearchListeners(ps);
+    public void search(SearchQuery sq) {
+        notifyNavigationListeners(new NavigationEventSearch(sq));
     }
-    
+
     /**
      * Notifies all search listeners about a new ProductSearch
-     * @param ps 
+     * @param sq 
      */
-    public void notifySearchListeners(SearchQuery ps){
-        for(SearchListener sl : searchListeners){
-            sl.onSearch(ps);
+    public void notifyNavigationListeners(NavigationEvent navigationEvent) {
+        if (navigationEvent != null) {
+            for (NavigationListener sl : navigationListeners) {
+                sl.onNavigate(navigationEvent);
+            }
         }
     }
-    
+
     /**
-     * Adds a SearchListner to be notified when a search is performed.
-     * @param sl 
+     * Adds a NavigationListner to be notified when a navigation in
+     * the UI is performed.
+     * @param navigationListener 
      */
-    public void addSearchListener(SearchListener sl){
-        searchListeners.add(sl);
+    public void addNavigationListener(NavigationListener navigationListener) {
+        navigationListeners.add(navigationListener);
     }
-    
+
     /**
-     * Removes a SearchListener.
-     * @param sl 
+     * Removes a NavigationListener.
+     * @param navigationListener 
      */
-    public void removeSearchListener(SearchListener sl) {
-        searchListeners.remove(sl);
+    public void removeNavigationListener(NavigationListener navigationListener) {
+        navigationListeners.remove(navigationListener);
     }
 }

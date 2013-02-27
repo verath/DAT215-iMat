@@ -1,7 +1,7 @@
 package Views.SearchResults;
 
 import Main.MainController;
-import Main.SearchListener;
+import navigation.NavigationListener;
 import Search.OrderProductsByNameAscending;
 import Search.OrderProductsByNameDescending;
 import Search.OrderProductsByPriceAscending;
@@ -12,6 +12,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import navigation.NavigationEvent;
+import navigation.NavigationEventSearch;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ProductCategory;
 
@@ -19,7 +21,7 @@ import se.chalmers.ait.dat215.project.ProductCategory;
  *
  * @author Peter
  */
-public class SearchResultsController implements SearchListener {
+public class SearchResultsController implements NavigationListener {
 
     /**
      * Default sorting order for result list.
@@ -57,7 +59,7 @@ public class SearchResultsController implements SearchListener {
         this.view = view;
 
         // Listen for searches
-        MainController.INSTANCE.addSearchListener(this);
+        MainController.INSTANCE.addNavigationListener(this);
     }
 
     /**
@@ -150,7 +152,10 @@ public class SearchResultsController implements SearchListener {
      * Called when a search is performed.
      * @param sq 
      */
-    public void onSearch(SearchQuery sq) {
-        setSearchQuery(sq);
+    public void onNavigate(NavigationEvent NavEvent) {
+        if( NavEvent instanceof NavigationEventSearch ) {
+            NavigationEventSearch ev = (NavigationEventSearch) NavEvent;
+            setSearchQuery(ev.getSearchQuery());
+        }
     }
 }

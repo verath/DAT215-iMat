@@ -11,7 +11,7 @@
 package Views.Categories;
 
 import Main.MainController;
-import Main.SearchListener;
+import navigation.NavigationListener;
 import Search.SearchQuery;
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -22,13 +22,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.JSeparator;
+import navigation.NavigationEvent;
+import navigation.NavigationEventSearch;
 import se.chalmers.ait.dat215.project.ProductCategory;
 
 /**
  *
  * @author Peter
  */
-public class CategoriesView extends javax.swing.JPanel implements SearchListener {
+public class CategoriesView extends javax.swing.JPanel implements NavigationListener {
 
     /**
      * A map, mapping a "human readable" string to one or more categories.
@@ -102,7 +104,7 @@ public class CategoriesView extends javax.swing.JPanel implements SearchListener
     public CategoriesView() {
         initComponents();
 
-        MainController.INSTANCE.addSearchListener(this);
+        MainController.INSTANCE.addNavigationListener(this);
 
         // Add the categories
         for (String name : categoryItemProducts.keySet()) {
@@ -161,9 +163,12 @@ public class CategoriesView extends javax.swing.JPanel implements SearchListener
      * Forward event to all CategoryItemView.
      * @param searchQuery 
      */
-    public void onSearch(SearchQuery searchQuery) {
-        for (CategoryItemView civ : categoryViews) {
-            civ.onSearchChange(searchQuery);
+    public void onNavigate(NavigationEvent NavEvent) {
+        if( NavEvent instanceof NavigationEventSearch ) {
+            NavigationEventSearch ev = (NavigationEventSearch) NavEvent;
+            for (CategoryItemView civ : categoryViews) {
+                civ.onSearchChange(ev.getSearchQuery());
+            }
         }
     }
 }
