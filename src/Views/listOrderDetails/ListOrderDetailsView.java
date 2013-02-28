@@ -10,7 +10,6 @@
  */
 package Views.listOrderDetails;
 
-import ShoppingList.ShoppingList;
 import ShoppingList.ShoppingListChangeListener;
 import ShoppingList.ShoppingListsHandler;
 
@@ -23,20 +22,7 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
     /** Creates new form ListOrderDetailsView */
     public ListOrderDetailsView() {
         initComponents();
-        updateList();
         ShoppingListsHandler.INSTANCE.addChangeListener(this);
-    }
-    
-    /**
-     * Updates the list of lists/orders
-     */
-    private void updateList(){
-        listsContainer.removeAll();
-        for(ShoppingList list : ShoppingListsHandler.INSTANCE.getShoppingLists()) {
-            listsContainer.add(new ListItemView(list.getName()));
-        }
-        jSplitPane1.validate();
-        jSplitPane1.repaint();
     }
 
     /** This method is called from within the constructor to
@@ -49,7 +35,7 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
     private void initComponents() {
 
         jSplitPane1 = new javax.swing.JSplitPane();
-        listsContainer = new javax.swing.JPanel();
+        jList1 = new javax.swing.JList();
         detailsContainer = new javax.swing.JPanel();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(ListOrderDetailsView.class);
@@ -58,42 +44,50 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
         setOpaque(false);
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
+        jSplitPane1.setBackground(resourceMap.getColor("jSplitPane1.background")); // NOI18N
         jSplitPane1.setName("jSplitPane1"); // NOI18N
         jSplitPane1.setOpaque(false);
 
-        listsContainer.setMaximumSize(new java.awt.Dimension(0, 0));
-        listsContainer.setMinimumSize(new java.awt.Dimension(0, 50));
-        listsContainer.setName("listsContainer"); // NOI18N
-        listsContainer.setOpaque(false);
-        listsContainer.setPreferredSize(new java.awt.Dimension(0, 0));
-        listsContainer.setLayout(new javax.swing.BoxLayout(listsContainer, javax.swing.BoxLayout.PAGE_AXIS));
-        jSplitPane1.setLeftComponent(listsContainer);
+        jList1.setFont(resourceMap.getFont("jList1.font")); // NOI18N
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.setFixedCellHeight(50);
+        jList1.setName("jList1"); // NOI18N
+        jList1.setPreferredSize(new java.awt.Dimension(50, 90));
+        jList1.setVisibleRowCount(12);
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
+        jSplitPane1.setLeftComponent(jList1);
 
         detailsContainer.setName("detailsContainer"); // NOI18N
         detailsContainer.setOpaque(false);
-
-        javax.swing.GroupLayout detailsContainerLayout = new javax.swing.GroupLayout(detailsContainer);
-        detailsContainer.setLayout(detailsContainerLayout);
-        detailsContainerLayout.setHorizontalGroup(
-            detailsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 702, Short.MAX_VALUE)
-        );
-        detailsContainerLayout.setVerticalGroup(
-            detailsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 506, Short.MAX_VALUE)
-        );
-
+        detailsContainer.setLayout(new javax.swing.BoxLayout(detailsContainer, javax.swing.BoxLayout.PAGE_AXIS));
         jSplitPane1.setRightComponent(detailsContainer);
 
         add(jSplitPane1);
     }// </editor-fold>//GEN-END:initComponents
+
+private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+// TODO add your handling code here:
+    System.out.println(jList1.getSelectedValue());
+    
+}//GEN-LAST:event_jList1ValueChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel detailsContainer;
+    private javax.swing.JList jList1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JPanel listsContainer;
     // End of variables declaration//GEN-END:variables
 
     public void onChange() {
-        updateList();
+        System.out.println("ListOrderView: Shopping lists changed");
     }
+
 }
