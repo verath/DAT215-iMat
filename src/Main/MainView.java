@@ -3,7 +3,7 @@
  */
 package Main;
 
-import Views.AccountSettings.AccountSettingsView;
+import popups.accountSettings.AccountSettingsPopup;
 import java.awt.Dialog;
 import java.awt.Frame;
 import java.awt.Window;
@@ -14,6 +14,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
 
 /**
  * The application's main frame.
@@ -158,16 +159,7 @@ public class MainView extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
 private void showAccSettingsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAccSettingsMenuItemActionPerformed
-    JDialog dialog = new JDialog(MainApp.getApplication().getMainFrame(), 
-            AccountSettingsView.DIALOG_TITLE,
-            Dialog.ModalityType.APPLICATION_MODAL);
-    dialog.add(new AccountSettingsView(dialog));
-    dialog.setBounds(MainApp.getApplication().getMainFrame().getBounds().x,
-            MainApp.getApplication().getMainFrame().getBounds().y,
-            AccountSettingsView.PREFERRED_SIZE.width,
-            AccountSettingsView.PREFERRED_SIZE.height);
-    dialog.setResizable(false);
-    dialog.setVisible(true);
+    MainController.INSTANCE.showAccountSettingsPopup();
 }//GEN-LAST:event_showAccSettingsMenuItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

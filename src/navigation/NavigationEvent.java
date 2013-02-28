@@ -6,6 +6,6 @@ package navigation;
  * 
  * @author Peter
  */
-public class NavigationEvent {
+public abstract class NavigationEvent {
     
 }

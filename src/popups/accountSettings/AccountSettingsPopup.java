@@ -8,16 +8,11 @@
  *
  * Created on Feb 21, 2013, 4:37:10 PM
  */
-package Views.AccountSettings;
+package popups.accountSettings;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Window;
-import java.util.Enumeration;
-import javax.swing.AbstractButton;
-import javax.swing.ButtonModel;
 import javax.swing.JDialog;
-import javax.swing.SwingUtilities;
 import se.chalmers.ait.dat215.project.CreditCard;
 import se.chalmers.ait.dat215.project.Customer;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
@@ -26,7 +21,7 @@ import se.chalmers.ait.dat215.project.IMatDataHandler;
  *
  * @author Ernst
  */
-public class AccountSettingsView extends javax.swing.JPanel {
+public class AccountSettingsPopup extends javax.swing.JPanel {
 
     private JDialog dialogFrame;
     private Customer customer = IMatDataHandler.getInstance().getCustomer();
@@ -35,7 +30,7 @@ public class AccountSettingsView extends javax.swing.JPanel {
     public static final String DIALOG_TITLE = "Kontoinställningar";
 
     /** Creates new form AccountSettingsView */
-    public AccountSettingsView() {
+    public AccountSettingsPopup() {
         initComponents();
 
         // Get saved info for the account settings fields
@@ -63,13 +58,12 @@ public class AccountSettingsView extends javax.swing.JPanel {
         }
 
         // Card expire date
-        System.out.println(creditCard.getValidMonth());
         cardMonthComboBox.setSelectedItem("" + creditCard.getValidMonth());
         cardYearComboBox.setSelectedItem("" + creditCard.getValidYear());
 
     }
 
-    public AccountSettingsView(JDialog dialogFrame) {
+    public AccountSettingsPopup(JDialog dialogFrame) {
         this();
         this.dialogFrame = dialogFrame;
     }
@@ -216,22 +210,22 @@ public class AccountSettingsView extends javax.swing.JPanel {
         cardSettingContainer.setPreferredSize(new java.awt.Dimension(400, 355));
 
         cardTypeButtonGroup.add(cardTypeVisaRadioButton);
-        cardTypeVisaRadioButton.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        cardTypeVisaRadioButton.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         cardTypeVisaRadioButton.setText("VISA");
 
         cardTypeButtonGroup.add(cardTypeMasterRadioButton);
-        cardTypeMasterRadioButton.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        cardTypeMasterRadioButton.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         cardTypeMasterRadioButton.setText("Mastercard");
 
         cardTypeButtonGroup.add(cardTypeCashRadioButton);
-        cardTypeCashRadioButton.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        cardTypeCashRadioButton.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         cardTypeCashRadioButton.setText("CASH-kort");
 
         jLabel7.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         jLabel7.setLabelFor(cardNumberField);
         jLabel7.setText("Kortnummer:");
 
-        jLabel8.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         jLabel8.setLabelFor(cardNameField);
         jLabel8.setText("Namn:");
 
@@ -240,14 +234,14 @@ public class AccountSettingsView extends javax.swing.JPanel {
 
         cardNumberField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
 
-        cardNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        cardNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
 
         jLabel11.setLabelFor(cardCSVField);
         jLabel11.setText("CSV:");
 
-        cardCSVField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        cardCSVField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
 
-        dontSaveCardCheckBox.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        dontSaveCardCheckBox.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         dontSaveCardCheckBox.setText("Spara inte mitt kort");
         dontSaveCardCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

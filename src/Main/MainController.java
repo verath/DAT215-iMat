@@ -7,8 +7,13 @@ package Main;
 import navigation.NavigationListener;
 import navigation.NavigationEvent;
 import Search.SearchQuery;
+import popups.accountSettings.AccountSettingsPopup;
+import java.awt.Dialog;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JDialog;
 import navigation.NavigationSearchEvent;
 
 /**
@@ -27,6 +32,15 @@ public enum MainController {
      * The NavigationListeners that is listening to the controllers events.
      */
     private List<NavigationListener> navigationListeners = new ArrayList<NavigationListener>();
+    /**
+     * The account settings dialog
+     */
+    private JDialog accountSettingsDialog;
+
+    private MainController() {
+        // Create the Dialog, so it can be shown instantly later
+        createAccountSettingsDialog();
+    }
 
     /**
      * Performs a search by displaying the search results panels.
@@ -35,6 +49,33 @@ public enum MainController {
      */
     public void search(SearchQuery sq) {
         notifyNavigationListeners(new NavigationSearchEvent(sq));
+    }
+
+    /**
+     * Creates the account settings dialog.
+     */
+    private void createAccountSettingsDialog() {
+        JDialog dialog = new JDialog(MainApp.getApplication().getMainFrame(),
+                AccountSettingsPopup.DIALOG_TITLE,
+                Dialog.ModalityType.APPLICATION_MODAL);
+        dialog.setResizable(false);
+        dialog.add(new AccountSettingsPopup(dialog));
+        accountSettingsDialog = dialog;
+    }
+
+    /**
+     * Shows the account settings popup.
+     */
+    public void showAccountSettingsPopup() {
+        if (accountSettingsDialog == null) {
+            createAccountSettingsDialog();
+        }
+        Dimension popupSize = AccountSettingsPopup.PREFERRED_SIZE;
+       
+        // Set size and center on screen
+        accountSettingsDialog.setBounds(0, 0, popupSize.width, popupSize.height);
+        accountSettingsDialog.setLocationRelativeTo(null);
+        accountSettingsDialog.setVisible(true);
     }
 
     /**
