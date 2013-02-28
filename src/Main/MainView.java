@@ -3,18 +3,13 @@
  */
 package Main;
 
-import popups.accountSettings.AccountSettingsPopup;
-import java.awt.Dialog;
-import java.awt.Frame;
-import java.awt.Window;
+import java.awt.CardLayout;
+import java.awt.LayoutManager;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import se.chalmers.ait.dat215.project.IMatDataHandler;
 
 /**
  * The application's main frame.
@@ -48,11 +43,16 @@ public class MainView extends FrameView {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        headerBarView1 = new Views.HeaderBar.HeaderBarView();
-        shoppingCartView1 = new Views.ShoppingCart.ShoppingCartView();
+        mainCard = new javax.swing.JPanel();
+        headerBar = new Views.HeaderBar.HeaderBarView();
         jSplitPane1 = new javax.swing.JSplitPane();
-        categoriesView1 = new Views.Categories.CategoriesView();
+        categoriesPanel = new Views.Categories.CategoriesView();
+        centerCardContainer = new javax.swing.JPanel();
+        mainPanel1 = new Views.StartPage.MainPanel();
         searchResultsView1 = new Views.SearchResults.SearchResultsView();
+        detailedProductView1 = new Views.DetailedProduct.DetailedProductView();
+        shoppingCart = new Views.ShoppingCart.ShoppingCartView();
+        checkoutCard = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -67,46 +67,81 @@ public class MainView extends FrameView {
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(MainView.class);
         mainPanel.setBackground(resourceMap.getColor("mainPanel.background")); // NOI18N
         mainPanel.setName("mainPanel"); // NOI18N
+        mainPanel.setLayout(new java.awt.CardLayout());
 
-        headerBarView1.setName("headerBarView1"); // NOI18N
+        mainCard.setBackground(resourceMap.getColor("mainCard.background")); // NOI18N
+        mainCard.setName("mainCard"); // NOI18N
+        mainCard.setOpaque(false);
 
-        shoppingCartView1.setName("shoppingCartView1"); // NOI18N
+        headerBar.setName("headerBar"); // NOI18N
 
         jSplitPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jSplitPane1.setName("jSplitPane1"); // NOI18N
         jSplitPane1.setOpaque(false);
 
-        categoriesView1.setName("categoriesView1"); // NOI18N
-        jSplitPane1.setLeftComponent(categoriesView1);
+        categoriesPanel.setName("categoriesPanel"); // NOI18N
+        jSplitPane1.setLeftComponent(categoriesPanel);
+
+        centerCardContainer.setName("centerCardContainer"); // NOI18N
+        centerCardContainer.setOpaque(false);
+        centerCardContainer.setLayout(new java.awt.CardLayout());
+
+        mainPanel1.setName("mainPanel1"); // NOI18N
+        centerCardContainer.add(mainPanel1, "card2");
 
         searchResultsView1.setName("searchResultsView1"); // NOI18N
-        jSplitPane1.setRightComponent(searchResultsView1);
+        centerCardContainer.add(searchResultsView1, "card3");
 
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+        detailedProductView1.setName("detailedProductView1"); // NOI18N
+        centerCardContainer.add(detailedProductView1, "card4");
+
+        jSplitPane1.setRightComponent(centerCardContainer);
+
+        shoppingCart.setName("shoppingCart"); // NOI18N
+
+        javax.swing.GroupLayout mainCardLayout = new javax.swing.GroupLayout(mainCard);
+        mainCard.setLayout(mainCardLayout);
+        mainCardLayout.setHorizontalGroup(
+            mainCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainCardLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, Short.MAX_VALUE)
-                    .addComponent(headerBarView1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
+                .addGroup(mainCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE)
+                    .addComponent(headerBar, javax.swing.GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(shoppingCartView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(shoppingCart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(shoppingCartView1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(headerBarView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        mainCardLayout.setVerticalGroup(
+            mainCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainCardLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(mainCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(shoppingCart, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
+                    .addGroup(mainCardLayout.createSequentialGroup()
+                        .addComponent(headerBar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, Short.MAX_VALUE)))
+                        .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        mainPanel.add(mainCard, "main");
+
+        checkoutCard.setName("checkoutCard"); // NOI18N
+        checkoutCard.setOpaque(false);
+
+        javax.swing.GroupLayout checkoutCardLayout = new javax.swing.GroupLayout(checkoutCard);
+        checkoutCard.setLayout(checkoutCardLayout);
+        checkoutCardLayout.setHorizontalGroup(
+            checkoutCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1232, Short.MAX_VALUE)
+        );
+        checkoutCardLayout.setVerticalGroup(
+            checkoutCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 665, Short.MAX_VALUE)
+        );
+
+        mainPanel.add(checkoutCard, "card3");
 
         menuBar.setName("menuBar"); // NOI18N
 
@@ -163,17 +198,22 @@ private void showAccSettingsMenuItemActionPerformed(java.awt.event.ActionEvent e
 }//GEN-LAST:event_showAccSettingsMenuItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Views.Categories.CategoriesView categoriesView1;
-    private Views.HeaderBar.HeaderBarView headerBarView1;
+    private Views.Categories.CategoriesView categoriesPanel;
+    private javax.swing.JPanel centerCardContainer;
+    private javax.swing.JPanel checkoutCard;
+    private Views.DetailedProduct.DetailedProductView detailedProductView1;
+    private Views.HeaderBar.HeaderBarView headerBar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JPanel mainCard;
     private javax.swing.JPanel mainPanel;
+    private Views.StartPage.MainPanel mainPanel1;
     private javax.swing.JMenuBar menuBar;
     private Views.SearchResults.SearchResultsView searchResultsView1;
-    private Views.ShoppingCart.ShoppingCartView shoppingCartView1;
+    private Views.ShoppingCart.ShoppingCartView shoppingCart;
     private javax.swing.JMenuItem showAccSettingsMenuItem;
     // End of variables declaration//GEN-END:variables
     private JDialog aboutBox;
