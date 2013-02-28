@@ -37,11 +37,6 @@ public enum MainController {
      */
     private JDialog accountSettingsDialog;
 
-    private MainController() {
-        // Create the Dialog, so it can be shown instantly later
-        createAccountSettingsDialog();
-    }
-
     /**
      * Performs a search by displaying the search results panels.
      * 
@@ -60,6 +55,7 @@ public enum MainController {
                 Dialog.ModalityType.APPLICATION_MODAL);
         dialog.setResizable(false);
         dialog.add(new AccountSettingsPopup(dialog));
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         accountSettingsDialog = dialog;
     }
 
