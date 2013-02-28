@@ -91,7 +91,7 @@ public enum ShoppingListsHandler {
     }
 
     /**
-     * Notifies all navigation listeners about a navigation in the UI
+     * Notifies all ShoppingListChangeListener about a list being added/removed
      * @param sq 
      */
     public void notifyChangeListeners() {
@@ -101,17 +101,17 @@ public enum ShoppingListsHandler {
     }
 
     /**
-     * Adds a NavigationListner to be notified when a navigation in
-     * the UI is performed.
-     * @param navigationListener 
+     * Adds a ShoppingListChangeListener to be notified when a list is added or
+     * removed
+     * @param changeListener 
      */
     public void addChangeListener(ShoppingListChangeListener changeListener) {
         changeListeners.add(changeListener);
     }
 
     /**
-     * Removes a NavigationListener.
-     * @param navigationListener 
+     * Removes a ShoppingListChangeListener.
+     * @param changeListener 
      */
     public void removeChangeListener(ShoppingListChangeListener changeListener) {
         changeListeners.remove(changeListener);
