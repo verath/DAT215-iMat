@@ -27,20 +27,25 @@ public class ShoppingCartController implements ShoppingCartListener {
     public ShoppingCartController(ShoppingCartView view) {
         this.view = view;
 
-        // Make sure we are listening for events that change the shopping cart
-        ShoppingCartWrapper.INSTANCE.addShoppingCartListener(this);
-
         // On first load, update items in cart
         view.setItemsInCart(ShoppingCartWrapper.INSTANCE.getItems());
     }
 
+    public void listenForShoppingEvents() {
+        ShoppingCartWrapper.INSTANCE.addShoppingCartListener(this);
+    }
+
     /**
      * Called when an item in the shoppingCart is somehow changed.
-     * Simply redraw our ShoppingCart when this happens.
+     * If there was a new item added, redraw our shopping cart.
      * @param ce 
      */
     public void shoppingCartChanged(CartEvent ce) {
-        view.setItemsInCart(ShoppingCartWrapper.INSTANCE.getItems());
+        if (ce.isAddEvent()) {
+            view.setItemsInCart(ShoppingCartWrapper.INSTANCE.getItems());
+        } else {
+            view.shoppingCartItemUpdated(ce.getShoppingItem());
+        }
     }
 
     /**

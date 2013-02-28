@@ -31,9 +31,15 @@ public class ShoppingCartItemView extends javax.swing.JPanel {
      * @param shoppingItem 
      */
     public void setShoppingItem(ShoppingItem shoppingItem) {
+        if(shoppingItem == null || shoppingItem.getProduct() == null ) {
+            this.setVisible(false);
+            return;
+        }
+        
         this.shoppingItem = shoppingItem;
 
         Product product = shoppingItem.getProduct();
+        
         double amount = shoppingItem.getAmount();
         double totalPrice = shoppingItem.getTotal();
         
@@ -141,9 +147,9 @@ public class ShoppingCartItemView extends javax.swing.JPanel {
 
 private void RemoveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemoveButtonMouseClicked
     // When the Remove "button" is clicked, remove our product from the shopping
-    // cart. This will force a redraw of the entier shoppingCart and thereby 
-    // removing this view.
+    // cart and hide the the item itself.
     ShoppingCartWrapper.INSTANCE.removeProduct(shoppingItem.getProduct());
+    this.setVisible(false);
 }//GEN-LAST:event_RemoveButtonMouseClicked
 
 private void countSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_countSpinnerStateChanged

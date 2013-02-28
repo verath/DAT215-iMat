@@ -8,8 +8,9 @@ package Views.ShoppingCart;
 
 import Main.NumberUtil;
 import Main.ShoppingCartWrapper;
+import java.util.HashMap;
 import java.util.List;
-import javax.print.attribute.standard.NumberUp;
+import java.util.Map;
 import se.chalmers.ait.dat215.project.ShoppingItem;
 
 /**
@@ -22,12 +23,17 @@ public class ShoppingCartView extends javax.swing.JPanel {
      * The controller for our view.
      */
     private ShoppingCartController scController;
+    /**
+     * A list mapping shoppingItems to views, used when updating
+     */
+    private Map<ShoppingItem, ShoppingCartItemView> shoppingItemViews = new HashMap<ShoppingItem, ShoppingCartItemView>();
 
     /** Creates new form ShoppingCart */
     public ShoppingCartView() {
         initComponents();
 
         scController = new ShoppingCartController(this);
+        scController.listenForShoppingEvents();
     }
 
     /**
@@ -35,6 +41,7 @@ public class ShoppingCartView extends javax.swing.JPanel {
      */
     private void clearShoppingCart() {
         shoppingItemsContainer.removeAll();
+        shoppingItemViews.clear();
     }
 
     /**
@@ -44,7 +51,17 @@ public class ShoppingCartView extends javax.swing.JPanel {
     private void addItemToCart(ShoppingItem si) {
         ShoppingCartItemView sciv = new ShoppingCartItemView();
         sciv.setShoppingItem(si);
+        shoppingItemViews.put(si, sciv);
         shoppingItemsContainer.add(sciv);
+    }
+
+    /**
+     * Updates the total labels
+     */
+    private void updateTotals() {
+        totalPriceLabel.setText(NumberUtil.roundTwoDecimals(ShoppingCartWrapper.INSTANCE.getTotal())
+                + " kr");
+        numItemsLabel.setText("" + ShoppingCartWrapper.INSTANCE.getNumItems());
     }
 
     /**
@@ -66,15 +83,29 @@ public class ShoppingCartView extends javax.swing.JPanel {
         }
 
         // Set total price/number of items.
-        totalPriceLabel.setText(NumberUtil.roundTwoDecimals(ShoppingCartWrapper.INSTANCE.getTotal())
-                + " kr");
-        numItemsLabel.setText("" + ShoppingCartWrapper.INSTANCE.getNumItems());
+        updateTotals();
 
         // Refresh view
         shoppingItemsContainer.validate();
         shoppingItemsContainer.repaint();
         scroll.validate();
         scroll.repaint();
+    }
+
+    /**
+     * When an item is updated, but not added. Only update labels
+     * instead of redrawing everything.
+     * @param shoppingItem 
+     */
+    void shoppingCartItemUpdated(ShoppingItem shoppingItem) {
+        // Pass the event forward
+        ShoppingCartItemView siv = shoppingItemViews.get(shoppingItem);
+        if (siv != null) {
+            siv.setShoppingItem(shoppingItem);
+        }
+
+        // Update totals
+        updateTotals();
     }
 
     /** This method is called from within the constructor to
