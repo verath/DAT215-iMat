@@ -3,12 +3,17 @@
  */
 package Main;
 
-import java.util.EventObject;
+import Views.AccountSettings.AccountSettingsView;
+import java.awt.Dialog;
+import java.awt.Frame;
+import java.awt.Window;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  * The application's main frame.
@@ -54,7 +59,7 @@ public class MainView extends FrameView {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        showAccSettingsMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
 
@@ -128,9 +133,14 @@ public class MainView extends FrameView {
         jSeparator1.setName("jSeparator1"); // NOI18N
         jMenu1.add(jSeparator1);
 
-        jMenuItem3.setText(resourceMap.getString("jMenuItem3.text")); // NOI18N
-        jMenuItem3.setName("jMenuItem3"); // NOI18N
-        jMenu1.add(jMenuItem3);
+        showAccSettingsMenuItem.setText(resourceMap.getString("showAccSettingsMenuItem.text")); // NOI18N
+        showAccSettingsMenuItem.setName("showAccSettingsMenuItem"); // NOI18N
+        showAccSettingsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showAccSettingsMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(showAccSettingsMenuItem);
 
         menuBar.add(jMenu1);
 
@@ -146,19 +156,33 @@ public class MainView extends FrameView {
         setComponent(mainPanel);
         setMenuBar(menuBar);
     }// </editor-fold>//GEN-END:initComponents
+
+private void showAccSettingsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAccSettingsMenuItemActionPerformed
+    JDialog dialog = new JDialog(MainApp.getApplication().getMainFrame(), 
+            AccountSettingsView.DIALOG_TITLE,
+            Dialog.ModalityType.APPLICATION_MODAL);
+    dialog.add(new AccountSettingsView(dialog));
+    dialog.setBounds(MainApp.getApplication().getMainFrame().getBounds().x,
+            MainApp.getApplication().getMainFrame().getBounds().y,
+            AccountSettingsView.PREFERRED_SIZE.width,
+            AccountSettingsView.PREFERRED_SIZE.height);
+    dialog.setResizable(false);
+    dialog.setVisible(true);
+}//GEN-LAST:event_showAccSettingsMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Views.Categories.CategoriesView categoriesView1;
     private Views.HeaderBar.HeaderBarView headerBarView1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private Views.SearchResults.SearchResultsView searchResultsView1;
     private Views.ShoppingCart.ShoppingCartView shoppingCartView1;
+    private javax.swing.JMenuItem showAccSettingsMenuItem;
     // End of variables declaration//GEN-END:variables
     private JDialog aboutBox;
 }

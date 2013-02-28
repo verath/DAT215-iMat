@@ -10,8 +10,12 @@
  */
 package Views.AccountSettings;
 
+import java.awt.Dimension;
+import java.awt.Window;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
+import javax.swing.JDialog;
+import javax.swing.SwingUtilities;
 import se.chalmers.ait.dat215.project.CreditCard;
 import se.chalmers.ait.dat215.project.Customer;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
@@ -21,20 +25,27 @@ import se.chalmers.ait.dat215.project.IMatDataHandler;
  * @author Ernst
  */
 public class AccountSettingsView extends javax.swing.JPanel {
-
+    private JDialog dialogFrame;
     private Customer customer = IMatDataHandler.getInstance().getCustomer();
     private CreditCard creditCard = IMatDataHandler.getInstance().getCreditCard();
-    
+    public static final Dimension PREFERRED_SIZE = new Dimension(700, 400);
+    public static final String DIALOG_TITLE = "Kontoinställningar";
+
     /** Creates new form AccountSettingsView */
     public AccountSettingsView() {
         initComponents();
-        
+
         accNameField.setText(customer.getFirstName());
         accLastNameField.setText(customer.getLastName());
         accPhoneField.setText(customer.getPhoneNumber());
         accPostalCodeField.setText(customer.getPostCode());
         accCityField.setText(customer.getPostAddress());
         accAddressField.setText(customer.getAddress());
+    }
+    
+    public AccountSettingsView(JDialog dialogFrame) {
+        this();
+        this.dialogFrame = dialogFrame;
     }
 
     /** This method is called from within the constructor to
@@ -75,42 +86,47 @@ public class AccountSettingsView extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         CardCSVField = new javax.swing.JTextField();
         dontSaveCardCheckBox = new javax.swing.JCheckBox();
-        saveSettingsButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         cancelButton = new javax.swing.JButton();
+        saveSettingsButton = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(800, 600));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        accountSettingContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Kontouppgifter"));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.X_AXIS));
 
-        jLabel1.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        accountSettingContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Kontouppgifter"));
+        accountSettingContainer.setPreferredSize(new java.awt.Dimension(400, 355));
+
+        jLabel1.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         jLabel1.setText("Förnamn:");
 
-        jLabel2.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         jLabel2.setText("Efternamn:");
 
-        jLabel3.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         jLabel3.setText("Adress:");
 
-        jLabel4.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         jLabel4.setText("Postnummer:");
 
-        jLabel5.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         jLabel5.setText("Ort:");
 
-        jLabel6.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         jLabel6.setText("Telefon:");
 
-        accNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        accNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
 
-        accLastNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        accLastNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
 
-        accAddressField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        accAddressField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
 
-        accPostalCodeField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        accPostalCodeField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
 
-        accCityField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        accCityField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
 
-        accPhoneField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        accPhoneField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
 
         javax.swing.GroupLayout accountSettingContainerLayout = new javax.swing.GroupLayout(accountSettingContainer);
         accountSettingContainer.setLayout(accountSettingContainerLayout);
@@ -127,12 +143,12 @@ public class AccountSettingsView extends javax.swing.JPanel {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(accPhoneField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addComponent(accCityField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addComponent(accPostalCodeField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addComponent(accAddressField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addComponent(accLastNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addComponent(accNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                    .addComponent(accPhoneField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                    .addComponent(accCityField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                    .addComponent(accPostalCodeField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                    .addComponent(accAddressField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                    .addComponent(accLastNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                    .addComponent(accNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
                 .addContainerGap())
         );
         accountSettingContainerLayout.setVerticalGroup(
@@ -162,11 +178,14 @@ public class AccountSettingsView extends javax.swing.JPanel {
                 .addGroup(accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(accPhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
+
+        jPanel1.add(accountSettingContainer);
 
         cardSettingContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Kortuppgifter"));
         cardSettingContainer.setFont(new java.awt.Font("Myriad Pro", 0, 11));
+        cardSettingContainer.setPreferredSize(new java.awt.Dimension(400, 355));
 
         cardTypeButtonGroup.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Myriad Pro", 0, 12));
@@ -239,10 +258,10 @@ public class AccountSettingsView extends javax.swing.JPanel {
                                 .addComponent(jRadioButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jRadioButton3))
-                            .addComponent(cardAddressField, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                            .addComponent(cardNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                            .addComponent(cardAddressField, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                            .addComponent(cardNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                             .addGroup(cardSettingContainerLayout.createSequentialGroup()
-                                .addComponent(cardNumberField, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                                .addComponent(cardNumberField, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -275,8 +294,14 @@ public class AccountSettingsView extends javax.swing.JPanel {
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addComponent(dontSaveCardCheckBox)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
+
+        jPanel1.add(cardSettingContainer);
+
+        add(jPanel1);
+
+        cancelButton.setText("Avbryt");
 
         saveSettingsButton.setText("Spara Uppgifter");
         saveSettingsButton.setMaximumSize(new java.awt.Dimension(123, 50));
@@ -288,40 +313,28 @@ public class AccountSettingsView extends javax.swing.JPanel {
             }
         });
 
-        cancelButton.setText("Avbryt");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cancelButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(saveSettingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(accountSettingContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cardSettingContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(567, Short.MAX_VALUE)
+                .addComponent(cancelButton)
+                .addGap(18, 18, 18)
+                .addComponent(saveSettingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(accountSettingContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cardSettingContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(saveSettingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(120, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveSettingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelButton))
                 .addContainerGap())
         );
 
-        add(jPanel1);
+        add(jPanel2);
     }// </editor-fold>//GEN-END:initComponents
 
 private void dontSaveCardCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dontSaveCardCheckBoxActionPerformed
@@ -330,9 +343,9 @@ private void dontSaveCardCheckBoxActionPerformed(java.awt.event.ActionEvent evt)
     cardNumberField.setEnabled(!dontSaveCardCheckBox.isSelected());
     cardSettingContainer.setEnabled(!dontSaveCardCheckBox.isSelected());
     CardCSVField.setEnabled(!dontSaveCardCheckBox.isSelected());
-    
+
     Enumeration<AbstractButton> buttons = cardTypeButtonGroup.getElements();
-    while( buttons.hasMoreElements() ){
+    while (buttons.hasMoreElements()) {
         AbstractButton b = buttons.nextElement();
         b.setEnabled(!dontSaveCardCheckBox.isSelected());
     }
@@ -345,15 +358,14 @@ private void saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {
     customer.setPostCode(accPostalCodeField.getText());
     customer.setPostAddress(accCityField.getText());
     customer.setAddress(accAddressField.getText());
-    
-    if(dontSaveCardCheckBox.isSelected()) {
-        // Clear all saved credit card info if user don't want it saved
-        
-    } else {
-        
-    }
-}//GEN-LAST:event_saveSettingsButtonActionPerformed
 
+    if (dontSaveCardCheckBox.isSelected()) {
+        // Clear all saved credit card info if user don't want it saved
+    } else {
+    }
+
+    close();
+}//GEN-LAST:event_saveSettingsButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CardCSVField;
     private javax.swing.JTextField accAddressField;
@@ -382,9 +394,16 @@ private void saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JButton saveSettingsButton;
     // End of variables declaration//GEN-END:variables
+
+    private void close() {
+        if(dialogFrame != null) {
+            dialogFrame.setVisible(false);
+        }
+    }
 }
