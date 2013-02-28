@@ -10,10 +10,12 @@
  */
 package Views.AccountSettings;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Window;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
+import javax.swing.ButtonModel;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 import se.chalmers.ait.dat215.project.CreditCard;
@@ -25,6 +27,7 @@ import se.chalmers.ait.dat215.project.IMatDataHandler;
  * @author Ernst
  */
 public class AccountSettingsView extends javax.swing.JPanel {
+
     private JDialog dialogFrame;
     private Customer customer = IMatDataHandler.getInstance().getCustomer();
     private CreditCard creditCard = IMatDataHandler.getInstance().getCreditCard();
@@ -35,14 +38,37 @@ public class AccountSettingsView extends javax.swing.JPanel {
     public AccountSettingsView() {
         initComponents();
 
+        // Get saved info for the account settings fields
         accNameField.setText(customer.getFirstName());
         accLastNameField.setText(customer.getLastName());
         accPhoneField.setText(customer.getPhoneNumber());
         accPostalCodeField.setText(customer.getPostCode());
         accCityField.setText(customer.getPostAddress());
         accAddressField.setText(customer.getAddress());
+
+        // And get info for the card settings fields
+        cardNumberField.setText(creditCard.getCardNumber());
+        cardNameField.setText(creditCard.getHoldersName());
+        if (creditCard.getVerificationCode() > 0) {
+            cardCSVField.setText("" + creditCard.getVerificationCode());
+        }
+
+        // Card type
+        if (creditCard.getCardType().equalsIgnoreCase("CASH")) {
+            cardTypeCashRadioButton.setSelected(true);
+        } else if (creditCard.getCardType().equalsIgnoreCase("MASTERCARD")) {
+            cardTypeMasterRadioButton.setSelected(true);
+        } else {
+            cardTypeVisaRadioButton.setSelected(true);
+        }
+
+        // Card expire date
+        System.out.println(creditCard.getValidMonth());
+        cardMonthComboBox.setSelectedItem("" + creditCard.getValidMonth());
+        cardYearComboBox.setSelectedItem("" + creditCard.getValidYear());
+
     }
-    
+
     public AccountSettingsView(JDialog dialogFrame) {
         this();
         this.dialogFrame = dialogFrame;
@@ -73,19 +99,21 @@ public class AccountSettingsView extends javax.swing.JPanel {
         accCityField = new javax.swing.JTextField();
         accPhoneField = new javax.swing.JTextField();
         cardSettingContainer = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        cardTypeVisaRadioButton = new javax.swing.JRadioButton();
+        cardTypeMasterRadioButton = new javax.swing.JRadioButton();
+        cardTypeCashRadioButton = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         cardNumberField = new javax.swing.JTextField();
         cardNameField = new javax.swing.JTextField();
-        cardAddressField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        CardCSVField = new javax.swing.JTextField();
+        cardCSVField = new javax.swing.JTextField();
         dontSaveCardCheckBox = new javax.swing.JCheckBox();
+        jLabel12 = new javax.swing.JLabel();
+        cardYearComboBox = new javax.swing.JComboBox();
+        jLabel13 = new javax.swing.JLabel();
+        cardMonthComboBox = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         cancelButton = new javax.swing.JButton();
         saveSettingsButton = new javax.swing.JButton();
@@ -187,51 +215,53 @@ public class AccountSettingsView extends javax.swing.JPanel {
         cardSettingContainer.setFont(new java.awt.Font("Myriad Pro", 0, 11));
         cardSettingContainer.setPreferredSize(new java.awt.Dimension(400, 355));
 
-        cardTypeButtonGroup.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-        jRadioButton1.setText("VISA");
+        cardTypeButtonGroup.add(cardTypeVisaRadioButton);
+        cardTypeVisaRadioButton.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        cardTypeVisaRadioButton.setText("VISA");
 
-        cardTypeButtonGroup.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-        jRadioButton2.setText("Mastercard");
+        cardTypeButtonGroup.add(cardTypeMasterRadioButton);
+        cardTypeMasterRadioButton.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        cardTypeMasterRadioButton.setText("Mastercard");
 
-        cardTypeButtonGroup.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-        jRadioButton3.setText("CASH-kort");
+        cardTypeButtonGroup.add(cardTypeCashRadioButton);
+        cardTypeCashRadioButton.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        cardTypeCashRadioButton.setText("CASH-kort");
 
         jLabel7.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         jLabel7.setLabelFor(cardNumberField);
         jLabel7.setText("Kortnummer:");
 
-        jLabel8.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel8.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
         jLabel8.setLabelFor(cardNameField);
         jLabel8.setText("Namn:");
 
-        jLabel9.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-        jLabel9.setLabelFor(cardAddressField);
-        jLabel9.setText("Adress:");
-
-        jLabel10.setLabelFor(jRadioButton1);
+        jLabel10.setLabelFor(cardTypeVisaRadioButton);
         jLabel10.setText("Korttyp:");
 
         cardNumberField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
 
-        cardNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        cardNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
 
-        cardAddressField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-
-        jLabel11.setLabelFor(CardCSVField);
+        jLabel11.setLabelFor(cardCSVField);
         jLabel11.setText("CSV:");
 
-        CardCSVField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        cardCSVField.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
 
-        dontSaveCardCheckBox.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        dontSaveCardCheckBox.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
         dontSaveCardCheckBox.setText("Spara inte mitt kort");
         dontSaveCardCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dontSaveCardCheckBoxActionPerformed(evt);
             }
         });
+
+        jLabel12.setText("Giltigt till:");
+
+        cardYearComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "År", "2013", "2014", "2015", "2016", "2017" }));
+
+        jLabel13.setText("/");
+
+        cardMonthComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Månad", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
         javax.swing.GroupLayout cardSettingContainerLayout = new javax.swing.GroupLayout(cardSettingContainer);
         cardSettingContainer.setLayout(cardSettingContainerLayout);
@@ -249,23 +279,28 @@ public class AccountSettingsView extends javax.swing.JPanel {
                                 .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel7)
-                                    .addComponent(jLabel9))
+                                    .addComponent(jLabel12))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(cardSettingContainerLayout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(cardTypeVisaRadioButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton2)
+                                .addComponent(cardTypeMasterRadioButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton3))
-                            .addComponent(cardAddressField, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                                .addComponent(cardTypeCashRadioButton))
                             .addComponent(cardNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                             .addGroup(cardSettingContainerLayout.createSequentialGroup()
                                 .addComponent(cardNumberField, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CardCSVField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(cardCSVField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(cardSettingContainerLayout.createSequentialGroup()
+                                .addComponent(cardMonthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cardYearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(dontSaveCardCheckBox))
                 .addContainerGap())
         );
@@ -274,27 +309,29 @@ public class AccountSettingsView extends javax.swing.JPanel {
             .addGroup(cardSettingContainerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3)
+                    .addComponent(cardTypeVisaRadioButton)
+                    .addComponent(cardTypeMasterRadioButton)
+                    .addComponent(cardTypeCashRadioButton)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cardNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel11)
-                    .addComponent(CardCSVField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cardCSVField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cardNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cardAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel12)
+                    .addComponent(cardMonthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(cardYearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(dontSaveCardCheckBox)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         jPanel1.add(cardSettingContainer);
@@ -302,6 +339,11 @@ public class AccountSettingsView extends javax.swing.JPanel {
         add(jPanel1);
 
         cancelButton.setText("Avbryt");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         saveSettingsButton.setText("Spara Uppgifter");
         saveSettingsButton.setMaximumSize(new java.awt.Dimension(123, 50));
@@ -327,7 +369,7 @@ public class AccountSettingsView extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(120, Short.MAX_VALUE)
+                .addContainerGap(121, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveSettingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelButton))
@@ -338,16 +380,10 @@ public class AccountSettingsView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void dontSaveCardCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dontSaveCardCheckBoxActionPerformed
-    cardAddressField.setEnabled(!dontSaveCardCheckBox.isSelected());
-    cardNameField.setEnabled(!dontSaveCardCheckBox.isSelected());
-    cardNumberField.setEnabled(!dontSaveCardCheckBox.isSelected());
-    cardSettingContainer.setEnabled(!dontSaveCardCheckBox.isSelected());
-    CardCSVField.setEnabled(!dontSaveCardCheckBox.isSelected());
-
-    Enumeration<AbstractButton> buttons = cardTypeButtonGroup.getElements();
-    while (buttons.hasMoreElements()) {
-        AbstractButton b = buttons.nextElement();
-        b.setEnabled(!dontSaveCardCheckBox.isSelected());
+    for (Component c : cardSettingContainer.getComponents()) {
+        if (!c.equals(evt.getSource())) {
+            c.setEnabled(!dontSaveCardCheckBox.isSelected());
+        }
     }
 }//GEN-LAST:event_dontSaveCardCheckBoxActionPerformed
 
@@ -361,13 +397,50 @@ private void saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
     if (dontSaveCardCheckBox.isSelected()) {
         // Clear all saved credit card info if user don't want it saved
+        creditCard.setCardNumber("");
+        creditCard.setCardType("");
+        creditCard.setHoldersName("");
+        creditCard.setValidMonth(-1);
+        creditCard.setValidYear(-1);
+        creditCard.setVerificationCode(0);
     } else {
+        creditCard.setCardNumber(cardNumberField.getText());
+        if (cardTypeCashRadioButton.isSelected()) {
+            creditCard.setCardType("CASH");
+        } else if (cardTypeMasterRadioButton.isSelected()) {
+            creditCard.setCardType("MASTERCARD");
+        } else {
+            creditCard.setCardType("VISA");
+        }
+        creditCard.setHoldersName(cardNameField.getText());
+
+
+        try {
+            creditCard.setValidMonth(Integer.parseInt((String) cardMonthComboBox.getSelectedItem()));
+        } catch (NumberFormatException ex) {
+            creditCard.setValidMonth(-1);
+        }
+        try {
+            creditCard.setValidYear(Integer.parseInt((String) cardYearComboBox.getSelectedItem()));
+        } catch (NumberFormatException ex) {
+            creditCard.setValidYear(-1);
+        }
+
+        try {
+            creditCard.setVerificationCode(Integer.parseInt(cardCSVField.getText()));
+        } catch (NumberFormatException ex) {
+            creditCard.setVerificationCode(0);
+        }
+
     }
 
-    close();
+    closeDialog();
 }//GEN-LAST:event_saveSettingsButtonActionPerformed
+
+private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    closeDialog();
+}//GEN-LAST:event_cancelButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CardCSVField;
     private javax.swing.JTextField accAddressField;
     private javax.swing.JTextField accCityField;
     private javax.swing.JTextField accLastNameField;
@@ -376,15 +449,22 @@ private void saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JTextField accPostalCodeField;
     private javax.swing.JPanel accountSettingContainer;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JTextField cardAddressField;
+    private javax.swing.JTextField cardCSVField;
+    private javax.swing.JComboBox cardMonthComboBox;
     private javax.swing.JTextField cardNameField;
     private javax.swing.JTextField cardNumberField;
     private javax.swing.JPanel cardSettingContainer;
     private javax.swing.ButtonGroup cardTypeButtonGroup;
+    private javax.swing.JRadioButton cardTypeCashRadioButton;
+    private javax.swing.JRadioButton cardTypeMasterRadioButton;
+    private javax.swing.JRadioButton cardTypeVisaRadioButton;
+    private javax.swing.JComboBox cardYearComboBox;
     private javax.swing.JCheckBox dontSaveCardCheckBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -392,17 +472,13 @@ private void saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JButton saveSettingsButton;
     // End of variables declaration//GEN-END:variables
 
-    private void close() {
-        if(dialogFrame != null) {
+    private void closeDialog() {
+        if (dialogFrame != null) {
             dialogFrame.setVisible(false);
         }
     }
