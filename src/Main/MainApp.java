@@ -20,11 +20,7 @@ public class MainApp extends SingleFrameApplication {
      */
     @Override
     protected void startup() {
-        show(new MainView(this));
-        
-        // Load lists on load
-        ShoppingListsHandler.INSTANCE.load();
-        
+        show(new MainView(this));        
         // Handle exit
         this.addExitListener(new ExitListener() {
             

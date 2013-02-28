@@ -96,13 +96,13 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
                   <SubComponents>
-                    <Component class="Views.StartPage.MainPanel" name="mainPanel1">
+                    <Component class="Views.listOrderDetails.ListOrderDetailsView" name="listOrderDetailsView1">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="mainPanel1" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="listOrderDetailsView1" noResource="true"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                          <CardConstraints cardName="card2"/>
+                          <CardConstraints cardName="card4"/>
                         </Constraint>
                       </Constraints>
                     </Component>

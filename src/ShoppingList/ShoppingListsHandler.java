@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -26,53 +25,27 @@ public enum ShoppingListsHandler {
      * The ShoppingListsHandler instance.
      */
     INSTANCE;
+    
+    private ShoppingListsHandler() {
+        load();
+    }
     /** 
      * The ShoppingListsHolder holding our data so that it can be serialized.
      */
     private ShoppingListsHolder holder = new ShoppingListsHolder();
-    /**
-     * The file path where we are saving our object data.
-     */
-    public static final String FILE_PATH = System.getProperty("user.home")
-            + "/.dat215/imat/shoppinglists.data";
 
     /**
-     * Loads the user's shoppingLists from file.
+     * Loads list from file.
      */
-    public void load() {
-        System.out.println("LoadShoppingLists, starting...");
-        
-        try {
-            FileInputStream f = new FileInputStream(FILE_PATH);
-            ObjectInputStream in = new ObjectInputStream(f);
-            holder = (ShoppingListsHolder) in.readObject();
-        } catch (InvalidClassException ex) {
-            // We have a different version saved, just don't load it.
-        } catch (IOException ex) {
-            Logger.getLogger(ShoppingListsHandler.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ShoppingListsHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        // Update the static numList of ShoppingList, as static
-        // vars are not saved/loaded when serializing.
-        ShoppingList.numLists = holder.shoppingLists.size();
+    public void load(){
+        holder.load();
     }
-
+    
     /**
-     * Saves the user's shoppingLists to file.
+     * Saves lists to file.
      */
-    public void save() {
-        System.out.println("saveShoppingLists()");
-        
-        try {
-            File f = new File(FILE_PATH);
-            FileOutputStream fo = new FileOutputStream(f);
-            ObjectOutputStream out = new ObjectOutputStream(fo);
-            out.writeObject(holder);            
-        } catch (IOException ex) {
-            Logger.getLogger(ShoppingListsHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void save(){
+        holder.save();
     }
 
     /**
@@ -103,14 +76,5 @@ public enum ShoppingListsHandler {
         return new HashSet<ShoppingList>(holder.shoppingLists);
         
         
-    }
-
-    /**
-     * Inner Serializable class for holding lists. This is to enable
-     * us to save the list of lists to a file.
-     */
-    private class ShoppingListsHolder implements Serializable {
-        
-        private Set<ShoppingList> shoppingLists = new HashSet<ShoppingList>();
     }
 }

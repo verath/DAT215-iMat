@@ -48,7 +48,7 @@ public class MainView extends FrameView {
         jSplitPane1 = new javax.swing.JSplitPane();
         categoriesPanel = new Views.Categories.CategoriesView();
         centerCardContainer = new javax.swing.JPanel();
-        mainPanel1 = new Views.StartPage.MainPanel();
+        listOrderDetailsView1 = new Views.listOrderDetails.ListOrderDetailsView();
         searchResultsView1 = new Views.SearchResults.SearchResultsView();
         detailedProductView1 = new Views.DetailedProduct.DetailedProductView();
         shoppingCart = new Views.ShoppingCart.ShoppingCartView();
@@ -86,8 +86,8 @@ public class MainView extends FrameView {
         centerCardContainer.setOpaque(false);
         centerCardContainer.setLayout(new java.awt.CardLayout());
 
-        mainPanel1.setName("mainPanel1"); // NOI18N
-        centerCardContainer.add(mainPanel1, "card2");
+        listOrderDetailsView1.setName("listOrderDetailsView1"); // NOI18N
+        centerCardContainer.add(listOrderDetailsView1, "card4");
 
         searchResultsView1.setName("searchResultsView1"); // NOI18N
         centerCardContainer.add(searchResultsView1, "card3");
@@ -121,7 +121,7 @@ public class MainView extends FrameView {
                     .addGroup(mainCardLayout.createSequentialGroup()
                         .addComponent(headerBar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, Short.MAX_VALUE)))
+                        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -208,9 +208,9 @@ private void showAccSettingsMenuItemActionPerformed(java.awt.event.ActionEvent e
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
+    private Views.listOrderDetails.ListOrderDetailsView listOrderDetailsView1;
     private javax.swing.JPanel mainCard;
     private javax.swing.JPanel mainPanel;
-    private Views.StartPage.MainPanel mainPanel1;
     private javax.swing.JMenuBar menuBar;
     private Views.SearchResults.SearchResultsView searchResultsView1;
     private Views.ShoppingCart.ShoppingCartView shoppingCart;
