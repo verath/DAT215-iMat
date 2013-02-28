@@ -8,6 +8,8 @@ import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,18 +35,22 @@ public enum ShoppingListsHandler {
      * The ShoppingListsHolder holding our data so that it can be serialized.
      */
     private ShoppingListsHolder holder = new ShoppingListsHolder();
+    /**
+     * Listeners for shoppingListChanges
+     */
+    private List<ShoppingListChangeListener> changeListeners = new LinkedList<ShoppingListChangeListener>();
 
     /**
      * Loads list from file.
      */
-    public void load(){
+    public void load() {
         holder.load();
     }
-    
+
     /**
      * Saves lists to file.
      */
-    public void save(){
+    public void save() {
         holder.save();
     }
 
@@ -55,7 +61,11 @@ public enum ShoppingListsHandler {
      * @return True if the list changed (ie. the list existed in the collection)
      */
     public boolean removeShoppingList(ShoppingList sl) {
-        return holder.shoppingLists.remove(sl);
+        boolean change = holder.shoppingLists.remove(sl);
+        if (change) {
+            notifyChangeListeners();
+        }
+        return change;
     }
 
     /**
@@ -65,7 +75,11 @@ public enum ShoppingListsHandler {
      * @return True if the list changed (ie. the list existed in the collection)
      */
     public boolean addShoppingList(ShoppingList sl) {
-        return holder.shoppingLists.add(sl);
+        boolean change = holder.shoppingLists.add(sl);
+        if (change) {
+            notifyChangeListeners();
+        }
+        return change;
     }
 
     /**
@@ -73,8 +87,33 @@ public enum ShoppingListsHandler {
      * @return A shallow-copied list of the ShoppingLists
      */
     public Set<ShoppingList> getShoppingLists() {
-        return new HashSet<ShoppingList>(holder.shoppingLists);
-        
-        
+        return new HashSet<ShoppingList>(holder.shoppingLists);        
+    }
+
+    /**
+     * Notifies all navigation listeners about a navigation in the UI
+     * @param sq 
+     */
+    public void notifyChangeListeners() {
+        for (ShoppingListChangeListener changeListener : changeListeners) {
+            changeListener.onChange();
+        }
+    }
+
+    /**
+     * Adds a NavigationListner to be notified when a navigation in
+     * the UI is performed.
+     * @param navigationListener 
+     */
+    public void addChangeListener(ShoppingListChangeListener changeListener) {
+        changeListeners.add(changeListener);
+    }
+
+    /**
+     * Removes a NavigationListener.
+     * @param navigationListener 
+     */
+    public void removeChangeListener(ShoppingListChangeListener changeListener) {
+        changeListeners.remove(changeListener);
     }
 }
