@@ -60,14 +60,11 @@ public class CategoryItemView extends javax.swing.JPanel {
     public void setActiveState() {
         container.setBackground(new Color(51, 153, 255));
         nameLabel.setForeground(Color.white);
-        //nameLabel.setFont(highlightedFont);
     }
 
     public void unsetActiveState() {
         container.setBackground(Color.white);
         nameLabel.setForeground(Color.BLACK);
-
-        //nameLabel.setFont(disabledFont);
     }
 
     /** This method is called from within the constructor to

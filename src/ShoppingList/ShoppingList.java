@@ -113,4 +113,9 @@ public class ShoppingList implements Serializable {
         return dateModified;
     }
     
+    @Override
+    public String toString(){
+        return getName();
+    }
+    
 }

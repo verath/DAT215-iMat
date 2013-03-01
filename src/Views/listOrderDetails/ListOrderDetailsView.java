@@ -10,19 +10,48 @@
  */
 package Views.listOrderDetails;
 
+import ShoppingList.ShoppingList;
 import ShoppingList.ShoppingListChangeListener;
 import ShoppingList.ShoppingListsHandler;
+import javax.swing.JPanel;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
 
 /**
  *
  * @author Peter
  */
 public class ListOrderDetailsView extends javax.swing.JPanel implements ShoppingListChangeListener {
+    
+    public enum ListOrderType {
+        
+        SHOPPING_LIST, ORDER_LIST
+    }
+    private ListOrderType listType;
+    private JPanel selectedPanel;
 
     /** Creates new form ListOrderDetailsView */
-    public ListOrderDetailsView() {
+    public ListOrderDetailsView(ListOrderType listType) {
         initComponents();
         ShoppingListsHandler.INSTANCE.addChangeListener(this);
+        
+        this.listType = listType;
+        
+        updateListModel();
+    }
+    
+    public ListOrderDetailsView() {
+        this(ListOrderType.ORDER_LIST);
+    }
+    
+    private void updateListModel() {
+        switch (this.listType) {
+            case SHOPPING_LIST: // Shopping list 
+                itemList.setModel(new ViewableShoppingList());
+                break;
+            case ORDER_LIST:
+                itemList.setModel(new ViewableOrderList());
+                break;
+        }
     }
 
     /** This method is called from within the constructor to
@@ -78,9 +107,8 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
     }// </editor-fold>//GEN-END:initComponents
 
 private void itemListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_itemListValueChanged
-    System.out.println(itemList.getSelectedValue());
+    updateDetailedView();
 }//GEN-LAST:event_itemListValueChanged
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel detailsContainer;
     private javax.swing.JList itemList;
@@ -88,8 +116,22 @@ private void itemListValueChanged(javax.swing.event.ListSelectionEvent evt) {//G
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 
-    public void onChange() {
-        System.out.println("ListOrderView: Shopping lists changed");
+    public void updateDetailedView() {
+        if (selectedPanel != null) {
+            detailsContainer.remove(selectedPanel);
+        }
+        if (itemList.getSelectedIndex() > -1) {
+            selectedPanel = new ShoppingListOrderDetailed(itemList.getSelectedValue());
+            detailsContainer.add(selectedPanel);
+        }
+        
+        jSplitPane1.validate();
+        jSplitPane1.repaint();
     }
-
+    
+    public void onChange() {
+        if (listType == ListOrderType.SHOPPING_LIST) {
+            updateListModel();
+        }
+    }
 }
