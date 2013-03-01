@@ -24,8 +24,7 @@ public class FirstCheckoutView extends javax.swing.JPanel {
     public FirstCheckoutView() {
         initComponents();
         sumOfItems.setAsSumItem();
-        CheckoutShoppingItem item1 = new CheckoutShoppingItem();
-        //checkoutItemsHolder.add(item1);        
+        CheckoutShoppingItem item1 = new CheckoutShoppingItem();       
     }
     
     public void addItemToItemsHolder( ShoppingItem si){
@@ -67,6 +66,8 @@ public class FirstCheckoutView extends javax.swing.JPanel {
         checkoutItemsHolder = new javax.swing.JPanel();
         sumOfItems = new Views.Checkout.CheckoutShoppingItem();
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(FirstCheckoutView.class);
+        checkoutItemsHolder.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("checkoutItemsHolder.border.title"))); // NOI18N
         checkoutItemsHolder.setName("checkoutItemsHolder"); // NOI18N
         checkoutItemsHolder.setLayout(new javax.swing.BoxLayout(checkoutItemsHolder, javax.swing.BoxLayout.Y_AXIS));
 
@@ -76,19 +77,21 @@ public class FirstCheckoutView extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, checkoutItemsHolder, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
-                .add(20, 20, 20)
-                .add(sumOfItems, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, checkoutItemsHolder, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, sumOfItems, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .add(checkoutItemsHolder, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(sumOfItems, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(checkoutItemsHolder, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .add(18, 18, 18)
+                .add(sumOfItems, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

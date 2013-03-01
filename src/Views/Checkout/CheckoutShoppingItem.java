@@ -96,6 +96,7 @@ public class CheckoutShoppingItem extends javax.swing.JPanel {
         jLabel4.setFont(resourceMap.getFont("jLabel4.font")); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
+        jLabel4.setToolTipText(resourceMap.getString("jLabel4.toolTipText")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
