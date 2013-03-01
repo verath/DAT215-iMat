@@ -49,8 +49,11 @@ public class FirstCheckoutView extends javax.swing.JPanel {
         checkoutItemsHolder.validate();
         checkoutItemsHolder.repaint();
         
+        
+        
         //------------------------------------
         //Måste fixa så att totalsumman visas rätt
+        //------------------------------------
         
     }
 
@@ -80,9 +83,9 @@ public class FirstCheckoutView extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, checkoutItemsHolder, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, sumOfItems, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
-                .addContainerGap(146, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, sumOfItems, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, checkoutItemsHolder, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

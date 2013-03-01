@@ -69,7 +69,7 @@ public enum ShoppingCartWrapper {
     public void removeProduct(Product p) {
         ShoppingItem si = getItemByProduct(p);
         shoppingCart.removeItem(si);
-        fireShoppingCartChanged(si, false);
+        fireShoppingCartChanged(si, true);
     }
 
     /**

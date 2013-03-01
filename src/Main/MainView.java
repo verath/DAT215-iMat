@@ -238,6 +238,7 @@ private void showPrevOrdersMenuItemActionPerformed(java.awt.event.ActionEvent ev
     }
     
     protected void showCheckoutPanel(){
+        cardLayoutCheckoutView1.showFirstCard();
         ((CardLayout)mainPanel.getLayout()).show(mainPanel, "checkout");
     }
     

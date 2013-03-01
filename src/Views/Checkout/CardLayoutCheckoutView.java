@@ -10,6 +10,7 @@
  */
 package Views.Checkout;
 
+import Main.ShoppingCartWrapper;
 import java.awt.CardLayout;
 import java.awt.Font;
 import java.awt.Panel;
@@ -38,6 +39,7 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
         shoppingCart.setFont(highlightedFont);
         payButton.setVisible(false);
         previousButton.setVisible(false);
+        scw = ShoppingCartWrapper.INSTANCE;
     }
 
     /** This method is called from within the constructor to
@@ -70,7 +72,7 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
         jPanel1.setLayout(new java.awt.CardLayout());
 
         firstCheckoutView1.setName("firstCheckoutView1"); // NOI18N
-        jPanel1.add(firstCheckoutView1, "card2");
+        jPanel1.add(firstCheckoutView1, "firstCard");
 
         secondCheckoutView1.setName("secondCheckoutView1"); // NOI18N
         jPanel1.add(secondCheckoutView1, "card3");
@@ -79,18 +81,6 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
         jPanel1.add(thirdCheckoutView1, "card4");
 
         fourthCheckoutView1.setName("fourthCheckoutView1"); // NOI18N
-
-        org.jdesktop.layout.GroupLayout fourthCheckoutView1Layout = new org.jdesktop.layout.GroupLayout(fourthCheckoutView1);
-        fourthCheckoutView1.setLayout(fourthCheckoutView1Layout);
-        fourthCheckoutView1Layout.setHorizontalGroup(
-            fourthCheckoutView1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 718, Short.MAX_VALUE)
-        );
-        fourthCheckoutView1Layout.setVerticalGroup(
-            fourthCheckoutView1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 519, Short.MAX_VALUE)
-        );
-
         jPanel1.add(fourthCheckoutView1, "card5");
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(CardLayoutCheckoutView.class);
@@ -200,7 +190,6 @@ public void cardNumberUp () {
     } else {
         card++;
     }
-    System.out.println(card);
 }
 
 public void cardNumberDown () {
@@ -209,8 +198,15 @@ public void cardNumberDown () {
     } else {
         card--;
     }
+}
+
+public void showFirstCard () {
+    firstCheckoutView1.setItemsInCheckoutView(scw.getItems());
     
-    System.out.println(card);
+    card = 1;
+    
+    cl.show(jPanel1, "firstCard");
+    updateNavigation();
 }
 
 public void updateNavigation () {
@@ -316,5 +312,6 @@ private void payButtonPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event
     CreditCard creditCard;
     Font regularFont;
     Font highlightedFont;
+    ShoppingCartWrapper scw;
     
 }

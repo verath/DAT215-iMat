@@ -19,10 +19,10 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="checkoutItemsHolder" alignment="0" max="32767" attributes="1"/>
-                  <Component id="sumOfItems" alignment="0" pref="488" max="32767" attributes="1"/>
+                  <Component id="sumOfItems" alignment="0" max="32767" attributes="1"/>
+                  <Component id="checkoutItemsHolder" alignment="0" pref="572" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace pref="146" max="32767" attributes="0"/>
+              <EmptySpace pref="62" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

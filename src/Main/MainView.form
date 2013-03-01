@@ -28,8 +28,8 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jSplitPane1" pref="928" max="32767" attributes="0"/>
-                          <Component id="headerBar" alignment="0" pref="928" max="32767" attributes="0"/>
+                          <Component id="jSplitPane1" pref="901" max="32767" attributes="0"/>
+                          <Component id="headerBar" alignment="0" pref="901" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="shoppingCart" min="-2" max="-2" attributes="0"/>
@@ -42,11 +42,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="shoppingCart" alignment="0" pref="639" max="32767" attributes="2"/>
+                          <Component id="shoppingCart" alignment="0" pref="629" max="32767" attributes="2"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="headerBar" min="-2" pref="38" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSplitPane1" pref="594" max="32767" attributes="2"/>
+                              <Component id="jSplitPane1" pref="591" max="32767" attributes="2"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
