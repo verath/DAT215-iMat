@@ -165,4 +165,11 @@ public enum MainController {
             view.showSearchResultsPanel();
         }
     }
+
+    public void showStartPanel() {
+        if( view != null) {
+            showMain();
+            view.showStartPanel();
+        }
+    }
 }

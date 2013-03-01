@@ -10,6 +10,8 @@
  */
 package Views.HeaderBar;
 
+import Main.MainController;
+
 /**
  *
  * @author Peter
@@ -54,6 +56,11 @@ public class HeaderBarView extends javax.swing.JPanel {
         homeButton.setIcon(resourceMap.getIcon("homeButton.icon")); // NOI18N
         homeButton.setText(resourceMap.getString("homeButton.text")); // NOI18N
         homeButton.setName("homeButton"); // NOI18N
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(homeButton);
 
         filler1.setName("filler1"); // NOI18N
@@ -111,6 +118,11 @@ private void SearchInputFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIR
 private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
     hbController.onSearchButtonActionPerformed(evt);
 }//GEN-LAST:event_SearchButtonActionPerformed
+
+private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+    MainController.INSTANCE.showStartPanel();
+}//GEN-LAST:event_homeButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SearchButton;
     private javax.swing.JTextField SearchInputField;

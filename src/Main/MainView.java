@@ -53,6 +53,7 @@ public class MainView extends FrameView {
         listOrderDetailsView1 = new Views.listOrderDetails.ListOrderDetailsView();
         searchResultsView1 = new Views.SearchResults.SearchResultsView();
         detailedProductView1 = new Views.DetailedProduct.DetailedProductView();
+        mainPanel1 = new Views.StartPage.MainPanel();
         shoppingCart = new Views.ShoppingCart.ShoppingCartView();
         checkoutCard = new javax.swing.JPanel();
         cardLayoutCheckoutView1 = new Views.Checkout.CardLayoutCheckoutView();
@@ -98,6 +99,9 @@ public class MainView extends FrameView {
         detailedProductView1.setName("detailedProductView1"); // NOI18N
         centerCardContainer.add(detailedProductView1, "productDetails");
 
+        mainPanel1.setName("mainPanel1"); // NOI18N
+        centerCardContainer.add(mainPanel1, "start");
+
         jSplitPane1.setRightComponent(centerCardContainer);
 
         shoppingCart.setName("shoppingCart"); // NOI18N
@@ -109,8 +113,8 @@ public class MainView extends FrameView {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainCardLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE)
-                    .addComponent(headerBar, javax.swing.GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE))
+                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+                    .addComponent(headerBar, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(shoppingCart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -120,11 +124,11 @@ public class MainView extends FrameView {
             .addGroup(mainCardLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(shoppingCart, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
+                    .addComponent(shoppingCart, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
                     .addGroup(mainCardLayout.createSequentialGroup()
                         .addComponent(headerBar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)))
+                        .addComponent(jSplitPane1)))
                 .addContainerGap())
         );
 
@@ -224,6 +228,7 @@ private void showPrevOrdersMenuItemActionPerformed(java.awt.event.ActionEvent ev
     private Views.listOrderDetails.ListOrderDetailsView listOrderDetailsView1;
     private javax.swing.JPanel mainCard;
     private javax.swing.JPanel mainPanel;
+    private Views.StartPage.MainPanel mainPanel1;
     private javax.swing.JMenuBar menuBar;
     private Views.SearchResults.SearchResultsView searchResultsView1;
     private Views.ShoppingCart.ShoppingCartView shoppingCart;
@@ -255,5 +260,9 @@ private void showPrevOrdersMenuItemActionPerformed(java.awt.event.ActionEvent ev
         showAccSettingsMenuItem.setEnabled(b);
         showPrevOrdersMenuItem.setEnabled(b);
         showShoppingListsMenuItem.setEnabled(b);
+    }
+
+    void showStartPanel() {
+        ((CardLayout)centerCardContainer.getLayout()).show(centerCardContainer, "start");
     }
 }

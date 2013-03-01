@@ -34,6 +34,9 @@
             <Property name="text" type="java.lang.String" resourceKey="homeButton.text"/>
             <Property name="name" type="java.lang.String" value="homeButton" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.Box$Filler" name="filler1">
           <Properties>
