@@ -42,21 +42,21 @@ public enum MainController {
     private JDialog accountSettingsDialog;
     private MainView view;
 
-    public void setView(MainView view){
+    public void setView(MainView view) {
         this.view = view;
     }
-    
+
     /**
      * Performs a search by displaying the search results panels.
      * 
      * @param sq 
      */
     public void search(SearchQuery sq) {
-        if(view != null){
-            view.showSearchResultsPanel();
+        if (view != null) {
+            showSearchResultsPanel();
+            notifyNavigationListeners(new NavigationSearchEvent(sq));
         }
         
-        notifyNavigationListeners(new NavigationSearchEvent(sq));
     }
 
     /**
@@ -117,21 +117,52 @@ public enum MainController {
     }
 
     /**
+     * Changes the main card to the main view.
+     * enables all menu items
+     */
+    public void showMain() {
+        view.showMainPanel();
+        view.setMenuItemsEnabled(true);
+    }
+
+    /**
+     * Changes the main card to the checkout view
+     * also disables apropriate menu actions that can not be taken
+     * in the shopping cart.
+     */
+    public void showCheckout() {
+        view.showCheckoutPanel();
+        view.setMenuItemsEnabled(false);
+    }
+
+    /**
      * Shows the shoppingLists view
      */
     public void showShoppingLists() {
-        if(view != null) {
+        if (view != null) {
+            showMain();
             view.showListOrderDetailPanel(ListOrderType.SHOPPING_LIST);
             notifyNavigationListeners(new NavigationShoppingListsEvent());
         }
-        
-        
+
+
     }
-    
-    public void showOrders(){
-        if(view!= null){
+
+    /**
+     * Shows the orderLists view
+     */
+    public void showOrders() {
+        if (view != null) {
+            showMain();
             view.showListOrderDetailPanel(ListOrderType.ORDER_LIST);
             notifyNavigationListeners(new NavigationOtherEvent());
+        }
+    }
+
+    private void showSearchResultsPanel() {
+        if (view != null) {
+            showMain();
+            view.showSearchResultsPanel();
         }
     }
 }

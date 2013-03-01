@@ -55,6 +55,7 @@ public class MainView extends FrameView {
         detailedProductView1 = new Views.DetailedProduct.DetailedProductView();
         shoppingCart = new Views.ShoppingCart.ShoppingCartView();
         checkoutCard = new javax.swing.JPanel();
+        cardLayoutCheckoutView1 = new Views.Checkout.CardLayoutCheckoutView();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -95,7 +96,7 @@ public class MainView extends FrameView {
         centerCardContainer.add(searchResultsView1, "searchresults");
 
         detailedProductView1.setName("detailedProductView1"); // NOI18N
-        centerCardContainer.add(detailedProductView1, "");
+        centerCardContainer.add(detailedProductView1, "productDetails");
 
         jSplitPane1.setRightComponent(centerCardContainer);
 
@@ -108,8 +109,8 @@ public class MainView extends FrameView {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainCardLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSplitPane1)
-                    .addComponent(headerBar, javax.swing.GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE))
+                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE)
+                    .addComponent(headerBar, javax.swing.GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(shoppingCart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -131,19 +132,12 @@ public class MainView extends FrameView {
 
         checkoutCard.setName("checkoutCard"); // NOI18N
         checkoutCard.setOpaque(false);
+        checkoutCard.setLayout(new javax.swing.BoxLayout(checkoutCard, javax.swing.BoxLayout.LINE_AXIS));
 
-        javax.swing.GroupLayout checkoutCardLayout = new javax.swing.GroupLayout(checkoutCard);
-        checkoutCard.setLayout(checkoutCardLayout);
-        checkoutCardLayout.setHorizontalGroup(
-            checkoutCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1232, Short.MAX_VALUE)
-        );
-        checkoutCardLayout.setVerticalGroup(
-            checkoutCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 665, Short.MAX_VALUE)
-        );
+        cardLayoutCheckoutView1.setName("cardLayoutCheckoutView1"); // NOI18N
+        checkoutCard.add(cardLayoutCheckoutView1);
 
-        mainPanel.add(checkoutCard, "card3");
+        mainPanel.add(checkoutCard, "checkout");
 
         menuBar.setName("menuBar"); // NOI18N
 
@@ -218,6 +212,7 @@ private void showPrevOrdersMenuItemActionPerformed(java.awt.event.ActionEvent ev
 }//GEN-LAST:event_showPrevOrdersMenuItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Views.Checkout.CardLayoutCheckoutView cardLayoutCheckoutView1;
     private Views.Categories.CategoriesView categoriesPanel;
     private javax.swing.JPanel centerCardContainer;
     private javax.swing.JPanel checkoutCard;
@@ -238,22 +233,26 @@ private void showPrevOrdersMenuItemActionPerformed(java.awt.event.ActionEvent ev
     // End of variables declaration//GEN-END:variables
     private JDialog aboutBox;
 
-    private void showMainPanel(){
+    protected void showMainPanel(){
         ((CardLayout)mainPanel.getLayout()).show(mainPanel, "main");
     }
     
-    private void showCheckoutPanel(){
+    protected void showCheckoutPanel(){
         ((CardLayout)mainPanel.getLayout()).show(mainPanel, "checkout");
     }
     
-    void showListOrderDetailPanel(ListOrderType listOrderType) {
-        showMainPanel();
+    protected void showListOrderDetailPanel(ListOrderType listOrderType) {
         ((CardLayout)centerCardContainer.getLayout()).show(centerCardContainer, "listorderdetail");
         listOrderDetailsView1.setListOrderType(listOrderType);
     }
     
-    void showSearchResultsPanel() {
-        showMainPanel();
+    protected void showSearchResultsPanel() {
         ((CardLayout)centerCardContainer.getLayout()).show(centerCardContainer, "searchresults");
+    }
+
+    void setMenuItemsEnabled(boolean b) {
+        showAccSettingsMenuItem.setEnabled(b);
+        showPrevOrdersMenuItem.setEnabled(b);
+        showShoppingListsMenuItem.setEnabled(b);
     }
 }

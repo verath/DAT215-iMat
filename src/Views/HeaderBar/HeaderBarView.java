@@ -23,6 +23,7 @@ public class HeaderBarView extends javax.swing.JPanel {
         initComponents();
 
         hbController = new HeaderBarController(this);
+        SearchInputField.requestFocus();
     }
 
     /** This method is called from within the constructor to
@@ -35,19 +36,33 @@ public class HeaderBarView extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        homeButton = new javax.swing.JButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(60, 20), new java.awt.Dimension(60, 20), new java.awt.Dimension(32767, 20));
         SearchInputField = new javax.swing.JTextField();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 20), new java.awt.Dimension(30, 20), new java.awt.Dimension(32767, 20));
         SearchButton = new javax.swing.JButton();
 
         setName("Form"); // NOI18N
+        setOpaque(false);
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.setOpaque(false);
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(HeaderBarView.class);
+        homeButton.setIcon(resourceMap.getIcon("homeButton.icon")); // NOI18N
+        homeButton.setText(resourceMap.getString("homeButton.text")); // NOI18N
+        homeButton.setName("homeButton"); // NOI18N
+        jPanel1.add(homeButton);
+
+        filler1.setName("filler1"); // NOI18N
+        jPanel1.add(filler1);
+
         SearchInputField.setFont(resourceMap.getFont("SearchInputField.font")); // NOI18N
         SearchInputField.setText(resourceMap.getString("SearchInputField.text")); // NOI18N
         SearchInputField.setName("SearchInputField"); // NOI18N
+        SearchInputField.setNextFocusableComponent(SearchButton);
         SearchInputField.setPreferredSize(new java.awt.Dimension(219, 29));
         SearchInputField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -63,6 +78,9 @@ public class HeaderBarView extends javax.swing.JPanel {
             }
         });
         jPanel1.add(SearchInputField);
+
+        filler2.setName("filler2"); // NOI18N
+        jPanel1.add(filler2);
 
         SearchButton.setIcon(resourceMap.getIcon("SearchButton.icon")); // NOI18N
         SearchButton.setText(resourceMap.getString("SearchButton.text")); // NOI18N
@@ -97,6 +115,9 @@ private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SearchButton;
     private javax.swing.JTextField SearchInputField;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
+    private javax.swing.JButton homeButton;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 

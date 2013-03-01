@@ -1,5 +1,6 @@
 package Views.ShoppingCart;
 
+import Main.MainController;
 import Main.ShoppingCartWrapper;
 import ShoppingList.ShoppingList;
 import ShoppingList.ShoppingListItem;
@@ -53,7 +54,7 @@ public class ShoppingCartController implements ShoppingCartListener {
      * @param evt 
      */
     public void onCheckoutButtonActionPerformed(ActionEvent evt) {
-        // TODO: Implement real behaviour
+        MainController.INSTANCE.showCheckout();
     }
 
     /**
