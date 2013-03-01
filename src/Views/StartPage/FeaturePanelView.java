@@ -10,6 +10,9 @@
  */
 package Views.StartPage;
 
+import Main.ShoppingCartWrapper;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
+
 /**
  *
  * @author Ernst
@@ -36,24 +39,38 @@ public class FeaturePanelView extends javax.swing.JPanel {
         priceLabel = new javax.swing.JLabel();
         suffixLabel = new javax.swing.JLabel();
         amountSpinner = new javax.swing.JSpinner();
-        bildPanel = new javax.swing.JPanel();
+        bajButton = new javax.swing.JButton();
         bild = new javax.swing.JLabel();
-        köpButton = new javax.swing.JButton();
 
-        setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        setBackground(new java.awt.Color(247, 193, 128));
         setPreferredSize(new java.awt.Dimension(750, 190));
 
+        infoPanel.setBackground(new java.awt.Color(247, 193, 128));
         infoPanel.setPreferredSize(new java.awt.Dimension(750, 20));
 
-        titel.setFont(new java.awt.Font("Myriad Pro", 1, 15));
+        titel.setFont(new java.awt.Font("Myriad Pro", 1, 18));
         titel.setText("Korv stroganoff med ris");
 
-        beskrivning.setFont(new java.awt.Font("Tahoma", 0, 10));
+        beskrivning.setFont(new java.awt.Font("Myriad Pro", 0, 11));
         beskrivning.setText("1 portion");
 
+        priceLabel.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         priceLabel.setText("90kr");
 
+        suffixLabel.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         suffixLabel.setText("st");
+
+        amountSpinner.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        amountSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
+        bajButton.setBackground(new java.awt.Color(0, 0, 0));
+        bajButton.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        bajButton.setText("KÖP");
+        bajButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bajButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
         infoPanel.setLayout(infoPanelLayout);
@@ -64,80 +81,63 @@ public class FeaturePanelView extends javax.swing.JPanel {
                 .addComponent(titel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(beskrivning)
-                .addGap(46, 46, 46)
+                .addGap(92, 92, 92)
                 .addComponent(priceLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(amountSpinner)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(suffixLabel)
-                .addGap(72, 72, 72))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bajButton)
+                .addContainerGap())
         );
         infoPanelLayout.setVerticalGroup(
             infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoPanelLayout.createSequentialGroup()
                 .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(titel)
-                    .addComponent(beskrivning)
                     .addComponent(priceLabel)
                     .addComponent(suffixLabel)
-                    .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bajButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titel)
+                    .addComponent(beskrivning))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         bild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/korvStroganoff.PNG"))); // NOI18N
 
-        javax.swing.GroupLayout bildPanelLayout = new javax.swing.GroupLayout(bildPanel);
-        bildPanel.setLayout(bildPanelLayout);
-        bildPanelLayout.setHorizontalGroup(
-            bildPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bild)
-        );
-        bildPanelLayout.setVerticalGroup(
-            bildPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bild, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        köpButton.setBackground(new java.awt.Color(0, 0, 0));
-        köpButton.setText("KÖP");
-        köpButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                köpButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(infoPanel, 0, 675, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(köpButton)
-                .addGap(25, 25, 25))
-            .addComponent(bildPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bild)
+            .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(köpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(bild, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bildPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void köpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_köpButtonActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_köpButtonActionPerformed
+    /**Lägger till diverse produkter som bildar korv stroganoff. Jag lovar
+     Korv stroganoff innehåller rågmjöl*/
+private void bajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajButtonActionPerformed
+    IMatDataHandler dh = IMatDataHandler.getInstance();
+    ShoppingCartWrapper.INSTANCE.addProduct(dh.getProduct(130)  , (Integer) amountSpinner.getValue());
+    ShoppingCartWrapper.INSTANCE.addProduct(dh.getProduct(93)  , (Integer) amountSpinner.getValue());
+    ShoppingCartWrapper.INSTANCE.addProduct(dh.getProduct(64)  , (Integer) amountSpinner.getValue()*2);
+    ShoppingCartWrapper.INSTANCE.addProduct(dh.getProduct(35)  , (Integer) amountSpinner.getValue());
+}//GEN-LAST:event_bajButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner amountSpinner;
+    private javax.swing.JButton bajButton;
     private javax.swing.JLabel beskrivning;
     private javax.swing.JLabel bild;
-    private javax.swing.JPanel bildPanel;
     private javax.swing.JPanel infoPanel;
-    private javax.swing.JButton köpButton;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel suffixLabel;
     private javax.swing.JLabel titel;

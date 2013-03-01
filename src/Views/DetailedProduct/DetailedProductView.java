@@ -78,19 +78,23 @@ public class DetailedProductView extends javax.swing.JPanel {
         bildPanel = new javax.swing.JPanel();
         imageLabel = new javax.swing.JLabel();
         infoPanel = new javax.swing.JPanel();
-        köpButton = new javax.swing.JButton();
+        bajButton = new javax.swing.JButton();
         suffixLabel = new javax.swing.JLabel();
         amountSpinner = new javax.swing.JSpinner();
         priceLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         favouriteLabel = new javax.swing.JLabel();
+        bakKnapp = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 249, 246));
         setPreferredSize(new java.awt.Dimension(770, 628));
 
+        nameLabel.setBackground(new java.awt.Color(247, 221, 192));
         nameLabel.setFont(new java.awt.Font("Myriad Pro", 0, 24));
         nameLabel.setText("Banan");
 
+        bildPanel.setBackground(new java.awt.Color(255, 249, 246));
         bildPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         bildPanel.setEnabled(false);
         bildPanel.setPreferredSize(new java.awt.Dimension(200, 160));
@@ -112,21 +116,22 @@ public class DetailedProductView extends javax.swing.JPanel {
                 .addContainerGap(76, Short.MAX_VALUE))
         );
 
+        infoPanel.setBackground(new java.awt.Color(255, 246, 241));
         infoPanel.setPreferredSize(new java.awt.Dimension(750, 20));
 
-        köpButton.setBackground(new java.awt.Color(0, 0, 0));
-        köpButton.setFont(new java.awt.Font("Myriad Pro", 0, 14));
-        köpButton.setText("KÖP");
-        köpButton.addActionListener(new java.awt.event.ActionListener() {
+        bajButton.setBackground(new java.awt.Color(0, 0, 0));
+        bajButton.setFont(new java.awt.Font("Myriad Pro", 0, 14)); // NOI18N
+        bajButton.setText("KÖP");
+        bajButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                köpButtonActionPerformed(evt);
+                bajButtonActionPerformed(evt);
             }
         });
 
         suffixLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
         suffixLabel.setText("st");
 
-        amountSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        amountSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(0), null, Integer.valueOf(1)));
 
         javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
         infoPanel.setLayout(infoPanelLayout);
@@ -137,13 +142,13 @@ public class DetailedProductView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(suffixLabel)
                 .addGap(39, 39, 39)
-                .addComponent(köpButton))
+                .addComponent(bajButton))
         );
         infoPanelLayout.setVerticalGroup(
             infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoPanelLayout.createSequentialGroup()
                 .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(köpButton, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(bajButton, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                     .addComponent(suffixLabel)
                     .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -152,7 +157,7 @@ public class DetailedProductView extends javax.swing.JPanel {
         priceLabel.setFont(new java.awt.Font("Tahoma", 0, 18));
         priceLabel.setText("90kr/st");
 
-        jTextArea1.setBackground(new java.awt.Color(240, 240, 240));
+        jTextArea1.setBackground(new java.awt.Color(247, 221, 192));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Myriad Pro", 0, 14));
         jTextArea1.setRows(5);
@@ -172,36 +177,46 @@ public class DetailedProductView extends javax.swing.JPanel {
             }
         });
 
+        bakKnapp.setText("BAK");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
-                            .addComponent(nameLabel))
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(bildPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(priceLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                                         .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(favouriteLabel))))
-                        .addGap(110, 110, 110))))
+                        .addGap(110, 110, 110))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nameLabel)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bakKnapp)
+                .addContainerGap(715, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(bakKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -216,13 +231,14 @@ public class DetailedProductView extends javax.swing.JPanel {
                             .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void köpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_köpButtonActionPerformed
-    ShoppingCartWrapper.INSTANCE.addProduct(product, (Integer) amountSpinner.getValue());
-}//GEN-LAST:event_köpButtonActionPerformed
+private void bajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajButtonActionPerformed
+    double amount = (Double) amountSpinner.getValue();
+    ShoppingCartWrapper.INSTANCE.addProduct(product, amount);
+}//GEN-LAST:event_bajButtonActionPerformed
 
 private void favouriteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_favouriteLabelMouseClicked
     // Handle click on the favorite icon
@@ -244,6 +260,8 @@ private void favouriteLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIR
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner amountSpinner;
+    private javax.swing.JButton bajButton;
+    private javax.swing.JButton bakKnapp;
     private javax.swing.JPanel bildPanel;
     private javax.swing.JLabel favouriteLabel;
     private javax.swing.JLabel imageLabel;
@@ -251,7 +269,6 @@ private void favouriteLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIR
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JButton köpButton;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel suffixLabel;

@@ -10,7 +10,13 @@
  */
 package Views.StartPage;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
 
@@ -19,51 +25,128 @@ import se.chalmers.ait.dat215.project.Product;
  * @author Ernst
  */
 public class CarouselPanelView extends javax.swing.JPanel {
+    
+    //Saves a copy of the favourite list
+    private static List<Product> favorites = new LinkedList<Product>(IMatDataHandler.getInstance().favorites());
+    //Saves a copy of the product list
+    private static List<Product> products = new LinkedList<Product>(IMatDataHandler.getInstance().getProducts());
+    //Keeps track of when to change an ItemViewPanels colour
+    private static boolean changeNextColour = true;
+    //Keeps track of which set of the carousel ItemViewPanels currently in view
+    private static int carouselNbr = 0;
+    
+    //A list consisting of (12) random favourite items and/or random products in store
+    //depending if there are enough (up to 12) favourites in the list.
+    private List<FeatureItemView> featureItemList = new LinkedList<FeatureItemView>();
 
     /** Creates new form karusellPanel */
     public CarouselPanelView() {
         initComponents();
         
+        placeFeatureItems();
+        
+        resetList();
+    }
+
+    //Restores FeatureItemsViews deleted in placeFeatureItems()
+    public void resetList(){
+        favorites = IMatDataHandler.getInstance().favorites();
+        products = IMatDataHandler.getInstance().getProducts();
+    }
+    
+    
+    //Randomizes products to the itemFeatureList as well as adding 4 FeatureItemViews
+    //to the carouselPanel. Also deletes all added products to prevent duplicates.
+    private void placeFeatureItems(){
         if(IMatDataHandler.getInstance().favorites() != null){
-            List<Product> favorites = IMatDataHandler.getInstance().favorites();
             
-            if(favorites.size() < 4){
-               List<Product> products = IMatDataHandler.getInstance().getProducts();
+            if(favorites.size() < 12){
                
                for(int i = 0; i < favorites.size(); i++){
                    FeatureItemView panel = new FeatureItemView();
                    panel.setProduct(favorites.get(i));
+                   if(changeNextColour){
+                       panel.changeColour();
+                   }
+                   changeNextColour = !changeNextColour;
                    karusellPanel.add(panel);
+                   featureItemList.add(panel);
                }
-               for(int i = 0; i < 4 - favorites.size(); i++){
+               for(int i = 0; i < 12 - favorites.size(); i++){
                    int rand = (int) (products.size()*Math.random());
                    FeatureItemView panel = new FeatureItemView();
                    panel.setProduct(products.get(rand));
                    products.remove(rand);
-                   karusellPanel.add(panel);
+                   if(changeNextColour){
+                       panel.changeColour();
+                   }
+                   changeNextColour = !changeNextColour;
+                   if(i < 4 - favorites.size()){
+                       karusellPanel.add(panel);
+                   }
+                   featureItemList.add(panel);
                }
             }else{
-                for(int i = 0; i < 4; i++){
+                for(int i = 0; i < 12; i++){
                    int rand = (int) (favorites.size()*Math.random());
                    FeatureItemView panel = new FeatureItemView();
                    panel.setProduct(favorites.get(rand));
                    favorites.remove(rand);
-                   karusellPanel.add(panel);
+                   if(changeNextColour){
+                       panel.changeColour();
+                   }
+                   changeNextColour = !changeNextColour;
+                   if(i < 4){
+                       karusellPanel.add(panel);
+                   }
+                   featureItemList.add(panel);
                }
             }
         }else{
-            List<Product> products = IMatDataHandler.getInstance().getProducts();
             
-            for(int i = 0; i < 4 - products.size(); i++){
+            for(int i = 0; i < 12; i++){
                 int rand = (int) (products.size()*Math.random());
                 FeatureItemView panel = new FeatureItemView();
                 panel.setProduct(products.get(rand));
                 products.remove(rand);
-                karusellPanel.add(panel);
+                if(changeNextColour){
+                       panel.changeColour();
+                }
+                changeNextColour = !changeNextColour;
+                if(i < 4){
+                    karusellPanel.add(panel);
+                }
+                featureItemList.add(panel);
             }
         }
-        
+        changeNextColour = !changeNextColour;
+    } //underbar indentering osv
+    
+   //Switches between three different positions using the featureItemList,
+   //Panels 1-4,5-8 and 9-12 replace eachother on the CarouselView 
+   //when pressing the previous/next buttons.
+   public void nextButtonPressed(){
+        karusellPanel.removeAll();
+        karusellPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        carouselNbr = (carouselNbr + 1)%3;
+        for(int i = 0; i < 4; i++){
+            karusellPanel.add(featureItemList.get(i+4*carouselNbr));
+        }
+        karusellPanel.validate();
+        karusellPanel.repaint();
     }
+    
+    public void previousButtonPressed(){
+        karusellPanel.removeAll();
+        karusellPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        carouselNbr = (carouselNbr - 1)%3;
+        for(int i = 0; i < 4; i++){
+            karusellPanel.add(featureItemList.get(i+4*carouselNbr));
+        }
+        karusellPanel.validate();
+        karusellPanel.repaint();
+    }
+    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -74,57 +157,29 @@ public class CarouselPanelView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        infoPanel = new javax.swing.JPanel();
-        titel = new javax.swing.JLabel();
         karusellPanel = new javax.swing.JPanel();
 
-        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        setBackground(new java.awt.Color(247, 221, 192));
         setPreferredSize(new java.awt.Dimension(750, 190));
 
-        infoPanel.setPreferredSize(new java.awt.Dimension(750, 20));
-
-        titel.setFont(new java.awt.Font("Myriad Pro", 1, 15));
-        titel.setText("Rekommenderat för dig");
-
-        javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
-        infoPanel.setLayout(infoPanelLayout);
-        infoPanelLayout.setHorizontalGroup(
-            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(infoPanelLayout.createSequentialGroup()
-                .addGap(277, 277, 277)
-                .addComponent(titel)
-                .addContainerGap(274, Short.MAX_VALUE))
-        );
-        infoPanelLayout.setVerticalGroup(
-            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(infoPanelLayout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addComponent(titel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        karusellPanel.setPreferredSize(new java.awt.Dimension(750, 160));
-        karusellPanel.setLayout(new java.awt.GridLayout(1, 4));
+        karusellPanel.setBackground(new java.awt.Color(255, 246, 241));
+        karusellPanel.setMaximumSize(new java.awt.Dimension(750, 190));
+        karusellPanel.setPreferredSize(new java.awt.Dimension(750, 190));
+        karusellPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
-            .addComponent(karusellPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
+            .addComponent(karusellPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(karusellPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(karusellPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel infoPanel;
     private javax.swing.JPanel karusellPanel;
-    private javax.swing.JLabel titel;
     // End of variables declaration//GEN-END:variables
 }
