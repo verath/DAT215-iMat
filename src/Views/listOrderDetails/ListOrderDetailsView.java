@@ -35,8 +35,9 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
     private void initComponents() {
 
         jSplitPane1 = new javax.swing.JSplitPane();
-        jList1 = new javax.swing.JList();
         detailsContainer = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        itemList = new javax.swing.JList();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(ListOrderDetailsView.class);
         setBackground(resourceMap.getColor("Form.background")); // NOI18N
@@ -48,41 +49,42 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
         jSplitPane1.setName("jSplitPane1"); // NOI18N
         jSplitPane1.setOpaque(false);
 
-        jList1.setFont(resourceMap.getFont("jList1.font")); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jList1.setFixedCellHeight(50);
-        jList1.setName("jList1"); // NOI18N
-        jList1.setPreferredSize(new java.awt.Dimension(50, 90));
-        jList1.setVisibleRowCount(12);
-        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList1ValueChanged(evt);
-            }
-        });
-        jSplitPane1.setLeftComponent(jList1);
-
         detailsContainer.setName("detailsContainer"); // NOI18N
         detailsContainer.setOpaque(false);
         detailsContainer.setLayout(new javax.swing.BoxLayout(detailsContainer, javax.swing.BoxLayout.PAGE_AXIS));
         jSplitPane1.setRightComponent(detailsContainer);
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        itemList.setFont(resourceMap.getFont("itemList.font")); // NOI18N
+        itemList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        itemList.setFixedCellHeight(48);
+        itemList.setName("itemList"); // NOI18N
+        itemList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                itemListValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(itemList);
+
+        jSplitPane1.setLeftComponent(jScrollPane1);
+
         add(jSplitPane1);
     }// </editor-fold>//GEN-END:initComponents
 
-private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
-// TODO add your handling code here:
-    System.out.println(jList1.getSelectedValue());
-    
-}//GEN-LAST:event_jList1ValueChanged
+private void itemListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_itemListValueChanged
+    System.out.println(itemList.getSelectedValue());
+}//GEN-LAST:event_itemListValueChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel detailsContainer;
-    private javax.swing.JList jList1;
+    private javax.swing.JList itemList;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 
