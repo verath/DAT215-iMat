@@ -58,13 +58,16 @@ public class CategoryItemView extends javax.swing.JPanel {
     }
 
     public void setActiveState() {
-        container.setBackground(null);
-        nameLabel.setFont(highlightedFont);
+        container.setBackground(new Color(51, 153, 255));
+        nameLabel.setForeground(Color.white);
+        //nameLabel.setFont(highlightedFont);
     }
 
     public void unsetActiveState() {
-        container.setBackground(null);
-        nameLabel.setFont(disabledFont);
+        container.setBackground(Color.white);
+        nameLabel.setForeground(Color.BLACK);
+
+        //nameLabel.setFont(disabledFont);
     }
 
     /** This method is called from within the constructor to
@@ -79,20 +82,21 @@ public class CategoryItemView extends javax.swing.JPanel {
         container = new javax.swing.JPanel();
         nameLabel = new javax.swing.JLabel();
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(CategoryItemView.class);
+        setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setMaximumSize(new java.awt.Dimension(32767, 48));
         setName("Form"); // NOI18N
         setOpaque(false);
 
+        container.setBackground(resourceMap.getColor("container.background")); // NOI18N
         container.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         container.setName("container"); // NOI18N
-        container.setOpaque(false);
         container.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 containerMouseClicked(evt);
             }
         });
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(CategoryItemView.class);
         nameLabel.setFont(resourceMap.getFont("nameLabel.font")); // NOI18N
         nameLabel.setText(resourceMap.getString("nameLabel.text")); // NOI18N
         nameLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

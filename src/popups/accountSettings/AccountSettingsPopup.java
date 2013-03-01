@@ -49,9 +49,7 @@ public class AccountSettingsPopup extends javax.swing.JPanel {
         }
 
         // Card type
-        if (creditCard.getCardType().equalsIgnoreCase("CASH")) {
-            cardTypeCashRadioButton.setSelected(true);
-        } else if (creditCard.getCardType().equalsIgnoreCase("MASTERCARD")) {
+        if (creditCard.getCardType().equalsIgnoreCase("MASTERCARD")) {
             cardTypeMasterRadioButton.setSelected(true);
         } else {
             cardTypeVisaRadioButton.setSelected(true);
@@ -95,7 +93,6 @@ public class AccountSettingsPopup extends javax.swing.JPanel {
         cardSettingContainer = new javax.swing.JPanel();
         cardTypeVisaRadioButton = new javax.swing.JRadioButton();
         cardTypeMasterRadioButton = new javax.swing.JRadioButton();
-        cardTypeCashRadioButton = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -165,12 +162,12 @@ public class AccountSettingsPopup extends javax.swing.JPanel {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(accPhoneField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                    .addComponent(accCityField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                    .addComponent(accPostalCodeField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                    .addComponent(accAddressField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                    .addComponent(accLastNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                    .addComponent(accNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
+                    .addComponent(accPhoneField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(accCityField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(accPostalCodeField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(accAddressField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(accLastNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(accNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE))
                 .addContainerGap())
         );
         accountSettingContainerLayout.setVerticalGroup(
@@ -216,10 +213,6 @@ public class AccountSettingsPopup extends javax.swing.JPanel {
         cardTypeButtonGroup.add(cardTypeMasterRadioButton);
         cardTypeMasterRadioButton.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         cardTypeMasterRadioButton.setText("Mastercard");
-
-        cardTypeButtonGroup.add(cardTypeCashRadioButton);
-        cardTypeCashRadioButton.setFont(new java.awt.Font("Myriad Pro", 0, 12));
-        cardTypeCashRadioButton.setText("CASH-kort");
 
         jLabel7.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         jLabel7.setLabelFor(cardNumberField);
@@ -279,12 +272,10 @@ public class AccountSettingsPopup extends javax.swing.JPanel {
                             .addGroup(cardSettingContainerLayout.createSequentialGroup()
                                 .addComponent(cardTypeVisaRadioButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cardTypeMasterRadioButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cardTypeCashRadioButton))
-                            .addComponent(cardNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                                .addComponent(cardTypeMasterRadioButton))
+                            .addComponent(cardNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                             .addGroup(cardSettingContainerLayout.createSequentialGroup()
-                                .addComponent(cardNumberField, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                                .addComponent(cardNumberField, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -305,7 +296,6 @@ public class AccountSettingsPopup extends javax.swing.JPanel {
                 .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cardTypeVisaRadioButton)
                     .addComponent(cardTypeMasterRadioButton)
-                    .addComponent(cardTypeCashRadioButton)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(cardSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -399,9 +389,7 @@ private void saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {
         creditCard.setVerificationCode(0);
     } else {
         creditCard.setCardNumber(cardNumberField.getText());
-        if (cardTypeCashRadioButton.isSelected()) {
-            creditCard.setCardType("CASH");
-        } else if (cardTypeMasterRadioButton.isSelected()) {
+        if (cardTypeMasterRadioButton.isSelected()) {
             creditCard.setCardType("MASTERCARD");
         } else {
             creditCard.setCardType("VISA");
@@ -449,7 +437,6 @@ private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JTextField cardNumberField;
     private javax.swing.JPanel cardSettingContainer;
     private javax.swing.ButtonGroup cardTypeButtonGroup;
-    private javax.swing.JRadioButton cardTypeCashRadioButton;
     private javax.swing.JRadioButton cardTypeMasterRadioButton;
     private javax.swing.JRadioButton cardTypeVisaRadioButton;
     private javax.swing.JComboBox cardYearComboBox;
