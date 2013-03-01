@@ -23,7 +23,7 @@ public class HeaderBarView extends javax.swing.JPanel {
         initComponents();
 
         hbController = new HeaderBarController(this);
-        SearchInputField.requestFocus();
+        SearchInputField.requestFocusInWindow();
     }
 
     /** This method is called from within the constructor to
@@ -62,7 +62,6 @@ public class HeaderBarView extends javax.swing.JPanel {
         SearchInputField.setFont(resourceMap.getFont("SearchInputField.font")); // NOI18N
         SearchInputField.setText(resourceMap.getString("SearchInputField.text")); // NOI18N
         SearchInputField.setName("SearchInputField"); // NOI18N
-        SearchInputField.setNextFocusableComponent(SearchButton);
         SearchInputField.setPreferredSize(new java.awt.Dimension(219, 29));
         SearchInputField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {

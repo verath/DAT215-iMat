@@ -57,9 +57,6 @@
             <Property name="font" type="java.awt.Font" resourceKey="SearchInputField.font"/>
             <Property name="text" type="java.lang.String" resourceKey="SearchInputField.text"/>
             <Property name="name" type="java.lang.String" value="SearchInputField" noResource="true"/>
-            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="SearchButton"/>
-            </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[219, 29]"/>
             </Property>

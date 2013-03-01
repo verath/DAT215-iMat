@@ -25,7 +25,7 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
     public enum ListOrderType {
 
         SHOPPING_LIST, ORDER_LIST
-    }
+    };
     private ListOrderType listType;
     private JPanel selectedPanel;
 
@@ -49,6 +49,7 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
         updateListModel();
     }
 
+    @SuppressWarnings("unchecked")
     private void updateListModel() {
         switch (this.listType) {
             case SHOPPING_LIST: // Shopping list 
