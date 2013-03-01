@@ -64,6 +64,10 @@ public class ShoppingCartController implements ShoppingCartListener {
      */
     void onSaveCartButtonActionPerformed(ActionEvent evt) {
         String listName = (String) JOptionPane.showInputDialog("Ange namn som listan ska sparas som:");
+        if (listName == null) {
+            // user clicked cancel.
+            return;
+        }
         ShoppingList list = new ShoppingList(listName);
 
         // Add all items to our ShoppingList
