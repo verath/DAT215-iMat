@@ -98,6 +98,7 @@
             <Property name="font" type="java.awt.Font" resourceKey="jLabel4.font"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" resourceKey="jLabel4.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel4.toolTipText"/>
             <Property name="name" type="java.lang.String" value="jLabel4" noResource="true"/>
           </Properties>
         </Component>

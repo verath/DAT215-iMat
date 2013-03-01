@@ -31,6 +31,8 @@ public class SecondCheckoutView extends javax.swing.JPanel {
         initCardSettings();
     }
     
+    
+    
     public void initCustomerSettings () {
         customer = imdh.getCustomer();
         
@@ -42,10 +44,23 @@ public class SecondCheckoutView extends javax.swing.JPanel {
         postalCode.setText(customer.getPostCode());
     }
     
+    public String getAddress () {
+        return address.getText();
+    }
+    
+    public String getPostalCode () {
+        return postalCode.getText();
+    }
+    
+    public String getCity () {
+        return city.getText();
+    }
+    
     public void initCardSettings () {
         creditCard = imdh.getCreditCard();
         
         cardNumber.setText(creditCard.getCardNumber());
+        cardHolderName.setText(creditCard.getHoldersName());
         
         if (creditCard.getVerificationCode() == 0) {
             cvc.setText("");
@@ -63,19 +78,21 @@ public class SecondCheckoutView extends javax.swing.JPanel {
         }
     }
     
+    
     public boolean settingsSaved () {
         return saveSettingCheckbox.isSelected();
     }
     
     public void saveSettings () {
         customer.setAddress(address.getText());
-        customer.setPostAddress(address.getText());
+        customer.setPostAddress(city.getText());
         customer.setFirstName(firstName.getText());
         customer.setLastName(lastName.getText());
         customer.setPhoneNumber(phone.getText());
         customer.setPostCode(postalCode.getText());
         
         creditCard.setCardNumber(cardNumber.getText());
+        creditCard.setHoldersName(cardHolderName.getText());
         
         if (!"".equals(cvc.getText())) {
             creditCard.setVerificationCode(Integer.parseInt(cvc.getText()));
@@ -126,6 +143,8 @@ public class SecondCheckoutView extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
+        jLabel10 = new javax.swing.JLabel();
+        cardHolderName = new javax.swing.JTextField();
         saveSettingCheckbox = new javax.swing.JCheckBox();
 
         setName("Form"); // NOI18N
@@ -268,6 +287,11 @@ public class SecondCheckoutView extends javax.swing.JPanel {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2013", "2014", "2015", "2016", "2017" }));
         jComboBox2.setName("jComboBox2"); // NOI18N
 
+        jLabel10.setText(resourceMap.getString("jLabel10.text")); // NOI18N
+        jLabel10.setName("jLabel10"); // NOI18N
+
+        cardHolderName.setName("cardHolderName"); // NOI18N
+
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -280,13 +304,17 @@ public class SecondCheckoutView extends javax.swing.JPanel {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(masterCard))
                     .add(jPanel2Layout.createSequentialGroup()
-                        .add(jLabel7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 137, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(cardNumber, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 190, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jPanel2Layout.createSequentialGroup()
                         .add(jLabel8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 137, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(cvc, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 190, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel2Layout.createSequentialGroup()
+                        .add(jLabel10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 137, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(cardHolderName, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 190, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel2Layout.createSequentialGroup()
+                        .add(jLabel7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 137, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(cardNumber, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 190, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(jPanel2Layout.createSequentialGroup()
                         .add(jLabel9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 137, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
@@ -303,14 +331,18 @@ public class SecondCheckoutView extends javax.swing.JPanel {
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(visa)
                     .add(masterCard))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(11, 11, 11)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel7)
-                    .add(cardNumber, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jLabel10)
+                    .add(cardHolderName, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel8)
                     .add(cvc, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel7)
+                    .add(cardNumber, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel9)
@@ -348,13 +380,14 @@ public class SecondCheckoutView extends javax.swing.JPanel {
                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(saveSettingCheckbox)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField address;
     private javax.swing.JLabel addressLabel;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField cardHolderName;
     private javax.swing.JTextField cardNumber;
     private javax.swing.JTextField city;
     private javax.swing.JLabel cityLabel;
@@ -364,6 +397,7 @@ public class SecondCheckoutView extends javax.swing.JPanel {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

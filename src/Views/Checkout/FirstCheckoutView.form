@@ -16,11 +16,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="checkoutItemsHolder" alignment="1" pref="576" max="32767" attributes="1"/>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="20" pref="20" max="20" attributes="0"/>
-              <Component id="sumOfItems" pref="536" max="32767" attributes="1"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="checkoutItemsHolder" alignment="0" max="32767" attributes="1"/>
+                  <Component id="sumOfItems" alignment="0" pref="488" max="32767" attributes="1"/>
+              </Group>
+              <EmptySpace pref="146" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -28,9 +30,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="checkoutItemsHolder" pref="335" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="checkoutItemsHolder" pref="497" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="sumOfItems" min="-2" pref="54" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -38,6 +41,13 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="checkoutItemsHolder">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Din kundvagn">
+              <Property name="titleX" resourceKey="checkoutItemsHolder.border.title"/>
+            </TitledBorder>
+          </Border>
+        </Property>
         <Property name="name" type="java.lang.String" value="checkoutItemsHolder" noResource="true"/>
       </Properties>
 
