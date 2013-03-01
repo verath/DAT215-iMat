@@ -3,6 +3,7 @@
  */
 package Main;
 
+import Views.listOrderDetails.ListOrderDetailsView.ListOrderType;
 import java.awt.CardLayout;
 import java.awt.LayoutManager;
 import org.jdesktop.application.Action;
@@ -20,6 +21,7 @@ public class MainView extends FrameView {
         super(app);
 
         initComponents();
+        MainController.INSTANCE.setView(this);
 
     }
 
@@ -48,8 +50,8 @@ public class MainView extends FrameView {
         jSplitPane1 = new javax.swing.JSplitPane();
         categoriesPanel = new Views.Categories.CategoriesView();
         centerCardContainer = new javax.swing.JPanel();
-        searchResultsView1 = new Views.SearchResults.SearchResultsView();
         listOrderDetailsView1 = new Views.listOrderDetails.ListOrderDetailsView();
+        searchResultsView1 = new Views.SearchResults.SearchResultsView();
         detailedProductView1 = new Views.DetailedProduct.DetailedProductView();
         shoppingCart = new Views.ShoppingCart.ShoppingCartView();
         checkoutCard = new javax.swing.JPanel();
@@ -57,8 +59,8 @@ public class MainView extends FrameView {
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        showPrevOrdersMenuItem = new javax.swing.JMenuItem();
+        showShoppingListsMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         showAccSettingsMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
@@ -86,14 +88,14 @@ public class MainView extends FrameView {
         centerCardContainer.setOpaque(false);
         centerCardContainer.setLayout(new java.awt.CardLayout());
 
-        searchResultsView1.setName("searchResultsView1"); // NOI18N
-        centerCardContainer.add(searchResultsView1, "card3");
-
         listOrderDetailsView1.setName("listOrderDetailsView1"); // NOI18N
-        centerCardContainer.add(listOrderDetailsView1, "card4");
+        centerCardContainer.add(listOrderDetailsView1, "listorderdetail");
+
+        searchResultsView1.setName("searchResultsView1"); // NOI18N
+        centerCardContainer.add(searchResultsView1, "searchresults");
 
         detailedProductView1.setName("detailedProductView1"); // NOI18N
-        centerCardContainer.add(detailedProductView1, "card4");
+        centerCardContainer.add(detailedProductView1, "");
 
         jSplitPane1.setRightComponent(centerCardContainer);
 
@@ -106,8 +108,8 @@ public class MainView extends FrameView {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainCardLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE)
-                    .addComponent(headerBar, javax.swing.GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE))
+                    .addComponent(jSplitPane1)
+                    .addComponent(headerBar, javax.swing.GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(shoppingCart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -158,13 +160,23 @@ public class MainView extends FrameView {
         jMenu1.setText(resourceMap.getString("jMenu1.text")); // NOI18N
         jMenu1.setName("jMenu1"); // NOI18N
 
-        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
-        jMenuItem1.setName("jMenuItem1"); // NOI18N
-        jMenu1.add(jMenuItem1);
+        showPrevOrdersMenuItem.setText(resourceMap.getString("showPrevOrdersMenuItem.text")); // NOI18N
+        showPrevOrdersMenuItem.setName("showPrevOrdersMenuItem"); // NOI18N
+        showPrevOrdersMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showPrevOrdersMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(showPrevOrdersMenuItem);
 
-        jMenuItem2.setText(resourceMap.getString("jMenuItem2.text")); // NOI18N
-        jMenuItem2.setName("jMenuItem2"); // NOI18N
-        jMenu1.add(jMenuItem2);
+        showShoppingListsMenuItem.setText(resourceMap.getString("showShoppingListsMenuItem.text")); // NOI18N
+        showShoppingListsMenuItem.setName("showShoppingListsMenuItem"); // NOI18N
+        showShoppingListsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showShoppingListsMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(showShoppingListsMenuItem);
 
         jSeparator1.setName("jSeparator1"); // NOI18N
         jMenu1.add(jSeparator1);
@@ -197,6 +209,14 @@ private void showAccSettingsMenuItemActionPerformed(java.awt.event.ActionEvent e
     MainController.INSTANCE.showAccountSettingsPopup();
 }//GEN-LAST:event_showAccSettingsMenuItemActionPerformed
 
+private void showShoppingListsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showShoppingListsMenuItemActionPerformed
+    MainController.INSTANCE.showShoppingLists();
+}//GEN-LAST:event_showShoppingListsMenuItemActionPerformed
+
+private void showPrevOrdersMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPrevOrdersMenuItemActionPerformed
+    MainController.INSTANCE.showOrders();
+}//GEN-LAST:event_showPrevOrdersMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Views.Categories.CategoriesView categoriesPanel;
     private javax.swing.JPanel centerCardContainer;
@@ -204,8 +224,6 @@ private void showAccSettingsMenuItemActionPerformed(java.awt.event.ActionEvent e
     private Views.DetailedProduct.DetailedProductView detailedProductView1;
     private Views.HeaderBar.HeaderBarView headerBar;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private Views.listOrderDetails.ListOrderDetailsView listOrderDetailsView1;
@@ -215,6 +233,27 @@ private void showAccSettingsMenuItemActionPerformed(java.awt.event.ActionEvent e
     private Views.SearchResults.SearchResultsView searchResultsView1;
     private Views.ShoppingCart.ShoppingCartView shoppingCart;
     private javax.swing.JMenuItem showAccSettingsMenuItem;
+    private javax.swing.JMenuItem showPrevOrdersMenuItem;
+    private javax.swing.JMenuItem showShoppingListsMenuItem;
     // End of variables declaration//GEN-END:variables
     private JDialog aboutBox;
+
+    private void showMainPanel(){
+        ((CardLayout)mainPanel.getLayout()).show(mainPanel, "main");
+    }
+    
+    private void showCheckoutPanel(){
+        ((CardLayout)mainPanel.getLayout()).show(mainPanel, "checkout");
+    }
+    
+    void showListOrderDetailPanel(ListOrderType listOrderType) {
+        showMainPanel();
+        ((CardLayout)centerCardContainer.getLayout()).show(centerCardContainer, "listorderdetail");
+        listOrderDetailsView1.setListOrderType(listOrderType);
+    }
+    
+    void showSearchResultsPanel() {
+        showMainPanel();
+        ((CardLayout)centerCardContainer.getLayout()).show(centerCardContainer, "searchresults");
+    }
 }

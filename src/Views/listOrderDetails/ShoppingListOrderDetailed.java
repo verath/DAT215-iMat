@@ -6,8 +6,12 @@
  */
 package Views.listOrderDetails;
 
+import Main.ShoppingCartWrapper;
 import ShoppingList.ShoppingList;
 import ShoppingList.ShoppingListItem;
+import ShoppingList.ShoppingListsHandler;
+import java.awt.Font;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import javax.swing.JLabel;
@@ -22,42 +26,65 @@ import se.chalmers.ait.dat215.project.ShoppingItem;
 public class ShoppingListOrderDetailed extends javax.swing.JPanel {
 
     ShoppingList shoppingList;
+    List<ShoppingListItem> shoppingItems;
 
     /** Creates new form ShoppingListDetailed */
     public ShoppingListOrderDetailed(Object object) {
         initComponents();
 
+        shoppingItems = new LinkedList<ShoppingListItem>();
+
         if (object instanceof ShoppingList) {
-            titleLabel.setText("List: " + object);
-            ShoppingList sl = ((ShoppingList) object);
-            Set<ShoppingListItem> shoppingItems = sl.getItems();
-            for (ShoppingListItem si : shoppingItems) {
-                System.out.println(si.getProduct());
+            titleLabel.setText(object.toString());
+            shoppingList = ((ShoppingList) object);
+
+            // For each item, show a thumbnail and add to list of items
+            for (ShoppingListItem si : shoppingList.getItems()) {
                 Product p = si.getProduct();
+
+                // Add image
                 JLabel img = new JLabel(IMatDataHandler.getInstance().getImageIcon(p));
                 imagesContainer.add(img);
+
+                // Add text
+                JLabel txt = new JLabel("- " + p.getName() + " (" + si.getAmount() + " " + p.getUnitSuffix() + ")");
+                txt.setFont(new Font("Verdana", Font.PLAIN, 16));
+                productsContainer.add(txt);
+
+                // Add to list of products to add later
+                shoppingItems.add(new ShoppingListItem(si.getProduct(), si.getAmount()));
             }
-            imagesContainer.validate();
-            imagesContainer.repaint();
         } else if (object instanceof OrderWrapper) {
-            titleLabel.setText("Order: " + object);
+            titleLabel.setText(object.toString());
             OrderWrapper ow = ((OrderWrapper) object);
-            List<ShoppingItem> shoppingItems = ow.getOrder().getItems();
-            for (ShoppingItem si : shoppingItems) {
+            
+            // Hide remove button, can't remove orders
+            removeButton.setVisible(false);
+
+            // For each item, show a thumbnail and add to list of items
+
+            for (ShoppingItem si : ow.getOrder().getItems()) {
                 Product p = si.getProduct();
+
+                // Add image
                 JLabel img = new JLabel(IMatDataHandler.getInstance().getImageIcon(p));
                 imagesContainer.add(img);
+
+                // Add text
+                JLabel txt = new JLabel("- " + p.getName() + " (" + si.getAmount() + " " + p.getUnitSuffix() + ")");
+                txt.setFont(new Font("Verdana", Font.PLAIN, 16));
+                productsContainer.add(txt);
+
+                // Add to list of products to add later
+                shoppingItems.add(new ShoppingListItem(si.getProduct(), si.getAmount()));
             }
-
-
         } else {
             setVisible(false);
             return;
         }
 
-
-
-
+        imagesContainer.validate();
+        imagesContainer.repaint();
 
     }
 
@@ -72,31 +99,80 @@ public class ShoppingListOrderDetailed extends javax.swing.JPanel {
 
         titleLabel = new javax.swing.JLabel();
         imagesContainer = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        productsContainer = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        addButton = new javax.swing.JButton();
+        removeButton = new javax.swing.JButton();
 
         setName("Form"); // NOI18N
+        setOpaque(false);
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(ShoppingListOrderDetailed.class);
         titleLabel.setFont(resourceMap.getFont("titleLabel.font")); // NOI18N
         titleLabel.setText(resourceMap.getString("titleLabel.text")); // NOI18N
         titleLabel.setName("titleLabel"); // NOI18N
 
+        imagesContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         imagesContainer.setMaximumSize(new java.awt.Dimension(128, 128));
         imagesContainer.setMinimumSize(new java.awt.Dimension(128, 128));
         imagesContainer.setName("imagesContainer"); // NOI18N
+        imagesContainer.setOpaque(false);
         imagesContainer.setLayout(new java.awt.GridLayout(2, 2));
 
-        jPanel2.setName("jPanel2"); // NOI18N
+        productsContainer.setName("productsContainer"); // NOI18N
+        productsContainer.setOpaque(false);
+        productsContainer.setLayout(new javax.swing.BoxLayout(productsContainer, javax.swing.BoxLayout.PAGE_AXIS));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 598, Short.MAX_VALUE)
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+        productsContainer.add(jLabel1);
+
+        jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.setOpaque(false);
+
+        addButton.setText(resourceMap.getString("addButton.text")); // NOI18N
+        addButton.setToolTipText(resourceMap.getString("addButton.toolTipText")); // NOI18N
+        addButton.setMaximumSize(new java.awt.Dimension(77, 48));
+        addButton.setMinimumSize(new java.awt.Dimension(77, 48));
+        addButton.setName("addButton"); // NOI18N
+        addButton.setPreferredSize(new java.awt.Dimension(77, 48));
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        removeButton.setText(resourceMap.getString("removeButton.text")); // NOI18N
+        removeButton.setToolTipText(resourceMap.getString("removeButton.toolTipText")); // NOI18N
+        removeButton.setActionCommand(resourceMap.getString("removeButton.actionCommand")); // NOI18N
+        removeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        removeButton.setName("removeButton"); // NOI18N
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(removeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 167, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(removeButton)
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -110,7 +186,9 @@ public class ShoppingListOrderDetailed extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(imagesContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(productsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -118,16 +196,36 @@ public class ShoppingListOrderDetailed extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(titleLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imagesContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(imagesContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(productsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+    for (ShoppingListItem si : shoppingItems) {
+        ShoppingCartWrapper.INSTANCE.addProduct(si.getProduct(), si.getAmount());
+    }
+}//GEN-LAST:event_addButtonActionPerformed
+
+private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+    ShoppingListsHandler.INSTANCE.removeShoppingList(shoppingList);
+    setVisible(false);
+}//GEN-LAST:event_removeButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
     private javax.swing.JPanel imagesContainer;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel productsContainer;
+    private javax.swing.JButton removeButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

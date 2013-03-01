@@ -7,6 +7,7 @@ package Main;
 import navigation.NavigationListener;
 import navigation.NavigationEvent;
 import Search.SearchQuery;
+import Views.listOrderDetails.ListOrderDetailsView.ListOrderType;
 import popups.accountSettings.AccountSettingsPopup;
 import java.awt.Dialog;
 import java.awt.Dimension;
@@ -14,7 +15,10 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
+import javax.swing.JPanel;
+import navigation.NavigationOtherEvent;
 import navigation.NavigationSearchEvent;
+import navigation.NavigationShoppingListsEvent;
 
 /**
  * A singelton class for handling the major tasks in the UI on a high level,
@@ -36,13 +40,22 @@ public enum MainController {
      * The account settings dialog
      */
     private JDialog accountSettingsDialog;
+    private MainView view;
 
+    public void setView(MainView view){
+        this.view = view;
+    }
+    
     /**
      * Performs a search by displaying the search results panels.
      * 
      * @param sq 
      */
     public void search(SearchQuery sq) {
+        if(view != null){
+            view.showSearchResultsPanel();
+        }
+        
         notifyNavigationListeners(new NavigationSearchEvent(sq));
     }
 
@@ -67,7 +80,7 @@ public enum MainController {
             createAccountSettingsDialog();
         }
         Dimension popupSize = AccountSettingsPopup.PREFERRED_SIZE;
-       
+
         // Set size and center on screen
         accountSettingsDialog.setBounds(0, 0, popupSize.width, popupSize.height);
         accountSettingsDialog.setLocationRelativeTo(null);
@@ -101,5 +114,24 @@ public enum MainController {
      */
     public void removeNavigationListener(NavigationListener navigationListener) {
         navigationListeners.remove(navigationListener);
+    }
+
+    /**
+     * Shows the shoppingLists view
+     */
+    public void showShoppingLists() {
+        if(view != null) {
+            view.showListOrderDetailPanel(ListOrderType.SHOPPING_LIST);
+            notifyNavigationListeners(new NavigationShoppingListsEvent());
+        }
+        
+        
+    }
+    
+    public void showOrders(){
+        if(view!= null){
+            view.showListOrderDetailPanel(ListOrderType.ORDER_LIST);
+            notifyNavigationListeners(new NavigationOtherEvent());
+        }
     }
 }

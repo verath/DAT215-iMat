@@ -24,6 +24,7 @@ import java.util.Set;
 import javax.swing.JSeparator;
 import navigation.NavigationEvent;
 import navigation.NavigationSearchEvent;
+import navigation.NavigationShoppingListsEvent;
 import se.chalmers.ait.dat215.project.ProductCategory;
 
 /**
@@ -37,6 +38,7 @@ public class CategoriesView extends javax.swing.JPanel implements NavigationList
      */
     public static final Map<String, Set<ProductCategory>> categoryItemProducts = new HashMap<String, Set<ProductCategory>>();
     //<editor-fold defaultstate="collapsed" desc="Mapping of name -> Category">
+
     static {
         Set<ProductCategory> prodCategories;
         // Frukt & Grönt
@@ -46,47 +48,47 @@ public class CategoriesView extends javax.swing.JPanel implements NavigationList
         prodCategories.add(ProductCategory.CABBAGE);
         prodCategories.add(ProductCategory.VEGETABLE_FRUIT);
         categoryItemProducts.put("Grönsaker", prodCategories);
-        
+
         // Kött
         prodCategories = new HashSet<ProductCategory>();
         prodCategories.add(ProductCategory.MEAT);
         prodCategories.add(ProductCategory.FISH);
         categoryItemProducts.put("Kött", prodCategories);
-        
+
         //Mejeriproduktrer
         prodCategories = new HashSet<ProductCategory>();
         prodCategories.add(ProductCategory.DAIRIES);
         categoryItemProducts.put("Mejeriprodukter", prodCategories);
-        
+
         //Skafferi
         prodCategories = new HashSet<ProductCategory>();
         prodCategories.add(ProductCategory.FLOUR_SUGAR_SALT);
         prodCategories.add(ProductCategory.PASTA);
         prodCategories.add(ProductCategory.POTATO_RICE);
         categoryItemProducts.put("Skafferi", prodCategories);
-        
+
         //Nötter & Örter
         prodCategories = new HashSet<ProductCategory>();
         prodCategories.add(ProductCategory.HERB);
         prodCategories.add(ProductCategory.NUTS_AND_SEEDS);
         categoryItemProducts.put("Nötter & Örter", prodCategories);
-        
+
         //Sötsaker
         prodCategories = new HashSet<ProductCategory>();
         prodCategories.add(ProductCategory.SWEET);
         categoryItemProducts.put("Sötsaker", prodCategories);
-        
+
         //Bröd
         prodCategories = new HashSet<ProductCategory>();
         prodCategories.add(ProductCategory.BREAD);
         categoryItemProducts.put("Bröd", prodCategories);
-        
+
         //Dryck
         prodCategories = new HashSet<ProductCategory>();
         prodCategories.add(ProductCategory.COLD_DRINKS);
         prodCategories.add(ProductCategory.HOT_DRINKS);
         categoryItemProducts.put("Drycker", prodCategories);
-        
+
         //Frukt & Bär
         prodCategories = new HashSet<ProductCategory>();
         prodCategories.add(ProductCategory.BERRY);
@@ -97,7 +99,6 @@ public class CategoriesView extends javax.swing.JPanel implements NavigationList
         categoryItemProducts.put("Frukt & Bär", prodCategories);
     }
     //</editor-fold>
-    
     private List<CategoryItemView> categoryViews = new ArrayList<CategoryItemView>(10);
 
     /** Creates new form CategoriesView */
@@ -129,11 +130,11 @@ public class CategoriesView extends javax.swing.JPanel implements NavigationList
         civ.setIsFavoriteLabel(true);
         add(civ);
         categoryViews.add(civ);
-        
+
         // Show a special label for shoppinglists
         CategoryItemView sliv = new CategoryItemView();
         sliv.setCategoryName("Inköpslistor");
-        sliv.setIsFavoriteLabel(true);
+        sliv.setIsShoppingListLabel(true);
         add(sliv);
         categoryViews.add(sliv);
 
@@ -157,17 +158,26 @@ public class CategoriesView extends javax.swing.JPanel implements NavigationList
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
     /**
      * Called by the controller when a search occurs.
      * Forward event to all CategoryItemView.
      * @param searchQuery 
      */
     public void onNavigate(NavigationEvent NavEvent) {
-        if( NavEvent instanceof NavigationSearchEvent ) {
+        if (NavEvent instanceof NavigationSearchEvent) {
             NavigationSearchEvent ev = (NavigationSearchEvent) NavEvent;
             for (CategoryItemView civ : categoryViews) {
                 civ.onSearchChange(ev.getSearchQuery());
+            }
+        } else if (NavEvent instanceof NavigationShoppingListsEvent) {
+            NavigationShoppingListsEvent ev = (NavigationShoppingListsEvent) NavEvent;
+            for (CategoryItemView civ : categoryViews) {
+                civ.onShoppingListShown();
+            }
+        } else {
+            for (CategoryItemView civ : categoryViews) {
+                civ.onOtherNavigation();
             }
         }
     }

@@ -21,9 +21,9 @@ import se.chalmers.ait.dat215.project.IMatDataHandler;
  * @author Peter
  */
 public class ListOrderDetailsView extends javax.swing.JPanel implements ShoppingListChangeListener {
-    
+
     public enum ListOrderType {
-        
+
         SHOPPING_LIST, ORDER_LIST
     }
     private ListOrderType listType;
@@ -33,16 +33,22 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
     public ListOrderDetailsView(ListOrderType listType) {
         initComponents();
         ShoppingListsHandler.INSTANCE.addChangeListener(this);
-        
+
         this.listType = listType;
-        
+
         updateListModel();
     }
-    
+
     public ListOrderDetailsView() {
-        this(ListOrderType.SHOPPING_LIST);
+        this(ListOrderType.ORDER_LIST);
     }
-    
+
+    public void setListOrderType(ListOrderType listType) {
+        this.listType = listType;
+
+        updateListModel();
+    }
+
     private void updateListModel() {
         switch (this.listType) {
             case SHOPPING_LIST: // Shopping list 
@@ -70,6 +76,7 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(ListOrderDetailsView.class);
         setBackground(resourceMap.getColor("Form.background")); // NOI18N
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 12, 12, 12));
         setName("Form"); // NOI18N
         setOpaque(false);
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
@@ -124,11 +131,11 @@ private void itemListValueChanged(javax.swing.event.ListSelectionEvent evt) {//G
             selectedPanel = new ShoppingListOrderDetailed(itemList.getSelectedValue());
             detailsContainer.add(selectedPanel);
         }
-        
+
         jSplitPane1.validate();
         jSplitPane1.repaint();
     }
-    
+
     public void onChange() {
         if (listType == ListOrderType.SHOPPING_LIST) {
             updateListModel();

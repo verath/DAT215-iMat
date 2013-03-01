@@ -50,10 +50,19 @@ public class CategoryItemView extends javax.swing.JPanel {
     }
 
     public void onSearchChange(SearchQuery sq) {
-        if (sq.equals(searchQuery)) {
+        if (searchQuery != null && sq.equals(searchQuery)) {
             setActiveState();
         } else {
             unsetActiveState();
+        }
+    }
+
+    public void onShoppingListShown() {
+        if (isShoppingListLabel) {
+            setActiveState();
+        } else {
+            unsetActiveState();
+    
         }
     }
 
@@ -138,13 +147,24 @@ private void nameLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:e
 }//GEN-LAST:event_nameLabelMouseClicked
 
 private void containerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_containerMouseClicked
-    searchQuery = new SearchQuery(null, null, productCategories, isFavLabel, name);
-    MainController.INSTANCE.search(searchQuery);
+    if (isShoppingListLabel) {
+        MainController.INSTANCE.showShoppingLists();
+    } else {
+        searchQuery = new SearchQuery(null, null, productCategories, isFavLabel, name);
+        MainController.INSTANCE.search(searchQuery);
+    }
 }//GEN-LAST:event_containerMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel container;
     private javax.swing.JLabel nameLabel;
     // End of variables declaration//GEN-END:variables
-    Font highlightedFont = new Font("Tahoma", Font.BOLD, 20);
-    Font disabledFont = new Font("Tahoma", Font.PLAIN, 18);
+    private boolean isShoppingListLabel = false;
+
+    void setIsShoppingListLabel(boolean b) {
+        isShoppingListLabel = b;
+    }
+
+    void onOtherNavigation() {
+        unsetActiveState();
+    }
 }
