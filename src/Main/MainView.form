@@ -96,16 +96,6 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
                   <SubComponents>
-                    <Component class="Views.listOrderDetails.ListOrderDetailsView" name="listOrderDetailsView1">
-                      <Properties>
-                        <Property name="name" type="java.lang.String" value="listOrderDetailsView1" noResource="true"/>
-                      </Properties>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                          <CardConstraints cardName="card4"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
                     <Component class="Views.SearchResults.SearchResultsView" name="searchResultsView1">
                       <Properties>
                         <Property name="name" type="java.lang.String" value="searchResultsView1" noResource="true"/>
@@ -113,6 +103,16 @@
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                           <CardConstraints cardName="card3"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="Views.listOrderDetails.ListOrderDetailsView" name="listOrderDetailsView1">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="listOrderDetailsView1" noResource="true"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                          <CardConstraints cardName="card4"/>
                         </Constraint>
                       </Constraints>
                     </Component>

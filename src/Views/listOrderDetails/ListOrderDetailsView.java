@@ -40,7 +40,7 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
     }
     
     public ListOrderDetailsView() {
-        this(ListOrderType.ORDER_LIST);
+        this(ListOrderType.SHOPPING_LIST);
     }
     
     private void updateListModel() {

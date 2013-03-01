@@ -48,8 +48,8 @@ public class MainView extends FrameView {
         jSplitPane1 = new javax.swing.JSplitPane();
         categoriesPanel = new Views.Categories.CategoriesView();
         centerCardContainer = new javax.swing.JPanel();
-        listOrderDetailsView1 = new Views.listOrderDetails.ListOrderDetailsView();
         searchResultsView1 = new Views.SearchResults.SearchResultsView();
+        listOrderDetailsView1 = new Views.listOrderDetails.ListOrderDetailsView();
         detailedProductView1 = new Views.DetailedProduct.DetailedProductView();
         shoppingCart = new Views.ShoppingCart.ShoppingCartView();
         checkoutCard = new javax.swing.JPanel();
@@ -86,11 +86,11 @@ public class MainView extends FrameView {
         centerCardContainer.setOpaque(false);
         centerCardContainer.setLayout(new java.awt.CardLayout());
 
-        listOrderDetailsView1.setName("listOrderDetailsView1"); // NOI18N
-        centerCardContainer.add(listOrderDetailsView1, "card4");
-
         searchResultsView1.setName("searchResultsView1"); // NOI18N
         centerCardContainer.add(searchResultsView1, "card3");
+
+        listOrderDetailsView1.setName("listOrderDetailsView1"); // NOI18N
+        centerCardContainer.add(listOrderDetailsView1, "card4");
 
         detailedProductView1.setName("detailedProductView1"); // NOI18N
         centerCardContainer.add(detailedProductView1, "card4");

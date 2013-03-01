@@ -68,6 +68,7 @@ public class SearchResultItemView extends javax.swing.JPanel {
     public void setProduct(Product product) {
         IMatDataHandler dh = IMatDataHandler.getInstance();
 
+        amountSpinner.setValue(1);
         imageLabel.setIcon(dh.getImageIcon(product, 128, 128));
         nameLabel.setText(product.getName());
         priceLabel.setText(product.getPrice() + " " + product.getUnit());

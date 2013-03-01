@@ -7,6 +7,12 @@
 package Views.listOrderDetails;
 
 import ShoppingList.ShoppingList;
+import ShoppingList.ShoppingListItem;
+import java.util.List;
+import java.util.Set;
+import javax.swing.JLabel;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
+import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ShoppingItem;
 
 /**
@@ -21,17 +27,36 @@ public class ShoppingListOrderDetailed extends javax.swing.JPanel {
     public ShoppingListOrderDetailed(Object object) {
         initComponents();
 
-        if (object instanceof ShoppingItem) {
-            jLabel1.setText("List: " + object);
+        if (object instanceof ShoppingList) {
+            titleLabel.setText("List: " + object);
+            ShoppingList sl = ((ShoppingList) object);
+            Set<ShoppingListItem> shoppingItems = sl.getItems();
+            for (ShoppingListItem si : shoppingItems) {
+                System.out.println(si.getProduct());
+                Product p = si.getProduct();
+                JLabel img = new JLabel(IMatDataHandler.getInstance().getImageIcon(p));
+                imagesContainer.add(img);
+            }
+            imagesContainer.validate();
+            imagesContainer.repaint();
         } else if (object instanceof OrderWrapper) {
-            jLabel1.setText("Order: " + object);
+            titleLabel.setText("Order: " + object);
+            OrderWrapper ow = ((OrderWrapper) object);
+            List<ShoppingItem> shoppingItems = ow.getOrder().getItems();
+            for (ShoppingItem si : shoppingItems) {
+                Product p = si.getProduct();
+                JLabel img = new JLabel(IMatDataHandler.getInstance().getImageIcon(p));
+                imagesContainer.add(img);
+            }
+
+
         } else {
             setVisible(false);
             return;
         }
 
 
-        
+
 
 
     }
@@ -45,13 +70,34 @@ public class ShoppingListOrderDetailed extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
+        imagesContainer = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
 
         setName("Form"); // NOI18N
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(ShoppingListOrderDetailed.class);
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
+        titleLabel.setFont(resourceMap.getFont("titleLabel.font")); // NOI18N
+        titleLabel.setText(resourceMap.getString("titleLabel.text")); // NOI18N
+        titleLabel.setName("titleLabel"); // NOI18N
+
+        imagesContainer.setMaximumSize(new java.awt.Dimension(128, 128));
+        imagesContainer.setMinimumSize(new java.awt.Dimension(128, 128));
+        imagesContainer.setName("imagesContainer"); // NOI18N
+        imagesContainer.setLayout(new java.awt.GridLayout(2, 2));
+
+        jPanel2.setName("jPanel2"); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 598, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 167, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -59,18 +105,29 @@ public class ShoppingListOrderDetailed extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(715, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(imagesContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(399, Short.MAX_VALUE))
+                .addComponent(titleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imagesContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel imagesContainer;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
