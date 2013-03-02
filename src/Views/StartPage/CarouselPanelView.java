@@ -10,9 +10,9 @@
  */
 package Views.StartPage;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import javax.swing.Box.Filler;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
 
@@ -21,129 +21,64 @@ import se.chalmers.ait.dat215.project.Product;
  * @author Ernst
  */
 public class CarouselPanelView extends javax.swing.JPanel {
-    
-    //Saves a copy of the favourite list
-    private static List<Product> favorites = new LinkedList<Product>(IMatDataHandler.getInstance().favorites());
-    //Saves a copy of the product list
-    private static List<Product> products = new LinkedList<Product>(IMatDataHandler.getInstance().getProducts());
-    //Keeps track of when to change an ItemViewPanels colour
-    private static boolean changeNextColour = true;
-    //Keeps track of which set of the carousel ItemViewPanels currently in view
-    private static int carouselNbr = 0;
-    
-    //A list consisting of (12) random favourite items and/or random products in store
-    //depending if there are enough (up to 12) favourites in the list.
-    private List<FeatureItemView> featureItemList = new LinkedList<FeatureItemView>();
 
-    /** Creates new form karusellPanel */
+    /**
+     * The number of Products to keep in a CarouselPanelView
+     */
+    public static final int TOTAL_ITEMS = 12;
+    /**
+     * The number of Products visible at a time
+     */
+    public static final int VISIBLE_ITEMS = 4;
+    /**
+     * The featured items displayed in this view
+     */
+    private List<FeatureItemView> featureItemViews = new LinkedList<FeatureItemView>();
+    private int currentPage = 0;
+
+    /** Creates new form CarouselPanelView */
     public CarouselPanelView() {
         initComponents();
-        
-        placeFeatureItems();
-        
-        resetList();
+        generateFeatureItems();
+        showFeatureItems();
+        updatePageLabel();
     }
 
-    //Restores FeatureItemsViews deleted in placeFeatureItems()
-    public void resetList(){
-        favorites = new LinkedList<Product>(IMatDataHandler.getInstance().favorites());
-        products = new LinkedList<Product>(IMatDataHandler.getInstance().getProducts());
-    }
-    
-    
-    //Randomizes products to the itemFeatureList as well as adding 4 FeatureItemViews
-    //to the carouselPanel. Also deletes all added products to prevent duplicates.
-    private void placeFeatureItems(){
-        if(IMatDataHandler.getInstance().favorites() != null){
-            
-            if(favorites.size() < 12){
-               
-               for(int i = 0; i < favorites.size(); i++){
-                   FeatureItemView panel = new FeatureItemView();
-                   panel.setProduct(favorites.get(i));
-                   if(changeNextColour){
-                       panel.changeColour();
-                   }
-                   changeNextColour = !changeNextColour;
-                   karusellPanel.add(panel);
-                   featureItemList.add(panel);
-               }
-               for(int i = 0; i < 12 - favorites.size(); i++){
-                   int rand = (int) (products.size()*Math.random());
-                   FeatureItemView panel = new FeatureItemView();
-                   panel.setProduct(products.get(rand));
-                   products.remove(rand);
-                   if(changeNextColour){
-                       panel.changeColour();
-                   }
-                   changeNextColour = !changeNextColour;
-                   if(i < 4 - favorites.size()){
-                       karusellPanel.add(panel);
-                   }
-                   featureItemList.add(panel);
-               }
-            }else{
-                for(int i = 0; i < 12; i++){
-                   int rand = (int) (favorites.size()*Math.random());
-                   FeatureItemView panel = new FeatureItemView();
-                   panel.setProduct(favorites.get(rand));
-                   favorites.remove(rand);
-                   if(changeNextColour){
-                       panel.changeColour();
-                   }
-                   changeNextColour = !changeNextColour;
-                   if(i < 4){
-                       karusellPanel.add(panel);
-                   }
-                   featureItemList.add(panel);
-               }
-            }
-        }else{
-            
-            for(int i = 0; i < 12; i++){
-                int rand = (int) (products.size()*Math.random());
-                FeatureItemView panel = new FeatureItemView();
-                panel.setProduct(products.get(rand));
-                products.remove(rand);
-                if(changeNextColour){
-                       panel.changeColour();
-                }
-                changeNextColour = !changeNextColour;
-                if(i < 4){
-                    karusellPanel.add(panel);
-                }
-                featureItemList.add(panel);
-            }
-        }
-        changeNextColour = !changeNextColour;
-    } //underbar indentering osv
-    
-   //Switches between three different positions using the featureItemList,
-   //Panels 1-4,5-8 and 9-12 replace eachother on the CarouselView 
-   //when pressing the previous/next buttons.
-   public void nextButtonPressed(){
-        karusellPanel.removeAll();
-        karusellPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-        carouselNbr = (carouselNbr + 1)%3;
-        for(int i = 0; i < 4; i++){
-            karusellPanel.add(featureItemList.get(i+4*carouselNbr));
-        }
-        karusellPanel.validate();
-        karusellPanel.repaint();
-    }
-    
-    public void previousButtonPressed(){
-        karusellPanel.removeAll();
-        karusellPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-        carouselNbr = (carouselNbr - 1)%3;
-        for(int i = 0; i < 4; i++){
-            karusellPanel.add(featureItemList.get(i+4*carouselNbr));
-        }
-        karusellPanel.validate();
-        karusellPanel.repaint();
-    }
-    
+    /**
+     * Generates FeatureItemView to display, 
+     * prefers favorite marked ones over non-favorite.
+     */
+    private void generateFeatureItems() {
+        // Grab favorites in random order
+        List<Product> featuredItems = new LinkedList<Product>(
+                IMatDataHandler.getInstance().favorites());
+        Collections.shuffle(featuredItems);
 
+        // Pad with random Products if not enough favorites
+        int requiredItems = TOTAL_ITEMS - featuredItems.size();
+        if (requiredItems > 0) {
+            List<Product> randProducts = new LinkedList<Product>(
+                    IMatDataHandler.getInstance().getProducts());
+            Collections.shuffle(randProducts);
+            
+            for (int i = 0; requiredItems > 0; i++) {
+                if(!featuredItems.contains(randProducts.get(i))) {
+                    featuredItems.add(randProducts.get(i));
+                    requiredItems--;
+                }
+            }
+        }
+
+        // Create TOTAL_ITEMS FeatureItemViews and store them
+        for (int i = 0; i < TOTAL_ITEMS; i++) {
+            FeatureItemView item = new FeatureItemView();
+            item.setProduct(featuredItems.get(i));
+            featureItemViews.add(item);
+            if (i % 2 == 0) {
+                item.changeColour();
+            }
+        }
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -153,20 +88,157 @@ public class CarouselPanelView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        karusellPanel = new javax.swing.JPanel();
+        featureItemContainer = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        prevButton = new javax.swing.JButton();
+        pageNumLabel = new javax.swing.JLabel();
+        nextButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(247, 221, 192));
-        setPreferredSize(new java.awt.Dimension(750, 190));
-        setLayout(new java.awt.BorderLayout());
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(0, 244));
+        setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(750, 244));
+        setRequestFocusEnabled(false);
 
-        karusellPanel.setBackground(new java.awt.Color(255, 246, 241));
-        karusellPanel.setMaximumSize(new java.awt.Dimension(750, 190));
-        karusellPanel.setPreferredSize(new java.awt.Dimension(750, 190));
-        karusellPanel.setLayout(new javax.swing.BoxLayout(karusellPanel, javax.swing.BoxLayout.X_AXIS));
-        add(karusellPanel, java.awt.BorderLayout.CENTER);
+        featureItemContainer.setBackground(new java.awt.Color(255, 255, 255));
+        featureItemContainer.setMaximumSize(new java.awt.Dimension(750, 182));
+        featureItemContainer.setMinimumSize(new java.awt.Dimension(0, 182));
+        featureItemContainer.setOpaque(false);
+        featureItemContainer.setPreferredSize(new java.awt.Dimension(750, 182));
+        featureItemContainer.setLayout(new javax.swing.BoxLayout(featureItemContainer, javax.swing.BoxLayout.X_AXIS));
+
+        jPanel1.setMinimumSize(new java.awt.Dimension(0, 40));
+        jPanel1.setOpaque(false);
+        jPanel1.setPreferredSize(new java.awt.Dimension(726, 40));
+        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 40, 0));
+
+        prevButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow-180.png"))); // NOI18N
+        prevButton.setText("Förra");
+        prevButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        prevButton.setMargin(new java.awt.Insets(0, 5, 0, 5));
+        prevButton.setMaximumSize(new java.awt.Dimension(80, 27));
+        prevButton.setMinimumSize(new java.awt.Dimension(80, 27));
+        prevButton.setPreferredSize(new java.awt.Dimension(80, 27));
+        prevButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(prevButton);
+
+        pageNumLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pageNumLabel.setText("Varor 1-4 (12)");
+        pageNumLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pageNumLabel.setMaximumSize(new java.awt.Dimension(99, 24));
+        pageNumLabel.setMinimumSize(new java.awt.Dimension(99, 24));
+        pageNumLabel.setPreferredSize(new java.awt.Dimension(99, 24));
+        jPanel1.add(pageNumLabel);
+
+        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow.png"))); // NOI18N
+        nextButton.setText("Nästa");
+        nextButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        nextButton.setMargin(new java.awt.Insets(0, 5, 0, 5));
+        nextButton.setMaximumSize(new java.awt.Dimension(80, 27));
+        nextButton.setMinimumSize(new java.awt.Dimension(80, 27));
+        nextButton.setPreferredSize(new java.awt.Dimension(80, 27));
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(nextButton);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(featureItemContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(featureItemContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
+private void prevButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevButtonActionPerformed
+    prevPage();
+}//GEN-LAST:event_prevButtonActionPerformed
+
+private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+    nextPage();
+}//GEN-LAST:event_nextButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel karusellPanel;
+    private javax.swing.JPanel featureItemContainer;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton nextButton;
+    private javax.swing.JLabel pageNumLabel;
+    private javax.swing.JButton prevButton;
     // End of variables declaration//GEN-END:variables
+
+    public void nextPage() {
+        setNewPage(currentPage + 1);
+    }
+
+    public void prevPage() {
+        setNewPage(currentPage - 1);
+    }
+
+    private void setNewPage(int page) {
+        int numPages = (int) (Math.ceil(TOTAL_ITEMS / (double) VISIBLE_ITEMS));
+        // It gets a bit weird with negative numbers, but this works
+        // http://stackoverflow.com/questions/4412179/best-way-to-make-javas-modulus-behave-like-it-should-with-negative-numbers
+        currentPage = (page % numPages + numPages) % numPages;
+
+        showFeatureItems();
+        updatePageLabel();
+    }
+
+    /**
+     * Shows VISIBLE_ITEMS number of feature items at currentPage
+     */
+    private void showFeatureItems() {
+        // Make sure our index is within the number of items we have
+        int index = (currentPage * VISIBLE_ITEMS) % TOTAL_ITEMS;
+
+        // Remove all previous items from the container        
+        featureItemContainer.removeAll();
+
+        // Place VISIBLE_ITEMS new ones, add a filler to both
+        // sides of it to make scaling possible
+        for (int i = 0; i < VISIBLE_ITEMS; i++) {
+
+            featureItemContainer.add(new javax.swing.Box.Filler(
+                    new java.awt.Dimension(0, 20), new java.awt.Dimension(0, 20),
+                    new java.awt.Dimension(32767, 20)));
+
+            featureItemContainer.add(featureItemViews.get(index));
+
+            featureItemContainer.add(new javax.swing.Box.Filler(
+                    new java.awt.Dimension(0, 20), new java.awt.Dimension(0, 20),
+                    new java.awt.Dimension(32767, 20)));
+
+            index = (index + 1) % TOTAL_ITEMS;
+        }
+
+        featureItemContainer.validate();
+        featureItemContainer.repaint();
+    }
+
+    private void updatePageLabel() {
+        pageNumLabel.setText(String.format(
+                "Varor %d-%d (%d)",
+                currentPage * VISIBLE_ITEMS + 1,
+                (currentPage + 1) * VISIBLE_ITEMS,
+                TOTAL_ITEMS));
+    }
 }

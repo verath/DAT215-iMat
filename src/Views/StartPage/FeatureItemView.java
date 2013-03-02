@@ -62,31 +62,32 @@ public class FeatureItemView extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        setMaximumSize(new java.awt.Dimension(182, 182));
-        setMinimumSize(new java.awt.Dimension(182, 182));
+        setMaximumSize(new java.awt.Dimension(180, 180));
+        setMinimumSize(new java.awt.Dimension(180, 180));
         setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(182, 182));
+        setPreferredSize(new java.awt.Dimension(180, 180));
         setRequestFocusEnabled(false);
 
         jLayeredPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jLayeredPane1.setMaximumSize(new java.awt.Dimension(180, 180));
-        jLayeredPane1.setMinimumSize(new java.awt.Dimension(180, 180));
+        jLayeredPane1.setMaximumSize(new java.awt.Dimension(178, 178));
+        jLayeredPane1.setMinimumSize(new java.awt.Dimension(178, 178));
         jLayeredPane1.setName(""); // NOI18N
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/banan.png"))); // NOI18N
         imageLabel.setMaximumSize(new java.awt.Dimension(180, 180));
-        imageLabel.setMinimumSize(new java.awt.Dimension(164, 164));
+        imageLabel.setMinimumSize(new java.awt.Dimension(180, 180));
+        imageLabel.setName(""); // NOI18N
         imageLabel.setPreferredSize(new java.awt.Dimension(180, 180));
         imageLabel.setBounds(0, 0, 180, 180);
         jLayeredPane1.add(imageLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nameLabel.setBackground(new java.awt.Color(247, 193, 128));
-        nameLabel.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
+        nameLabel.setFont(new java.awt.Font("Myriad Pro", 0, 18));
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nameLabel.setText("Banan");
         nameLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         nameLabel.setMaximumSize(new java.awt.Dimension(180, 24));
-        nameLabel.setMinimumSize(new java.awt.Dimension(164, 24));
+        nameLabel.setMinimumSize(new java.awt.Dimension(180, 24));
         nameLabel.setOpaque(true);
         nameLabel.setPreferredSize(new java.awt.Dimension(180, 24));
         nameLabel.setBounds(0, 0, 180, 24);
@@ -94,17 +95,18 @@ public class FeatureItemView extends javax.swing.JPanel {
 
         infoPanel.setBackground(new java.awt.Color(255, 255, 255));
         infoPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        infoPanel.setMaximumSize(new java.awt.Dimension(180, 22));
-        infoPanel.setMinimumSize(new java.awt.Dimension(164, 21));
-        infoPanel.setPreferredSize(new java.awt.Dimension(180, 21));
+        infoPanel.setMaximumSize(new java.awt.Dimension(178, 22));
+        infoPanel.setMinimumSize(new java.awt.Dimension(164, 22));
+        infoPanel.setPreferredSize(new java.awt.Dimension(178, 22));
 
         suffixLabel.setFont(new java.awt.Font("Myriad Pro", 0, 10)); // NOI18N
         suffixLabel.setText("förp.");
 
         priceLabel.setFont(new java.awt.Font("Myriad Pro", 0, 10)); // NOI18N
+        priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         priceLabel.setText("8.50kr");
 
-        bajButton.setFont(new java.awt.Font("Myriad Pro", 0, 10)); // NOI18N
+        bajButton.setFont(new java.awt.Font("Myriad Pro", 0, 10));
         bajButton.setText("Köp");
         bajButton.setMargin(new java.awt.Insets(1, 8, 1, 8));
         bajButton.setMaximumSize(new java.awt.Dimension(39, 20));
@@ -117,7 +119,7 @@ public class FeatureItemView extends javax.swing.JPanel {
             }
         });
 
-        amountSpinner.setFont(new java.awt.Font("Myriad Pro", 0, 10)); // NOI18N
+        amountSpinner.setFont(new java.awt.Font("Myriad Pro", 0, 10));
         amountSpinner.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1.0d), Double.valueOf(0.01d), null, Double.valueOf(1.0d)));
 
         javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
@@ -125,8 +127,7 @@ public class FeatureItemView extends javax.swing.JPanel {
         infoPanelLayout.setHorizontalGroup(
             infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(priceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addComponent(priceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -145,18 +146,18 @@ public class FeatureItemView extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        infoPanel.setBounds(0, 159, 180, 21);
+        infoPanel.setBounds(0, 157, 178, 22);
         jLayeredPane1.add(infoPanel, new Integer(2));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

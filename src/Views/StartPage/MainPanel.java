@@ -19,8 +19,8 @@ public class MainPanel extends javax.swing.JPanel {
     /** Creates new form MainPanel */
     public MainPanel() {
         initComponents();
-        carouselPanelSwitcher1.setCarousel(carouselPanelView1);
-        carouselPanelSwitcher2.setCarousel(carouselPanelView2);
+        //.setCarousel(carouselPanelView1);
+        //carouselPanelSwitcher2.setCarousel(carouselPanelView2);
     }
 
     /** This method is called from within the constructor to
@@ -32,67 +32,51 @@ public class MainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        featurePanelView2 = new Views.StartPage.FeaturePanelView();
         carouselPanelView1 = new Views.StartPage.CarouselPanelView();
         carouselPanelView2 = new Views.StartPage.CarouselPanelView();
-        featurePanelView2 = new Views.StartPage.FeaturePanelView();
-        carouselPanelSwitcher1 = new Views.StartPage.CarouselPanelSwitcher();
-        carouselPanelSwitcher2 = new Views.StartPage.CarouselPanelSwitcher();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(MainPanel.class);
         setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setMaximumSize(new java.awt.Dimension(7706, 6436));
         setName("Form"); // NOI18N
 
-        carouselPanelView1.setBackground(resourceMap.getColor("carouselPanelView1.background")); // NOI18N
-        carouselPanelView1.setName("carouselPanelView1"); // NOI18N
-
-        carouselPanelView2.setName("carouselPanelView2"); // NOI18N
-
         featurePanelView2.setName("featurePanelView2"); // NOI18N
 
-        carouselPanelSwitcher1.setName("carouselPanelSwitcher1"); // NOI18N
+        carouselPanelView1.setBackground(resourceMap.getColor("carouselPanelView1.background")); // NOI18N
+        carouselPanelView1.setMinimumSize(new java.awt.Dimension(728, 230));
+        carouselPanelView1.setName("carouselPanelView1"); // NOI18N
+        carouselPanelView1.setOpaque(true);
 
-        carouselPanelSwitcher2.setName("carouselPanelSwitcher2"); // NOI18N
+        carouselPanelView2.setBackground(resourceMap.getColor("carouselPanelView2.background")); // NOI18N
+        carouselPanelView2.setName("carouselPanelView2"); // NOI18N
+        carouselPanelView2.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(carouselPanelView2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(featurePanelView2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(carouselPanelSwitcher1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(carouselPanelSwitcher2, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(carouselPanelView1, javax.swing.GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(featurePanelView2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
+                    .addComponent(carouselPanelView2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
+                    .addComponent(carouselPanelView1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(featurePanelView2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(carouselPanelView1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(featurePanelView2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(carouselPanelSwitcher1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(carouselPanelView1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(carouselPanelView2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(carouselPanelSwitcher2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(carouselPanelView2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Views.StartPage.CarouselPanelSwitcher carouselPanelSwitcher1;
-    private Views.StartPage.CarouselPanelSwitcher carouselPanelSwitcher2;
     private Views.StartPage.CarouselPanelView carouselPanelView1;
     private Views.StartPage.CarouselPanelView carouselPanelView2;
     private Views.StartPage.FeaturePanelView featurePanelView2;
