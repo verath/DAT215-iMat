@@ -6,6 +6,7 @@
  */
 package Views.listOrderDetails;
 
+import Main.MainApp;
 import Main.ShoppingCartWrapper;
 import ShoppingList.ShoppingList;
 import ShoppingList.ShoppingListItem;
@@ -15,6 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ShoppingItem;
@@ -57,7 +59,7 @@ public class ShoppingListOrderDetailed extends javax.swing.JPanel {
         } else if (object instanceof OrderWrapper) {
             titleLabel.setText(object.toString());
             OrderWrapper ow = ((OrderWrapper) object);
-            
+
             // Hide remove button, can't remove orders
             removeButton.setVisible(false);
 
@@ -216,8 +218,14 @@ private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 }//GEN-LAST:event_addButtonActionPerformed
 
 private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-    ShoppingListsHandler.INSTANCE.removeShoppingList(shoppingList);
-    setVisible(false);
+
+    int dialogResult = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort\n"
+            + "den här inköpslistan?", "Ta bort inköpslista?", JOptionPane.YES_NO_OPTION);
+    if (dialogResult == JOptionPane.YES_OPTION) {
+        ShoppingListsHandler.INSTANCE.removeShoppingList(shoppingList);
+        setVisible(false);
+    }
+
 }//GEN-LAST:event_removeButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;

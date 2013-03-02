@@ -28,8 +28,8 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jSplitPane1" pref="933" max="32767" attributes="0"/>
-                          <Component id="headerBar" alignment="0" pref="933" max="32767" attributes="0"/>
+                          <Component id="jSplitPane1" pref="917" max="32767" attributes="0"/>
+                          <Component id="headerBar" alignment="0" pref="917" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="shoppingCart" min="-2" max="-2" attributes="0"/>
@@ -39,14 +39,14 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="shoppingCart" alignment="0" pref="674" max="32767" attributes="2"/>
-                          <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="shoppingCart" alignment="1" pref="647" max="32767" attributes="2"/>
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="headerBar" min="-2" pref="38" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSplitPane1" max="32767" attributes="2"/>
+                              <Component id="jSplitPane1" pref="602" max="32767" attributes="2"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -96,6 +96,16 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
                   <SubComponents>
+                    <Component class="Views.StartPage.MainPanel" name="mainPanel1">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="mainPanel1" noResource="true"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                          <CardConstraints cardName="start"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
                     <Component class="Views.listOrderDetails.ListOrderDetailsView" name="listOrderDetailsView1">
                       <Properties>
                         <Property name="name" type="java.lang.String" value="listOrderDetailsView1" noResource="true"/>
@@ -126,22 +136,15 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="Views.StartPage.MainPanel" name="mainPanel1">
-                      <Properties>
-                        <Property name="name" type="java.lang.String" value="mainPanel1" noResource="true"/>
-                      </Properties>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                          <CardConstraints cardName="start"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
             </Container>
             <Component class="Views.ShoppingCart.ShoppingCartView" name="shoppingCart">
               <Properties>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[284, 20000]"/>
+                </Property>
                 <Property name="name" type="java.lang.String" value="shoppingCart" noResource="true"/>
               </Properties>
             </Component>

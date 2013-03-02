@@ -48,8 +48,9 @@ public class ShoppingCartView extends javax.swing.JPanel {
      * Adds a ShoppingCartItemView to the cart
      * @param si 
      */
-    private void addItemToCart(ShoppingItem si) {
+    private void addItemToCart(ShoppingItem si, boolean even) {
         ShoppingCartItemView sciv = new ShoppingCartItemView();
+        sciv.setIsEven(even);
         sciv.setShoppingItem(si);
         shoppingItemViews.put(si, sciv);
         shoppingItemsContainer.add(sciv);
@@ -78,8 +79,11 @@ public class ShoppingCartView extends javax.swing.JPanel {
         clearShoppingCart();
 
         // Then we add all new ones
+        int count = 0;
         for (ShoppingItem si : items) {
-            addItemToCart(si);
+            addItemToCart(si, (count%2 == 0));
+            
+            count ++;
         }
 
         // Set total price/number of items.
@@ -164,11 +168,15 @@ public class ShoppingCartView extends javax.swing.JPanel {
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
+        setMaximumSize(new java.awt.Dimension(284, 32767));
+        setMinimumSize(new java.awt.Dimension(284, 362));
         setName("Form"); // NOI18N
         setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(284, 362));
 
-        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(ShoppingCartView.class);
+        titleLabel.setFont(resourceMap.getFont("titleLabel.font")); // NOI18N
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText(resourceMap.getString("titleLabel.text")); // NOI18N
         titleLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titleLabel.setName("titleLabel"); // NOI18N
@@ -222,8 +230,8 @@ public class ShoppingCartView extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                    .add(titleLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                    .add(jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                    .add(titleLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -237,14 +245,14 @@ public class ShoppingCartView extends javax.swing.JPanel {
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
                                 .add(126, 126, 126)
-                                .add(filler1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 2, Short.MAX_VALUE)
+                                .add(filler1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 13, Short.MAX_VALUE)
                                 .add(23, 23, 23))
                             .add(layout.createSequentialGroup()
                                 .add(saveCartButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 126, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
                         .add(checkoutButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 98, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, scroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, scroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

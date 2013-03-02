@@ -10,9 +10,15 @@
     </Component>
   </NonVisualComponents>
   <Properties>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[287, 33]"/>
+    </Property>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[287, 33]"/>
+    </Property>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[387, 31]"/>
+      <Dimension value="[287, 33]"/>
     </Property>
   </Properties>
   <AuxValues>
@@ -30,12 +36,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -43,13 +52,14 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="name" type="java.lang.String" value="jPanel1" noResource="true"/>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="nameLabel" min="-2" pref="81" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="countSpinner" min="-2" pref="52" max="-2" attributes="0"/>
@@ -59,18 +69,17 @@
                   <Component id="priceLabel" min="-2" pref="51" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="RemoveButton" min="-2" pref="18" max="-2" attributes="0"/>
-                  <EmptySpace pref="121" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                  <Component id="nameLabel" alignment="3" pref="28" max="32767" attributes="1"/>
-                  <Component id="RemoveButton" alignment="3" pref="28" max="32767" attributes="0"/>
-                  <Component id="countSpinner" alignment="3" pref="28" max="32767" attributes="1"/>
-                  <Component id="unitMeasureLabel" alignment="3" pref="28" max="32767" attributes="1"/>
-                  <Component id="priceLabel" alignment="3" pref="28" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="nameLabel" alignment="2" pref="33" max="32767" attributes="1"/>
+                  <Component id="countSpinner" alignment="2" pref="33" max="32767" attributes="1"/>
+                  <Component id="unitMeasureLabel" alignment="2" pref="33" max="32767" attributes="1"/>
+                  <Component id="priceLabel" alignment="2" pref="33" max="32767" attributes="0"/>
+                  <Component id="RemoveButton" alignment="2" pref="33" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -106,7 +115,6 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" resourceKey="RemoveButton.text"/>
             <Property name="name" type="java.lang.String" value="RemoveButton" noResource="true"/>
-            <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="RemoveButtonMouseClicked"/>

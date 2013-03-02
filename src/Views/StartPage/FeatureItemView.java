@@ -39,7 +39,7 @@ public class FeatureItemView extends javax.swing.JPanel {
     }
     
     public void changeColour(){
-      nameLabel.setBackground(new java.awt.Color(247,221,192));  //ljust
+      //nameLabel.setBackground(new java.awt.Color(255,187,51));  //ljust
       // setBackground(new java.awt.Color(247,193,128));
     }   
     /** This method is called from within the constructor to
@@ -81,8 +81,8 @@ public class FeatureItemView extends javax.swing.JPanel {
         imageLabel.setBounds(0, 0, 180, 180);
         jLayeredPane1.add(imageLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        nameLabel.setBackground(new java.awt.Color(247, 193, 128));
-        nameLabel.setFont(new java.awt.Font("Myriad Pro", 0, 18));
+        nameLabel.setBackground(new java.awt.Color(255, 136, 0));
+        nameLabel.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nameLabel.setText("Banan");
         nameLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -99,10 +99,10 @@ public class FeatureItemView extends javax.swing.JPanel {
         infoPanel.setMinimumSize(new java.awt.Dimension(164, 22));
         infoPanel.setPreferredSize(new java.awt.Dimension(178, 22));
 
-        suffixLabel.setFont(new java.awt.Font("Myriad Pro", 0, 10)); // NOI18N
+        suffixLabel.setFont(new java.awt.Font("Myriad Pro", 0, 10));
         suffixLabel.setText("förp.");
 
-        priceLabel.setFont(new java.awt.Font("Myriad Pro", 0, 10)); // NOI18N
+        priceLabel.setFont(new java.awt.Font("Myriad Pro", 0, 10));
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         priceLabel.setText("8.50kr");
 

@@ -32,8 +32,13 @@ public class MainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        featurePanelView2 = new Views.StartPage.FeaturePanelView();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        featurePanelView1 = new Views.StartPage.FeatureRecipeView();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 20), new java.awt.Dimension(20, 20), new java.awt.Dimension(20, 20));
         carouselPanelView1 = new Views.StartPage.CarouselPanelView();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 20), new java.awt.Dimension(20, 20), new java.awt.Dimension(20, 20));
         carouselPanelView2 = new Views.StartPage.CarouselPanelView();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(MainPanel.class);
@@ -41,44 +46,74 @@ public class MainPanel extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(7706, 6436));
         setName("Form"); // NOI18N
 
-        featurePanelView2.setName("featurePanelView2"); // NOI18N
+        jLabel1.setFont(resourceMap.getFont("jLabel1.font")); // NOI18N
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        jScrollPane1.setBackground(resourceMap.getColor("jScrollPane1.background")); // NOI18N
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+        jScrollPane1.setOpaque(false);
+
+        jPanel1.setBackground(resourceMap.getColor("jPanel1.background")); // NOI18N
+        jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
+
+        featurePanelView1.setBackground(resourceMap.getColor("featurePanelView1.background")); // NOI18N
+        featurePanelView1.setName("featurePanelView1"); // NOI18N
+        featurePanelView1.setOpaque(true);
+        jPanel1.add(featurePanelView1);
+
+        filler2.setName("filler2"); // NOI18N
+        jPanel1.add(filler2);
 
         carouselPanelView1.setBackground(resourceMap.getColor("carouselPanelView1.background")); // NOI18N
         carouselPanelView1.setMinimumSize(new java.awt.Dimension(728, 230));
         carouselPanelView1.setName("carouselPanelView1"); // NOI18N
         carouselPanelView1.setOpaque(true);
+        carouselPanelView1.setTitle(resourceMap.getString("carouselPanelView1.title")); // NOI18N
+        jPanel1.add(carouselPanelView1);
+
+        filler1.setName("filler1"); // NOI18N
+        jPanel1.add(filler1);
 
         carouselPanelView2.setBackground(resourceMap.getColor("carouselPanelView2.background")); // NOI18N
         carouselPanelView2.setName("carouselPanelView2"); // NOI18N
         carouselPanelView2.setOpaque(true);
+        carouselPanelView2.setTitle(resourceMap.getString("carouselPanelView2.title")); // NOI18N
+        jPanel1.add(carouselPanelView2);
+
+        jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(featurePanelView2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
-                    .addComponent(carouselPanelView2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
-                    .addComponent(carouselPanelView1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
+                    .addComponent(jLabel1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(featurePanelView2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(carouselPanelView1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(carouselPanelView2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Views.StartPage.CarouselPanelView carouselPanelView1;
     private Views.StartPage.CarouselPanelView carouselPanelView2;
-    private Views.StartPage.FeaturePanelView featurePanelView2;
+    private Views.StartPage.FeatureRecipeView featurePanelView1;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

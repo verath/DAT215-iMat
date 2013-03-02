@@ -93,11 +93,13 @@ public class CarouselPanelView extends javax.swing.JPanel {
         prevButton = new javax.swing.JButton();
         pageNumLabel = new javax.swing.JLabel();
         nextButton = new javax.swing.JButton();
+        titleLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setMinimumSize(new java.awt.Dimension(0, 244));
+        setMaximumSize(new java.awt.Dimension(32767, 277));
+        setMinimumSize(new java.awt.Dimension(0, 277));
         setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(750, 244));
+        setPreferredSize(new java.awt.Dimension(750, 277));
         setRequestFocusEnabled(false);
 
         featureItemContainer.setBackground(new java.awt.Color(255, 255, 255));
@@ -148,6 +150,9 @@ public class CarouselPanelView extends javax.swing.JPanel {
         });
         jPanel1.add(nextButton);
 
+        titleLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        titleLabel.setText("Titel");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,6 +160,7 @@ public class CarouselPanelView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titleLabel)
                     .addComponent(featureItemContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE))
                 .addContainerGap())
@@ -163,10 +169,12 @@ public class CarouselPanelView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(titleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(featureItemContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -183,6 +191,7 @@ private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JButton nextButton;
     private javax.swing.JLabel pageNumLabel;
     private javax.swing.JButton prevButton;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 
     public void nextPage() {
@@ -240,5 +249,9 @@ private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                 currentPage * VISIBLE_ITEMS + 1,
                 (currentPage + 1) * VISIBLE_ITEMS,
                 TOTAL_ITEMS));
+    }
+    
+    public void setTitle(String title) {
+        titleLabel.setText(title);
     }
 }

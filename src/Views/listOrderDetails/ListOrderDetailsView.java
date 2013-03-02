@@ -10,11 +10,9 @@
  */
 package Views.listOrderDetails;
 
-import ShoppingList.ShoppingList;
 import ShoppingList.ShoppingListChangeListener;
 import ShoppingList.ShoppingListsHandler;
 import javax.swing.JPanel;
-import se.chalmers.ait.dat215.project.IMatDataHandler;
 
 /**
  *
@@ -34,18 +32,25 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
         initComponents();
         ShoppingListsHandler.INSTANCE.addChangeListener(this);
 
-        this.listType = listType;
-
-        updateListModel();
+        setListOrderType(listType);
     }
 
     public ListOrderDetailsView() {
         this(ListOrderType.ORDER_LIST);
     }
 
-    public void setListOrderType(ListOrderType listType) {
+    public final void setListOrderType(ListOrderType listType) {
         this.listType = listType;
 
+        switch (listType) {
+            case ORDER_LIST:
+                titleLabel.setText("Tidigare Ordrar");
+                break;
+            case SHOPPING_LIST:
+                titleLabel.setText("Mina Inköpslistor");
+                break;
+        }
+        
         updateListModel();
     }
 
@@ -59,6 +64,7 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
                 itemList.setModel(new ViewableOrderList());
                 break;
         }
+        itemList.setSelectedIndex(0);
     }
 
     /** This method is called from within the constructor to
@@ -74,15 +80,16 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
         detailsContainer = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         itemList = new javax.swing.JList();
+        titleLabel = new javax.swing.JLabel();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(ListOrderDetailsView.class);
         setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 12, 12, 12));
         setName("Form"); // NOI18N
         setOpaque(false);
-        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
         jSplitPane1.setBackground(resourceMap.getColor("jSplitPane1.background")); // NOI18N
+        jSplitPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jSplitPane1.setName("jSplitPane1"); // NOI18N
         jSplitPane1.setOpaque(false);
 
@@ -91,6 +98,7 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
         detailsContainer.setLayout(new javax.swing.BoxLayout(detailsContainer, javax.swing.BoxLayout.PAGE_AXIS));
         jSplitPane1.setRightComponent(detailsContainer);
 
+        jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -100,8 +108,11 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        itemList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         itemList.setFixedCellHeight(48);
         itemList.setName("itemList"); // NOI18N
+        itemList.setSelectedIndex(0);
+        itemList.setSelectionBackground(resourceMap.getColor("itemList.selectionBackground")); // NOI18N
         itemList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 itemListValueChanged(evt);
@@ -111,7 +122,26 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
 
         jSplitPane1.setLeftComponent(jScrollPane1);
 
-        add(jSplitPane1);
+        titleLabel.setFont(resourceMap.getFont("titleLabel.font")); // NOI18N
+        titleLabel.setText(resourceMap.getString("titleLabel.text")); // NOI18N
+        titleLabel.setName("titleLabel"); // NOI18N
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(titleLabel)
+                .addContainerGap(813, Short.MAX_VALUE))
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 935, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(titleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
 private void itemListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_itemListValueChanged
@@ -122,6 +152,7 @@ private void itemListValueChanged(javax.swing.event.ListSelectionEvent evt) {//G
     private javax.swing.JList itemList;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 
     public void updateDetailedView() {

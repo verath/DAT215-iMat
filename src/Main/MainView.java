@@ -50,10 +50,10 @@ public class MainView extends FrameView {
         jSplitPane1 = new javax.swing.JSplitPane();
         categoriesPanel = new Views.Categories.CategoriesView();
         centerCardContainer = new javax.swing.JPanel();
+        mainPanel1 = new Views.StartPage.MainPanel();
         listOrderDetailsView1 = new Views.listOrderDetails.ListOrderDetailsView();
         searchResultsView1 = new Views.SearchResults.SearchResultsView();
         detailedProductView1 = new Views.DetailedProduct.DetailedProductView();
-        mainPanel1 = new Views.StartPage.MainPanel();
         shoppingCart = new Views.ShoppingCart.ShoppingCartView();
         checkoutCard = new javax.swing.JPanel();
         cardLayoutCheckoutView1 = new Views.Checkout.CardLayoutCheckoutView();
@@ -90,6 +90,9 @@ public class MainView extends FrameView {
         centerCardContainer.setOpaque(false);
         centerCardContainer.setLayout(new java.awt.CardLayout());
 
+        mainPanel1.setName("mainPanel1"); // NOI18N
+        centerCardContainer.add(mainPanel1, "start");
+
         listOrderDetailsView1.setName("listOrderDetailsView1"); // NOI18N
         centerCardContainer.add(listOrderDetailsView1, "listorderdetail");
 
@@ -99,11 +102,9 @@ public class MainView extends FrameView {
         detailedProductView1.setName("detailedProductView1"); // NOI18N
         centerCardContainer.add(detailedProductView1, "productDetails");
 
-        mainPanel1.setName("mainPanel1"); // NOI18N
-        centerCardContainer.add(mainPanel1, "start");
-
         jSplitPane1.setRightComponent(centerCardContainer);
 
+        shoppingCart.setMaximumSize(new java.awt.Dimension(284, 20000));
         shoppingCart.setName("shoppingCart"); // NOI18N
 
         javax.swing.GroupLayout mainCardLayout = new javax.swing.GroupLayout(mainCard);
@@ -113,22 +114,22 @@ public class MainView extends FrameView {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainCardLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
-                    .addComponent(headerBar, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
+                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 917, Short.MAX_VALUE)
+                    .addComponent(headerBar, javax.swing.GroupLayout.DEFAULT_SIZE, 917, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(shoppingCart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         mainCardLayout.setVerticalGroup(
             mainCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainCardLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainCardLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(mainCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(shoppingCart, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+                .addGroup(mainCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(shoppingCart, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
                     .addGroup(mainCardLayout.createSequentialGroup()
                         .addComponent(headerBar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSplitPane1)))
+                        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 

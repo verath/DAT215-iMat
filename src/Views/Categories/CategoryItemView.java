@@ -67,7 +67,7 @@ public class CategoryItemView extends javax.swing.JPanel {
     }
 
     public void setActiveState() {
-        container.setBackground(new Color(51, 153, 255));
+        container.setBackground(new Color(102, 153, 0));
         nameLabel.setForeground(Color.white);
     }
 

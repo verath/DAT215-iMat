@@ -56,7 +56,7 @@ public enum MainController {
             showSearchResultsPanel();
             notifyNavigationListeners(new NavigationSearchEvent(sq));
         }
-        
+
     }
 
     /**
@@ -167,9 +167,10 @@ public enum MainController {
     }
 
     public void showStartPanel() {
-        if( view != null) {
+        if (view != null) {
             showMain();
             view.showStartPanel();
+            notifyNavigationListeners(new NavigationOtherEvent());
         }
     }
 }

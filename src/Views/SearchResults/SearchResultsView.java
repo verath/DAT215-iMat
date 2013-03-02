@@ -188,7 +188,7 @@ public class SearchResultsView extends javax.swing.JPanel {
         searchResultItemsContainer.setLayout(new javax.swing.BoxLayout(searchResultItemsContainer, javax.swing.BoxLayout.PAGE_AXIS));
         searchResultsItemsScroll.setViewportView(searchResultItemsContainer);
 
-        filterByContainer.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        filterByContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         filterByContainer.setMinimumSize(new java.awt.Dimension(0, 0));
         filterByContainer.setName("filterByContainer"); // NOI18N
         filterByContainer.setOpaque(false);
@@ -232,7 +232,7 @@ public class SearchResultsView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filterByContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                .addComponent(searchResultsItemsScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
