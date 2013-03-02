@@ -35,10 +35,14 @@ public class ThirdCheckoutView extends javax.swing.JPanel {
      * Takes a 5 digit postal code and shows it as xxx xx
      */
     public void setPostalCode ( String pc ) {
-        String tmp1, tmp2;
-        tmp1 = pc.substring(0, 3);
-        tmp2 = pc.substring(3, 5);
-        postalCode.setText("" + tmp1 + " " + tmp2);
+        if( pc != null && pc.length() >= 5) {
+            String tmp1, tmp2;
+            tmp1 = pc.substring(0, 3);
+            tmp2 = pc.substring(3, 5);
+            postalCode.setText("" + tmp1 + " " + tmp2);
+        } else {
+             postalCode.setText("" + pc);
+        }
     }
     
     public void setCity ( String c ) {
