@@ -10,13 +10,8 @@
  */
 package Views.StartPage;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.util.LinkedList;
 import java.util.List;
-import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
 
@@ -50,8 +45,8 @@ public class CarouselPanelView extends javax.swing.JPanel {
 
     //Restores FeatureItemsViews deleted in placeFeatureItems()
     public void resetList(){
-        favorites = IMatDataHandler.getInstance().favorites();
-        products = IMatDataHandler.getInstance().getProducts();
+        favorites = new LinkedList<Product>(IMatDataHandler.getInstance().favorites());
+        products = new LinkedList<Product>(IMatDataHandler.getInstance().getProducts());
     }
     
     

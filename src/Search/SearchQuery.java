@@ -176,7 +176,7 @@ public class SearchQuery {
         IMatDataHandler dh = IMatDataHandler.getInstance();
 
         // Free text search
-        List<Product> searchResult = dh.findProducts(this.searchString);
+        List<Product> searchResult = new LinkedList<Product>(dh.findProducts(this.searchString));
 
         // If we only want favourites, filter them first
         searchResult = filterProductsFavourites(searchResult, onlyFavorites);
