@@ -12,6 +12,7 @@ package Views.StartPage;
 
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.Box.Filler;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
 
@@ -156,22 +157,13 @@ public class CarouselPanelView extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(247, 221, 192));
         setPreferredSize(new java.awt.Dimension(750, 190));
+        setLayout(new java.awt.BorderLayout());
 
         karusellPanel.setBackground(new java.awt.Color(255, 246, 241));
         karusellPanel.setMaximumSize(new java.awt.Dimension(750, 190));
         karusellPanel.setPreferredSize(new java.awt.Dimension(750, 190));
-        karusellPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(karusellPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(karusellPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-        );
+        karusellPanel.setLayout(new javax.swing.BoxLayout(karusellPanel, javax.swing.BoxLayout.X_AXIS));
+        add(karusellPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

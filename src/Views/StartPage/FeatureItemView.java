@@ -30,7 +30,7 @@ public class FeatureItemView extends javax.swing.JPanel {
 
     public void setProduct(Product p) {
         IMatDataHandler dh = IMatDataHandler.getInstance();
-        imageLabel.setIcon(dh.getImageIcon(p, 150, 110));
+        imageLabel.setIcon(dh.getImageIcon(p, 180, 180));
         nameLabel.setText(p.getName());
         priceLabel.setText(p.getPrice() + " " + p.getUnit());
         suffixLabel.setText(p.getUnitSuffix());
@@ -39,7 +39,7 @@ public class FeatureItemView extends javax.swing.JPanel {
     }
     
     public void changeColour(){
-      setBackground(new java.awt.Color(247,221,192));  //ljust
+      nameLabel.setBackground(new java.awt.Color(247,221,192));  //ljust
       // setBackground(new java.awt.Color(247,193,128));
     }   
     /** This method is called from within the constructor to
@@ -51,39 +51,71 @@ public class FeatureItemView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        imageLabel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
         infoPanel = new javax.swing.JPanel();
-        bajButton = new javax.swing.JButton();
         suffixLabel = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
+        bajButton = new javax.swing.JButton();
         amountSpinner = new javax.swing.JSpinner();
-        imageLabel = new javax.swing.JLabel();
-        namePanel = new javax.swing.JPanel();
-        nameLabel = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(247, 193, 128));
-        setMaximumSize(new java.awt.Dimension(1607, 1607));
-        setPreferredSize(new java.awt.Dimension(180, 170));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setMaximumSize(new java.awt.Dimension(182, 182));
+        setMinimumSize(new java.awt.Dimension(182, 182));
+        setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(182, 182));
+        setRequestFocusEnabled(false);
 
-        infoPanel.setBackground(new java.awt.Color(247, 224, 197));
-        infoPanel.setOpaque(false);
-        infoPanel.setPreferredSize(new java.awt.Dimension(750, 20));
+        jLayeredPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jLayeredPane1.setMaximumSize(new java.awt.Dimension(180, 180));
+        jLayeredPane1.setMinimumSize(new java.awt.Dimension(180, 180));
+        jLayeredPane1.setName(""); // NOI18N
 
-        bajButton.setBackground(new java.awt.Color(255, 255, 255));
-        bajButton.setFont(new java.awt.Font("Myriad Pro", 0, 10));
-        bajButton.setText("KÖP");
-        bajButton.setBorder(null);
-        bajButton.setBorderPainted(false);
+        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/banan.png"))); // NOI18N
+        imageLabel.setMaximumSize(new java.awt.Dimension(180, 180));
+        imageLabel.setMinimumSize(new java.awt.Dimension(164, 164));
+        imageLabel.setPreferredSize(new java.awt.Dimension(180, 180));
+        imageLabel.setBounds(0, 0, 180, 180);
+        jLayeredPane1.add(imageLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        nameLabel.setBackground(new java.awt.Color(247, 193, 128));
+        nameLabel.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
+        nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nameLabel.setText("Banan");
+        nameLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        nameLabel.setMaximumSize(new java.awt.Dimension(180, 24));
+        nameLabel.setMinimumSize(new java.awt.Dimension(164, 24));
+        nameLabel.setOpaque(true);
+        nameLabel.setPreferredSize(new java.awt.Dimension(180, 24));
+        nameLabel.setBounds(0, 0, 180, 24);
+        jLayeredPane1.add(nameLabel, new Integer(1));
+
+        infoPanel.setBackground(new java.awt.Color(255, 255, 255));
+        infoPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        infoPanel.setMaximumSize(new java.awt.Dimension(180, 22));
+        infoPanel.setMinimumSize(new java.awt.Dimension(164, 21));
+        infoPanel.setPreferredSize(new java.awt.Dimension(180, 21));
+
+        suffixLabel.setFont(new java.awt.Font("Myriad Pro", 0, 10)); // NOI18N
+        suffixLabel.setText("förp.");
+
+        priceLabel.setFont(new java.awt.Font("Myriad Pro", 0, 10)); // NOI18N
+        priceLabel.setText("8.50kr");
+
+        bajButton.setFont(new java.awt.Font("Myriad Pro", 0, 10)); // NOI18N
+        bajButton.setText("Köp");
+        bajButton.setMargin(new java.awt.Insets(1, 8, 1, 8));
+        bajButton.setMaximumSize(new java.awt.Dimension(39, 20));
+        bajButton.setMinimumSize(new java.awt.Dimension(39, 20));
+        bajButton.setOpaque(false);
+        bajButton.setPreferredSize(new java.awt.Dimension(39, 20));
         bajButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bajButtonActionPerformed(evt);
             }
         });
-
-        suffixLabel.setFont(new java.awt.Font("Myriad Pro", 0, 10));
-        suffixLabel.setText("st");
-
-        priceLabel.setFont(new java.awt.Font("Myriad Pro", 0, 10));
-        priceLabel.setText("8 kr/st");
 
         amountSpinner.setFont(new java.awt.Font("Myriad Pro", 0, 10)); // NOI18N
         amountSpinner.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1.0d), Double.valueOf(0.01d), null, Double.valueOf(1.0d)));
@@ -94,65 +126,37 @@ public class FeatureItemView extends javax.swing.JPanel {
             infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(priceLabel)
+                .addComponent(priceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(suffixLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(bajButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bajButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         infoPanelLayout.setVerticalGroup(
             infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoPanelLayout.createSequentialGroup()
-                .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(priceLabel)
-                    .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bajButton, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
-                    .addComponent(suffixLabel))
+                    .addComponent(bajButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(suffixLabel)
+                    .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/banan.png"))); // NOI18N
-
-        namePanel.setBackground(new java.awt.Color(247, 224, 197));
-        namePanel.setOpaque(false);
-
-        nameLabel.setBackground(new java.awt.Color(247, 193, 128));
-        nameLabel.setFont(new java.awt.Font("Myriad Pro", 0, 24));
-        nameLabel.setText("Banan");
-
-        javax.swing.GroupLayout namePanelLayout = new javax.swing.GroupLayout(namePanel);
-        namePanel.setLayout(namePanelLayout);
-        namePanelLayout.setHorizontalGroup(
-            namePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-        );
-        namePanelLayout.setVerticalGroup(
-            namePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, Short.MAX_VALUE)
-        );
+        infoPanel.setBounds(0, 159, 180, 21);
+        jLayeredPane1.add(infoPanel, new Integer(2));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-            .addComponent(namePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(imageLabel)
-                .addContainerGap(28, Short.MAX_VALUE))
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(namePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,8 +170,8 @@ private void bajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JButton bajButton;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JPanel infoPanel;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel nameLabel;
-    private javax.swing.JPanel namePanel;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel suffixLabel;
     // End of variables declaration//GEN-END:variables
