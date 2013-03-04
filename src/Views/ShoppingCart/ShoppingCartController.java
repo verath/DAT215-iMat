@@ -69,7 +69,7 @@ public class ShoppingCartController implements ShoppingCartListener {
             // user clicked cancel.
             return;
         }
-        if(ShoppingCartWrapper.INSTANCE.getItems().size() == 0) {
+        if(ShoppingCartWrapper.INSTANCE.getItems().isEmpty()) {
             // If the shoppingCart is empty.
             return;
         }

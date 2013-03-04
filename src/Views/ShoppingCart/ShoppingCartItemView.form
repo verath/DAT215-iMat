@@ -114,6 +114,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" resourceKey="RemoveButton.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="RemoveButton.toolTipText"/>
             <Property name="name" type="java.lang.String" value="RemoveButton" noResource="true"/>
           </Properties>
           <Events>

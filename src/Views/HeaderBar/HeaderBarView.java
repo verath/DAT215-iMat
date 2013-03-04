@@ -55,6 +55,7 @@ public class HeaderBarView extends javax.swing.JPanel {
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(HeaderBarView.class);
         homeButton.setIcon(resourceMap.getIcon("homeButton.icon")); // NOI18N
         homeButton.setText(resourceMap.getString("homeButton.text")); // NOI18N
+        homeButton.setToolTipText(resourceMap.getString("homeButton.toolTipText")); // NOI18N
         homeButton.setName("homeButton"); // NOI18N
         homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +91,7 @@ public class HeaderBarView extends javax.swing.JPanel {
 
         SearchButton.setIcon(resourceMap.getIcon("SearchButton.icon")); // NOI18N
         SearchButton.setText(resourceMap.getString("SearchButton.text")); // NOI18N
+        SearchButton.setToolTipText(resourceMap.getString("SearchButton.toolTipText")); // NOI18N
         SearchButton.setName("SearchButton"); // NOI18N
         SearchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

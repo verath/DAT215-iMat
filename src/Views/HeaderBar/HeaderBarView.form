@@ -32,6 +32,7 @@
           <Properties>
             <Property name="icon" type="javax.swing.Icon" resourceKey="homeButton.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="homeButton.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="homeButton.toolTipText"/>
             <Property name="name" type="java.lang.String" value="homeButton" noResource="true"/>
           </Properties>
           <Events>
@@ -91,6 +92,7 @@
           <Properties>
             <Property name="icon" type="javax.swing.Icon" resourceKey="SearchButton.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="SearchButton.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="SearchButton.toolTipText"/>
             <Property name="name" type="java.lang.String" value="SearchButton" noResource="true"/>
           </Properties>
           <Events>

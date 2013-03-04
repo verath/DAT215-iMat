@@ -53,20 +53,19 @@ public class FeatureRecipeView extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(786, 237));
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        titleLabel.setText("Dagens Inköpslista");
+        titleLabel.setText("Dagens Recept");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(750, 170));
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(750, 170));
-        jLayeredPane1.setPreferredSize(new java.awt.Dimension(750, 170));
 
         bild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/korvStroganoff.PNG"))); // NOI18N
         bild.setBounds(0, 0, 750, 160);
         jLayeredPane1.add(bild, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         titel.setBackground(new java.awt.Color(255, 136, 0));
-        titel.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        titel.setFont(new java.awt.Font("Tahoma", 0, 16));
         titel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titel.setText("Korv stroganoff med ris");
         titel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -81,22 +80,23 @@ public class FeatureRecipeView extends javax.swing.JPanel {
         infoPanel.setPreferredSize(new java.awt.Dimension(750, 23));
         infoPanel.setRequestFocusEnabled(false);
 
-        beskrivning.setFont(new java.awt.Font("Myriad Pro", 0, 11)); // NOI18N
+        beskrivning.setFont(new java.awt.Font("Myriad Pro", 0, 11));
         beskrivning.setText("1 portion");
 
-        priceLabel.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        priceLabel.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         priceLabel.setText("90kr");
         priceLabel.setFocusable(false);
 
-        suffixLabel.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        suffixLabel.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         suffixLabel.setText("förp.");
 
-        amountSpinner.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
+        amountSpinner.setFont(new java.awt.Font("Myriad Pro", 0, 12));
         amountSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
         buyButton.setFont(new java.awt.Font("Myriad Pro", 0, 12)); // NOI18N
         buyButton.setText("Köp");
+        buyButton.setToolTipText("Lägg till varorna för det här receptet i din kundvagn");
         buyButton.setMargin(new java.awt.Insets(2, 5, 2, 5));
         buyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

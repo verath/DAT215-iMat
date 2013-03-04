@@ -125,6 +125,7 @@ public class SearchResultItemView extends javax.swing.JPanel {
         amountSpinner.setName("amountSpinner"); // NOI18N
 
         addButton.setText(resourceMap.getString("addButton.text")); // NOI18N
+        addButton.setToolTipText(resourceMap.getString("addButton.toolTipText")); // NOI18N
         addButton.setName("addButton"); // NOI18N
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +162,7 @@ public class SearchResultItemView extends javax.swing.JPanel {
 
         categoryLabel.setForeground(resourceMap.getColor("categoryLabel.foreground")); // NOI18N
         categoryLabel.setText(resourceMap.getString("categoryLabel.text")); // NOI18N
+        categoryLabel.setToolTipText(resourceMap.getString("categoryLabel.toolTipText")); // NOI18N
         categoryLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         categoryLabel.setName("categoryLabel"); // NOI18N
         categoryLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -186,11 +188,12 @@ public class SearchResultItemView extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(categoryLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(categoryLabel)
+                        .addGap(51, 51, 51)))
+                .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +220,7 @@ public class SearchResultItemView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

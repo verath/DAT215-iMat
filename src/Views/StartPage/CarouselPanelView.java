@@ -116,6 +116,7 @@ public class CarouselPanelView extends javax.swing.JPanel {
 
         prevButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow-180.png"))); // NOI18N
         prevButton.setText("Förra");
+        prevButton.setToolTipText("");
         prevButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         prevButton.setMargin(new java.awt.Insets(0, 5, 0, 5));
         prevButton.setMaximumSize(new java.awt.Dimension(80, 27));
@@ -138,6 +139,7 @@ public class CarouselPanelView extends javax.swing.JPanel {
 
         nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow.png"))); // NOI18N
         nextButton.setText("Nästa");
+        nextButton.setToolTipText("");
         nextButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         nextButton.setMargin(new java.awt.Insets(0, 5, 0, 5));
         nextButton.setMaximumSize(new java.awt.Dimension(80, 27));
@@ -150,7 +152,7 @@ public class CarouselPanelView extends javax.swing.JPanel {
         });
         jPanel1.add(nextButton);
 
-        titleLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Tahoma", 0, 18));
         titleLabel.setText("Titel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
