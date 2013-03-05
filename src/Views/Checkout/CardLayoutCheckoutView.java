@@ -68,24 +68,29 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
         kvitt = new javax.swing.JLabel();
         payButton = new javax.swing.JButton();
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(CardLayoutCheckoutView.class);
+        setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setName("Form"); // NOI18N
 
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setLayout(new java.awt.CardLayout());
 
+        firstCheckoutView1.setBackground(resourceMap.getColor("firstCheckoutView1.background")); // NOI18N
         firstCheckoutView1.setName("firstCheckoutView1"); // NOI18N
         jPanel1.add(firstCheckoutView1, "firstCard");
 
+        secondCheckoutView1.setBackground(resourceMap.getColor("secondCheckoutView1.background")); // NOI18N
         secondCheckoutView1.setName("secondCheckoutView1"); // NOI18N
         jPanel1.add(secondCheckoutView1, "card3");
 
+        thirdCheckoutView1.setBackground(resourceMap.getColor("thirdCheckoutView1.background")); // NOI18N
         thirdCheckoutView1.setName("thirdCheckoutView1"); // NOI18N
         jPanel1.add(thirdCheckoutView1, "card4");
 
+        fourthCheckoutView1.setBackground(resourceMap.getColor("fourthCheckoutView1.background")); // NOI18N
         fourthCheckoutView1.setName("fourthCheckoutView1"); // NOI18N
         jPanel1.add(fourthCheckoutView1, "card5");
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(CardLayoutCheckoutView.class);
         previousButton.setText(resourceMap.getString("previousButton.text")); // NOI18N
         previousButton.setName("previousButton"); // NOI18N
         previousButton.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +156,7 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
                 .add(confirmOrder, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(kvitt, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .add(106, 106, 106)
                 .add(previousButton)
@@ -161,7 +166,7 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
                 .add(nextButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(payButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 229, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
             .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -220,6 +225,7 @@ public void updateNavigation () {
         nextButton.setVisible(true);
         payButton.setVisible(false);
         previousButton.setVisible(false);
+        cancelButton.setVisible(true);
     } else if (card == 2) {
         shoppingCart.setFont(regularFont);
         information.setFont(highlightedFont);
@@ -228,6 +234,7 @@ public void updateNavigation () {
         nextButton.setVisible(true);
         payButton.setVisible(false);
         previousButton.setVisible(true);
+        cancelButton.setVisible(true);
     } else if (card == 3) {
         shoppingCart.setFont(regularFont);
         information.setFont(regularFont);
@@ -236,6 +243,7 @@ public void updateNavigation () {
         nextButton.setVisible(false);
         payButton.setVisible(true);
         previousButton.setVisible(true);
+        cancelButton.setVisible(true);
     } else if (card == 4) {
         shoppingCart.setFont(regularFont);
         information.setFont(regularFont);
@@ -296,6 +304,8 @@ private void payButtonPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event
     updateNavigation();
     cl.next(jPanel1);
     
+    IMatDataHandler.getInstance().placeOrder(true);
+    ShoppingCartWrapper.INSTANCE.fireShoppingCartChanged(null, true);
 }//GEN-LAST:event_payButtonPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

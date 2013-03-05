@@ -141,7 +141,7 @@ public enum ShoppingCartWrapper {
      * @param item
      * @param addEvent 
      */
-    private void fireShoppingCartChanged(ShoppingItem item, boolean addEvent) {
+    public void fireShoppingCartChanged(ShoppingItem item, boolean addEvent) {
         shoppingCart.fireShoppingCartChanged(item, addEvent);
     }
 }

@@ -72,11 +72,17 @@ public class FirstCheckoutView extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         checkoutItemsHolder = new javax.swing.JPanel();
 
-        sumOfItems.setName("sumOfItems"); // NOI18N
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(FirstCheckoutView.class);
+        setBackground(resourceMap.getColor("Form.background")); // NOI18N
 
+        sumOfItems.setName("sumOfItems"); // NOI18N
+        sumOfItems.setOpaque(false);
+
+        jScrollPane1.setBackground(resourceMap.getColor("jScrollPane1.background")); // NOI18N
+        jScrollPane1.setBorder(null);
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(FirstCheckoutView.class);
+        checkoutItemsHolder.setBackground(resourceMap.getColor("checkoutItemsHolder.background")); // NOI18N
         checkoutItemsHolder.setBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("checkoutItemsHolder.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, resourceMap.getFont("checkoutItemsHolder.border.titleFont"))); // NOI18N
         checkoutItemsHolder.setName("checkoutItemsHolder"); // NOI18N
         checkoutItemsHolder.setLayout(new javax.swing.BoxLayout(checkoutItemsHolder, javax.swing.BoxLayout.Y_AXIS));

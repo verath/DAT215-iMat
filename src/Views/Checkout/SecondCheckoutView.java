@@ -68,9 +68,9 @@ public class SecondCheckoutView extends javax.swing.JPanel {
             cvc.setText("" + creditCard.getVerificationCode());
         }
         
-        if ("Visa".equals(creditCard.getCardType())) {
+        if ("Visa".equalsIgnoreCase(creditCard.getCardType())) {
             visa.setSelected(true);
-        } else if ("MasterCard".equals(creditCard.getCardType())) {
+        } else if ("MasterCard".equalsIgnoreCase(creditCard.getCardType())) {
             masterCard.setSelected(true);
         } else {
             visa.setSelected(false);
@@ -147,11 +147,13 @@ public class SecondCheckoutView extends javax.swing.JPanel {
         cardHolderName = new javax.swing.JTextField();
         saveSettingCheckbox = new javax.swing.JCheckBox();
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(SecondCheckoutView.class);
+        setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(SecondCheckoutView.class);
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel1.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, resourceMap.getFont("jPanel1.border.titleFont"))); // NOI18N
         jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.setOpaque(false);
 
         firstNameLabel.setText(resourceMap.getString("firstNameLabel.text")); // NOI18N
         firstNameLabel.setName("firstNameLabel"); // NOI18N
@@ -253,6 +255,7 @@ public class SecondCheckoutView extends javax.swing.JPanel {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel2.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, resourceMap.getFont("jPanel2.border.titleFont"))); // NOI18N
         jPanel2.setName("jPanel2"); // NOI18N
+        jPanel2.setOpaque(false);
 
         jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
         jLabel7.setName("jLabel7"); // NOI18N
@@ -269,10 +272,12 @@ public class SecondCheckoutView extends javax.swing.JPanel {
         buttonGroup1.add(visa);
         visa.setText(resourceMap.getString("visa.text")); // NOI18N
         visa.setName("visa"); // NOI18N
+        visa.setOpaque(false);
 
         buttonGroup1.add(masterCard);
         masterCard.setText(resourceMap.getString("masterCard.text")); // NOI18N
         masterCard.setName("masterCard"); // NOI18N
+        masterCard.setOpaque(false);
 
         jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
         jLabel9.setName("jLabel9"); // NOI18N
@@ -354,6 +359,7 @@ public class SecondCheckoutView extends javax.swing.JPanel {
 
         saveSettingCheckbox.setText(resourceMap.getString("saveSettingCheckbox.text")); // NOI18N
         saveSettingCheckbox.setName("saveSettingCheckbox"); // NOI18N
+        saveSettingCheckbox.setOpaque(false);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);

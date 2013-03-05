@@ -53,20 +53,19 @@ public class FourthCheckoutView extends javax.swing.JPanel {
         thanksMessage1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(FourthCheckoutView.class);
+        setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(FourthCheckoutView.class);
-        checkoutItemsHolder.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("checkoutItemsHolder.border.title"))); // NOI18N
+        checkoutItemsHolder.setBorder(javax.swing.BorderFactory.createTitledBorder("Tack för ditt köp!"));
         checkoutItemsHolder.setName("checkoutItemsHolder"); // NOI18N
+        checkoutItemsHolder.setOpaque(false);
 
-        thanksMessage.setFont(resourceMap.getFont("thanksMessage.font")); // NOI18N
         thanksMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         thanksMessage.setText(resourceMap.getString("thanksMessage.text")); // NOI18N
         thanksMessage.setName("thanksMessage"); // NOI18N
 
-        thanksMessage1.setFont(resourceMap.getFont("thanksMessage1.font")); // NOI18N
         thanksMessage1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        thanksMessage1.setText(resourceMap.getString("thanksMessage1.text")); // NOI18N
         thanksMessage1.setName("thanksMessage1"); // NOI18N
 
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N

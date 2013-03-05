@@ -84,12 +84,14 @@ public class CheckoutShoppingItem extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         suffix = new javax.swing.JLabel();
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(CheckoutShoppingItem.class);
+        setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setName("Form"); // NOI18N
 
+        jPanel1.setBackground(resourceMap.getColor("jPanel1.background")); // NOI18N
         jPanel1.setName("jPanel1"); // NOI18N
 
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(CheckoutShoppingItem.class);
         nameLabel.setText(resourceMap.getString("nameLabel.text")); // NOI18N
         nameLabel.setName("nameLabel"); // NOI18N
 

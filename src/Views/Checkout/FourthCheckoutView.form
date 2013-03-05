@@ -2,6 +2,7 @@
 
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
+    <Property name="background" type="java.awt.Color" resourceKey="Form.background"/>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
   </Properties>
   <AuxValues>
@@ -41,12 +42,11 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Tack f&#xf6;r ditt k&#xf6;p!">
-              <Property name="titleX" resourceKey="checkoutItemsHolder.border.title"/>
-            </TitledBorder>
+            <TitledBorder title="Tack f&#xf6;r ditt k&#xf6;p!"/>
           </Border>
         </Property>
         <Property name="name" type="java.lang.String" value="checkoutItemsHolder" noResource="true"/>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -87,7 +87,6 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="thanksMessage">
           <Properties>
-            <Property name="font" type="java.awt.Font" resourceKey="thanksMessage.font"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" resourceKey="thanksMessage.text"/>
             <Property name="name" type="java.lang.String" value="thanksMessage" noResource="true"/>
@@ -95,9 +94,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="thanksMessage1">
           <Properties>
-            <Property name="font" type="java.awt.Font" resourceKey="thanksMessage1.font"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" resourceKey="thanksMessage1.text"/>
             <Property name="name" type="java.lang.String" value="thanksMessage1" noResource="true"/>
           </Properties>
         </Component>

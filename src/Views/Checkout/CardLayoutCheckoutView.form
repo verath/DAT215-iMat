@@ -2,6 +2,7 @@
 
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
+    <Property name="background" type="java.awt.Color" resourceKey="Form.background"/>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
   </Properties>
   <AuxValues>
@@ -29,7 +30,7 @@
               <Component id="confirmOrder" min="-2" pref="108" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="kvitt" min="-2" pref="108" max="-2" attributes="0"/>
-              <EmptySpace pref="160" max="32767" attributes="0"/>
+              <EmptySpace pref="164" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
@@ -40,7 +41,7 @@
               <Component id="nextButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="payButton" min="-2" pref="229" max="-2" attributes="0"/>
-              <EmptySpace pref="129" max="32767" attributes="0"/>
+              <EmptySpace pref="162" max="32767" attributes="0"/>
           </Group>
           <Component id="jPanel1" alignment="0" pref="786" max="32767" attributes="0"/>
       </Group>
@@ -81,6 +82,7 @@
       <SubComponents>
         <Component class="Views.Checkout.FirstCheckoutView" name="firstCheckoutView1">
           <Properties>
+            <Property name="background" type="java.awt.Color" resourceKey="firstCheckoutView1.background"/>
             <Property name="name" type="java.lang.String" value="firstCheckoutView1" noResource="true"/>
           </Properties>
           <Constraints>
@@ -91,6 +93,7 @@
         </Component>
         <Component class="Views.Checkout.SecondCheckoutView" name="secondCheckoutView1">
           <Properties>
+            <Property name="background" type="java.awt.Color" resourceKey="secondCheckoutView1.background"/>
             <Property name="name" type="java.lang.String" value="secondCheckoutView1" noResource="true"/>
           </Properties>
           <Constraints>
@@ -101,6 +104,7 @@
         </Component>
         <Component class="Views.Checkout.ThirdCheckoutView" name="thirdCheckoutView1">
           <Properties>
+            <Property name="background" type="java.awt.Color" resourceKey="thirdCheckoutView1.background"/>
             <Property name="name" type="java.lang.String" value="thirdCheckoutView1" noResource="true"/>
           </Properties>
           <Constraints>
@@ -111,6 +115,7 @@
         </Component>
         <Component class="Views.Checkout.FourthCheckoutView" name="fourthCheckoutView1">
           <Properties>
+            <Property name="background" type="java.awt.Color" resourceKey="fourthCheckoutView1.background"/>
             <Property name="name" type="java.lang.String" value="fourthCheckoutView1" noResource="true"/>
           </Properties>
           <Constraints>

@@ -6,6 +6,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
+    <Property name="background" type="java.awt.Color" resourceKey="Form.background"/>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
   </Properties>
   <AuxValues>
@@ -62,6 +63,7 @@
           </Border>
         </Property>
         <Property name="name" type="java.lang.String" value="jPanel1" noResource="true"/>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -228,6 +230,7 @@
           </Border>
         </Property>
         <Property name="name" type="java.lang.String" value="jPanel2" noResource="true"/>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -336,6 +339,7 @@
             </Property>
             <Property name="text" type="java.lang.String" resourceKey="visa.text"/>
             <Property name="name" type="java.lang.String" value="visa" noResource="true"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="masterCard">
@@ -345,6 +349,7 @@
             </Property>
             <Property name="text" type="java.lang.String" resourceKey="masterCard.text"/>
             <Property name="name" type="java.lang.String" value="masterCard" noResource="true"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
@@ -412,6 +417,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="saveSettingCheckbox.text"/>
         <Property name="name" type="java.lang.String" value="saveSettingCheckbox" noResource="true"/>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
     </Component>
   </SubComponents>
