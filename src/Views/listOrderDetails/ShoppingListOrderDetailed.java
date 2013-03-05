@@ -7,12 +7,16 @@
 package Views.listOrderDetails;
 
 import Main.MainApp;
+import Main.MainController;
 import Main.NumberUtil;
 import Main.ShoppingCartWrapper;
 import ShoppingList.ShoppingList;
 import ShoppingList.ShoppingListItem;
 import ShoppingList.ShoppingListsHandler;
+import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -43,7 +47,7 @@ public class ShoppingListOrderDetailed extends javax.swing.JPanel {
 
             // For each item, show a thumbnail and add to list of items
             for (ShoppingListItem si : shoppingList.getItems()) {
-                Product p = si.getProduct();
+                final Product p = si.getProduct();
 
                 // Add image
                 JLabel img = new JLabel(IMatDataHandler.getInstance().getImageIcon(p));
@@ -52,6 +56,21 @@ public class ShoppingListOrderDetailed extends javax.swing.JPanel {
                 // Add text
                 JLabel txt = new JLabel("- " + p.getName() + " (" + si.getAmount() + " " + p.getUnitSuffix() + ")");
                 txt.setFont(new Font("Verdana", Font.PLAIN, 16));
+                // Also add an event listener to open detailed product desc.
+                txt.addMouseListener(new MouseListener() {
+                    public void mouseClicked(MouseEvent me) {
+                    }
+                    public void mousePressed(MouseEvent me) {
+                        MainController.INSTANCE.showDetailedProductPanel(p);
+                    }
+                    public void mouseReleased(MouseEvent me) {
+                    }
+                    public void mouseEntered(MouseEvent me) {
+                    }
+                    public void mouseExited(MouseEvent me) {
+                    }
+                });
+                txt.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 productsContainer.add(txt);
 
                 // Add to list of products to add later
@@ -66,7 +85,7 @@ public class ShoppingListOrderDetailed extends javax.swing.JPanel {
 
             // For each item, show a thumbnail and add to list of items
             for (ShoppingItem si : ow.getOrder().getItems()) {
-                Product p = si.getProduct();
+                final Product p = si.getProduct();
 
                 // Add image
                 JLabel img = new JLabel(IMatDataHandler.getInstance().getImageIcon(p));
@@ -75,6 +94,21 @@ public class ShoppingListOrderDetailed extends javax.swing.JPanel {
                 // Add text
                 JLabel txt = new JLabel("- " + p.getName() + " (" + si.getAmount() + " " + p.getUnitSuffix() + ")");
                 txt.setFont(new Font("Verdana", Font.PLAIN, 16));
+                // Also add an event listener to open detailed product desc.
+                txt.addMouseListener(new MouseListener() {
+                    public void mouseClicked(MouseEvent me) {
+                    }
+                    public void mousePressed(MouseEvent me) {
+                        MainController.INSTANCE.showDetailedProductPanel(p);
+                    }
+                    public void mouseReleased(MouseEvent me) {
+                    }
+                    public void mouseEntered(MouseEvent me) {
+                    }
+                    public void mouseExited(MouseEvent me) {
+                    }
+                });
+                txt.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 productsContainer.add(txt);
 
                 // Add to list of products to add later
@@ -84,14 +118,14 @@ public class ShoppingListOrderDetailed extends javax.swing.JPanel {
             setVisible(false);
             return;
         }
-        
+
         int totalPrice = 0;
-        for(ShoppingListItem si : shoppingItems ) {
+        for (ShoppingListItem si : shoppingItems) {
             totalPrice += si.getTotal();
         }
-        totalLabel.setText( shoppingItems.size() + 
-                (shoppingItems.size() == 1 ? " vara, " : " varor, ") +
-                NumberUtil.roundTwoDecimals(totalPrice)+ "kr");
+        totalLabel.setText(shoppingItems.size()
+                + (shoppingItems.size() == 1 ? " vara, " : " varor, ")
+                + NumberUtil.roundTwoDecimals(totalPrice) + "kr");
 
         imagesContainer.validate();
         imagesContainer.repaint();

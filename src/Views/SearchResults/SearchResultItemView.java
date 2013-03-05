@@ -115,11 +115,17 @@ public class SearchResultItemView extends javax.swing.JPanel {
         imageLabel.setBackground(resourceMap.getColor("imageLabel.background")); // NOI18N
         imageLabel.setText(resourceMap.getString("imageLabel.text")); // NOI18N
         imageLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(0, 0, 0)));
+        imageLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imageLabel.setMaximumSize(new java.awt.Dimension(128, 128));
         imageLabel.setMinimumSize(new java.awt.Dimension(128, 128));
         imageLabel.setName("imageLabel"); // NOI18N
         imageLabel.setOpaque(true);
         imageLabel.setPreferredSize(new java.awt.Dimension(128, 128));
+        imageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imageLabelMouseClicked(evt);
+            }
+        });
 
         amountSpinner.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1.0d), Double.valueOf(0.01d), null, Double.valueOf(1.0d)));
         amountSpinner.setName("amountSpinner"); // NOI18N
@@ -157,8 +163,14 @@ public class SearchResultItemView extends javax.swing.JPanel {
         nameLabel.setFont(resourceMap.getFont("nameLabel.font")); // NOI18N
         nameLabel.setText(resourceMap.getString("nameLabel.text")); // NOI18N
         nameLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        nameLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nameLabel.setFocusable(false);
         nameLabel.setName("nameLabel"); // NOI18N
+        nameLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nameLabelMouseClicked(evt);
+            }
+        });
 
         categoryLabel.setForeground(resourceMap.getColor("categoryLabel.foreground")); // NOI18N
         categoryLabel.setText(resourceMap.getString("categoryLabel.text")); // NOI18N
@@ -284,6 +296,13 @@ private void favouriteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FI
     }
 }//GEN-LAST:event_favouriteLabelMouseClicked
 
+private void nameLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameLabelMouseClicked
+    MainController.INSTANCE.showDetailedProductPanel(product);
+}//GEN-LAST:event_nameLabelMouseClicked
+
+private void imageLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLabelMouseClicked
+    MainController.INSTANCE.showDetailedProductPanel(product);
+}//GEN-LAST:event_imageLabelMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JSpinner amountSpinner;

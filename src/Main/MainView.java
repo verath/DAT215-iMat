@@ -11,6 +11,7 @@ import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import se.chalmers.ait.dat215.project.Product;
 
 /**
  * The application's main frame.
@@ -127,11 +128,11 @@ public class MainView extends FrameView {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainCardLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(shoppingCart, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
+                    .addComponent(shoppingCart, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
                     .addGroup(mainCardLayout.createSequentialGroup()
                         .addComponent(headerBar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)))
+                        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -267,5 +268,10 @@ private void showPrevOrdersMenuItemActionPerformed(java.awt.event.ActionEvent ev
 
     void showStartPanel() {
         ((CardLayout)centerCardContainer.getLayout()).show(centerCardContainer, "start");
+    }
+
+    void showDetailedProductPanel(Product p) {
+        detailedProductView1.setProduct(p);
+        ((CardLayout)centerCardContainer.getLayout()).show(centerCardContainer, "productDetails");
     }
 }

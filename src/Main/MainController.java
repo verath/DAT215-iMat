@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import navigation.NavigationOtherEvent;
 import navigation.NavigationSearchEvent;
 import navigation.NavigationShoppingListsEvent;
+import se.chalmers.ait.dat215.project.Product;
 
 /**
  * A singelton class for handling the major tasks in the UI on a high level,
@@ -32,6 +33,12 @@ public enum MainController {
      * The MainController instance.
      */
     INSTANCE;
+
+    private enum Cards {
+
+        SEARCH, SHOPPING_LISTS, ORDER_HISTORY, START;
+    }
+    private Cards selectedCard = Cards.START;
     /**
      * The NavigationListeners that is listening to the controllers events.
      */
@@ -143,6 +150,7 @@ public enum MainController {
             showMain();
             view.showListOrderDetailPanel(ListOrderType.SHOPPING_LIST);
             notifyNavigationListeners(new NavigationShoppingListsEvent());
+            selectedCard = Cards.SHOPPING_LISTS;
         }
 
 
@@ -156,6 +164,7 @@ public enum MainController {
             showMain();
             view.showListOrderDetailPanel(ListOrderType.ORDER_LIST);
             notifyNavigationListeners(new NavigationOtherEvent());
+            selectedCard = Cards.ORDER_HISTORY;
         }
     }
 
@@ -163,6 +172,7 @@ public enum MainController {
         if (view != null) {
             showMain();
             view.showSearchResultsPanel();
+            selectedCard = Cards.SEARCH;
         }
     }
 
@@ -171,6 +181,34 @@ public enum MainController {
             showMain();
             view.showStartPanel();
             notifyNavigationListeners(new NavigationOtherEvent());
+            selectedCard = Cards.START;
+        }
+    }
+
+    public void showDetailedProductPanel(Product p) {
+        if (view != null) {
+            showMain();
+            view.showDetailedProductPanel(p);
+        }
+    }
+
+    public void hideDetailedProductPanel() {
+        if (view != null) {
+            showMain();
+            switch (selectedCard) {
+                case ORDER_HISTORY:
+                    showOrders();
+                    break;
+                case SEARCH:
+                    showSearchResultsPanel();
+                    break;
+                case SHOPPING_LISTS:
+                    showShoppingLists();
+                    break;
+                case START:
+                    showStartPanel();
+                    break;
+            }
         }
     }
 }

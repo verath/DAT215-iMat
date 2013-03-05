@@ -10,6 +10,7 @@
  */
 package Views.StartPage;
 
+import Main.MainController;
 import Main.ShoppingCartWrapper;
 import java.awt.Color;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
@@ -57,7 +58,7 @@ public class FeatureItemView extends javax.swing.JPanel {
         infoPanel = new javax.swing.JPanel();
         suffixLabel = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
-        bajButton = new javax.swing.JButton();
+        buyButton = new javax.swing.JButton();
         amountSpinner = new javax.swing.JSpinner();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -82,14 +83,20 @@ public class FeatureItemView extends javax.swing.JPanel {
         jLayeredPane1.add(imageLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nameLabel.setBackground(new java.awt.Color(255, 136, 0));
-        nameLabel.setFont(new java.awt.Font("Myriad Pro", 0, 18));
+        nameLabel.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nameLabel.setText("Banan");
         nameLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        nameLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nameLabel.setMaximumSize(new java.awt.Dimension(180, 24));
         nameLabel.setMinimumSize(new java.awt.Dimension(180, 24));
         nameLabel.setOpaque(true);
         nameLabel.setPreferredSize(new java.awt.Dimension(180, 24));
+        nameLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nameLabelMouseClicked(evt);
+            }
+        });
         nameLabel.setBounds(0, 0, 180, 24);
         jLayeredPane1.add(nameLabel, new Integer(1));
 
@@ -106,17 +113,17 @@ public class FeatureItemView extends javax.swing.JPanel {
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         priceLabel.setText("8.50kr");
 
-        bajButton.setFont(new java.awt.Font("Myriad Pro", 0, 10)); // NOI18N
-        bajButton.setText("Köp");
-        bajButton.setToolTipText("Lägg den här varan i din kundvagn");
-        bajButton.setMargin(new java.awt.Insets(1, 8, 1, 8));
-        bajButton.setMaximumSize(new java.awt.Dimension(39, 20));
-        bajButton.setMinimumSize(new java.awt.Dimension(39, 20));
-        bajButton.setOpaque(false);
-        bajButton.setPreferredSize(new java.awt.Dimension(39, 20));
-        bajButton.addActionListener(new java.awt.event.ActionListener() {
+        buyButton.setFont(new java.awt.Font("Myriad Pro", 0, 10)); // NOI18N
+        buyButton.setText("Köp");
+        buyButton.setToolTipText("Lägg den här varan i din kundvagn");
+        buyButton.setMargin(new java.awt.Insets(1, 8, 1, 8));
+        buyButton.setMaximumSize(new java.awt.Dimension(39, 20));
+        buyButton.setMinimumSize(new java.awt.Dimension(39, 20));
+        buyButton.setOpaque(false);
+        buyButton.setPreferredSize(new java.awt.Dimension(39, 20));
+        buyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bajButtonActionPerformed(evt);
+                buyButtonActionPerformed(evt);
             }
         });
 
@@ -134,14 +141,14 @@ public class FeatureItemView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(suffixLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bajButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         infoPanelLayout.setVerticalGroup(
             infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoPanelLayout.createSequentialGroup()
                 .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(priceLabel)
-                    .addComponent(bajButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(suffixLabel)
                     .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -162,14 +169,18 @@ public class FeatureItemView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void bajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajButtonActionPerformed
+private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
     double amount = (Double) amountSpinner.getValue();
     ShoppingCartWrapper.INSTANCE.addProduct(product, amount);
-}//GEN-LAST:event_bajButtonActionPerformed
+}//GEN-LAST:event_buyButtonActionPerformed
+
+private void nameLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameLabelMouseClicked
+    MainController.INSTANCE.showDetailedProductPanel(product);
+}//GEN-LAST:event_nameLabelMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner amountSpinner;
-    private javax.swing.JButton bajButton;
+    private javax.swing.JButton buyButton;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JLayeredPane jLayeredPane1;

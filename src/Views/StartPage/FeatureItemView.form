@@ -100,6 +100,9 @@
                 <MatteColorBorder bottom="1" left="0" right="0" top="0"/>
               </Border>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 24]"/>
             </Property>
@@ -111,6 +114,9 @@
               <Dimension value="[180, 24]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="nameLabelMouseClicked"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
               <JLayeredPaneConstraints x="0" y="0" width="180" height="-1" layer="1" position="-1"/>
@@ -153,7 +159,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="suffixLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="bajButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="buyButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -162,7 +168,7 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="2" attributes="0">
                           <Component id="priceLabel" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="bajButton" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="buyButton" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="suffixLabel" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="amountSpinner" alignment="2" min="-2" pref="16" max="-2" attributes="0"/>
                       </Group>
@@ -189,7 +195,7 @@
                 <Property name="text" type="java.lang.String" value="8.50kr"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="bajButton">
+            <Component class="javax.swing.JButton" name="buyButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Myriad Pro" size="10" style="0"/>
@@ -211,7 +217,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bajButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buyButtonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JSpinner" name="amountSpinner">
