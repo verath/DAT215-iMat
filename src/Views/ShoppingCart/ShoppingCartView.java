@@ -111,6 +111,10 @@ public class ShoppingCartView extends javax.swing.JPanel {
         // Update totals
         updateTotals();
     }
+    
+    public void setCheckoutButtonEnable(boolean enable) {
+        checkoutButton.setEnabled(enable);
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -204,6 +208,7 @@ public class ShoppingCartView extends javax.swing.JPanel {
 
         checkoutButton.setText(resourceMap.getString("checkoutButton.text")); // NOI18N
         checkoutButton.setToolTipText(resourceMap.getString("checkoutButton.toolTipText")); // NOI18N
+        checkoutButton.setEnabled(false);
         checkoutButton.setName("checkoutButton"); // NOI18N
         checkoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
