@@ -10,6 +10,8 @@
  */
 package Views.Checkout;
 
+import Main.MainController;
+import Main.NumberUtil;
 import Main.ShoppingCartWrapper;
 import java.awt.CardLayout;
 import java.awt.Font;
@@ -149,7 +151,7 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
                 .add(confirmOrder, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(kvitt, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .add(106, 106, 106)
                 .add(previousButton)
@@ -159,8 +161,8 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
                 .add(nextButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(payButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 229, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
-            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
+                .addContainerGap(129, Short.MAX_VALUE))
+            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -255,11 +257,13 @@ public void updateSecondCard () {
 }
 
 public void updateThirdCard () {
+    secondCheckoutView1.saveSettings();
     thirdCheckoutView1.setAdress(customer.getAddress());
     thirdCheckoutView1.setPostalCode(customer.getPostCode());
     thirdCheckoutView1.setCity(customer.getPostAddress());
-    
+    thirdCheckoutView1.setPrice(NumberUtil.roundTwoDecimals(ShoppingCartWrapper.INSTANCE.getTotal()));
 }
+
 
     
 private void nextCard(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextCard
@@ -267,6 +271,10 @@ private void nextCard(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextCar
     
     updateThirdCard();
     updateNavigation();
+    
+    if (card == 3) {
+        fourthCheckoutView1.setThanksMessage();
+    }
     
     cl.next(jPanel1);
 }//GEN-LAST:event_nextCard
@@ -279,7 +287,7 @@ private void previousCard(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pre
 }//GEN-LAST:event_previousCard
 
 private void cancelButtonpreviousCard(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonpreviousCard
-// TODO add your handling code here:
+    MainController.INSTANCE.showMain();
 }//GEN-LAST:event_cancelButtonpreviousCard
 
 private void payButtonPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonPressed

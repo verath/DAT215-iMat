@@ -18,11 +18,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="sumOfItems" alignment="0" max="32767" attributes="1"/>
-                  <Component id="checkoutItemsHolder" alignment="0" pref="572" max="32767" attributes="1"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane1" alignment="0" min="-2" pref="564" max="-2" attributes="1"/>
+                  <Component id="sumOfItems" alignment="0" min="-2" max="-2" attributes="1"/>
               </Group>
-              <EmptySpace pref="62" max="32767" attributes="0"/>
+              <EmptySpace pref="70" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -30,8 +30,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="checkoutItemsHolder" pref="497" max="32767" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="549" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="sumOfItems" min="-2" pref="54" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -39,26 +39,36 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="checkoutItemsHolder">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Din kundvagn">
-              <Property name="titleX" resourceKey="checkoutItemsHolder.border.title"/>
-            </TitledBorder>
-          </Border>
-        </Property>
-        <Property name="name" type="java.lang.String" value="checkoutItemsHolder" noResource="true"/>
-      </Properties>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
-        <Property name="axis" type="int" value="1"/>
-      </Layout>
-    </Container>
     <Component class="Views.Checkout.CheckoutShoppingItem" name="sumOfItems">
       <Properties>
         <Property name="name" type="java.lang.String" value="sumOfItems" noResource="true"/>
       </Properties>
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="jScrollPane1" noResource="true"/>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="checkoutItemsHolder">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="Din kundvagn">
+                  <Property name="titleX" resourceKey="checkoutItemsHolder.border.title"/>
+                  <Property name="font" resourceKey="checkoutItemsHolder.border.titleFont"/>
+                </TitledBorder>
+              </Border>
+            </Property>
+            <Property name="name" type="java.lang.String" value="checkoutItemsHolder" noResource="true"/>
+          </Properties>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
+            <Property name="axis" type="int" value="1"/>
+          </Layout>
+        </Container>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

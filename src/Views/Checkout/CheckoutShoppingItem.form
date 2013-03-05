@@ -45,9 +45,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" pref="22" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel5" min="-2" pref="49" max="-2" attributes="0"/>
+                  <Component id="jLabel5" min="-2" pref="18" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pricePerLabel" min="-2" pref="48" max="-2" attributes="0"/>
+                  <Component id="pricePerLabel" min="-2" pref="79" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="suffix" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -68,10 +68,10 @@
               <Component id="jLabel4" alignment="0" pref="34" max="32767" attributes="0"/>
               <Component id="totalPriceLabel" alignment="0" pref="34" max="32767" attributes="0"/>
               <Component id="jLabel8" alignment="0" pref="34" max="32767" attributes="0"/>
-              <Component id="jLabel5" alignment="0" pref="34" max="32767" attributes="0"/>
-              <Component id="pricePerLabel" alignment="0" pref="34" max="32767" attributes="0"/>
               <Component id="suffix" alignment="0" pref="34" max="32767" attributes="0"/>
               <Component id="jLabel3" alignment="0" pref="34" max="32767" attributes="0"/>
+              <Component id="jLabel5" alignment="0" pref="34" max="32767" attributes="0"/>
+              <Component id="pricePerLabel" alignment="0" pref="34" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

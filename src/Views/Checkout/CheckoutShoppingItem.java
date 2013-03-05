@@ -10,6 +10,7 @@
  */
 package Views.Checkout;
 
+import Main.NumberUtil;
 import Main.ShoppingCartWrapper;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ShoppingItem;
@@ -21,6 +22,7 @@ import se.chalmers.ait.dat215.project.ShoppingItem;
 public class CheckoutShoppingItem extends javax.swing.JPanel {
 
     private ShoppingItem shoppingItem;
+    private boolean sumItem = false;
     
     /** Creates new form CheckoutShoppingItem */
     public CheckoutShoppingItem() {
@@ -35,7 +37,7 @@ public class CheckoutShoppingItem extends javax.swing.JPanel {
         String totalPrice = "" + si.getTotal();
 
         nameLabel.setText(prod.getName());
-        pricePerLabel.setText("" + prod.getPrice());
+        pricePerLabel.setText("" + prod.getPrice() + "  kr /");
         suffix.setText(prod.getUnitSuffix());
         totalPriceLabel.setText(totalPrice);
         countLabel.setText("" + amount);
@@ -51,7 +53,11 @@ public class CheckoutShoppingItem extends javax.swing.JPanel {
         pricePerLabel.setText("");
         suffix.setText("");
         totalPriceLabel.setText("");
-                
+        sumItem = true;
+    }
+    
+    public void setPriceLabelOnSumItem (String i) {
+        countLabel.setText("" + i);
     }
     
     public void setTotalSum (int sum) {
@@ -135,9 +141,9 @@ public class CheckoutShoppingItem extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jLabel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 18, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(pricePerLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 48, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(pricePerLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 79, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(suffix, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -155,10 +161,10 @@ public class CheckoutShoppingItem extends javax.swing.JPanel {
             .add(jLabel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
             .add(totalPriceLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
             .add(jLabel8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-            .add(jLabel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-            .add(pricePerLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
             .add(suffix, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
             .add(jLabel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+            .add(jLabel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+            .add(pricePerLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);

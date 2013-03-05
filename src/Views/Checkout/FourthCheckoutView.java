@@ -11,6 +11,13 @@
 package Views.Checkout;
 
 import Main.MainController;
+import Main.NumberUtil;
+import Main.ShoppingCartWrapper;
+import java.util.List;
+import se.chalmers.ait.dat215.project.Customer;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
+import se.chalmers.ait.dat215.project.ShoppingCart;
+import se.chalmers.ait.dat215.project.ShoppingItem;
 
 /**
  *
@@ -18,9 +25,18 @@ import Main.MainController;
  */
 public class FourthCheckoutView extends javax.swing.JPanel {
 
+    private IMatDataHandler imdh;
+    private Customer c;
+    
     /** Creates new form FourthCheckoutView */
     public FourthCheckoutView() {
         initComponents();
+        imdh = IMatDataHandler.getInstance();
+        c = imdh.getCustomer();
+    }
+    
+    public void setThanksMessage () {
+        thanksMessage.setText("Tack för att du valt att handla hos oss " + c.getFirstName());
     }
 
     /** This method is called from within the constructor to
@@ -32,11 +48,27 @@ public class FourthCheckoutView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        checkoutItemsHolder = new javax.swing.JPanel();
+        thanksMessage = new javax.swing.JLabel();
+        thanksMessage1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setName("Form"); // NOI18N
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(FourthCheckoutView.class);
+        checkoutItemsHolder.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("checkoutItemsHolder.border.title"))); // NOI18N
+        checkoutItemsHolder.setName("checkoutItemsHolder"); // NOI18N
+
+        thanksMessage.setFont(resourceMap.getFont("thanksMessage.font")); // NOI18N
+        thanksMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        thanksMessage.setText(resourceMap.getString("thanksMessage.text")); // NOI18N
+        thanksMessage.setName("thanksMessage"); // NOI18N
+
+        thanksMessage1.setFont(resourceMap.getFont("thanksMessage1.font")); // NOI18N
+        thanksMessage1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        thanksMessage1.setText(resourceMap.getString("thanksMessage1.text")); // NOI18N
+        thanksMessage1.setName("thanksMessage1"); // NOI18N
+
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -45,31 +77,60 @@ public class FourthCheckoutView extends javax.swing.JPanel {
             }
         });
 
+        org.jdesktop.layout.GroupLayout checkoutItemsHolderLayout = new org.jdesktop.layout.GroupLayout(checkoutItemsHolder);
+        checkoutItemsHolder.setLayout(checkoutItemsHolderLayout);
+        checkoutItemsHolderLayout.setHorizontalGroup(
+            checkoutItemsHolderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(checkoutItemsHolderLayout.createSequentialGroup()
+                .add(checkoutItemsHolderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(checkoutItemsHolderLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(checkoutItemsHolderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(thanksMessage, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                            .add(thanksMessage1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)))
+                    .add(checkoutItemsHolderLayout.createSequentialGroup()
+                        .add(118, 118, 118)
+                        .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 214, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        checkoutItemsHolderLayout.setVerticalGroup(
+            checkoutItemsHolderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(checkoutItemsHolderLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(thanksMessage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 91, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(thanksMessage1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 91, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
+                .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 59, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(274, Short.MAX_VALUE)
-                .add(jButton1)
-                .add(260, 260, 260))
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(checkoutItemsHolder, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(190, 190, 190)
-                .add(jButton1)
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addContainerGap()
+                .add(checkoutItemsHolder, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    
     MainController.INSTANCE.showMain();
-    
 }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel checkoutItemsHolder;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel thanksMessage;
+    private javax.swing.JLabel thanksMessage1;
     // End of variables declaration//GEN-END:variables
 }
