@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Set;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ProductCategory;
 
@@ -23,10 +24,26 @@ import se.chalmers.ait.dat215.project.ProductCategory;
  * @author Peter
  */
 public class SearchResultsView extends javax.swing.JPanel {
+
+    /**
+     * The delay in milis between loading productViews if 
+     * they also have to be created
+     */
+    public static final int LOAD_DELAY_CREATE = 75;
+    /**
+     * The delay in milis between loading productViews if 
+     * they have already been created
+     */
+    public static final int LOAD_DELAY_SAVED = 25;
     /**
      * Default height for a category filter row. In px(?)
      */
     public static final int CATEGORY_FILTER_ROW_HEIGHT = 30;
+    /**
+     * List holding timers started for loading products, so they
+     * can be canceled if new search.
+     */
+    private List<Timer> loadingTimers = new LinkedList<Timer>();
     /**
      * The controller for this view
      */
@@ -77,6 +94,11 @@ public class SearchResultsView extends javax.swing.JPanel {
      * @param products 
      */
     public void setResultItems(List<Product> products) {
+        // First we need to stop all running load timers
+        for (Timer t : loadingTimers) {
+            t.stop();
+        }
+
         // Hide all itemviews we don't need
         if (products.size() < resultItems.size()) {
             for (int i = products.size(); i < resultItems.size(); i++) {
@@ -90,32 +112,53 @@ public class SearchResultsView extends javax.swing.JPanel {
         // Generate the list of results
         if (!products.isEmpty()) {
             int i = 0;
-            for (Product p : products) {
-                SearchResultItemView rsiv;
+
+            // Then recreate the list
+            loadingTimers = new LinkedList<Timer>();
+
+            // Then go trough each product and lay them out.
+            for (final Product p : products) {
+                // Use a timer to load products over time instead
+                // of all at once. NO LAG! YEEES!
+                Timer t;
 
                 if (i < resultItems.size()) {
                     // If we have a created resultItem, use it instead as 
                     // creating new ones are very slow.
-                    rsiv = resultItems.get(i);
+                    final SearchResultItemView rsiv = resultItems.get(i);
+                    t = new Timer(i * LOAD_DELAY_SAVED, new ActionListener() {
+
+                        public void actionPerformed(ActionEvent ae) {
+                            rsiv.setProduct(p);
+                            rsiv.setVisible(true);
+                        }
+                    });
+
                 } else {
                     // If we don't have saved ones, create and save a new one.
-                    rsiv = new SearchResultItemView();
-                    resultItems.add(rsiv);
-                    searchResultItemsContainer.add(rsiv);
+                    t = new Timer(i * LOAD_DELAY_CREATE, new ActionListener() {
+
+                        public void actionPerformed(ActionEvent ae) {
+                            SearchResultItemView rsiv = new SearchResultItemView();
+                            resultItems.add(rsiv);
+                            searchResultItemsContainer.add(rsiv);
+                            rsiv.setProduct(p);
+                            rsiv.setVisible(true);
+                        }
+                    });
                 }
-                
-                // Set product and show the view
-                rsiv.setProduct(p);
-                rsiv.setVisible(true);
+
+                // Start the timer for showing the product
+                t.setRepeats(false);
+                t.start();
+
+                // And add it to a list so we can stop it if search
+                // changes
+                loadingTimers.add(t);
+
                 i++;
             }
         }
-
-        // Force refresh of container and scroll pane
-        searchResultItemsContainer.validate();
-        searchResultItemsContainer.repaint();
-        searchResultsItemsScroll.validate();
-        searchResultsItemsScroll.repaint();
 
         // Scroll to top in the scroll pane
         searchResultsItemsScroll.getVerticalScrollBar().setValue(0);
@@ -283,9 +326,9 @@ private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEven
         // Calculate size depending on number of categories and number of columns
         // in the grid layout.
         int numRows = productCategories.size();
-        numRows /= ((GridLayout)filterByContainer.getLayout()).getColumns();
+        numRows /= ((GridLayout) filterByContainer.getLayout()).getColumns();
         numRows += 1;
-        
+
         filterByContainer.setPreferredSize(new Dimension(500,
                 SearchResultsView.CATEGORY_FILTER_ROW_HEIGHT * numRows));
 
@@ -313,7 +356,7 @@ private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEven
 
             filterByContainer.add(cb);
         }
-        
+
         // Have to refresh both the container and the main panel
         filterByContainer.validate();
         filterByContainer.repaint();

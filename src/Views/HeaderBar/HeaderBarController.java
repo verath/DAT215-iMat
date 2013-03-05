@@ -38,11 +38,6 @@ public class HeaderBarController {
             return;
         }
 
-        if (searchString.length() < 2) {
-            System.out.println("Not Searching: Search string too short");
-            return;
-        }
-
         SearchQuery searchQuery = new SearchQuery(searchString, null, null);
 
         MainController.INSTANCE.search(searchQuery);
@@ -77,12 +72,11 @@ public class HeaderBarController {
      */
     void onSearchFieldKeyUp(KeyEvent evt) {
         // If enter is pressed do same as if search button was clicked
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        /*if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             doSearch();
-        }
+        }*/
         
-        // Instant search, too slow atm to make this a feature :(
-        //doSearch();
+        doSearch();
     }
 
     /**
