@@ -3,8 +3,8 @@
  */
 package Main;
 
-import ShoppingList.ShoppingList;
 import ShoppingList.ShoppingListsHandler;
+import java.awt.Toolkit;
 import java.util.EventObject;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
@@ -33,6 +33,10 @@ public class MainApp extends SingleFrameApplication {
                 ShoppingListsHandler.INSTANCE.save();
             }
         });
+        
+        // Set the title and icon
+        this.getMainFrame().setTitle("iMat");
+        this.getMainFrame().setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/icon.png")));
         
         
     }

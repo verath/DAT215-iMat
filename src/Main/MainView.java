@@ -19,9 +19,11 @@ public class MainView extends FrameView {
 
     public MainView(SingleFrameApplication app) {
         super(app);
-
+        
+        
         initComponents();
         MainController.INSTANCE.setView(this);
+        //app.getMainFrame().setTitle("iMat");
 
     }
 
