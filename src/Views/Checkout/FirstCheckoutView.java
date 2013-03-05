@@ -10,6 +10,8 @@
  */
 package Views.Checkout;
 
+import Main.NumberUtil;
+import Main.ShoppingCartWrapper;
 import java.awt.CardLayout;
 import java.util.List;
 import se.chalmers.ait.dat215.project.ShoppingItem;
@@ -45,16 +47,16 @@ public class FirstCheckoutView extends javax.swing.JPanel {
         for(ShoppingItem si : items){
             addItemToItemsHolder(si);
         }
+        
+        sumOfItems.setPriceLabelOnSumItem(NumberUtil.roundTwoDecimals(ShoppingCartWrapper.INSTANCE.getTotal()));
 
         checkoutItemsHolder.validate();
         checkoutItemsHolder.repaint();
-        
-        
-        
-        //------------------------------------
-        //Måste fixa så att totalsumman visas rätt
-        //------------------------------------
-        
+           
+    }
+    
+    public void updateTotalPriceCheckoutView () {
+        sumOfItems.setPriceLabelOnSumItem(NumberUtil.roundTwoDecimals(ShoppingCartWrapper.INSTANCE.getTotal()));
     }
 
     /** This method is called from within the constructor to
@@ -66,15 +68,19 @@ public class FirstCheckoutView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        checkoutItemsHolder = new javax.swing.JPanel();
         sumOfItems = new Views.Checkout.CheckoutShoppingItem();
-
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(FirstCheckoutView.class);
-        checkoutItemsHolder.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("checkoutItemsHolder.border.title"))); // NOI18N
-        checkoutItemsHolder.setName("checkoutItemsHolder"); // NOI18N
-        checkoutItemsHolder.setLayout(new javax.swing.BoxLayout(checkoutItemsHolder, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1 = new javax.swing.JScrollPane();
+        checkoutItemsHolder = new javax.swing.JPanel();
 
         sumOfItems.setName("sumOfItems"); // NOI18N
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(FirstCheckoutView.class);
+        checkoutItemsHolder.setBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("checkoutItemsHolder.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, resourceMap.getFont("checkoutItemsHolder.border.titleFont"))); // NOI18N
+        checkoutItemsHolder.setName("checkoutItemsHolder"); // NOI18N
+        checkoutItemsHolder.setLayout(new javax.swing.BoxLayout(checkoutItemsHolder, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(checkoutItemsHolder);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -82,17 +88,17 @@ public class FirstCheckoutView extends javax.swing.JPanel {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, sumOfItems, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, checkoutItemsHolder, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 564, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(sumOfItems, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .add(checkoutItemsHolder, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
-                .add(18, 18, 18)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(sumOfItems, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -100,6 +106,7 @@ public class FirstCheckoutView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel checkoutItemsHolder;
+    private javax.swing.JScrollPane jScrollPane1;
     private Views.Checkout.CheckoutShoppingItem sumOfItems;
     // End of variables declaration//GEN-END:variables
 
