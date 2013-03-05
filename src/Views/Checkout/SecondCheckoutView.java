@@ -19,7 +19,7 @@ import se.chalmers.ait.dat215.project.IMatDataHandler;
  * @author Philip
  */
 public class SecondCheckoutView extends javax.swing.JPanel {
-    
+
     IMatDataHandler imdh = IMatDataHandler.getInstance();
     Customer customer;
     CreditCard creditCard;
@@ -30,12 +30,10 @@ public class SecondCheckoutView extends javax.swing.JPanel {
         initCustomerSettings();
         initCardSettings();
     }
-    
-    
-    
-    public void initCustomerSettings () {
+
+    private void initCustomerSettings() {
         customer = imdh.getCustomer();
-        
+
         address.setText(customer.getAddress());
         city.setText(customer.getPostAddress());
         firstName.setText(customer.getFirstName());
@@ -43,31 +41,31 @@ public class SecondCheckoutView extends javax.swing.JPanel {
         phone.setText(customer.getPhoneNumber());
         postalCode.setText(customer.getPostCode());
     }
-    
-    public String getAddress () {
+
+    public String getAddress() {
         return address.getText();
     }
-    
-    public String getPostalCode () {
+
+    public String getPostalCode() {
         return postalCode.getText();
     }
-    
-    public String getCity () {
+
+    public String getCity() {
         return city.getText();
     }
-    
-    public void initCardSettings () {
+
+    private void initCardSettings() {
         creditCard = imdh.getCreditCard();
-        
+
         cardNumber.setText(creditCard.getCardNumber());
         cardHolderName.setText(creditCard.getHoldersName());
-        
+
         if (creditCard.getVerificationCode() == 0) {
             cvc.setText("");
         } else {
             cvc.setText("" + creditCard.getVerificationCode());
         }
-        
+
         if ("Visa".equalsIgnoreCase(creditCard.getCardType())) {
             visa.setSelected(true);
         } else if ("MasterCard".equalsIgnoreCase(creditCard.getCardType())) {
@@ -77,36 +75,35 @@ public class SecondCheckoutView extends javax.swing.JPanel {
             masterCard.setSelected(false);
         }
     }
-    
-    
-    public boolean settingsSaved () {
+
+    public boolean settingsSaved() {
         return saveSettingCheckbox.isSelected();
     }
-    
-    public void saveSettings () {
-        customer.setAddress(address.getText());
-        customer.setPostAddress(city.getText());
-        customer.setFirstName(firstName.getText());
-        customer.setLastName(lastName.getText());
-        customer.setPhoneNumber(phone.getText());
-        customer.setPostCode(postalCode.getText());
-        
-        creditCard.setCardNumber(cardNumber.getText());
-        creditCard.setHoldersName(cardHolderName.getText());
-        
-        if (!"".equals(cvc.getText())) {
-            creditCard.setVerificationCode(Integer.parseInt(cvc.getText()));
-        } else {
-            creditCard.setVerificationCode(0);
+
+    public void saveSettings() {
+        if (saveSettingCheckbox.isSelected()) {
+            customer.setAddress(address.getText());
+            customer.setPostAddress(city.getText());
+            customer.setFirstName(firstName.getText());
+            customer.setLastName(lastName.getText());
+            customer.setPhoneNumber(phone.getText());
+            customer.setPostCode(postalCode.getText());
+
+            creditCard.setCardNumber(cardNumber.getText());
+            creditCard.setHoldersName(cardHolderName.getText());
+
+            try {
+                creditCard.setVerificationCode(Integer.parseInt(cvc.getText()));
+            } catch (NumberFormatException ex) {
+                creditCard.setVerificationCode(0);
+            }
+
+            if (visa.isSelected()) {
+                creditCard.setCardType("Visa");
+            } else if (masterCard.isSelected()) {
+                creditCard.setCardType("MasterCard");
+            }
         }
-        
-        if (visa.isSelected()) {
-            creditCard.setCardType("Visa");
-        } else if (masterCard.isSelected()) {
-            creditCard.setCardType("MasterCard");
-        }
-        
-        saveSettingCheckbox.setSelected(false);
     }
 
     /** This method is called from within the constructor to
@@ -416,4 +413,9 @@ public class SecondCheckoutView extends javax.swing.JPanel {
     private javax.swing.JCheckBox saveSettingCheckbox;
     private javax.swing.JRadioButton visa;
     // End of variables declaration//GEN-END:variables
+
+    void updateCustomer() {
+        initCustomerSettings();
+        initCardSettings();
+    }
 }

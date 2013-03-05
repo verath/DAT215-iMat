@@ -28,11 +28,11 @@ import se.chalmers.ait.dat215.project.IMatDataHandler;
 public class CardLayoutCheckoutView extends javax.swing.JPanel {
 
     private int card = 1;
-    
+
     /** Creates new form CardLayoutCheckoutView */
     public CardLayoutCheckoutView() {
         initComponents();
-        cl = (CardLayout)(jPanel1.getLayout());
+        cl = (CardLayout) (jPanel1.getLayout());
         imdh = IMatDataHandler.getInstance();
         customer = imdh.getCustomer();
         creditCard = imdh.getCreditCard();
@@ -156,18 +156,20 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
                 .add(confirmOrder, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(kvitt, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(214, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
-                .add(106, 106, 106)
-                .add(previousButton)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(cancelButton)
-                .add(35, 35, 35)
-                .add(nextButton)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(payButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 229, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(162, Short.MAX_VALUE))
-            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(cancelButton)
+                        .add(134, 134, 134)
+                        .add(previousButton)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(nextButton)
+                        .add(18, 18, 18)
+                        .add(payButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 229, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE))
+                .add(201, 201, 201))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -181,116 +183,111 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 519, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                        .add(previousButton)
-                        .add(cancelButton)
-                        .add(nextButton))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(nextButton)
+                    .add(previousButton)
+                    .add(cancelButton)
                     .add(payButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(79, 79, 79))
+                .add(115, 115, 115))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-public void cardNumberUp () {
-    if (card == 4) {
+    public void cardNumberUp() {
+        if (card == 4) {
+            card = 1;
+        } else {
+            card++;
+        }
+    }
+
+    public void cardNumberDown() {
+        if (card == 1) {
+            card = 4;
+        } else {
+            card--;
+        }
+    }
+
+    public void showFirstCard() {
+        firstCheckoutView1.setItemsInCheckoutView(scw.getItems());
+
         card = 1;
-    } else {
-        card++;
+
+        cl.show(jPanel1, "firstCard");
+        updateNavigation();
     }
-}
 
-public void cardNumberDown () {
-    if (card == 1) {
-        card = 4;
-    } else {
-        card--;
+    public void updateNavigation() {
+        if (card == 1) {
+            shoppingCart.setFont(highlightedFont);
+            information.setFont(regularFont);
+            confirmOrder.setFont(regularFont);
+            kvitt.setFont(regularFont);
+            nextButton.setVisible(true);
+            payButton.setVisible(false);
+            previousButton.setVisible(false);
+            cancelButton.setVisible(true);
+        } else if (card == 2) {
+            shoppingCart.setFont(regularFont);
+            information.setFont(highlightedFont);
+            confirmOrder.setFont(regularFont);
+            kvitt.setFont(regularFont);
+            nextButton.setVisible(true);
+            payButton.setVisible(false);
+            previousButton.setVisible(true);
+            cancelButton.setVisible(true);
+            secondCheckoutView1.updateCustomer();
+        } else if (card == 3) {
+            shoppingCart.setFont(regularFont);
+            information.setFont(regularFont);
+            confirmOrder.setFont(highlightedFont);
+            kvitt.setFont(regularFont);
+            nextButton.setVisible(false);
+            payButton.setVisible(true);
+            previousButton.setVisible(true);
+            cancelButton.setVisible(true);
+        } else if (card == 4) {
+            shoppingCart.setFont(regularFont);
+            information.setFont(regularFont);
+            confirmOrder.setFont(regularFont);
+            kvitt.setFont(highlightedFont);
+            nextButton.setVisible(false);
+            payButton.setVisible(false);
+            previousButton.setVisible(false);
+            cancelButton.setVisible(false);
+        }
     }
-}
 
-public void showFirstCard () {
-    firstCheckoutView1.setItemsInCheckoutView(scw.getItems());
-    
-    card = 1;
-    
-    cl.show(jPanel1, "firstCard");
-    updateNavigation();
-}
-
-public void updateNavigation () {
-    if (card == 1) {
-        shoppingCart.setFont(highlightedFont);
-        information.setFont(regularFont);
-        confirmOrder.setFont(regularFont);
-        kvitt.setFont(regularFont);
-        nextButton.setVisible(true);
-        payButton.setVisible(false);
-        previousButton.setVisible(false);
-        cancelButton.setVisible(true);
-    } else if (card == 2) {
-        shoppingCart.setFont(regularFont);
-        information.setFont(highlightedFont);
-        confirmOrder.setFont(regularFont);
-        kvitt.setFont(regularFont);
-        nextButton.setVisible(true);
-        payButton.setVisible(false);
-        previousButton.setVisible(true);
-        cancelButton.setVisible(true);
-    } else if (card == 3) {
-        shoppingCart.setFont(regularFont);
-        information.setFont(regularFont);
-        confirmOrder.setFont(highlightedFont);
-        kvitt.setFont(regularFont);
-        nextButton.setVisible(false);
-        payButton.setVisible(true);
-        previousButton.setVisible(true);
-        cancelButton.setVisible(true);
-    } else if (card == 4) {
-        shoppingCart.setFont(regularFont);
-        information.setFont(regularFont);
-        confirmOrder.setFont(regularFont);
-        kvitt.setFont(highlightedFont);
-        nextButton.setVisible(false);
-        payButton.setVisible(false);
-        previousButton.setVisible(false);
-        cancelButton.setVisible(false);
+    public void updateFirstCard() {
     }
-}
 
-public void updateFirstCard () {
+    public void updateSecondCard() {
+    }
 
-}
+    public void updateThirdCard() {
+        thirdCheckoutView1.setAdress(customer.getAddress());
+        thirdCheckoutView1.setPostalCode(customer.getPostCode());
+        thirdCheckoutView1.setCity(customer.getPostAddress());
+        thirdCheckoutView1.setPrice(NumberUtil.roundTwoDecimals(ShoppingCartWrapper.INSTANCE.getTotal()));
+    }
 
-public void updateSecondCard () {
-
-}
-
-public void updateThirdCard () {
-    secondCheckoutView1.saveSettings();
-    thirdCheckoutView1.setAdress(customer.getAddress());
-    thirdCheckoutView1.setPostalCode(customer.getPostCode());
-    thirdCheckoutView1.setCity(customer.getPostAddress());
-    thirdCheckoutView1.setPrice(NumberUtil.roundTwoDecimals(ShoppingCartWrapper.INSTANCE.getTotal()));
-}
-
-
-    
 private void nextCard(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextCard
     cardNumberUp();
-    
+
     updateThirdCard();
     updateNavigation();
-    
     if (card == 3) {
+        secondCheckoutView1.saveSettings();
         fourthCheckoutView1.setThanksMessage();
     }
-    
+
     cl.next(jPanel1);
 }//GEN-LAST:event_nextCard
 
 private void previousCard(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousCard
     cardNumberDown();
     updateNavigation();
-    
+
     cl.previous(jPanel1);
 }//GEN-LAST:event_previousCard
 
@@ -299,15 +296,14 @@ private void cancelButtonpreviousCard(java.awt.event.ActionEvent evt) {//GEN-FIR
 }//GEN-LAST:event_cancelButtonpreviousCard
 
 private void payButtonPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonPressed
-    
+
     cardNumberUp();
     updateNavigation();
     cl.next(jPanel1);
-    
+
     IMatDataHandler.getInstance().placeOrder(true);
     ShoppingCartWrapper.INSTANCE.fireShoppingCartChanged(null, true);
 }//GEN-LAST:event_payButtonPressed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel confirmOrder;
@@ -331,5 +327,4 @@ private void payButtonPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event
     Font regularFont;
     Font highlightedFont;
     ShoppingCartWrapper scw;
-    
 }

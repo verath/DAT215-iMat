@@ -14,19 +14,22 @@ import Main.NumberUtil;
 import Main.ShoppingCartWrapper;
 import java.awt.CardLayout;
 import java.util.List;
+import se.chalmers.ait.dat215.project.CartEvent;
+import se.chalmers.ait.dat215.project.ShoppingCartListener;
 import se.chalmers.ait.dat215.project.ShoppingItem;
 
 /**
  *
  * @author Philip
  */
-public class FirstCheckoutView extends javax.swing.JPanel {
+public class FirstCheckoutView extends javax.swing.JPanel implements ShoppingCartListener{
 
     /** Creates new form FirstCheckoutView */
     public FirstCheckoutView() {
         initComponents();
         sumOfItems.setAsSumItem();
-        CheckoutShoppingItem item1 = new CheckoutShoppingItem();       
+        CheckoutShoppingItem item1 = new CheckoutShoppingItem();
+        ShoppingCartWrapper.INSTANCE.addShoppingCartListener(this);
     }
     
     public void addItemToItemsHolder( ShoppingItem si){
@@ -116,4 +119,11 @@ public class FirstCheckoutView extends javax.swing.JPanel {
     private Views.Checkout.CheckoutShoppingItem sumOfItems;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Listen for changes to the shopping cart and update total
+     * @param ce 
+     */
+    public void shoppingCartChanged(CartEvent ce) {
+        updateTotalPriceCheckoutView();
+    }
 }
