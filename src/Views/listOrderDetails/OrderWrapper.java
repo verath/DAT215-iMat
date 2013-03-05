@@ -1,5 +1,7 @@
 package Views.listOrderDetails;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import se.chalmers.ait.dat215.project.Order;
 
 /**
@@ -20,6 +22,8 @@ public class OrderWrapper {
 
     @Override
     public String toString() {
-        return "Order #" + order.getOrderNumber();
+        DateFormat df = SimpleDateFormat.getInstance();
+        String d = df.format(order.getDate());
+        return "Order #" + order.getOrderNumber() + " (" + d + ")";
     }
 }
