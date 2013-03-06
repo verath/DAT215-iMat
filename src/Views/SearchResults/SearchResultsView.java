@@ -29,12 +29,12 @@ public class SearchResultsView extends javax.swing.JPanel {
      * The delay in milis between loading productViews if 
      * they also have to be created
      */
-    public static final int LOAD_DELAY_CREATE = 75;
+    public static final int LOAD_DELAY_CREATE = 50;
     /**
      * The delay in milis between loading productViews if 
      * they have already been created
      */
-    public static final int LOAD_DELAY_SAVED = 25;
+    public static final int LOAD_DELAY_SAVED = 15;
     /**
      * Default height for a category filter row. In px(?)
      */
