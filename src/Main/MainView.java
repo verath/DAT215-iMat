@@ -128,11 +128,11 @@ public class MainView extends FrameView {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainCardLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(shoppingCart, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
+                    .addComponent(shoppingCart, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
                     .addGroup(mainCardLayout.createSequentialGroup()
                         .addComponent(headerBar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)))
+                        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -150,10 +150,14 @@ public class MainView extends FrameView {
         menuBar.setName("menuBar"); // NOI18N
 
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
+        fileMenu.setToolTipText(resourceMap.getString("fileMenu.toolTipText")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getActionMap(MainView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
+        exitMenuItem.setMnemonic('A');
+        exitMenuItem.setText(resourceMap.getString("exitMenuItem.text")); // NOI18N
+        exitMenuItem.setToolTipText(resourceMap.getString("exitMenuItem.toolTipText")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);
 
@@ -162,7 +166,9 @@ public class MainView extends FrameView {
         jMenu1.setText(resourceMap.getString("jMenu1.text")); // NOI18N
         jMenu1.setName("jMenu1"); // NOI18N
 
+        showPrevOrdersMenuItem.setMnemonic('T');
         showPrevOrdersMenuItem.setText(resourceMap.getString("showPrevOrdersMenuItem.text")); // NOI18N
+        showPrevOrdersMenuItem.setToolTipText(resourceMap.getString("showPrevOrdersMenuItem.toolTipText")); // NOI18N
         showPrevOrdersMenuItem.setName("showPrevOrdersMenuItem"); // NOI18N
         showPrevOrdersMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,7 +177,9 @@ public class MainView extends FrameView {
         });
         jMenu1.add(showPrevOrdersMenuItem);
 
+        showShoppingListsMenuItem.setMnemonic('I');
         showShoppingListsMenuItem.setText(resourceMap.getString("showShoppingListsMenuItem.text")); // NOI18N
+        showShoppingListsMenuItem.setToolTipText(resourceMap.getString("showShoppingListsMenuItem.toolTipText")); // NOI18N
         showShoppingListsMenuItem.setName("showShoppingListsMenuItem"); // NOI18N
         showShoppingListsMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,7 +191,9 @@ public class MainView extends FrameView {
         jSeparator1.setName("jSeparator1"); // NOI18N
         jMenu1.add(jSeparator1);
 
+        showAccSettingsMenuItem.setMnemonic('K');
         showAccSettingsMenuItem.setText(resourceMap.getString("showAccSettingsMenuItem.text")); // NOI18N
+        showAccSettingsMenuItem.setToolTipText(resourceMap.getString("showAccSettingsMenuItem.toolTipText")); // NOI18N
         showAccSettingsMenuItem.setName("showAccSettingsMenuItem"); // NOI18N
         showAccSettingsMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,6 +208,9 @@ public class MainView extends FrameView {
         helpMenu.setName("helpMenu"); // NOI18N
 
         aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
+        aboutMenuItem.setMnemonic('O');
+        aboutMenuItem.setText(resourceMap.getString("aboutMenuItem.text")); // NOI18N
+        aboutMenuItem.setToolTipText(resourceMap.getString("aboutMenuItem.toolTipText")); // NOI18N
         aboutMenuItem.setName("aboutMenuItem"); // NOI18N
         helpMenu.add(aboutMenuItem);
 
