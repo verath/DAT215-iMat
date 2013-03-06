@@ -36,7 +36,7 @@ public class FourthCheckoutView extends javax.swing.JPanel {
     }
     
     public void setThanksMessage () {
-        thanksMessage.setText("Tack för att du valt att handla hos oss " + c.getFirstName());
+        thanksMessage.setText("Tack för att du valt att handla hos oss, " + c.getFirstName() +"!");
     }
 
     /** This method is called from within the constructor to
@@ -123,7 +123,7 @@ public class FourthCheckoutView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    MainController.INSTANCE.showMain();
+    MainController.INSTANCE.showStartPanel();
 }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
