@@ -183,6 +183,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="fileMenu">
           <Properties>
+            <Property name="mnemonic" type="int" value="65"/>
             <Property name="text" type="java.lang.String" resourceKey="fileMenu.text"/>
             <Property name="toolTipText" type="java.lang.String" resourceKey="fileMenu.toolTipText"/>
             <Property name="name" type="java.lang.String" value="fileMenu" noResource="true"/>
@@ -211,6 +212,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
+            <Property name="mnemonic" type="int" value="75"/>
             <Property name="text" type="java.lang.String" resourceKey="jMenu1.text"/>
             <Property name="name" type="java.lang.String" value="jMenu1" noResource="true"/>
           </Properties>
@@ -257,7 +259,10 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="helpMenu">
           <Properties>
+            <Property name="mnemonic" type="int" value="72"/>
             <Property name="text" type="java.lang.String" resourceKey="helpMenu.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="helpMenu.toolTipText"/>
+            <Property name="doubleBuffered" type="boolean" value="true"/>
             <Property name="name" type="java.lang.String" value="helpMenu" noResource="true"/>
           </Properties>
           <AuxValues>

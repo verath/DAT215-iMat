@@ -149,6 +149,7 @@ public class MainView extends FrameView {
 
         menuBar.setName("menuBar"); // NOI18N
 
+        fileMenu.setMnemonic('A');
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setToolTipText(resourceMap.getString("fileMenu.toolTipText")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
@@ -163,6 +164,7 @@ public class MainView extends FrameView {
 
         menuBar.add(fileMenu);
 
+        jMenu1.setMnemonic('K');
         jMenu1.setText(resourceMap.getString("jMenu1.text")); // NOI18N
         jMenu1.setName("jMenu1"); // NOI18N
 
@@ -204,7 +206,10 @@ public class MainView extends FrameView {
 
         menuBar.add(jMenu1);
 
+        helpMenu.setMnemonic('H');
         helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
+        helpMenu.setToolTipText(resourceMap.getString("helpMenu.toolTipText")); // NOI18N
+        helpMenu.setDoubleBuffered(true);
         helpMenu.setName("helpMenu"); // NOI18N
 
         aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
