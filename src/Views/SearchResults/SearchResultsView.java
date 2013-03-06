@@ -65,6 +65,7 @@ public class SearchResultsView extends javax.swing.JPanel {
     /** Creates a new form SearchResultsView */
     public SearchResultsView() {
         initComponents();
+        searchResultsItemsScroll.getVerticalScrollBar().setUnitIncrement(20);
 
         srController = new SearchResultsController(this);
 
@@ -290,7 +291,7 @@ private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEven
     filterPanelShown = !filterPanelShown;
     filterByContainer.setVisible(filterPanelShown);
 
-    toggleCategoriFilterButton.setText(filterPanelShown ? "Dölj Kategorier" : "Visa Kategorier");
+    toggleCategoriFilterButton.setText(filterPanelShown ? "Dölj Filter" : "Visa Filter");
 
     filterByContainer.validate();
     filterByContainer.repaint();

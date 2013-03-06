@@ -64,7 +64,12 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
                 itemList.setModel(new ViewableOrderList());
                 break;
         }
-        itemList.setSelectedIndex(0);
+        itemList.validate();
+        itemList.repaint();
+        
+        if( itemList.getSelectedIndex() == -1 ) {
+            itemList.setSelectedIndex(0);
+        }
     }
 
     /** This method is called from within the constructor to

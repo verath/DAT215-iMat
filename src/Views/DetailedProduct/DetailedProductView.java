@@ -99,7 +99,7 @@ public class DetailedProductView extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(770, 628));
 
         nameLabel.setBackground(new java.awt.Color(247, 221, 192));
-        nameLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        nameLabel.setFont(new java.awt.Font("Tahoma", 0, 24));
         nameLabel.setText("Banan");
 
         bildPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -119,6 +119,7 @@ public class DetailedProductView extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(null);
 
+        jTextArea1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextArea1.setLineWrap(true);
         jTextArea1.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non arcu mauris, vitae imperdiet diam. Aenean eu sodales nisi. In hac habitasse platea dictumst. Sed erat tortor, ultricies ac convallis in, condimentum eu massa. Curabitur in ornare leo. Etiam diam augue, aliquet quis porta ut, dictum vel dui. Duis ac lacus id neque pretium accumsan non sit amet massa. Curabitur posuere pulvinar fringilla. Suspendisse potenti. Fusce mollis feugiat nisl et varius. Fusce quis velit sit amet diam pulvinar ornare. Donec congue aliquet hendrerit. Pellentesque dapibus scelerisque porttitor.\n\nAliquam fringilla, est a luctus tincidunt, velit lorem fringilla purus, in semper ligula purus nec elit. Nulla tortor nulla, congue at feugiat et, sagittis interdum risus. Donec ante lectus, congue sit amet imperdiet eget, semper at erat. Aenean justo sapien, consectetur ac interdum ut, bibendum et enim. Etiam commodo ornare fringilla. Morbi laoreet dictum justo ut porta. Nulla ut diam ipsum, at ultrices justo. Sed blandit ipsum vel eros scelerisque vitae placerat tortor laoreet. Mauris ac mauris sem, quis imperdiet ipsum. Aliquam sed mollis orci. Cras nibh est, suscipit a varius mattis, ultricies nec mi. Donec vel justo libero, id hendrerit dui.");
         jTextArea1.setWrapStyleWord(true);
@@ -147,7 +148,7 @@ public class DetailedProductView extends javax.swing.JPanel {
 
         jPanel1.setOpaque(false);
 
-        suffixLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        suffixLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
         suffixLabel.setText("Förp.");
 
         buyButton.setText("Köp");
@@ -158,7 +159,7 @@ public class DetailedProductView extends javax.swing.JPanel {
             }
         });
 
-        priceLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        priceLabel.setFont(new java.awt.Font("Tahoma", 0, 18));
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         priceLabel.setText("90kr/st");
 
@@ -169,7 +170,7 @@ public class DetailedProductView extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(366, Short.MAX_VALUE)
+                .addContainerGap(88, Short.MAX_VALUE)
                 .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,7 +209,7 @@ public class DetailedProductView extends javax.swing.JPanel {
 
         jLabel3.setText("Kalorier:");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 16));
         jLabel7.setForeground(new java.awt.Color(255, 136, 0));
         jLabel7.setText("Snabbinformation");
 
@@ -219,13 +220,13 @@ public class DetailedProductView extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
@@ -262,17 +263,17 @@ public class DetailedProductView extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(backButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 878, Short.MAX_VALUE)
+                        .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(favouriteLabel))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bildPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bildPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(jScrollPane1))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
@@ -294,13 +295,12 @@ public class DetailedProductView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bildPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(27, 27, 27)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(119, 119, 119))
+                .addGap(235, 235, 235))
         );
     }// </editor-fold>//GEN-END:initComponents
 

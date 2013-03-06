@@ -19,6 +19,7 @@ public class MainPanel extends javax.swing.JPanel {
     /** Creates new form MainPanel */
     public MainPanel() {
         initComponents();
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(20);
         //.setCarousel(carouselPanelView1);
         //carouselPanelSwitcher2.setCarousel(carouselPanelView2);
     }

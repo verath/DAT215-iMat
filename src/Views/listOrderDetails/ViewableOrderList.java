@@ -2,6 +2,7 @@ package Views.listOrderDetails;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.AbstractListModel;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
@@ -13,10 +14,11 @@ import se.chalmers.ait.dat215.project.Order;
  */
 public class ViewableOrderList extends AbstractListModel {
 
-    private static final List<Order> orders = IMatDataHandler.getInstance().getOrders();
+    private List<Order> orders = new LinkedList<Order>(IMatDataHandler.getInstance().getOrders());
 
-    static {
+    ViewableOrderList() {
         Collections.sort(orders, new Comparator<Order>() {
+
             public int compare(Order t, Order t1) {
                 // Higher order number > lower order number
                 return t1.getOrderNumber() - t.getOrderNumber();

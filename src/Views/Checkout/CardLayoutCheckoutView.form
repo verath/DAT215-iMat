@@ -33,18 +33,30 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jPanel1" alignment="0" pref="824" max="32767" attributes="0"/>
-                  <Component id="jPanel2" alignment="1" min="-2" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="786" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jPanel1" alignment="1" pref="867" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="447" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="1"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               <Component id="jPanel1" pref="513" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -158,30 +170,24 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jLabel1" min="-2" pref="162" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="shoppingCart" min="-2" pref="108" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="information" min="-2" pref="108" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="confirmOrder" min="-2" pref="108" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="kvitt" min="-2" pref="108" max="-2" attributes="0"/>
-                  <EmptySpace pref="202" max="32767" attributes="0"/>
+                  <Component id="kvitt" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" alignment="0" min="-2" pref="59" max="-2" attributes="1"/>
-                      <Component id="information" alignment="0" pref="59" max="32767" attributes="1"/>
-                      <Component id="confirmOrder" pref="59" max="32767" attributes="1"/>
-                      <Component id="kvitt" pref="59" max="32767" attributes="1"/>
-                      <Component id="shoppingCart" pref="59" max="32767" attributes="1"/>
-                  </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                  <Component id="shoppingCart" alignment="3" pref="31" max="32767" attributes="1"/>
+                  <Component id="information" alignment="3" pref="31" max="32767" attributes="1"/>
+                  <Component id="confirmOrder" alignment="3" pref="31" max="32767" attributes="1"/>
+                  <Component id="kvitt" alignment="3" pref="31" max="32767" attributes="1"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -200,14 +206,6 @@
             <Property name="name" type="java.lang.String" value="information" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="font" type="java.awt.Font" resourceKey="jLabel1.font"/>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel1.text"/>
-            <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="shoppingCart">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="2"/>
@@ -223,5 +221,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" resourceKey="jLabel1.font"/>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel1.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

@@ -31,7 +31,7 @@ public class ShoppingCartController implements ShoppingCartListener {
         // On first load, update items in cart
         view.setItemsInCart(ShoppingCartWrapper.INSTANCE.getItems());
         // And set status of checkout button
-        view.setCheckoutButtonEnable(!ShoppingCartWrapper.INSTANCE.getItems().isEmpty());
+        view.setButtonsEnable(!ShoppingCartWrapper.INSTANCE.getItems().isEmpty());
     }
 
     public void listenForShoppingEvents() {
@@ -49,7 +49,7 @@ public class ShoppingCartController implements ShoppingCartListener {
         } else {
             view.shoppingCartItemUpdated(ce.getShoppingItem());
         }
-        view.setCheckoutButtonEnable(!ShoppingCartWrapper.INSTANCE.getItems().isEmpty());
+        view.setButtonsEnable(!ShoppingCartWrapper.INSTANCE.getItems().isEmpty());
     }
 
     /**

@@ -112,8 +112,9 @@ public class ShoppingCartView extends javax.swing.JPanel {
         updateTotals();
     }
     
-    public void setCheckoutButtonEnable(boolean enable) {
+    public void setButtonsEnable(boolean enable) {
         checkoutButton.setEnabled(enable);
+        saveCartButton.setEnabled(enable);
     }
 
     /** This method is called from within the constructor to
@@ -197,7 +198,6 @@ public class ShoppingCartView extends javax.swing.JPanel {
         shoppingItemsContainer.setMaximumSize(new java.awt.Dimension(287, 28000));
         shoppingItemsContainer.setMinimumSize(new java.awt.Dimension(287, 33));
         shoppingItemsContainer.setName("shoppingItemsContainer"); // NOI18N
-        shoppingItemsContainer.setPreferredSize(null);
         shoppingItemsContainer.setLayout(new javax.swing.BoxLayout(shoppingItemsContainer, javax.swing.BoxLayout.PAGE_AXIS));
         scroll.setViewportView(shoppingItemsContainer);
 
@@ -205,6 +205,7 @@ public class ShoppingCartView extends javax.swing.JPanel {
 
         saveCartButton.setText(resourceMap.getString("saveCartButton.text")); // NOI18N
         saveCartButton.setToolTipText(resourceMap.getString("saveCartButton.toolTipText")); // NOI18N
+        saveCartButton.setEnabled(false);
         saveCartButton.setName("saveCartButton"); // NOI18N
         saveCartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
