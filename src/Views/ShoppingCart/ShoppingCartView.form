@@ -55,15 +55,15 @@
   </NonVisualComponents>
   <Properties>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[284, 32767]"/>
+      <Dimension value="[290, 32767]"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[284, 362]"/>
+      <Dimension value="[290, 362]"/>
     </Property>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
     <Property name="opaque" type="boolean" value="false"/>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[284, 362]"/>
+      <Dimension value="[290, 362]"/>
     </Property>
   </Properties>
   <AuxValues>
@@ -84,8 +84,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSeparator1" alignment="0" pref="260" max="32767" attributes="0"/>
-                  <Component id="titleLabel" alignment="0" pref="260" max="32767" attributes="0"/>
+                  <Component id="jSeparator1" alignment="0" pref="266" max="32767" attributes="0"/>
+                  <Component id="titleLabel" alignment="0" pref="266" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jLabel3" alignment="0" max="32767" attributes="1"/>
@@ -102,7 +102,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="126" pref="126" max="126" attributes="0"/>
-                              <Component id="filler1" pref="13" max="32767" attributes="0"/>
+                              <Component id="filler1" pref="19" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -115,7 +115,7 @@
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
-          <Component id="scroll" alignment="1" pref="284" max="32767" attributes="0"/>
+          <Component id="scroll" alignment="1" pref="290" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -168,8 +168,17 @@
           </Border>
         </Property>
         <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[287, 32767]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[287, 33]"/>
+        </Property>
         <Property name="name" type="java.lang.String" value="scroll" noResource="true"/>
         <Property name="opaque" type="boolean" value="false"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[287, 33]"/>
+        </Property>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
@@ -177,7 +186,16 @@
         <Container class="javax.swing.JPanel" name="shoppingItemsContainer">
           <Properties>
             <Property name="background" type="java.awt.Color" resourceKey="shoppingItemsContainer.background"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[287, 28000]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[287, 33]"/>
+            </Property>
             <Property name="name" type="java.lang.String" value="shoppingItemsContainer" noResource="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="null"/>
+            </Property>
           </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">

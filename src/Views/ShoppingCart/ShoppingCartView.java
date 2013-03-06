@@ -172,11 +172,11 @@ public class ShoppingCartView extends javax.swing.JPanel {
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
-        setMaximumSize(new java.awt.Dimension(284, 32767));
-        setMinimumSize(new java.awt.Dimension(284, 362));
+        setMaximumSize(new java.awt.Dimension(290, 32767));
+        setMinimumSize(new java.awt.Dimension(290, 362));
         setName("Form"); // NOI18N
         setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(284, 362));
+        setPreferredSize(new java.awt.Dimension(290, 362));
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(ShoppingCartView.class);
         titleLabel.setFont(resourceMap.getFont("titleLabel.font")); // NOI18N
@@ -187,11 +187,17 @@ public class ShoppingCartView extends javax.swing.JPanel {
 
         scroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setMaximumSize(new java.awt.Dimension(287, 32767));
+        scroll.setMinimumSize(new java.awt.Dimension(287, 33));
         scroll.setName("scroll"); // NOI18N
         scroll.setOpaque(false);
+        scroll.setPreferredSize(new java.awt.Dimension(287, 33));
 
         shoppingItemsContainer.setBackground(resourceMap.getColor("shoppingItemsContainer.background")); // NOI18N
+        shoppingItemsContainer.setMaximumSize(new java.awt.Dimension(287, 28000));
+        shoppingItemsContainer.setMinimumSize(new java.awt.Dimension(287, 33));
         shoppingItemsContainer.setName("shoppingItemsContainer"); // NOI18N
+        shoppingItemsContainer.setPreferredSize(null);
         shoppingItemsContainer.setLayout(new javax.swing.BoxLayout(shoppingItemsContainer, javax.swing.BoxLayout.PAGE_AXIS));
         scroll.setViewportView(shoppingItemsContainer);
 
@@ -237,8 +243,8 @@ public class ShoppingCartView extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                    .add(titleLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                    .add(jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                    .add(titleLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -252,14 +258,14 @@ public class ShoppingCartView extends javax.swing.JPanel {
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
                                 .add(126, 126, 126)
-                                .add(filler1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 13, Short.MAX_VALUE)
+                                .add(filler1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
                                 .add(23, 23, 23))
                             .add(layout.createSequentialGroup()
                                 .add(saveCartButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 126, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
                         .add(checkoutButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 98, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, scroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, scroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

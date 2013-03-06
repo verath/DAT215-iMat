@@ -60,13 +60,14 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
         fourthCheckoutView1 = new Views.Checkout.FourthCheckoutView();
         previousButton = new javax.swing.JButton();
         nextButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         cancelButton = new javax.swing.JButton();
-        shoppingCart = new javax.swing.JLabel();
-        information = new javax.swing.JLabel();
-        confirmOrder = new javax.swing.JLabel();
-        kvitt = new javax.swing.JLabel();
         payButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        confirmOrder = new javax.swing.JLabel();
+        information = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        shoppingCart = new javax.swing.JLabel();
+        kvitt = new javax.swing.JLabel();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(CardLayoutCheckoutView.class);
         setBackground(resourceMap.getColor("Form.background")); // NOI18N
@@ -107,11 +108,6 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(resourceMap.getFont("jLabel1.font")); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
-
         cancelButton.setText(resourceMap.getString("cancelButton.text")); // NOI18N
         cancelButton.setName("cancelButton"); // NOI18N
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -119,20 +115,6 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
                 cancelButtonpreviousCard(evt);
             }
         });
-
-        shoppingCart.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        shoppingCart.setText(resourceMap.getString("shoppingCart.text")); // NOI18N
-        shoppingCart.setName("shoppingCart"); // NOI18N
-
-        information.setText(resourceMap.getString("information.text")); // NOI18N
-        information.setName("information"); // NOI18N
-
-        confirmOrder.setFont(resourceMap.getFont("confirmOrder.font")); // NOI18N
-        confirmOrder.setText(resourceMap.getString("confirmOrder.text")); // NOI18N
-        confirmOrder.setName("confirmOrder"); // NOI18N
-
-        kvitt.setText(resourceMap.getString("kvitt.text")); // NOI18N
-        kvitt.setName("kvitt"); // NOI18N
 
         payButton.setText(resourceMap.getString("payButton.text")); // NOI18N
         payButton.setName("payButton"); // NOI18N
@@ -142,11 +124,33 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
             }
         });
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+        jPanel2.setName("jPanel2"); // NOI18N
+        jPanel2.setOpaque(false);
+
+        confirmOrder.setFont(resourceMap.getFont("confirmOrder.font")); // NOI18N
+        confirmOrder.setText(resourceMap.getString("confirmOrder.text")); // NOI18N
+        confirmOrder.setName("confirmOrder"); // NOI18N
+
+        information.setText(resourceMap.getString("information.text")); // NOI18N
+        information.setName("information"); // NOI18N
+
+        jLabel1.setFont(resourceMap.getFont("jLabel1.font")); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        shoppingCart.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        shoppingCart.setText(resourceMap.getString("shoppingCart.text")); // NOI18N
+        shoppingCart.setName("shoppingCart"); // NOI18N
+
+        kvitt.setText(resourceMap.getString("kvitt.text")); // NOI18N
+        kvitt.setName("kvitt"); // NOI18N
+
+        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel2Layout.createSequentialGroup()
                 .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 162, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(shoppingCart, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -156,32 +160,46 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
                 .add(confirmOrder, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(kvitt, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(214, Short.MAX_VALUE))
-            .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(cancelButton)
-                        .add(134, 134, 134)
-                        .add(previousButton)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(nextButton)
-                        .add(18, 18, 18)
-                        .add(payButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 229, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE))
-                .add(201, 201, 201))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel2Layout.createSequentialGroup()
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 59, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(information, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                     .add(confirmOrder, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                     .add(kvitt, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                     .add(shoppingCart, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(cancelButton)
+                .add(134, 134, 134)
+                .add(previousButton)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 519, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(nextButton)
+                .add(18, 18, 18)
+                .add(payButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 229, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(201, 201, 201))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
+                    .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(nextButton)
@@ -312,6 +330,7 @@ private void payButtonPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event
     private javax.swing.JLabel information;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel kvitt;
     private javax.swing.JButton nextButton;
     private javax.swing.JButton payButton;
