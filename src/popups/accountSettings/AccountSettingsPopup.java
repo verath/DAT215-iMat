@@ -1,10 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * kontouppgifter.java
+ * AccountSettingsPopup.java
  *
  * Created on Feb 21, 2013, 4:37:10 PM
  */
@@ -19,7 +14,7 @@ import se.chalmers.ait.dat215.project.IMatDataHandler;
 
 /**
  *
- * @author Ernst
+ * @author Ernst, Peter
  */
 public class AccountSettingsPopup extends javax.swing.JPanel {
 

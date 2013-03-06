@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Main;
 
 import navigation.NavigationListener;
@@ -11,11 +7,9 @@ import Views.listOrderDetails.ListOrderDetailsView.ListOrderType;
 import popups.accountSettings.AccountSettingsPopup;
 import java.awt.Dialog;
 import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
 import navigation.NavigationOtherEvent;
 import navigation.NavigationSearchEvent;
 import navigation.NavigationShoppingListsEvent;
@@ -34,10 +28,17 @@ public enum MainController {
      */
     INSTANCE;
 
+    /**
+     * The different cards that can be displayed in the main stage of the main
+     * panel.
+     */
     private enum Cards {
 
         SEARCH, SHOPPING_LISTS, ORDER_HISTORY, START;
     }
+    /**
+     * The current selected card, used so we can go back one step.
+     */
     private Cards selectedCard = Cards.START;
     /**
      * The NavigationListeners that is listening to the controllers events.
@@ -47,10 +48,28 @@ public enum MainController {
      * The account settings dialog
      */
     private JDialog accountSettingsDialog;
+    /**
+     * The main view
+     */
     private MainView view;
 
+    /**
+     * Sets the view for this controller
+     * @param view 
+     */
     public void setView(MainView view) {
         this.view = view;
+    }
+
+    /**
+     * Shows the search results panel
+     */
+    private void showSearchResultsPanel() {
+        if (view != null) {
+            showMain();
+            view.showSearchResultsPanel();
+            selectedCard = Cards.SEARCH;
+        }
     }
 
     /**
@@ -134,7 +153,7 @@ public enum MainController {
 
     /**
      * Changes the main card to the checkout view
-     * also disables apropriate menu actions that can not be taken
+     * also disables appropriate menu actions that can not be taken
      * in the shopping cart.
      */
     public void showCheckout() {
@@ -168,14 +187,6 @@ public enum MainController {
         }
     }
 
-    private void showSearchResultsPanel() {
-        if (view != null) {
-            showMain();
-            view.showSearchResultsPanel();
-            selectedCard = Cards.SEARCH;
-        }
-    }
-
     public void showStartPanel() {
         if (view != null) {
             showMain();
@@ -185,6 +196,10 @@ public enum MainController {
         }
     }
 
+    /**
+     * Shows the detailed description of a product
+     * @param p 
+     */
     public void showDetailedProductPanel(Product p) {
         if (view != null) {
             showMain();
@@ -192,6 +207,10 @@ public enum MainController {
         }
     }
 
+    /**
+     * Hides the detailed description of a product and shows the 
+     * previously displayed cards
+     */
     public void hideDetailedProductPanel() {
         if (view != null) {
             showMain();

@@ -5,7 +5,6 @@ package Main;
 
 import Views.listOrderDetails.ListOrderDetailsView.ListOrderType;
 import java.awt.CardLayout;
-import java.awt.LayoutManager;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
@@ -257,6 +256,8 @@ private void showPrevOrdersMenuItemActionPerformed(java.awt.event.ActionEvent ev
     // End of variables declaration//GEN-END:variables
     private JDialog aboutBox;
 
+    // Protected to force usage of MainController
+    
     protected void showMainPanel(){
         ((CardLayout)mainPanel.getLayout()).show(mainPanel, "main");
     }
@@ -275,17 +276,17 @@ private void showPrevOrdersMenuItemActionPerformed(java.awt.event.ActionEvent ev
         ((CardLayout)centerCardContainer.getLayout()).show(centerCardContainer, "searchresults");
     }
 
-    void setMenuItemsEnabled(boolean b) {
+    protected void setMenuItemsEnabled(boolean b) {
         showAccSettingsMenuItem.setEnabled(b);
         showPrevOrdersMenuItem.setEnabled(b);
         showShoppingListsMenuItem.setEnabled(b);
     }
 
-    void showStartPanel() {
+    protected void showStartPanel() {
         ((CardLayout)centerCardContainer.getLayout()).show(centerCardContainer, "start");
     }
 
-    void showDetailedProductPanel(Product p) {
+    protected void showDetailedProductPanel(Product p) {
         detailedProductView1.setProduct(p);
         ((CardLayout)centerCardContainer.getLayout()).show(centerCardContainer, "productDetails");
     }

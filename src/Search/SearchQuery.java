@@ -73,11 +73,6 @@ public class SearchQuery {
     }
 
     public SearchQuery(String searchString, Comparator<Product> sortBy,
-            Set<ProductCategory> categoryFilter, boolean onlyFavorites) {
-        this(searchString, sortBy, categoryFilter, onlyFavorites, null);
-    }
-
-    public SearchQuery(String searchString, Comparator<Product> sortBy,
             Set<ProductCategory> categoryFilter) {
         this(searchString, sortBy, categoryFilter, false, null);
 
@@ -142,7 +137,7 @@ public class SearchQuery {
         }
 
         if (sortBy == this.sortBy) {
-            // No point in sorting if already sorted.
+            // No point in sorting if already sorted by this comperator.
             return products;
         }
 
@@ -198,7 +193,8 @@ public class SearchQuery {
     }
 
     /**
-     * Sets the sorting option for the resulting products.
+     * Sets the sorting option for the resulting products. This also
+     * updates the resulting products.
      * @param sortBy 
      */
     public void setSortBy(Comparator<Product> sortBy) {
@@ -219,7 +215,9 @@ public class SearchQuery {
      * Returns a List of Products that matched the search criteria and 
      * is contained in the provided filter.
      * 
-     * @return The Products matching the search query.
+     * @param filter 
+     * @return The Products matching the search query and has a catagory
+     * contained in the filter.
      */
     public List<Product> getResultProducts(Set<ProductCategory> filter) {
         return filterProductsByCategory(resultingProducts, filter);
@@ -227,7 +225,8 @@ public class SearchQuery {
 
     /**
      * Returns the Set of categories which the resulting Products were 
-     * contained in
+     * contained in.
+     * 
      * @return The ProductCategories represented in the search result.
      */
     public Set<ProductCategory> getResultCategories() {
@@ -254,7 +253,7 @@ public class SearchQuery {
 
     /**
      * Getter for the sort Comperator used.
-     * @return The Comperator<Product> used in the search query 
+     * @return The Product Comperator used in the search query 
      * for ordering the results. Can be null.
      */
     public Comparator<Product> getSortBy() {
@@ -296,6 +295,10 @@ public class SearchQuery {
         }
     }
 
+    /**
+     * Sets the name of this search query
+     * @param name 
+     */
     public void setName(String name) {
         this.name = name;
     }

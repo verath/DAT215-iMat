@@ -14,7 +14,8 @@ import se.chalmers.ait.dat215.project.Order;
  */
 public class ViewableOrderList extends AbstractListModel {
 
-    private List<Order> orders = new LinkedList<Order>(IMatDataHandler.getInstance().getOrders());
+    private List<Order> orders = new LinkedList<Order>(
+            IMatDataHandler.getInstance().getOrders());
 
     ViewableOrderList() {
         Collections.sort(orders, new Comparator<Order>() {

@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * CategoryItemView.java
  *
  * Created on Feb 25, 2013, 9:46:54 AM
@@ -13,7 +8,6 @@ package Views.Categories;
 import Main.MainController;
 import Search.SearchQuery;
 import java.awt.Color;
-import java.awt.Font;
 import java.util.Set;
 import se.chalmers.ait.dat215.project.ProductCategory;
 

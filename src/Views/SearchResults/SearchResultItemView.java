@@ -8,10 +8,8 @@ package Views.SearchResults;
 
 import Main.LocaleHandler;
 import Main.MainController;
-import Main.NumberUtil;
 import Main.ShoppingCartWrapper;
 import Search.SearchQuery;
-import java.awt.Color;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.ImageIcon;

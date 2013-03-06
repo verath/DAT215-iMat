@@ -142,7 +142,7 @@ public class SearchResultsController implements NavigationListener {
         }
 
         // No point in updating if the filters 
-        // did change as a result of this action.
+        // didn't change as a result of this action.
         if (changed) {
             updateViewResultList();
         }

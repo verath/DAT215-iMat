@@ -6,7 +6,6 @@
  */
 package Views.listOrderDetails;
 
-import Main.MainApp;
 import Main.MainController;
 import Main.NumberUtil;
 import Main.ShoppingCartWrapper;
@@ -19,7 +18,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import se.chalmers.ait.dat215.project.IMatDataHandler;

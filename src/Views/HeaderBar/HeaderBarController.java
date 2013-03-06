@@ -76,6 +76,7 @@ public class HeaderBarController {
             doSearch();
         }*/
         
+        // Instant search!
         doSearch();
     }
 

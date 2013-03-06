@@ -1,10 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /*
- * NewJPanel.java
+ * NavigationEvent.java
  *
  * Created on Feb 24, 2013, 5:42:06 PM
  */
@@ -18,7 +14,7 @@ import se.chalmers.ait.dat215.project.Product;
 
 /**
  *
- * @author Ernst
+ * @author Ernst, Peter
  */
 public class DetailedProductView extends javax.swing.JPanel {
 

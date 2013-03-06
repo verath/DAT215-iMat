@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * ListOrderDetailsView.java
  *
  * Created on Feb 28, 2013, 7:16:25 PM
@@ -50,7 +45,7 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
                 titleLabel.setText("Mina Inköpslistor");
                 break;
         }
-        
+
         updateListModel();
     }
 
@@ -66,8 +61,8 @@ public class ListOrderDetailsView extends javax.swing.JPanel implements Shopping
         }
         itemList.validate();
         itemList.repaint();
-        
-        if( itemList.getSelectedIndex() == -1 ) {
+
+        if (itemList.getSelectedIndex() == -1) {
             itemList.setSelectedIndex(0);
         }
     }

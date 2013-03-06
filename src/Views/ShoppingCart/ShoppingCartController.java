@@ -45,6 +45,7 @@ public class ShoppingCartController implements ShoppingCartListener {
      */
     public void shoppingCartChanged(CartEvent ce) {
         if (ce.isAddEvent()) {
+            // This is also set to true for remove events
             view.setItemsInCart(ShoppingCartWrapper.INSTANCE.getItems());
         } else {
             view.shoppingCartItemUpdated(ce.getShoppingItem());
@@ -67,11 +68,14 @@ public class ShoppingCartController implements ShoppingCartListener {
      * @param evt 
      */
     void onSaveCartButtonActionPerformed(ActionEvent evt) {
-        String listName = (String) JOptionPane.showInputDialog("Ange namn som listan ska sparas som:");
+        String listName = (String) JOptionPane.showInputDialog(null,
+                "Ange namn som listan ska sparas som:");
+
         if (listName == null) {
             // user clicked cancel.
             return;
         }
+
         if (ShoppingCartWrapper.INSTANCE.getItems().isEmpty()) {
             // If the shoppingCart is empty.
             return;

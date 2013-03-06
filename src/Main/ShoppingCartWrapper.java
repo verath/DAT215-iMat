@@ -1,6 +1,5 @@
 package Main;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
@@ -24,7 +23,7 @@ public enum ShoppingCartWrapper {
      * Our internal instance of the ShoppingCart backend
      */
     private ShoppingCart shoppingCart = IMatDataHandler.getInstance().getShoppingCart();
-    
+
     /**
      * Returns the shoppingItem for a Product. There _SHOULD_ only be one
      * ShoppingItem per product if this adapter is used everywhere.
@@ -52,7 +51,7 @@ public enum ShoppingCartWrapper {
         if (si == null) {
             // Item didn't exist, add it instead
             addProduct(p, amount);
-        } else if(amount <= 0){
+        } else if (amount <= 0) {
             // If 0 or less amount, remove product
             removeProduct(p);
         } else {
@@ -99,13 +98,17 @@ public enum ShoppingCartWrapper {
         shoppingCart.clear();
     }
 
+    /**
+     * Returns all the shopping items currently in the shopping cart.
+     * @return 
+     */
     public List<ShoppingItem> getItems() {
         List<ShoppingItem> items = new LinkedList<ShoppingItem>(shoppingCart.getItems());
         return items;
     }
 
     /**
-     * Returns the value of all the products currently in the shoppingcart.
+     * Returns the value of all the products currently in the shopping cart.
      * @return The total value of the products in the cart.
      */
     public double getTotal() {
@@ -121,7 +124,7 @@ public enum ShoppingCartWrapper {
     }
 
     /**
-     * Adds a shoppingcart listener.
+     * Adds a shopping cart listener.
      * @param scl 
      */
     public void addShoppingCartListener(ShoppingCartListener scl) {
@@ -129,19 +132,20 @@ public enum ShoppingCartWrapper {
     }
 
     /**
-     * Removes a shoppingcart listener.
+     * Removes a shopping cart listener.
      * @param scl
      */
     public void removeShoppingCartListener(ShoppingCartListener scl) {
         shoppingCart.removeShoppingCartListener(scl);
     }
-    
+
     /**
      * Notifies shopping cart listeners that the shopping cart has changed.
      * @param item
-     * @param addEvent 
+     * @param redraw - Used in the view to determine if it has to redraw
+     * itself or not.
      */
-    public void fireShoppingCartChanged(ShoppingItem item, boolean addEvent) {
-        shoppingCart.fireShoppingCartChanged(item, addEvent);
+    public void fireShoppingCartChanged(ShoppingItem item, boolean redraw) {
+        shoppingCart.fireShoppingCartChanged(item, redraw);
     }
 }

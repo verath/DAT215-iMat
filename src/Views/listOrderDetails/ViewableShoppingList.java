@@ -4,10 +4,8 @@ import ShoppingList.ShoppingList;
 import ShoppingList.ShoppingListsHandler;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import javax.swing.AbstractListModel;
 
 /**
@@ -16,7 +14,8 @@ import javax.swing.AbstractListModel;
  */
 public class ViewableShoppingList extends AbstractListModel {
 
-    private List<ShoppingList> shoppingLists = new LinkedList<ShoppingList>(ShoppingListsHandler.INSTANCE.getShoppingLists());
+    private List<ShoppingList> shoppingLists = new LinkedList<ShoppingList>(
+            ShoppingListsHandler.INSTANCE.getShoppingLists());
 
     public ViewableShoppingList() {
         Collections.sort(shoppingLists, new Comparator<ShoppingList>() {
@@ -33,13 +32,6 @@ public class ViewableShoppingList extends AbstractListModel {
     }
 
     public Object getElementAt(int i) {
-        int count = 0;
-        for (ShoppingList sl : shoppingLists) {
-            if (count == i) {
-                return sl;
-            }
-            count++;
-        }
-        return null;
+        return shoppingLists.get(i);
     }
 }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /*
  * CategoriesView.java
@@ -12,10 +8,8 @@ package Views.Categories;
 
 import Main.MainController;
 import navigation.NavigationListener;
-import Search.SearchQuery;
 import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -162,7 +156,7 @@ public class CategoriesView extends javax.swing.JPanel implements NavigationList
     /**
      * Called by the controller when a search occurs.
      * Forward event to all CategoryItemView.
-     * @param searchQuery 
+     * @param NavigationEvent The type of navigation event that occurred. 
      */
     public void onNavigate(NavigationEvent NavEvent) {
         if (NavEvent instanceof NavigationSearchEvent) {

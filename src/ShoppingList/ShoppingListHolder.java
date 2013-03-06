@@ -37,6 +37,10 @@ class ShoppingListsHolder implements Serializable {
             ObjectInputStream in = new ObjectInputStream(f);
             ShoppingListsHolder holder = (ShoppingListsHolder) in.readObject();
             this.shoppingLists = holder.shoppingLists;
+
+            // Update the static numList of ShoppingList, as static
+            // vars are not saved/loaded when serializing.
+            ShoppingList.numLists = shoppingLists.size();
         } catch (InvalidClassException ex) {
             // We have a different version saved, just don't load it.
         } catch (IOException ex) {
@@ -44,10 +48,6 @@ class ShoppingListsHolder implements Serializable {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ShoppingListsHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        // Update the static numList of ShoppingList, as static
-        // vars are not saved/loaded when serializing.
-        ShoppingList.numLists = shoppingLists.size();
     }
 
     /**

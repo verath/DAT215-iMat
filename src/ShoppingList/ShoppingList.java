@@ -7,7 +7,7 @@ import java.util.Set;
 
 /**
  * A Shopping list object, holding one or more ShoppingListItems.
- * A ShoppingList can not contain multiple Items with the 
+ * A ShoppingList can _not_ contain multiple items with the 
  * same product.
  * 
  * @author Peter
@@ -28,7 +28,6 @@ public class ShoppingList implements Serializable {
      *  The list's name.
      */
     private String name;
-    
     /**
      * The date when the list was latest modifed
      */
@@ -67,7 +66,7 @@ public class ShoppingList implements Serializable {
                 }
             }
         }
-        
+
         dateModified = new Date();
     }
 
@@ -112,10 +111,9 @@ public class ShoppingList implements Serializable {
     public Date getDateModified() {
         return dateModified;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return getName();
     }
-    
 }
