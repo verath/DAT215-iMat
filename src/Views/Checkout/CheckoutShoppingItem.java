@@ -53,7 +53,7 @@ public class CheckoutShoppingItem extends javax.swing.JPanel {
         pricePerLabel.setText("");
         suffix.setText("");
         totalPriceLabel.setText("");
-        sumItem = true;
+        jLabel4.setIcon(null);
     }
     
     public void setPriceLabelOnSumItem (String i) {
@@ -104,8 +104,10 @@ public class CheckoutShoppingItem extends javax.swing.JPanel {
 
         jLabel4.setFont(resourceMap.getFont("jLabel4.font")); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(resourceMap.getIcon("jLabel4.icon")); // NOI18N
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setToolTipText(resourceMap.getString("jLabel4.toolTipText")); // NOI18N
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.setName("jLabel4"); // NOI18N
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

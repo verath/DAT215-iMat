@@ -97,8 +97,10 @@ public class ShoppingCartItemView extends javax.swing.JPanel {
         unitMeasureLabel.setName("unitMeasureLabel"); // NOI18N
 
         RemoveButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        RemoveButton.setIcon(resourceMap.getIcon("RemoveButton.icon")); // NOI18N
         RemoveButton.setText(resourceMap.getString("RemoveButton.text")); // NOI18N
         RemoveButton.setToolTipText(resourceMap.getString("RemoveButton.toolTipText")); // NOI18N
+        RemoveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RemoveButton.setName("RemoveButton"); // NOI18N
         RemoveButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

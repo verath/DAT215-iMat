@@ -42,6 +42,7 @@ public class MainAboutBox extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(MainAboutBox.class);
         setTitle(resourceMap.getString("title")); // NOI18N
+        setMinimumSize(new java.awt.Dimension(630, 194));
         setModal(true);
         setName("aboutBox"); // NOI18N
         setResizable(false);
