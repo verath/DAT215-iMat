@@ -2,6 +2,11 @@ package Views.listOrderDetails;
 
 import ShoppingList.ShoppingList;
 import ShoppingList.ShoppingListsHandler;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import javax.swing.AbstractListModel;
 
@@ -11,7 +16,17 @@ import javax.swing.AbstractListModel;
  */
 public class ViewableShoppingList extends AbstractListModel {
 
-    Set<ShoppingList> shoppingLists = ShoppingListsHandler.INSTANCE.getShoppingLists();
+    private List<ShoppingList> shoppingLists = new LinkedList<ShoppingList>(ShoppingListsHandler.INSTANCE.getShoppingLists());
+
+    public ViewableShoppingList() {
+        Collections.sort(shoppingLists, new Comparator<ShoppingList>() {
+
+            public int compare(ShoppingList t, ShoppingList t1) {
+                // Latest modified first
+                return t1.getDateModified().compareTo(t.getDateModified());
+            }
+        });
+    }
 
     public int getSize() {
         return shoppingLists.size();

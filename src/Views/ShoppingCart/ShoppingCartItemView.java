@@ -13,7 +13,7 @@ import se.chalmers.ait.dat215.project.ShoppingItem;
 
 /**
  *
- * @author Philip
+ * @author Philip, Peter
  */
 public class ShoppingCartItemView extends javax.swing.JPanel {
     

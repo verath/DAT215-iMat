@@ -198,6 +198,9 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="org.jdesktop.application.Application" id="quit" methodName="quit"/>
                 </Property>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+W"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="exitMenuItem.text"/>
                 <Property name="toolTipText" type="java.lang.String" resourceKey="exitMenuItem.toolTipText"/>
                 <Property name="name" type="java.lang.String" value="exitMenuItem" noResource="true"/>
