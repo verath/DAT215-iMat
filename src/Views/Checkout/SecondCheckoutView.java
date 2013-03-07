@@ -10,6 +10,8 @@
  */
 package Views.Checkout;
 
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import se.chalmers.ait.dat215.project.CreditCard;
 import se.chalmers.ait.dat215.project.Customer;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
@@ -172,21 +174,51 @@ public class SecondCheckoutView extends javax.swing.JPanel {
 
         firstName.setText(resourceMap.getString("firstName.text")); // NOI18N
         firstName.setName("firstName"); // NOI18N
+        firstName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                onFieldFocus(evt);
+            }
+        });
 
         lastName.setText(resourceMap.getString("lastName.text")); // NOI18N
         lastName.setName("lastName"); // NOI18N
+        lastName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                onFieldFocus(evt);
+            }
+        });
 
         address.setText(resourceMap.getString("address.text")); // NOI18N
         address.setName("address"); // NOI18N
+        address.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                onFieldFocus(evt);
+            }
+        });
 
         postalCode.setText(resourceMap.getString("postalCode.text")); // NOI18N
         postalCode.setName("postalCode"); // NOI18N
+        postalCode.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                onFieldFocus(evt);
+            }
+        });
 
         city.setText(resourceMap.getString("city.text")); // NOI18N
         city.setName("city"); // NOI18N
+        city.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                onFieldFocus(evt);
+            }
+        });
 
         phone.setText(resourceMap.getString("phone.text")); // NOI18N
         phone.setName("phone"); // NOI18N
+        phone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                onFieldFocus(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -259,12 +291,22 @@ public class SecondCheckoutView extends javax.swing.JPanel {
 
         cardNumber.setText(resourceMap.getString("cardNumber.text")); // NOI18N
         cardNumber.setName("cardNumber"); // NOI18N
+        cardNumber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                onFieldFocus(evt);
+            }
+        });
 
         jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
         jLabel8.setName("jLabel8"); // NOI18N
 
         cvc.setText(resourceMap.getString("cvc.text")); // NOI18N
         cvc.setName("cvc"); // NOI18N
+        cvc.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                onFieldFocus(evt);
+            }
+        });
 
         buttonGroup1.add(visa);
         visa.setText(resourceMap.getString("visa.text")); // NOI18N
@@ -293,6 +335,11 @@ public class SecondCheckoutView extends javax.swing.JPanel {
         jLabel10.setName("jLabel10"); // NOI18N
 
         cardHolderName.setName("cardHolderName"); // NOI18N
+        cardHolderName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                onFieldFocus(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -383,6 +430,18 @@ public class SecondCheckoutView extends javax.swing.JPanel {
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void onFieldFocus(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_onFieldFocus
+    if (evt.getSource() instanceof JTextField) {
+
+        final JTextField field = (JTextField) evt.getSource();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                field.selectAll();
+            }
+        });
+    }
+}//GEN-LAST:event_onFieldFocus
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField address;
     private javax.swing.JLabel addressLabel;

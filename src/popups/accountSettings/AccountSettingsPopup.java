@@ -484,7 +484,6 @@ private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 }//GEN-LAST:event_cancelButtonActionPerformed
 
 private void fieldOnFocus(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldOnFocus
-    System.out.print("a");
     if (evt.getSource() instanceof JTextField) {
 
         final JTextField field = (JTextField) evt.getSource();

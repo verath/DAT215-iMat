@@ -186,36 +186,54 @@
             <Property name="text" type="java.lang.String" resourceKey="firstName.text"/>
             <Property name="name" type="java.lang.String" value="firstName" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="onFieldFocus"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="lastName">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="lastName.text"/>
             <Property name="name" type="java.lang.String" value="lastName" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="onFieldFocus"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="address">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="address.text"/>
             <Property name="name" type="java.lang.String" value="address" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="onFieldFocus"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="postalCode">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="postalCode.text"/>
             <Property name="name" type="java.lang.String" value="postalCode" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="onFieldFocus"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="city">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="city.text"/>
             <Property name="name" type="java.lang.String" value="city" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="onFieldFocus"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="phone">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="phone.text"/>
             <Property name="name" type="java.lang.String" value="phone" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="onFieldFocus"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -319,6 +337,9 @@
             <Property name="text" type="java.lang.String" resourceKey="cardNumber.text"/>
             <Property name="name" type="java.lang.String" value="cardNumber" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="onFieldFocus"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
@@ -331,6 +352,9 @@
             <Property name="text" type="java.lang.String" resourceKey="cvc.text"/>
             <Property name="name" type="java.lang.String" value="cvc" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="onFieldFocus"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="visa">
           <Properties>
@@ -410,6 +434,9 @@
           <Properties>
             <Property name="name" type="java.lang.String" value="cardHolderName" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="onFieldFocus"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
