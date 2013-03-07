@@ -116,9 +116,9 @@ public class SearchResultsView extends javax.swing.JPanel {
 
             // Then recreate the list
             loadingTimers = new LinkedList<Timer>();
-            
+
             int delay = 0;
-            
+
             // Then go trough each product and lay them out.
             for (final Product p : products) {
                 // Use a timer to load products over time instead
@@ -137,7 +137,6 @@ public class SearchResultsView extends javax.swing.JPanel {
                             rsiv.setVisible(true);
                         }
                     });
-
                 } else {
                     // If we don't have saved ones, create and save a new one.
                     delay += LOAD_DELAY_CREATE;
@@ -330,9 +329,8 @@ private void toggleCategoriFilterButtonActionPerformed(java.awt.event.ActionEven
 
         // Calculate size depending on number of categories and number of columns
         // in the grid layout.
-        int numRows = productCategories.size();
-        numRows /= ((GridLayout) filterByContainer.getLayout()).getColumns();
-        numRows += 1;
+        int numRows = (int)Math.ceil((double)productCategories.size() / 
+                ((GridLayout) filterByContainer.getLayout()).getColumns());
 
         filterByContainer.setPreferredSize(new Dimension(500,
                 SearchResultsView.CATEGORY_FILTER_ROW_HEIGHT * numRows));
