@@ -12,6 +12,7 @@ package Views.Checkout;
 
 import Main.NumberUtil;
 import Main.ShoppingCartWrapper;
+import java.awt.Color;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ShoppingItem;
 
@@ -23,12 +24,12 @@ public class CheckoutShoppingItem extends javax.swing.JPanel {
 
     private ShoppingItem shoppingItem;
     private boolean sumItem = false;
-    
+
     /** Creates new form CheckoutShoppingItem */
     public CheckoutShoppingItem() {
         initComponents();
     }
-    
+
     public void setCheckoutShoppingItem(ShoppingItem si) {
         this.shoppingItem = si;
 
@@ -42,8 +43,8 @@ public class CheckoutShoppingItem extends javax.swing.JPanel {
         totalPriceLabel.setText(totalPrice);
         countLabel.setText("" + amount);
     }
-    
-    public void setAsSumItem () {
+
+    public void setAsSumItem() {
         nameLabel.setText("Summa:");
         countLabel.setText("60");
         jLabel3.setText(" kr");
@@ -55,13 +56,19 @@ public class CheckoutShoppingItem extends javax.swing.JPanel {
         totalPriceLabel.setText("");
         jLabel4.setIcon(null);
     }
-    
-    public void setPriceLabelOnSumItem (String i) {
+
+    public void setPriceLabelOnSumItem(String i) {
         countLabel.setText("" + i);
     }
-    
-    public void setTotalSum (int sum) {
+
+    public void setTotalSum(int sum) {
         totalPriceLabel.setText("" + sum);
+    }
+
+    public void setEvenItem(boolean isEven) {
+        if (isEven) {
+            setBackground(Color.WHITE);
+        }
     }
 
     /** This method is called from within the constructor to
@@ -90,6 +97,7 @@ public class CheckoutShoppingItem extends javax.swing.JPanel {
 
         jPanel1.setBackground(resourceMap.getColor("jPanel1.background")); // NOI18N
         jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.setOpaque(false);
 
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         nameLabel.setText(resourceMap.getString("nameLabel.text")); // NOI18N
@@ -187,7 +195,6 @@ private void removeItemButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_
     ShoppingCartWrapper.INSTANCE.removeProduct(shoppingItem.getProduct());
     setVisible(false);
 }//GEN-LAST:event_removeItemButton
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel countLabel;
     private javax.swing.JLabel jLabel3;

@@ -32,9 +32,10 @@ public class FirstCheckoutView extends javax.swing.JPanel implements ShoppingCar
         ShoppingCartWrapper.INSTANCE.addShoppingCartListener(this);
     }
     
-    public void addItemToItemsHolder( ShoppingItem si){
+    public void addItemToItemsHolder( ShoppingItem si, boolean isEven){
         CheckoutShoppingItem cosi = new CheckoutShoppingItem();
         cosi.setCheckoutShoppingItem(si);
+        cosi.setEvenItem(isEven);
         checkoutItemsHolder.add(cosi);
     }
     
@@ -47,8 +48,10 @@ public class FirstCheckoutView extends javax.swing.JPanel implements ShoppingCar
         
         clearCheckoutView();
         
+        int i=0;
         for(ShoppingItem si : items){
-            addItemToItemsHolder(si);
+            addItemToItemsHolder(si, (i%2 == 0));
+            i++;
         }
         
         sumOfItems.setPriceLabelOnSumItem(NumberUtil.roundTwoDecimals(ShoppingCartWrapper.INSTANCE.getTotal()));
@@ -124,6 +127,7 @@ public class FirstCheckoutView extends javax.swing.JPanel implements ShoppingCar
      * @param ce 
      */
     public void shoppingCartChanged(CartEvent ce) {
+        setItemsInCheckoutView(ShoppingCartWrapper.INSTANCE.getItems());
         updateTotalPriceCheckoutView();
     }
 }

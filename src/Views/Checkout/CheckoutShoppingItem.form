@@ -34,6 +34,7 @@
       <Properties>
         <Property name="background" type="java.awt.Color" resourceKey="jPanel1.background"/>
         <Property name="name" type="java.lang.String" value="jPanel1" noResource="true"/>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
