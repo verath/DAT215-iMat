@@ -1,10 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * HeaderBar.java
+ * HeaderBarView.java
  *
  * Created on Feb 21, 2013, 9:20:15 PM
  */
@@ -25,7 +20,7 @@ public class HeaderBarView extends javax.swing.JPanel {
         initComponents();
 
         hbController = new HeaderBarController(this);
-        SearchInputField.requestFocusInWindow();
+        //SearchInputField.requestFocusInWindow();
     }
 
     /** This method is called from within the constructor to
@@ -149,5 +144,10 @@ private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
     void setSearchButtonDisabled() {
         SearchButton.setEnabled(false);
+    }
+    
+    void removeFocus(){
+        SearchInputField.setFocusable(false);
+        SearchInputField.setFocusable(true);
     }
 }

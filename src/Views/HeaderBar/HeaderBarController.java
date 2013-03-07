@@ -5,13 +5,17 @@ import Search.SearchQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
+import navigation.NavigationEvent;
+import navigation.NavigationListener;
+import navigation.NavigationSearchEvent;
 
 /**
  * Controller for the HeaderBar view
  * 
  * @author Peter
  */
-public class HeaderBarController {
+public class HeaderBarController implements NavigationListener {
+
     /**
      * Placeholder for the search bar.
      */
@@ -23,6 +27,7 @@ public class HeaderBarController {
 
     public HeaderBarController(HeaderBarView view) {
         this.view = view;
+        MainController.INSTANCE.addNavigationListener(this);
     }
 
     /**
@@ -73,9 +78,9 @@ public class HeaderBarController {
     void onSearchFieldKeyUp(KeyEvent evt) {
         // If enter is pressed do same as if search button was clicked
         /*if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            doSearch();
+        doSearch();
         }*/
-        
+
         // Instant search!
         doSearch();
     }
@@ -86,5 +91,18 @@ public class HeaderBarController {
      */
     void onSearchButtonActionPerformed(ActionEvent evt) {
         doSearch();
+    }
+
+    public void onNavigate(NavigationEvent navEvent) {
+        if (navEvent instanceof NavigationSearchEvent) {
+            SearchQuery sq = ((NavigationSearchEvent) navEvent).getSearchQuery();
+            if (!sq.getSearchString().equals(view.getSearchText())) {
+                view.removeFocus();
+                view.setSearchText(SEARCH_PLACEHOLDER_TEXT);
+            }
+        } else {
+            view.removeFocus();
+            view.setSearchText(SEARCH_PLACEHOLDER_TEXT);
+        }
     }
 }
