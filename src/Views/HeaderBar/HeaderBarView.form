@@ -31,6 +31,7 @@
         <Component class="javax.swing.JButton" name="homeButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" resourceKey="homeButton.icon"/>
+            <Property name="mnemonic" type="int" value="72"/>
             <Property name="text" type="java.lang.String" resourceKey="homeButton.text"/>
             <Property name="toolTipText" type="java.lang.String" resourceKey="homeButton.toolTipText"/>
             <Property name="name" type="java.lang.String" value="homeButton" noResource="true"/>

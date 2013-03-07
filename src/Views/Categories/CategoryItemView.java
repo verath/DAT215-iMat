@@ -56,7 +56,7 @@ public class CategoryItemView extends javax.swing.JPanel {
             setActiveState();
         } else {
             unsetActiveState();
-    
+
         }
     }
 
@@ -68,6 +68,11 @@ public class CategoryItemView extends javax.swing.JPanel {
     public void unsetActiveState() {
         container.setBackground(Color.white);
         nameLabel.setForeground(Color.BLACK);
+    }
+    
+    public void setMnemonics(char mnemonic) {
+        nameLabel.setDisplayedMnemonic(mnemonic);
+        mnemonicsButton.setMnemonic(mnemonic);
     }
 
     /** This method is called from within the constructor to
@@ -81,6 +86,7 @@ public class CategoryItemView extends javax.swing.JPanel {
 
         container = new javax.swing.JPanel();
         nameLabel = new javax.swing.JLabel();
+        mnemonicsButton = new javax.swing.JButton();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(CategoryItemView.class);
         setBackground(resourceMap.getColor("Form.background")); // NOI18N
@@ -98,12 +104,23 @@ public class CategoryItemView extends javax.swing.JPanel {
         });
 
         nameLabel.setFont(resourceMap.getFont("nameLabel.font")); // NOI18N
+        nameLabel.setLabelFor(mnemonicsButton);
         nameLabel.setText(resourceMap.getString("nameLabel.text")); // NOI18N
         nameLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nameLabel.setName("nameLabel"); // NOI18N
         nameLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nameLabelMouseClicked(evt);
+            }
+        });
+
+        mnemonicsButton.setText(resourceMap.getString("mnemonicsButton.text")); // NOI18N
+        mnemonicsButton.setBorderPainted(false);
+        mnemonicsButton.setContentAreaFilled(false);
+        mnemonicsButton.setName("mnemonicsButton"); // NOI18N
+        mnemonicsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnemonicsButtonActionPerformed(evt);
             }
         });
 
@@ -115,6 +132,11 @@ public class CategoryItemView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(containerLayout.createSequentialGroup()
+                    .addGap(0, 44, Short.MAX_VALUE)
+                    .addComponent(mnemonicsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 45, Short.MAX_VALUE)))
         );
         containerLayout.setVerticalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,6 +144,11 @@ public class CategoryItemView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(nameLabel)
                 .addContainerGap())
+            .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(containerLayout.createSequentialGroup()
+                    .addGap(0, 24, Short.MAX_VALUE)
+                    .addComponent(mnemonicsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 24, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -148,8 +175,18 @@ private void containerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:e
         MainController.INSTANCE.search(searchQuery);
     }
 }//GEN-LAST:event_containerMouseClicked
+
+private void mnemonicsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnemonicsButtonActionPerformed
+    if (isShoppingListLabel) {
+        MainController.INSTANCE.showShoppingLists();
+    } else {
+        searchQuery = new SearchQuery(null, null, productCategories, isFavLabel, name);
+        MainController.INSTANCE.search(searchQuery);
+    }
+}//GEN-LAST:event_mnemonicsButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel container;
+    private javax.swing.JButton mnemonicsButton;
     private javax.swing.JLabel nameLabel;
     // End of variables declaration//GEN-END:variables
     private boolean isShoppingListLabel = false;

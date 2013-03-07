@@ -83,7 +83,7 @@ public class FeatureItemView extends javax.swing.JPanel {
         jLayeredPane1.add(imageLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nameLabel.setBackground(new java.awt.Color(255, 136, 0));
-        nameLabel.setFont(new java.awt.Font("Myriad Pro", 0, 18)); // NOI18N
+        nameLabel.setFont(new java.awt.Font("Myriad Pro", 0, 18));
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nameLabel.setText("Banan");
         nameLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));

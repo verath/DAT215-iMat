@@ -241,6 +241,7 @@ public class SearchResultsView extends javax.swing.JPanel {
         filterByContainer.setOpaque(false);
         filterByContainer.setLayout(new java.awt.GridLayout(0, 4));
 
+        toggleCategoriFilterButton.setMnemonic('F');
         toggleCategoriFilterButton.setText(resourceMap.getString("toggleCategoriFilterButton.text")); // NOI18N
         toggleCategoriFilterButton.setName("toggleCategoriFilterButton"); // NOI18N
         toggleCategoriFilterButton.addActionListener(new java.awt.event.ActionListener() {

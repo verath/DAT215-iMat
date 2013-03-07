@@ -203,6 +203,7 @@ public class ShoppingCartView extends javax.swing.JPanel {
 
         jSeparator1.setName("jSeparator1"); // NOI18N
 
+        saveCartButton.setMnemonic('S');
         saveCartButton.setText(resourceMap.getString("saveCartButton.text")); // NOI18N
         saveCartButton.setToolTipText(resourceMap.getString("saveCartButton.toolTipText")); // NOI18N
         saveCartButton.setEnabled(false);
@@ -213,6 +214,7 @@ public class ShoppingCartView extends javax.swing.JPanel {
             }
         });
 
+        checkoutButton.setMnemonic('T');
         checkoutButton.setText(resourceMap.getString("checkoutButton.text")); // NOI18N
         checkoutButton.setToolTipText(resourceMap.getString("checkoutButton.toolTipText")); // NOI18N
         checkoutButton.setEnabled(false);

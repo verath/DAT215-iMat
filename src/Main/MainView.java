@@ -153,7 +153,7 @@ public class MainView extends FrameView {
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getActionMap(MainView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
-        exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        exitMenuItem.setMnemonic('V');
         exitMenuItem.setText(resourceMap.getString("exitMenuItem.text")); // NOI18N
         exitMenuItem.setToolTipText(resourceMap.getString("exitMenuItem.toolTipText")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
@@ -161,7 +161,7 @@ public class MainView extends FrameView {
 
         menuBar.add(fileMenu);
 
-        jMenu1.setMnemonic('K');
+        jMenu1.setMnemonic('O');
         jMenu1.setText(resourceMap.getString("jMenu1.text")); // NOI18N
         jMenu1.setName("jMenu1"); // NOI18N
 
@@ -203,13 +203,14 @@ public class MainView extends FrameView {
 
         menuBar.add(jMenu1);
 
-        helpMenu.setMnemonic('H');
+        helpMenu.setMnemonic('j');
         helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
         helpMenu.setToolTipText(resourceMap.getString("helpMenu.toolTipText")); // NOI18N
         helpMenu.setDoubleBuffered(true);
         helpMenu.setName("helpMenu"); // NOI18N
 
         aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
+        aboutMenuItem.setMnemonic('O');
         aboutMenuItem.setText(resourceMap.getString("aboutMenuItem.text")); // NOI18N
         aboutMenuItem.setToolTipText(resourceMap.getString("aboutMenuItem.toolTipText")); // NOI18N
         aboutMenuItem.setName("aboutMenuItem"); // NOI18N

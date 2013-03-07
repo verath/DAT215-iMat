@@ -208,6 +208,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="saveCartButton">
       <Properties>
+        <Property name="mnemonic" type="int" value="83"/>
         <Property name="text" type="java.lang.String" resourceKey="saveCartButton.text"/>
         <Property name="toolTipText" type="java.lang.String" resourceKey="saveCartButton.toolTipText"/>
         <Property name="enabled" type="boolean" value="false"/>
@@ -219,6 +220,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="checkoutButton">
       <Properties>
+        <Property name="mnemonic" type="int" value="84"/>
         <Property name="text" type="java.lang.String" resourceKey="checkoutButton.text"/>
         <Property name="toolTipText" type="java.lang.String" resourceKey="checkoutButton.toolTipText"/>
         <Property name="enabled" type="boolean" value="false"/>

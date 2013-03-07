@@ -124,6 +124,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="previousButton">
       <Properties>
+        <Property name="mnemonic" type="int" value="69"/>
         <Property name="text" type="java.lang.String" resourceKey="previousButton.text"/>
         <Property name="name" type="java.lang.String" value="previousButton" noResource="true"/>
       </Properties>
@@ -133,6 +134,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="nextButton">
       <Properties>
+        <Property name="mnemonic" type="int" value="115"/>
         <Property name="text" type="java.lang.String" resourceKey="nextButton.text"/>
         <Property name="name" type="java.lang.String" value="nextButton" noResource="true"/>
       </Properties>
@@ -142,6 +144,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="cancelButton">
       <Properties>
+        <Property name="mnemonic" type="int" value="86"/>
         <Property name="text" type="java.lang.String" resourceKey="cancelButton.text"/>
         <Property name="name" type="java.lang.String" value="cancelButton" noResource="true"/>
       </Properties>
@@ -151,6 +154,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="payButton">
       <Properties>
+        <Property name="mnemonic" type="int" value="66"/>
         <Property name="text" type="java.lang.String" resourceKey="payButton.text"/>
         <Property name="name" type="java.lang.String" value="payButton" noResource="true"/>
       </Properties>

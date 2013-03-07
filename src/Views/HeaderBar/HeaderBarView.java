@@ -54,6 +54,7 @@ public class HeaderBarView extends javax.swing.JPanel {
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(Main.MainApp.class).getContext().getResourceMap(HeaderBarView.class);
         homeButton.setIcon(resourceMap.getIcon("homeButton.icon")); // NOI18N
+        homeButton.setMnemonic('H');
         homeButton.setText(resourceMap.getString("homeButton.text")); // NOI18N
         homeButton.setToolTipText(resourceMap.getString("homeButton.toolTipText")); // NOI18N
         homeButton.setName("homeButton"); // NOI18N

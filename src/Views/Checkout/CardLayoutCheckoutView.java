@@ -92,6 +92,7 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
         fourthCheckoutView1.setName("fourthCheckoutView1"); // NOI18N
         jPanel1.add(fourthCheckoutView1, "card5");
 
+        previousButton.setMnemonic('E');
         previousButton.setText(resourceMap.getString("previousButton.text")); // NOI18N
         previousButton.setName("previousButton"); // NOI18N
         previousButton.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +101,7 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
             }
         });
 
+        nextButton.setMnemonic('s');
         nextButton.setText(resourceMap.getString("nextButton.text")); // NOI18N
         nextButton.setName("nextButton"); // NOI18N
         nextButton.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +110,7 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
             }
         });
 
+        cancelButton.setMnemonic('V');
         cancelButton.setText(resourceMap.getString("cancelButton.text")); // NOI18N
         cancelButton.setName("cancelButton"); // NOI18N
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +119,7 @@ public class CardLayoutCheckoutView extends javax.swing.JPanel {
             }
         });
 
+        payButton.setMnemonic('B');
         payButton.setText(resourceMap.getString("payButton.text")); // NOI18N
         payButton.setName("payButton"); // NOI18N
         payButton.addActionListener(new java.awt.event.ActionListener() {

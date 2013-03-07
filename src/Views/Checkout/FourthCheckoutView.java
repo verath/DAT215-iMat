@@ -68,6 +68,7 @@ public class FourthCheckoutView extends javax.swing.JPanel {
         thanksMessage1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         thanksMessage1.setName("thanksMessage1"); // NOI18N
 
+        jButton1.setMnemonic('R');
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {

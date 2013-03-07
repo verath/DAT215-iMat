@@ -93,6 +93,19 @@ public class CategoriesView extends javax.swing.JPanel implements NavigationList
         categoryItemProducts.put("Frukt & Bär", prodCategories);
     }
     //</editor-fold>
+    public static final Map<String, Character> categoryMnemonics = new HashMap<String, Character>();
+
+    static {
+        categoryMnemonics.put("Grönsaker", 'G');
+        categoryMnemonics.put("Kött", 'K');
+        categoryMnemonics.put("Mejeriprodukter", 'M');
+        categoryMnemonics.put("Skafferi", 'i');
+        categoryMnemonics.put("Nötter & Örter", 'N');
+        categoryMnemonics.put("Sötsaker", 'r');
+        categoryMnemonics.put("Bröd", 'B');
+        categoryMnemonics.put("Drycker", 'D');
+        categoryMnemonics.put("Frukt & Bär", 'u');
+    }
     private List<CategoryItemView> categoryViews = new ArrayList<CategoryItemView>(10);
 
     /** Creates new form CategoriesView */
@@ -107,6 +120,7 @@ public class CategoriesView extends javax.swing.JPanel implements NavigationList
             CategoryItemView civ = new CategoryItemView();
             civ.setCategoryName(name);
             civ.setSearchCategories(productCategories);
+            civ.setMnemonics(categoryMnemonics.get(name));
             add(civ);
             categoryViews.add(civ);
         }
@@ -122,15 +136,17 @@ public class CategoriesView extends javax.swing.JPanel implements NavigationList
         CategoryItemView civ = new CategoryItemView();
         civ.setCategoryName("Favoriter");
         civ.setIsFavoriteLabel(true);
+        civ.setMnemonics('v');
         add(civ);
         categoryViews.add(civ);
 
         // Show a special label for shoppinglists
-        CategoryItemView sliv = new CategoryItemView();
-        sliv.setCategoryName("Inköpslistor");
-        sliv.setIsShoppingListLabel(true);
-        add(sliv);
-        categoryViews.add(sliv);
+        civ = new CategoryItemView();
+        civ.setCategoryName("Inköpslistor");
+        civ.setIsShoppingListLabel(true);
+        civ.setMnemonics('l');
+        add(civ);
+        categoryViews.add(civ);
 
         validate();
         repaint();
