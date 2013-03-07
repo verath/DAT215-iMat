@@ -225,7 +225,7 @@ public class AccountSettingsPopup extends javax.swing.JPanel {
         cardNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
 
         jLabel11.setLabelFor(cardCSVField);
-        jLabel11.setText("CSV:");
+        jLabel11.setText("CVC:");
 
         cardCSVField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
 
