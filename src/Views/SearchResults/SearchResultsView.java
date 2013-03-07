@@ -116,7 +116,9 @@ public class SearchResultsView extends javax.swing.JPanel {
 
             // Then recreate the list
             loadingTimers = new LinkedList<Timer>();
-
+            
+            int delay = 0;
+            
             // Then go trough each product and lay them out.
             for (final Product p : products) {
                 // Use a timer to load products over time instead
@@ -127,7 +129,8 @@ public class SearchResultsView extends javax.swing.JPanel {
                     // If we have a created resultItem, use it instead as 
                     // creating new ones are very slow.
                     final SearchResultItemView rsiv = resultItems.get(i);
-                    t = new Timer(i * LOAD_DELAY_SAVED, new ActionListener() {
+                    delay += LOAD_DELAY_SAVED;
+                    t = new Timer(delay, new ActionListener() {
 
                         public void actionPerformed(ActionEvent ae) {
                             rsiv.setProduct(p);
@@ -137,7 +140,8 @@ public class SearchResultsView extends javax.swing.JPanel {
 
                 } else {
                     // If we don't have saved ones, create and save a new one.
-                    t = new Timer(i * LOAD_DELAY_CREATE, new ActionListener() {
+                    delay += LOAD_DELAY_CREATE;
+                    t = new Timer(delay, new ActionListener() {
 
                         public void actionPerformed(ActionEvent ae) {
                             SearchResultItemView rsiv = new SearchResultItemView();
