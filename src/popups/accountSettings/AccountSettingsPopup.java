@@ -8,9 +8,14 @@ package popups.accountSettings;
 import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.JDialog;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import se.chalmers.ait.dat215.project.CreditCard;
 import se.chalmers.ait.dat215.project.Customer;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
+import validation.textNotEmptyInputVerifier;
+import validation.textOnlyNumberVerifier;
+import validation.textTelephoneVerifier;
 
 /**
  *
@@ -112,35 +117,71 @@ public class AccountSettingsPopup extends javax.swing.JPanel {
         accountSettingContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Kontouppgifter"));
         accountSettingContainer.setPreferredSize(new java.awt.Dimension(400, 355));
 
-        jLabel1.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Förnamn:");
 
-        jLabel2.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Efternamn:");
 
-        jLabel3.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Adress:");
 
-        jLabel4.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Postnummer:");
 
-        jLabel5.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Ort:");
 
-        jLabel6.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Telefon:");
 
-        accNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        accNameField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        accNameField.setInputVerifier(new textNotEmptyInputVerifier("Förnamn"));
+        accNameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldOnFocus(evt);
+            }
+        });
 
-        accLastNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        accLastNameField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        accLastNameField.setInputVerifier(new textNotEmptyInputVerifier("Efternamn"));
+        accLastNameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldOnFocus(evt);
+            }
+        });
 
-        accAddressField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        accAddressField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        accAddressField.setInputVerifier(new textNotEmptyInputVerifier("Adress"));
+        accAddressField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldOnFocus(evt);
+            }
+        });
 
-        accPostalCodeField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        accPostalCodeField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        accPostalCodeField.setInputVerifier(new textOnlyNumberVerifier("000 00"));
+        accPostalCodeField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldOnFocus(evt);
+            }
+        });
 
-        accCityField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        accCityField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        accCityField.setInputVerifier(new textNotEmptyInputVerifier("Ort"));
+        accCityField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldOnFocus(evt);
+            }
+        });
 
-        accPhoneField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        accPhoneField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        accPhoneField.setInputVerifier(new textTelephoneVerifier());
+        accPhoneField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldOnFocus(evt);
+            }
+        });
 
         javax.swing.GroupLayout accountSettingContainerLayout = new javax.swing.GroupLayout(accountSettingContainer);
         accountSettingContainer.setLayout(accountSettingContainerLayout);
@@ -157,12 +198,12 @@ public class AccountSettingsPopup extends javax.swing.JPanel {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(accPhoneField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                    .addComponent(accCityField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                    .addComponent(accPostalCodeField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                    .addComponent(accAddressField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                    .addComponent(accLastNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                    .addComponent(accNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE))
+                    .addComponent(accPhoneField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                    .addComponent(accCityField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                    .addComponent(accPostalCodeField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                    .addComponent(accAddressField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                    .addComponent(accLastNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                    .addComponent(accNameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
                 .addContainerGap())
         );
         accountSettingContainerLayout.setVerticalGroup(
@@ -192,7 +233,7 @@ public class AccountSettingsPopup extends javax.swing.JPanel {
                 .addGroup(accountSettingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(accPhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         jPanel1.add(accountSettingContainer);
@@ -202,34 +243,54 @@ public class AccountSettingsPopup extends javax.swing.JPanel {
         cardSettingContainer.setPreferredSize(new java.awt.Dimension(400, 355));
 
         cardTypeButtonGroup.add(cardTypeVisaRadioButton);
-        cardTypeVisaRadioButton.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        cardTypeVisaRadioButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cardTypeVisaRadioButton.setText("VISA");
 
         cardTypeButtonGroup.add(cardTypeMasterRadioButton);
-        cardTypeMasterRadioButton.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        cardTypeMasterRadioButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cardTypeMasterRadioButton.setText("Mastercard");
 
-        jLabel7.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setLabelFor(cardNumberField);
         jLabel7.setText("Kortnummer:");
 
-        jLabel8.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setLabelFor(cardNameField);
         jLabel8.setText("Namn:");
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setLabelFor(cardTypeVisaRadioButton);
         jLabel10.setText("Korttyp:");
 
-        cardNumberField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        cardNumberField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cardNumberField.setInputVerifier(new textOnlyNumberVerifier("1234 5678 9012 3456"));
+        cardNumberField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldOnFocus(evt);
+            }
+        });
 
-        cardNameField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        cardNameField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cardNameField.setInputVerifier(new textNotEmptyInputVerifier("Förnamn Efternamn"));
+        cardNameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldOnFocus(evt);
+            }
+        });
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel11.setLabelFor(cardCSVField);
         jLabel11.setText("CVC:");
 
-        cardCSVField.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        cardCSVField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cardCSVField.setInputVerifier(new textOnlyNumberVerifier("000"));
+        cardCSVField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldOnFocus(evt);
+            }
+        });
 
-        dontSaveCardCheckBox.setFont(new java.awt.Font("Myriad Pro", 0, 12));
+        dontSaveCardCheckBox.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         dontSaveCardCheckBox.setText("Spara inte mitt kort");
         dontSaveCardCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,12 +298,16 @@ public class AccountSettingsPopup extends javax.swing.JPanel {
             }
         });
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel12.setText("Giltigt till:");
 
+        cardYearComboBox.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cardYearComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "År", "2013", "2014", "2015", "2016", "2017" }));
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel13.setText("/");
 
+        cardMonthComboBox.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cardMonthComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Månad", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
         javax.swing.GroupLayout cardSettingContainerLayout = new javax.swing.GroupLayout(cardSettingContainer);
@@ -270,7 +335,7 @@ public class AccountSettingsPopup extends javax.swing.JPanel {
                                 .addComponent(cardTypeMasterRadioButton))
                             .addComponent(cardNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                             .addGroup(cardSettingContainerLayout.createSequentialGroup()
-                                .addComponent(cardNumberField, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                .addComponent(cardNumberField, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -310,7 +375,7 @@ public class AccountSettingsPopup extends javax.swing.JPanel {
                     .addComponent(cardYearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(dontSaveCardCheckBox)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         jPanel1.add(cardSettingContainer);
@@ -417,6 +482,19 @@ private void saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {
 private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
     closeDialog();
 }//GEN-LAST:event_cancelButtonActionPerformed
+
+private void fieldOnFocus(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldOnFocus
+    System.out.print("a");
+    if (evt.getSource() instanceof JTextField) {
+
+        final JTextField field = (JTextField) evt.getSource();
+        SwingUtilities.invokeLater( new Runnable() {
+                public void run() {
+                     field.selectAll();
+                }
+        });
+    }
+}//GEN-LAST:event_fieldOnFocus
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField accAddressField;
     private javax.swing.JTextField accCityField;
